@@ -1,0 +1,2069 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+<title>Stickerly — Choose Design</title>
+
+<!--
+    IMPORTANT:
+    Templates now uses the same preview template system
+    as the Editor.
+-->
+<link rel="stylesheet" href="style.css">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:wght@400;600;700&family=Nunito:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+body {
+    font-family: "Inter", sans-serif;
+
+    background:
+        linear-gradient(
+            180deg,
+            #fbf9fe 0%,
+            #f6f3fa 100%
+        );
+
+    color: #2d2436;
+}
+
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar {
+
+    height: 68px;
+
+    background:
+        rgba(255,255,255,.94);
+
+    border-bottom:
+        1px solid #ebe5f2;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 28px;
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    backdrop-filter: blur(12px);
+
+}
+
+
+.brand {
+
+    text-decoration: none;
+
+    color: #291f35;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    font-size: 20px;
+
+    font-weight: 800;
+
+}
+
+
+.brand-mark {
+
+    width: 31px;
+    height: 31px;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6841d8,
+            #a16ff2
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 15px;
+
+    box-shadow:
+        0 6px 16px
+        rgba(104,65,216,.24);
+
+}
+
+
+.top-center {
+
+    margin-left: 40px;
+
+    flex: 1;
+
+    max-width: 590px;
+
+    position: relative;
+
+}
+
+
+.search {
+
+    width: 100%;
+
+    height: 40px;
+
+    border:
+        1px solid #ddd5e7;
+
+    border-radius: 10px;
+
+    background: white;
+
+    padding:
+        0 14px;
+
+    outline: none;
+
+    font-size: 12px;
+
+    color: #44394e;
+
+}
+
+
+.search:focus {
+
+    border-color: #8d69db;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(104,65,216,.08);
+
+}
+
+
+.top-actions {
+
+    margin-left: auto;
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+}
+
+
+.top-btn {
+
+    height: 38px;
+
+    padding: 0 13px;
+
+    border-radius: 9px;
+
+    border:
+        1px solid #ddd6e7;
+
+    background: white;
+
+    color: #594d63;
+
+    text-decoration: none;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.top-btn.primary {
+
+    background:
+        linear-gradient(
+            135deg,
+            #6841d8,
+            #9069e9
+        );
+
+    border-color: transparent;
+
+    color: white;
+
+    box-shadow:
+        0 6px 15px
+        rgba(104,65,216,.20);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding:
+        42px 28px 22px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    align-items: flex-end;
+
+}
+
+
+.hero-kicker {
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.2px;
+
+    color: #9d91aa;
+
+    font-weight: 800;
+
+    margin-bottom: 8px;
+
+}
+
+
+.hero h1 {
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    color: #30263b;
+
+    margin-bottom: 8px;
+
+}
+
+
+.hero p {
+
+    color: #817688;
+
+    max-width: 620px;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}
+
+
+.hero-right {
+
+    display: flex;
+
+    gap: 8px;
+
+    align-items: center;
+
+}
+
+
+.sort {
+
+    height: 38px;
+
+    padding:
+        0 11px;
+
+    border:
+        1px solid #ddd6e5;
+
+    border-radius: 8px;
+
+    background: white;
+
+    outline: none;
+
+    color: #554a60;
+
+    font-size: 11px;
+
+}
+
+
+/* =====================================================
+   CATEGORY BAR
+===================================================== */
+
+.category-bar {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding:
+        0 28px 23px;
+
+    display: flex;
+
+    gap: 8px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+
+}
+
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+
+.category {
+
+    flex-shrink: 0;
+
+    border: none;
+
+    background: #eee9f5;
+
+    color: #70647a;
+
+    height: 34px;
+
+    padding:
+        0 13px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.category:hover {
+
+    background:
+        #e5dcf2;
+
+}
+
+
+.category.active {
+
+    background:
+        #6841d8;
+
+    color: white;
+
+    box-shadow:
+        0 5px 14px
+        rgba(104,65,216,.20);
+
+}
+
+
+/* =====================================================
+   PAGE CONTENT
+===================================================== */
+
+.content {
+
+    max-width: 1450px;
+
+    margin: auto;
+
+    padding:
+        0 28px 55px;
+
+}
+
+
+.result-line {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+}
+
+
+.result-line strong {
+
+    font-size: 12px;
+
+    color: #4f435a;
+
+}
+
+
+.result-line span {
+
+    font-size: 10px;
+
+    color: #9c91a6;
+
+}
+
+
+/* =====================================================
+   DESIGN GRID
+===================================================== */
+
+.design-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(265px, 1fr)
+        );
+
+    gap: 19px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.design-card {
+
+    background: white;
+
+    border:
+        1px solid #ebe5f1;
+
+    border-radius: 16px;
+
+    padding: 10px;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+
+    cursor: pointer;
+
+}
+
+
+.design-card:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #c8b7e9;
+
+    box-shadow:
+        0 15px 34px
+        rgba(53,35,70,.09);
+
+}
+
+
+/* =====================================================
+   PREVIEW AREA
+===================================================== */
+
+.preview-area {
+
+    height: 215px;
+
+    border-radius: 11px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(107,91,124,.10) 1px,
+            transparent 1px
+        );
+
+    background-size: 18px 18px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    position: relative;
+
+}
+
+
+/*
+ * The actual preview is now the same
+ * preview-label / preview-template system
+ * used by Stickerly's shared stylesheet.
+ */
+.preview-area .preview-label {
+
+    flex-shrink: 0;
+
+    transform:
+        scale(.62);
+
+    transform-origin:
+        center center;
+
+}
+
+
+/* =====================================================
+   PREVIEW CONTENT
+===================================================== */
+
+.preview-area .preview-business {
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+}
+
+
+.preview-area .preview-product {
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+}
+
+
+.preview-area .preview-price {
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+}
+
+
+.preview-area .preview-sku {
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+}
+
+
+/*
+ * MRP is included for visual completeness.
+ * The Editor remains the source of the actual
+ * editable value.
+ */
+.preview-area .preview-mrp {
+
+    position: absolute;
+
+    font-family:
+        "Poppins",
+        sans-serif;
+
+    font-size: 11px;
+
+    color: #8a7e91;
+
+    text-decoration:
+        line-through;
+
+    z-index: 10;
+
+}
+
+
+/*
+ * Gallery QR visual.
+ */
+.preview-area .preview-qr {
+
+    z-index: 20;
+
+}
+
+
+.preview-area .qr-preview {
+
+    width: 54px;
+
+    height: 54px;
+
+    background: white;
+
+    border-radius: 3px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    grid-template-rows:
+        repeat(5, 1fr);
+
+    gap: 2px;
+
+    padding: 5px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,.08);
+
+}
+
+
+.preview-area .qr-preview i {
+
+    background:
+        #111;
+
+    display: block;
+
+}
+
+
+.preview-area .qr-preview i:nth-child(2n) {
+
+    background:
+        transparent;
+
+}
+
+
+.preview-area .qr-preview i:nth-child(5n) {
+
+    background:
+        #111;
+
+}
+
+
+/* =====================================================
+   BARCODE PREVIEW
+===================================================== */
+
+.preview-area .barcode-preview {
+
+    position: absolute;
+
+    left: 9%;
+
+    bottom: 8%;
+
+    width: 31%;
+
+    height: 14px;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+            #151515 0 2px,
+            transparent 2px 4px,
+            #151515 4px 5px,
+            transparent 5px 8px
+        );
+
+    opacity: .82;
+
+    z-index: 15;
+
+}
+
+
+/* =====================================================
+   CARD INFO
+===================================================== */
+
+.card-info {
+
+    padding:
+        11px 3px 2px;
+
+}
+
+
+.card-top {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.card-name {
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #3b3044;
+
+}
+
+
+.number {
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    color: #aaa0af;
+
+}
+
+
+.card-meta {
+
+    margin-top: 4px;
+
+    font-size: 9px;
+
+    color: #9c90a5;
+
+}
+
+
+.card-features {
+
+    margin-top: 8px;
+
+    display: flex;
+
+    gap: 5px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.feature {
+
+    padding:
+        4px 6px;
+
+    border-radius: 6px;
+
+    background:
+        #f4f1f8;
+
+    color:
+        #786b83;
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+}
+
+
+.use-button {
+
+    width: 100%;
+
+    height: 36px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        #f1ebfb;
+
+    color:
+        #6841d8;
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+.design-card:hover .use-button {
+
+    background:
+        #6841d8;
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty-state {
+
+    display: none;
+
+    padding: 80px 20px;
+
+    text-align: center;
+
+    color: #8e8298;
+
+    font-size: 13px;
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .topbar {
+
+        padding: 0 15px;
+
+    }
+
+
+    .top-center {
+
+        margin-left: 15px;
+
+    }
+
+
+    .top-actions {
+
+        display: none;
+
+    }
+
+
+    .hero {
+
+        padding:
+            28px 18px 18px;
+
+        align-items: flex-start;
+
+        flex-direction: column;
+
+    }
+
+
+    .hero h1 {
+
+        font-size: 28px;
+
+    }
+
+
+    .category-bar {
+
+        padding-left: 18px;
+        padding-right: 18px;
+
+    }
+
+
+    .content {
+
+        padding:
+            0 18px 40px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .brand span:last-child {
+
+        display: none;
+
+    }
+
+
+    .top-center {
+
+        margin-left: 12px;
+
+    }
+
+
+    .design-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 12px;
+
+    }
+
+
+    .preview-area {
+
+        height: 175px;
+
+    }
+
+
+    .preview-area .preview-label {
+
+        transform:
+            scale(.50);
+
+    }
+
+}
+
+
+@media (max-width: 430px) {
+
+    .design-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .preview-area .preview-label {
+
+        transform:
+            scale(.62);
+
+    }
+
+
+    .preview-area {
+
+        height: 215px;
+
+    }
+
+}
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+```
+<a
+    href="index.html"
+    class="brand">
+
+
+    <span
+        class="brand-mark">
+
+        S
+
+    </span>
+
+
+    <span>
+        Stickerly
+    </span>
+
+
+</a>
+
+
+<div class="top-center">
+
+    <input
+        id="searchInput"
+        class="search"
+        type="search"
+        placeholder="Search designs — fashion, grocery, premium, sale..."
+        autocomplete="off">
+
+</div>
+
+
+<div class="top-actions">
+
+    <a
+        href="index.html"
+        class="top-btn">
+
+        Home
+
+    </a>
+
+
+    <a
+        href="editor.html?design=01"
+        class="top-btn primary">
+
+        Blank Editor
+
+    </a>
+
+</div>
+```
+
+</header>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+```
+<div>
+
+    <div class="hero-kicker">
+        STICKERLY DESIGN LIBRARY
+    </div>
+
+
+    <h1>
+        Choose a price tag design
+    </h1>
+
+
+    <p>
+
+        Pick a starting design and customize
+        the product name, price, colors, QR code,
+        optional details and sticker size in the editor.
+
+    </p>
+
+</div>
+
+
+<div class="hero-right">
+
+    <select
+        id="sortSelect"
+        class="sort">
+
+        <option value="default">
+            Popular
+        </option>
+
+        <option value="az">
+            A–Z
+        </option>
+
+        <option value="number">
+            Design number
+        </option>
+
+    </select>
+
+</div>
+```
+
+</section>
+
+<!-- =====================================================
+     CATEGORIES
+===================================================== -->
+
+<div class="category-bar">
+
+```
+<button
+    class="category active"
+    data-category="all">
+
+    All Designs
+
+</button>
+
+
+<button
+    class="category"
+    data-category="minimal">
+
+    Minimal
+
+</button>
+
+
+<button
+    class="category"
+    data-category="fashion">
+
+    Fashion
+
+</button>
+
+
+<button
+    class="category"
+    data-category="grocery">
+
+    Grocery
+
+</button>
+
+
+<button
+    class="category"
+    data-category="electronics">
+
+    Electronics
+
+</button>
+
+
+<button
+    class="category"
+    data-category="premium">
+
+    Premium
+
+</button>
+
+
+<button
+    class="category"
+    data-category="sale">
+
+    Sale
+
+</button>
+
+
+<button
+    class="category"
+    data-category="modern">
+
+    Modern
+
+</button>
+```
+
+</div>
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<main class="content">
+
+```
+<div class="result-line">
+
+    <strong id="resultCount">
+        20 designs
+    </strong>
+
+
+    <span>
+        QR included · Barcode attachable in editor
+    </span>
+
+</div>
+
+
+<div
+    id="designGrid"
+    class="design-grid">
+</div>
+
+
+<div
+    id="emptyState"
+    class="empty-state">
+
+    No matching designs found.
+
+</div>
+```
+
+</main>
+
+<script>
+
+/* =========================================================
+   SAMPLE DATA
+========================================================= */
+
+const sample = {
+
+    store:
+        "FURNITURE STUDIO",
+
+    product:
+        "Modern 3-Seater Sofa",
+
+    mrp:
+        "MRP ₹45,000",
+
+    price:
+        "₹38,500",
+
+    sku:
+        "SOF-104"
+
+};
+
+
+/* =========================================================
+   DESIGN DATA
+========================================================= */
+
+const designs = [
+
+    {
+        id: "01",
+        name: "Price Hero",
+        category: "minimal",
+        tags: ["Minimal", "Retail"]
+    },
+
+    {
+        id: "02",
+        name: "Dark Luxury",
+        category: "premium",
+        tags: ["Premium", "Luxury"]
+    },
+
+    {
+        id: "03",
+        name: "Premium Gold",
+        category: "premium",
+        tags: ["Premium", "Classic"]
+    },
+
+    {
+        id: "04",
+        name: "Sale Pink",
+        category: "sale",
+        tags: ["Sale", "Retail"]
+    },
+
+    {
+        id: "05",
+        name: "Modern Blue",
+        category: "modern",
+        tags: ["Modern", "Retail"]
+    },
+
+    {
+        id: "06",
+        name: "Modern Capsule",
+        category: "modern",
+        tags: ["Modern", "Soft"]
+    },
+
+    {
+        id: "07",
+        name: "Double Border",
+        category: "minimal",
+        tags: ["Classic", "Retail"]
+    },
+
+    {
+        id: "08",
+        name: "Fresh Green",
+        category: "grocery",
+        tags: ["Grocery", "Eco"]
+    },
+
+    {
+        id: "09",
+        name: "Fashion Label",
+        category: "fashion",
+        tags: ["Fashion", "Premium"]
+    },
+
+    {
+        id: "10",
+        name: "Grocery Classic",
+        category: "grocery",
+        tags: ["Grocery", "Retail"]
+    },
+
+    {
+        id: "11",
+        name: "Electronics",
+        category: "electronics",
+        tags: ["Electronics", "Modern"]
+    },
+
+    {
+        id: "12",
+        name: "Black Gold",
+        category: "premium",
+        tags: ["Premium", "Luxury"]
+    },
+
+    {
+        id: "13",
+        name: "Rounded Retail",
+        category: "modern",
+        tags: ["Rounded", "Retail"]
+    },
+
+    {
+        id: "14",
+        name: "Orange Retail",
+        category: "sale",
+        tags: ["Retail", "Bright"]
+    },
+
+    {
+        id: "15",
+        name: "Indigo",
+        category: "modern",
+        tags: ["Modern", "Premium"]
+    },
+
+    {
+        id: "16",
+        name: "Dark Green",
+        category: "premium",
+        tags: ["Premium", "Eco"]
+    },
+
+    {
+        id: "17",
+        name: "Teal",
+        category: "modern",
+        tags: ["Modern", "Clean"]
+    },
+
+    {
+        id: "18",
+        name: "Pink Premium",
+        category: "fashion",
+        tags: ["Fashion", "Premium"]
+    },
+
+    {
+        id: "19",
+        name: "Warm Brown",
+        category: "premium",
+        tags: ["Classic", "Furniture"]
+    },
+
+    {
+        id: "20",
+        name: "Premium Label",
+        category: "minimal",
+        tags: ["Premium", "Classic"]
+    }
+
+];
+
+
+/* =========================================================
+   QR-STYLE PREVIEW
+========================================================= */
+
+function qrPreview() {
+
+    return `
+
+        <div class="qr-preview">
+
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+            <i></i>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SHARED TEMPLATE PREVIEW
+========================================================= */
+
+/*
+ * IMPORTANT
+ *
+ * This no longer uses:
+ *
+ *     .tag.t01
+ *     .tag.t02
+ *     .tag.t03
+ *
+ * Those were separate manually-created designs.
+ *
+ * Templates now use:
+ *
+ *     .preview-label.preview-template-01
+ *     .preview-label.preview-template-02
+ *     .preview-label.preview-template-03
+ *
+ * These classes already exist in style.css and represent
+ * the same template design system used by the Editor.
+ */
+
+function previewHTML(
+    design
+) {
+
+    return `
+
+        <div
+            class="
+                preview-label
+                preview-template-${design.id}
+            ">
+
+
+            <!-- BUSINESS -->
+
+            <div class="preview-business">
+
+                ${sample.store}
+
+            </div>
+
+
+            <!-- PRODUCT -->
+
+            <div class="preview-product">
+
+                ${sample.product}
+
+            </div>
+
+
+            <!-- MRP -->
+
+            <div class="preview-mrp">
+
+                ${sample.mrp}
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="preview-price">
+
+                ${sample.price}
+
+            </div>
+
+
+            <!-- SKU -->
+
+            <div class="preview-sku">
+
+                SKU ${sample.sku}
+
+            </div>
+
+
+            <!-- QR -->
+
+            <div class="preview-qr">
+
+                ${qrPreview()}
+
+            </div>
+
+
+            <!--
+                Barcode is only a gallery visual.
+                The real barcode is handled by the Editor.
+            -->
+
+            <div class="barcode-preview"></div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER
+========================================================= */
+
+const grid =
+    document.getElementById(
+        "designGrid"
+    );
+
+
+const emptyState =
+    document.getElementById(
+        "emptyState"
+    );
+
+
+const resultCount =
+    document.getElementById(
+        "resultCount"
+    );
+
+
+let currentCategory =
+    "all";
+
+
+let currentSearch =
+    "";
+
+
+let currentSort =
+    "default";
+
+
+function render() {
+
+    let list =
+        [...designs];
+
+
+    /* =====================================================
+       CATEGORY
+    ===================================================== */
+
+    if (
+        currentCategory !==
+        "all"
+    ) {
+
+        list =
+            list.filter(
+                design =>
+                    design.category ===
+                    currentCategory
+            );
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    if (
+        currentSearch
+    ) {
+
+        const query =
+            currentSearch
+                .toLowerCase()
+                .trim();
+
+
+        list =
+            list.filter(
+                design => {
+
+                    return (
+
+                        design.name
+                            .toLowerCase()
+                            .includes(
+                                query
+                            )
+
+                        ||
+
+                        design.category
+                            .toLowerCase()
+                            .includes(
+                                query
+                            )
+
+                        ||
+
+                        design.tags.some(
+                            tag =>
+                                tag
+                                    .toLowerCase()
+                                    .includes(
+                                        query
+                                    )
+                        )
+
+                        ||
+
+                        design.id
+                            .includes(
+                                query
+                            )
+
+                    );
+
+                }
+            );
+
+    }
+
+
+    /* =====================================================
+       SORT
+    ===================================================== */
+
+    if (
+        currentSort ===
+        "az"
+    ) {
+
+        list.sort(
+            (a, b) =>
+                a.name.localeCompare(
+                    b.name
+                )
+        );
+
+    }
+
+
+    if (
+        currentSort ===
+        "number"
+    ) {
+
+        list.sort(
+            (a, b) =>
+                Number(a.id) -
+                Number(b.id)
+        );
+
+    }
+
+
+    /* =====================================================
+       DISPLAY
+    ===================================================== */
+
+    grid.innerHTML = "";
+
+
+    resultCount.textContent =
+        list.length +
+        (
+            list.length === 1
+                ? " design"
+                : " designs"
+        );
+
+
+    if (
+        list.length === 0
+    ) {
+
+        emptyState.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    emptyState.style.display =
+        "none";
+
+
+    list.forEach(
+        design => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "design-card";
+
+
+            card.innerHTML = `
+
+                <div class="preview-area">
+
+                    ${previewHTML(
+                        design
+                    )}
+
+                </div>
+
+
+                <div class="card-info">
+
+                    <div class="card-top">
+
+                        <div class="card-name">
+
+                            ${design.name}
+
+                        </div>
+
+
+                        <div class="number">
+
+                            #${design.id}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-meta">
+
+                        ${
+                            categoryName(
+                                design.category
+                            )
+                        }
+
+                    </div>
+
+
+                    <div class="card-features">
+
+                        ${design.tags.map(
+                            tag =>
+                                `<span class="feature">
+                                    ${tag}
+                                </span>`
+                        ).join("")}
+
+
+                        <span class="feature">
+                            QR
+                        </span>
+
+
+                        <span class="feature">
+                            Barcode
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="use-button"
+                        type="button">
+
+                        Customize this design
+
+                    </button>
+
+                </div>
+
+            `;
+
+
+            card.addEventListener(
+                "click",
+                function() {
+
+                    openEditor(
+                        design.id
+                    );
+
+                }
+            );
+
+
+            grid.appendChild(
+                card
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CATEGORY NAME
+========================================================= */
+
+function categoryName(
+    category
+) {
+
+    const names = {
+
+        minimal:
+            "Minimal & clean",
+
+        fashion:
+            "Fashion & clothing",
+
+        grocery:
+            "Grocery & retail",
+
+        electronics:
+            "Electronics",
+
+        premium:
+            "Premium",
+
+        sale:
+            "Sale & promotional",
+
+        modern:
+            "Modern"
+
+    };
+
+
+    return (
+        names[category] ||
+        "Retail"
+    );
+
+}
+
+
+/* =========================================================
+   OPEN EDITOR
+========================================================= */
+
+function openEditor(
+    id
+) {
+
+    window.location.href =
+        "editor.html?design=" +
+        encodeURIComponent(id);
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+document
+    .getElementById(
+        "searchInput"
+    )
+    .addEventListener(
+        "input",
+        function() {
+
+            currentSearch =
+                this.value;
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+document
+    .getElementById(
+        "sortSelect"
+    )
+    .addEventListener(
+        "change",
+        function() {
+
+            currentSort =
+                this.value;
+
+            render();
+
+        }
+    );
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".category"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    document
+                        .querySelectorAll(
+                            ".category"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    this.classList.add(
+                        "active"
+                    );
+
+
+                    currentCategory =
+                        this.dataset.category;
+
+
+                    render();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+render();
+
+</script>
+
+</body>
+
+</html>

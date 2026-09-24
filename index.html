@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Stickerly — Product QR Labels</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&family=Nunito:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="home-page">
+
+<header class="app-header">
+    <a href="index.html" class="brand">
+        <span class="brand-mark">S</span>
+        <span>Stickerly</span>
+    </a>
+
+    <nav class="header-nav">
+        <a href="templates.html" data-i18n="templates">Templates</a>
+        <a href="templates.html" class="header-create" data-i18n="createLabel">
+            Create Label
+        </a>
+
+        <button class="language-button" onclick="toggleLanguage()">
+            <span id="languageLabel">தமிழ்</span>
+        </button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero-section">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span data-i18n="heroBadge">Smart product labels for modern businesses</span>
+            </div>
+
+            <h1>
+                <span data-i18n="heroTitle1">Put a QR label on</span>
+                <span class="gradient-text" data-i18n="heroTitle2">
+                    every product.
+                </span>
+            </h1>
+
+            <p class="hero-description" data-i18n="heroDescription">
+                Create beautiful physical price labels with QR codes.
+                Customers scan the label and instantly see complete product
+                information online.
+            </p>
+
+            <div class="hero-actions">
+                <a href="templates.html" class="primary-button">
+                    <span data-i18n="startCreating">Start Creating</span>
+                    <span>→</span>
+                </a>
+
+                <a href="templates.html" class="secondary-button">
+                    <span data-i18n="viewTemplates">View Templates</span>
+                </a>
+            </div>
+
+            <div class="hero-points">
+                <span>✓ <span data-i18n="point1">No account required</span></span>
+                <span>✓ <span data-i18n="point2">Free QR generation</span></span>
+                <span>✓ <span data-i18n="point3">Print-ready</span></span>
+            </div>
+
+        </div>
+
+        <!-- HERO LABEL PREVIEW -->
+
+        <div class="hero-visual">
+
+            <div class="floating-orb orb-one"></div>
+            <div class="floating-orb orb-two"></div>
+
+            <div class="hero-label-shadow">
+
+                <div class="demo-label">
+
+                    <div class="demo-top">
+                        <span class="demo-business">WOOD & HOME</span>
+                        <span class="demo-stock">IN STOCK</span>
+                    </div>
+
+                    <div class="demo-product">
+                        Modern 3-Seater Sofa
+                    </div>
+
+                    <div class="demo-info">
+                        <span>SOF-104</span>
+                        <span>•</span>
+                        <span>Grey</span>
+                        <span>•</span>
+                        <span>210 × 85 cm</span>
+                    </div>
+
+                    <div class="demo-bottom">
+
+                        <div class="demo-price">
+                            <small>SELLING PRICE</small>
+                            <strong>₹38,500</strong>
+                        </div>
+
+                        <div class="demo-qr">
+                            <div class="fake-qr">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how-section">
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow" data-i18n="simpleProcess">
+                SIMPLE PROCESS
+            </span>
+
+            <h2 data-i18n="howTitle">
+                From physical product to digital details.
+            </h2>
+
+            <p data-i18n="howDescription">
+                One small label can give customers much more information.
+            </p>
+
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-number">01</div>
+                <div class="step-icon">🏷</div>
+                <h3 data-i18n="step1Title">Choose a label</h3>
+                <p data-i18n="step1Description">
+                    Pick a product-focused design from the template collection.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">02</div>
+                <div class="step-icon">✏</div>
+                <h3 data-i18n="step2Title">Add product details</h3>
+                <p data-i18n="step2Description">
+                    Enter your business, product, price, SKU and product URL.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">03</div>
+                <div class="step-icon">▣</div>
+                <h3 data-i18n="step3Title">Generate QR</h3>
+                <p data-i18n="step3Description">
+                    Your product URL becomes a scannable QR code automatically.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">04</div>
+                <div class="step-icon">🖨</div>
+                <h3 data-i18n="step4Title">Print & place</h3>
+                <p data-i18n="step4Description">
+                    Print the label and place it directly on your product.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCT TYPES -->
+
+    <section class="category-section">
+
+        <div class="section-heading">
+
+            <span class="section-eyebrow" data-i18n="builtFor">
+                BUILT FOR PRODUCTS
+            </span>
+
+            <h2 data-i18n="categoryTitle">
+                One system. Many businesses.
+            </h2>
+
+        </div>
+
+        <div class="category-grid">
+
+            <div class="category-item">
+                <span>🛋</span>
+                <strong data-i18n="furniture">Furniture</strong>
+            </div>
+
+            <div class="category-item">
+                <span>📱</span>
+                <strong data-i18n="electronics">Electronics</strong>
+            </div>
+
+            <div class="category-item">
+                <span>💎</span>
+                <strong data-i18n="jewellery">Jewellery</strong>
+            </div>
+
+            <div class="category-item">
+                <span>👕</span>
+                <strong data-i18n="fashion">Fashion</strong>
+            </div>
+
+            <div class="category-item">
+                <span>🍱</span>
+                <strong data-i18n="food">Food</strong>
+            </div>
+
+            <div class="category-item">
+                <span>🏠</span>
+                <strong data-i18n="homeProducts">Home Products</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section class="final-cta">
+
+        <div>
+            <span class="section-eyebrow" data-i18n="ready">
+                READY?
+            </span>
+
+            <h2 data-i18n="ctaTitle">
+                Create your first product label.
+            </h2>
+
+            <p data-i18n="ctaDescription">
+                Choose a design and start building your label in seconds.
+            </p>
+        </div>
+
+        <a href="templates.html" class="primary-button">
+            <span data-i18n="createLabel">Create Label</span>
+            <span>→</span>
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer class="app-footer">
+
+    <div class="footer-brand">
+        <span class="brand-mark">S</span>
+        <span>Stickerly</span>
+    </div>
+
+    <span data-i18n="footerText">
+        Smart QR product labels for physical businesses.
+    </span>
+
+</footer>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

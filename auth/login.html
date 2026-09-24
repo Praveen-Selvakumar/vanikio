@@ -1,0 +1,3339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="VANIKIO - Digital Business Identity"
+    >
+
+    <title>VANIKIO — Login</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ====================================================== */
+
+        :root {
+
+            --bg: #f7f5ff;
+            --surface: #fcfbff;
+
+            --primary: #6c4cf1;
+            --primary-dark: #5938dc;
+            --primary-soft: #ece7ff;
+
+            --secondary: #20b8a6;
+
+            --text: #27243a;
+            --text-soft: #514b60;
+            --muted: #77738a;
+            --muted-light: #9993aa;
+
+            --border: #e6e2f0;
+
+            --danger: #d85c6e;
+            --danger-soft: #fff4f6;
+
+            --success: #168271;
+            --success-soft: #edfbf7;
+
+        }
+
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+
+            box-sizing:
+                border-box;
+
+            margin:
+                0;
+
+            padding:
+                0;
+
+        }
+
+
+        html,
+        body {
+
+            min-height:
+                100%;
+
+        }
+
+
+        body {
+
+            min-height:
+                100vh;
+
+            font-family:
+                "Poppins",
+                sans-serif;
+
+            background:
+
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(
+                        108,
+                        76,
+                        241,
+                        .08
+                    ),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 90% 15%,
+                    rgba(
+                        32,
+                        184,
+                        166,
+                        .05
+                    ),
+                    transparent 25%
+                ),
+
+                linear-gradient(
+                    180deg,
+                    #faf9fe 0%,
+                    #f5f2fb 100%
+                );
+
+            color:
+                var(--text);
+
+        }
+
+
+        button,
+        input {
+
+            font-family:
+                inherit;
+
+        }
+
+
+        button {
+
+            cursor:
+                pointer;
+
+        }
+
+
+        button:disabled {
+
+            cursor:
+                wait;
+
+        }
+
+
+        a {
+
+            color:
+                inherit;
+
+            text-decoration:
+                none;
+
+        }
+
+
+        /* =====================================================
+           PAGE
+        ====================================================== */
+
+        .login-page {
+
+            min-height:
+                100vh;
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .topbar {
+
+            min-height:
+                76px;
+
+            padding:
+                0 34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+
+            background:
+                rgba(
+                    252,
+                    251,
+                    255,
+                    .96
+                );
+
+            border-bottom:
+                1px solid
+                var(--border);
+
+            backdrop-filter:
+                blur(15px);
+
+        }
+
+
+        /* =====================================================
+           BRAND
+        ====================================================== */
+
+        .brand {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+        }
+
+
+        .brand-mark {
+
+            width:
+                40px;
+
+            height:
+                40px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c4cf1,
+                    #987af8
+                );
+
+            color:
+                #ffffff;
+
+            font-size:
+                20px;
+
+            font-weight:
+                800;
+
+            box-shadow:
+                0 9px 22px
+                rgba(
+                    108,
+                    76,
+                    241,
+                    .22
+                );
+
+        }
+
+
+        .brand-content {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                2px;
+
+        }
+
+
+        .brand-name {
+
+            font-size:
+                22px;
+
+            line-height:
+                1;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.03em;
+
+        }
+
+
+        .brand-tagline {
+
+            color:
+                var(--muted);
+
+            font-size:
+                9px;
+
+            font-weight:
+                500;
+
+        }
+
+
+        /* =====================================================
+           NAV
+        ====================================================== */
+
+        .header-nav {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+        }
+
+
+        .nav-link {
+
+            min-height:
+                40px;
+
+            padding:
+                0 14px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border-radius:
+                10px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            font-weight:
+                600;
+
+            transition:
+                .18s ease;
+
+        }
+
+
+        .nav-link:hover {
+
+            background:
+                var(--primary-soft);
+
+            color:
+                var(--primary);
+
+        }
+
+
+        .signup-nav {
+
+            background:
+                var(--text);
+
+            color:
+                #ffffff;
+
+        }
+
+
+        .signup-nav:hover {
+
+            background:
+                #373244;
+
+            color:
+                #ffffff;
+
+        }
+
+
+        /* =====================================================
+           LANGUAGE
+        ====================================================== */
+
+        .language-switch {
+
+            display:
+                flex;
+
+            gap:
+                3px;
+
+            padding:
+                4px;
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                11px;
+
+            background:
+                #f3f0fa;
+
+        }
+
+
+        .language-button {
+
+            min-width:
+                42px;
+
+            height:
+                33px;
+
+            border:
+                0;
+
+            border-radius:
+                8px;
+
+            background:
+                transparent;
+
+            color:
+                var(--muted);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .language-button.active {
+
+            background:
+                #ffffff;
+
+            color:
+                var(--primary);
+
+            box-shadow:
+                0 3px 9px
+                rgba(
+                    55,
+                    42,
+                    100,
+                    .08
+                );
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .main {
+
+            flex:
+                1;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding:
+                64px 22px 76px;
+
+        }
+
+
+        .login-container {
+
+            width:
+                100%;
+
+            max-width:
+                500px;
+
+        }
+
+
+        /* =====================================================
+           INTRO
+        ====================================================== */
+
+        .intro {
+
+            text-align:
+                center;
+
+            margin-bottom:
+                28px;
+
+        }
+
+
+        .intro-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            min-height:
+                34px;
+
+            padding:
+                0 15px;
+
+            border-radius:
+                999px;
+
+            background:
+                var(--primary-soft);
+
+            color:
+                var(--primary);
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            margin-bottom:
+                16px;
+
+        }
+
+
+        .intro h1 {
+
+            margin-bottom:
+                10px;
+
+            color:
+                var(--text);
+
+            font-size:
+                34px;
+
+            line-height:
+                1.2;
+
+            font-weight:
+                800;
+
+            letter-spacing:
+                -.04em;
+
+        }
+
+
+        .intro p {
+
+            max-width:
+                430px;
+
+            margin:
+                0 auto;
+
+            color:
+                var(--muted);
+
+            font-size:
+                13px;
+
+            line-height:
+                1.8;
+
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .login-card {
+
+            padding:
+                34px;
+
+            background:
+                var(--surface);
+
+            border:
+                1px solid
+                var(--border);
+
+            border-radius:
+                22px;
+
+            box-shadow:
+                0 24px 62px
+                rgba(
+                    52,
+                    38,
+                    91,
+                    .09
+                );
+
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ====================================================== */
+
+        .message {
+
+            display:
+                none;
+
+            margin-bottom:
+                18px;
+
+            padding:
+                12px 14px;
+
+            border-radius:
+                11px;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.65;
+
+            white-space:
+                pre-wrap;
+
+            word-break:
+                break-word;
+
+        }
+
+
+        .message.show {
+
+            display:
+                block;
+
+        }
+
+
+        .message.error {
+
+            border:
+                1px solid
+                #f0d0d6;
+
+            background:
+                var(--danger-soft);
+
+            color:
+                var(--danger);
+
+        }
+
+
+        .message.success {
+
+            border:
+                1px solid
+                #b8e6da;
+
+            background:
+                var(--success-soft);
+
+            color:
+                var(--success);
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ====================================================== */
+
+        .form-group {
+
+            margin-bottom:
+                20px;
+
+        }
+
+
+        .form-label {
+
+            display:
+                block;
+
+            margin-bottom:
+                8px;
+
+            color:
+                var(--text-soft);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        .input-wrap {
+
+            position:
+                relative;
+
+        }
+
+
+        .form-input {
+
+            width:
+                100%;
+
+            height:
+                51px;
+
+            padding:
+                0 15px;
+
+            outline:
+                none;
+
+            border:
+                1px solid
+                #ddd7e8;
+
+            border-radius:
+                11px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--text);
+
+            font-size:
+                13px;
+
+        }
+
+
+        .form-input::placeholder {
+
+            color:
+                #aaa3b1;
+
+        }
+
+
+        .form-input:focus {
+
+            border-color:
+                #ad9cf7;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(
+                    108,
+                    76,
+                    241,
+                    .07
+                );
+
+        }
+
+
+        .password-input {
+
+            padding-right:
+                52px;
+
+        }
+
+
+        /* =====================================================
+           PASSWORD BUTTON
+        ====================================================== */
+
+        .password-toggle {
+
+            position:
+                absolute;
+
+            right:
+                10px;
+
+            top:
+                50%;
+
+            transform:
+                translateY(-50%);
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            border:
+                0;
+
+            border-radius:
+                8px;
+
+            background:
+                transparent;
+
+            color:
+                #8d8597;
+
+            font-size:
+                15px;
+
+        }
+
+
+        .password-toggle:hover {
+
+            background:
+                #f4f1fb;
+
+            color:
+                var(--primary);
+
+        }
+
+
+        /* =====================================================
+           EXTRA
+        ====================================================== */
+
+        .form-extra {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                12px;
+
+            margin:
+                5px 0 23px;
+
+        }
+
+
+        .remember {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+            cursor:
+                pointer;
+
+        }
+
+
+        .remember input {
+
+            width:
+                15px;
+
+            height:
+                15px;
+
+            accent-color:
+                var(--primary);
+
+        }
+
+
+        .forgot {
+
+            color:
+                var(--primary);
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ====================================================== */
+
+        .login-button {
+
+            width:
+                100%;
+
+            min-height:
+                52px;
+
+            border:
+                0;
+
+            border-radius:
+                11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6c4cf1,
+                    #9070eb
+                );
+
+            color:
+                #ffffff;
+
+            font-size:
+                12px;
+
+            font-weight:
+                800;
+
+            box-shadow:
+                0 10px 24px
+                rgba(
+                    108,
+                    76,
+                    241,
+                    .20
+                );
+
+            transition:
+                .18s ease;
+
+        }
+
+
+        .login-button:hover:not(:disabled) {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 13px 29px
+                rgba(
+                    108,
+                    76,
+                    241,
+                    .25
+                );
+
+        }
+
+
+        .login-button:disabled {
+
+            opacity:
+                .68;
+
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ====================================================== */
+
+        .divider {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            margin:
+                24px 0;
+
+        }
+
+
+        .divider-line {
+
+            flex:
+                1;
+
+            height:
+                1px;
+
+            background:
+                #eee9f3;
+
+        }
+
+
+        .divider-text {
+
+            color:
+                #aaa3b0;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+        }
+
+
+        /* =====================================================
+           GOOGLE
+        ====================================================== */
+
+        .google-button {
+
+            width:
+                100%;
+
+            min-height:
+                50px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                10px;
+
+            border:
+                1px solid
+                #ddd7e6;
+
+            border-radius:
+                11px;
+
+            background:
+                #ffffff;
+
+            color:
+                var(--text-soft);
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            transition:
+                .18s ease;
+
+        }
+
+
+        .google-button:hover:not(:disabled) {
+
+            background:
+                #faf9fd;
+
+            border-color:
+                #cbc4dd;
+
+        }
+
+
+        .google-button:disabled {
+
+            opacity:
+                .65;
+
+        }
+
+
+        .google-icon {
+
+            width:
+                20px;
+
+            height:
+                20px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                #4285f4;
+
+            font-size:
+                16px;
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           SIGNUP
+        ====================================================== */
+
+        .signup-text {
+
+            margin-top:
+                24px;
+
+            text-align:
+                center;
+
+            color:
+                var(--muted);
+
+            font-size:
+                11px;
+
+        }
+
+
+        .signup-text a {
+
+            color:
+                var(--primary);
+
+            font-weight:
+                800;
+
+        }
+
+
+        /* =====================================================
+           TRUST
+        ====================================================== */
+
+        .trust-note {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                8px;
+
+            margin-top:
+                18px;
+
+            color:
+                var(--muted-light);
+
+            font-size:
+                10px;
+
+            line-height:
+                1.7;
+
+            text-align:
+                center;
+
+        }
+
+
+        .trust-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                50%;
+
+            background:
+                #55b875;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .footer {
+
+            padding:
+                0 20px 30px;
+
+            color:
+                var(--muted-light);
+
+            font-size:
+                10px;
+
+            text-align:
+                center;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 760px) {
+
+            .topbar {
+
+                padding:
+                    0 18px;
+
+            }
+
+
+            .nav-link {
+
+                min-height:
+                    36px;
+
+                padding:
+                    0 10px;
+
+                font-size:
+                    10px;
+
+            }
+
+        }
+
+
+        @media (max-width: 560px) {
+
+            .topbar {
+
+                min-height:
+                    66px;
+
+                padding:
+                    0 15px;
+
+            }
+
+
+            .brand-mark {
+
+                width:
+                    36px;
+
+                height:
+                    36px;
+
+            }
+
+
+            .brand-name {
+
+                font-size:
+                    19px;
+
+            }
+
+
+            .brand-tagline {
+
+                display:
+                    none;
+
+            }
+
+
+            .nav-designs {
+
+                display:
+                    none;
+
+            }
+
+
+            .nav-home {
+
+                display:
+                    none;
+
+            }
+
+
+            .main {
+
+                padding:
+                    42px 15px 52px;
+
+            }
+
+
+            .login-card {
+
+                padding:
+                    24px 19px;
+
+                border-radius:
+                    17px;
+
+            }
+
+
+            .intro h1 {
+
+                font-size:
+                    28px;
+
+            }
+
+
+            .intro p {
+
+                font-size:
+                    12px;
+
+            }
+
+
+            .header-nav {
+
+                gap:
+                    4px;
+
+            }
+
+
+            .nav-link {
+
+                padding:
+                    0 8px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="login-page">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="topbar">
+
+    <a
+        href="../index.html"
+        class="brand"
+    >
+
+        <span class="brand-mark">
+            V
+        </span>
+
+        <span class="brand-content">
+
+            <span class="brand-name">
+                VANIKIO
+            </span>
+
+            <span
+                id="brandTagline"
+                class="brand-tagline"
+            ></span>
+
+        </span>
+
+    </a>
+
+
+    <nav class="header-nav">
+
+        <a
+            id="navHome"
+            href="../index.html"
+            class="nav-link nav-home"
+        ></a>
+
+
+        <a
+            id="navDesigns"
+            href="../templates.html"
+            class="nav-link nav-designs"
+        ></a>
+
+
+        <a
+            id="navSignup"
+            href="signup.html"
+            class="nav-link signup-nav"
+        ></a>
+
+
+        <div class="language-switch">
+
+            <button
+                id="englishButton"
+                class="language-button active"
+                type="button"
+            >
+                EN
+            </button>
+
+
+            <button
+                id="tamilButton"
+                class="language-button"
+                type="button"
+            >
+                தமிழ்
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="main">
+
+    <div class="login-container">
+
+        <div class="intro">
+
+            <div
+                id="introBadge"
+                class="intro-badge"
+            ></div>
+
+
+            <h1 id="pageTitle"></h1>
+
+
+            <p id="pageDescription"></p>
+
+        </div>
+
+
+        <section class="login-card">
+
+
+            <div
+                id="message"
+                class="message"
+                role="alert"
+            ></div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label
+                    id="emailLabel"
+                    class="form-label"
+                    for="email"
+                ></label>
+
+
+                <div class="input-wrap">
+
+                    <input
+                        id="email"
+                        class="form-input"
+                        type="email"
+                        autocomplete="email"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label
+                    id="passwordLabel"
+                    class="form-label"
+                    for="password"
+                ></label>
+
+
+                <div class="input-wrap">
+
+                    <input
+                        id="password"
+                        class="form-input password-input"
+                        type="password"
+                        autocomplete="current-password"
+                    >
+
+
+                    <button
+                        id="passwordToggle"
+                        class="password-toggle"
+                        type="button"
+                    >
+                        ◉
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXTRA -->
+
+            <div class="form-extra">
+
+                <label class="remember">
+
+                    <input
+                        id="rememberMe"
+                        type="checkbox"
+                    >
+
+                    <span id="rememberText"></span>
+
+                </label>
+
+
+                <a
+                    id="forgotPassword"
+                    href="#"
+                    class="forgot"
+                ></a>
+
+            </div>
+
+
+            <!-- LOGIN -->
+
+            <button
+                id="loginButton"
+                class="login-button"
+                type="button"
+            ></button>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+
+                <span class="divider-line"></span>
+
+                <span
+                    id="dividerText"
+                    class="divider-text"
+                ></span>
+
+                <span class="divider-line"></span>
+
+            </div>
+
+
+            <!-- GOOGLE -->
+
+            <button
+                id="googleButton"
+                class="google-button"
+                type="button"
+            >
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                <span id="googleText"></span>
+
+            </button>
+
+
+            <!-- SIGNUP -->
+
+            <div class="signup-text">
+
+                <span id="signupQuestion"></span>
+
+                <a
+                    id="signupLink"
+                    href="signup.html"
+                ></a>
+
+            </div>
+
+
+            <!-- TRUST -->
+
+            <div class="trust-note">
+
+                <span class="trust-dot"></span>
+
+                <span id="trustText"></span>
+
+            </div>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<footer
+    id="footerText"
+    class="footer"
+></footer>
+
+
+
+<!-- =====================================================
+     VANIKIO LOGIN SCRIPT
+
+     IMPORTANT:
+     Firebase is intentionally loaded only when
+     authentication is needed.
+====================================================== -->
+
+<script>
+
+    "use strict";
+
+
+    /* =====================================================
+       CONSTANTS
+    ====================================================== */
+
+    const PROFILE_PAGE =
+        "../profile/profile.html";
+
+
+    const LANGUAGE_KEY =
+        "vanikio_language";
+
+
+    /* =====================================================
+       STATE
+    ====================================================== */
+
+    let currentLanguage =
+        localStorage.getItem(
+            LANGUAGE_KEY
+        ) || "en";
+
+
+    let firebaseModule =
+        null;
+
+
+    let firebaseLoading =
+        null;
+
+
+    /* =====================================================
+       TRANSLATIONS
+    ====================================================== */
+
+    const translations = {
+
+        en: {
+
+            brandTagline:
+                "Digital Business Identity",
+
+            navHome:
+                "Home",
+
+            navDesigns:
+                "Designs",
+
+            navSignup:
+                "Create account",
+
+            introBadge:
+                "VANIKIO Account",
+
+            title:
+                "Welcome back",
+
+            description:
+                "Sign in to manage your digital business identity, product labels and public business profile.",
+
+            emailLabel:
+                "Email address",
+
+            emailPlaceholder:
+                "you@example.com",
+
+            passwordLabel:
+                "Password",
+
+            passwordPlaceholder:
+                "Enter your password",
+
+            remember:
+                "Remember me",
+
+            forgot:
+                "Forgot password?",
+
+            login:
+                "Sign in",
+
+            loginLoading:
+                "Signing in...",
+
+            divider:
+                "OR",
+
+            google:
+                "Continue with Google",
+
+            googleLoading:
+                "Connecting...",
+
+            signupQuestion:
+                "Don't have an account?",
+
+            signupLink:
+                "Create account",
+
+            trust:
+                "Your business data is connected to your secure account.",
+
+            footer:
+                "© 2026 VANIKIO · Digital Business Identity",
+
+            emailRequired:
+                "Please enter your email address.",
+
+            emailInvalid:
+                "Please enter a valid email address.",
+
+            passwordRequired:
+                "Please enter your password.",
+
+            resetEmail:
+                "Enter your email address first.",
+
+            resetSent:
+                "Password reset email sent. Please check your inbox.",
+
+            success:
+                "Login successful.",
+
+            generic:
+                "Something went wrong. Please try again.",
+
+            passwordShow:
+                "Show password",
+
+            passwordHide:
+                "Hide password",
+
+            firebaseLoadError:
+                "Firebase could not be loaded. Please open this website through a local web server such as Live Server.",
+
+            firebaseFileError:
+                "Please open VANIKIO through a local web server. Firebase cannot be loaded from file://.",
+
+            firebaseUnknownError:
+                "Firebase could not be loaded. Please check the browser Console for the exact error."
+
+        },
+
+
+        ta: {
+
+            brandTagline:
+                "டிஜிட்டல் வணிக அடையாளம்",
+
+            navHome:
+                "முகப்பு",
+
+            navDesigns:
+                "வடிவமைப்புகள்",
+
+            navSignup:
+                "கணக்கு உருவாக்கு",
+
+            introBadge:
+                "VANIKIO கணக்கு",
+
+            title:
+                "மீண்டும் வரவேற்கிறோம்",
+
+            description:
+                "உங்கள் டிஜிட்டல் வணிக அடையாளம், தயாரிப்பு லேபிள்கள் மற்றும் பொது வணிக சுயவிவரத்தை நிர்வகிக்க உள்நுழையுங்கள்.",
+
+            emailLabel:
+                "மின்னஞ்சல் முகவரி",
+
+            emailPlaceholder:
+                "உங்கள் மின்னஞ்சல்",
+
+            passwordLabel:
+                "கடவுச்சொல்",
+
+            passwordPlaceholder:
+                "உங்கள் கடவுச்சொல்லை உள்ளிடவும்",
+
+            remember:
+                "என்னை நினைவில் வைத்துக்கொள்",
+
+            forgot:
+                "கடவுச்சொல் மறந்துவிட்டீர்களா?",
+
+            login:
+                "உள்நுழை",
+
+            loginLoading:
+                "உள்நுழைகிறது...",
+
+            divider:
+                "அல்லது",
+
+            google:
+                "Google மூலம் தொடரவும்",
+
+            googleLoading:
+                "இணைக்கப்படுகிறது...",
+
+            signupQuestion:
+                "கணக்கு இல்லையா?",
+
+            signupLink:
+                "கணக்கு உருவாக்கு",
+
+            trust:
+                "உங்கள் வணிகத் தகவல்கள் உங்கள் பாதுகாப்பான கணக்குடன் இணைக்கப்பட்டுள்ளன.",
+
+            footer:
+                "© 2026 VANIKIO · டிஜிட்டல் வணிக அடையாளம்",
+
+            emailRequired:
+                "உங்கள் மின்னஞ்சல் முகவரியை உள்ளிடவும்.",
+
+            emailInvalid:
+                "சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்.",
+
+            passwordRequired:
+                "உங்கள் கடவுச்சொல்லை உள்ளிடவும்.",
+
+            resetEmail:
+                "முதலில் உங்கள் மின்னஞ்சல் முகவரியை உள்ளிடவும்.",
+
+            resetSent:
+                "கடவுச்சொல் மாற்ற மின்னஞ்சல் அனுப்பப்பட்டது. உங்கள் Inbox-ஐ சரிபார்க்கவும்.",
+
+            success:
+                "உள்நுழைவு வெற்றிகரமாக முடிந்தது.",
+
+            generic:
+                "ஏதோ தவறு ஏற்பட்டுள்ளது. மீண்டும் முயற்சிக்கவும்.",
+
+            passwordShow:
+                "கடவுச்சொல்லைக் காண்பி",
+
+            passwordHide:
+                "கடவுச்சொல்லை மறை",
+
+            firebaseLoadError:
+                "Firebase ஏற்றப்படவில்லை. Live Server போன்ற local web server மூலம் VANIKIO-ஐ திறக்கவும்.",
+
+            firebaseFileError:
+                "VANIKIO-ஐ local web server மூலம் திறக்கவும். file:// மூலம் Firebase இயங்காது.",
+
+            firebaseUnknownError:
+                "Firebase ஏற்றப்படவில்லை. Browser Console-ல் உள்ள பிழையை சரிபார்க்கவும்."
+
+        }
+
+    };
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const brandTagline =
+        document.getElementById(
+            "brandTagline"
+        );
+
+
+    const navHome =
+        document.getElementById(
+            "navHome"
+        );
+
+
+    const navDesigns =
+        document.getElementById(
+            "navDesigns"
+        );
+
+
+    const navSignup =
+        document.getElementById(
+            "navSignup"
+        );
+
+
+    const introBadge =
+        document.getElementById(
+            "introBadge"
+        );
+
+
+    const pageTitle =
+        document.getElementById(
+            "pageTitle"
+        );
+
+
+    const pageDescription =
+        document.getElementById(
+            "pageDescription"
+        );
+
+
+    const emailLabel =
+        document.getElementById(
+            "emailLabel"
+        );
+
+
+    const passwordLabel =
+        document.getElementById(
+            "passwordLabel"
+        );
+
+
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const rememberText =
+        document.getElementById(
+            "rememberText"
+        );
+
+
+    const forgotPassword =
+        document.getElementById(
+            "forgotPassword"
+        );
+
+
+    const loginButton =
+        document.getElementById(
+            "loginButton"
+        );
+
+
+    const dividerText =
+        document.getElementById(
+            "dividerText"
+        );
+
+
+    const googleButton =
+        document.getElementById(
+            "googleButton"
+        );
+
+
+    const googleText =
+        document.getElementById(
+            "googleText"
+        );
+
+
+    const signupQuestion =
+        document.getElementById(
+            "signupQuestion"
+        );
+
+
+    const signupLink =
+        document.getElementById(
+            "signupLink"
+        );
+
+
+    const trustText =
+        document.getElementById(
+            "trustText"
+        );
+
+
+    const footerText =
+        document.getElementById(
+            "footerText"
+        );
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    const passwordToggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+
+    const rememberMe =
+        document.getElementById(
+            "rememberMe"
+        );
+
+
+    const englishButton =
+        document.getElementById(
+            "englishButton"
+        );
+
+
+    const tamilButton =
+        document.getElementById(
+            "tamilButton"
+        );
+
+
+    /* =====================================================
+       APPLY LANGUAGE
+    ====================================================== */
+
+    function applyLanguage() {
+
+        const t =
+            translations[
+                currentLanguage
+            ];
+
+
+        brandTagline.textContent =
+            t.brandTagline;
+
+
+        navHome.textContent =
+            t.navHome;
+
+
+        navDesigns.textContent =
+            t.navDesigns;
+
+
+        navSignup.textContent =
+            t.navSignup;
+
+
+        introBadge.textContent =
+            t.introBadge;
+
+
+        pageTitle.textContent =
+            t.title;
+
+
+        pageDescription.textContent =
+            t.description;
+
+
+        emailLabel.textContent =
+            t.emailLabel;
+
+
+        emailInput.placeholder =
+            t.emailPlaceholder;
+
+
+        passwordLabel.textContent =
+            t.passwordLabel;
+
+
+        passwordInput.placeholder =
+            t.passwordPlaceholder;
+
+
+        rememberText.textContent =
+            t.remember;
+
+
+        forgotPassword.textContent =
+            t.forgot;
+
+
+        loginButton.textContent =
+            t.login;
+
+
+        dividerText.textContent =
+            t.divider;
+
+
+        googleText.textContent =
+            t.google;
+
+
+        signupQuestion.textContent =
+            t.signupQuestion;
+
+
+        signupLink.textContent =
+            t.signupLink;
+
+
+        trustText.textContent =
+            t.trust;
+
+
+        footerText.textContent =
+            t.footer;
+
+
+        englishButton.classList.toggle(
+            "active",
+            currentLanguage === "en"
+        );
+
+
+        tamilButton.classList.toggle(
+            "active",
+            currentLanguage === "ta"
+        );
+
+
+        document.documentElement.lang =
+            currentLanguage;
+
+
+        updatePasswordAccessibility();
+
+    }
+
+
+    /* =====================================================
+       CHANGE LANGUAGE
+    ====================================================== */
+
+    function changeLanguage(
+        language
+    ) {
+
+        if (
+            language !== "en" &&
+            language !== "ta"
+        ) {
+
+            return;
+
+        }
+
+
+        currentLanguage =
+            language;
+
+
+        localStorage.setItem(
+            LANGUAGE_KEY,
+            language
+        );
+
+
+        clearMessage();
+
+        applyLanguage();
+
+    }
+
+
+    englishButton.addEventListener(
+        "click",
+        () => {
+
+            changeLanguage("en");
+
+        }
+    );
+
+
+    tamilButton.addEventListener(
+        "click",
+        () => {
+
+            changeLanguage("ta");
+
+        }
+    );
+
+
+    /* =====================================================
+       PASSWORD ACCESSIBILITY
+    ====================================================== */
+
+    function updatePasswordAccessibility() {
+
+        const t =
+            translations[
+                currentLanguage
+            ];
+
+
+        passwordToggle.setAttribute(
+            "aria-label",
+            passwordInput.type === "password"
+                ? t.passwordShow
+                : t.passwordHide
+        );
+
+    }
+
+
+    /* =====================================================
+       PASSWORD TOGGLE
+    ====================================================== */
+
+    passwordToggle.addEventListener(
+        "click",
+        () => {
+
+            const hidden =
+                passwordInput.type ===
+                "password";
+
+
+            passwordInput.type =
+                hidden
+                    ? "text"
+                    : "password";
+
+
+            passwordToggle.textContent =
+                hidden
+                    ? "○"
+                    : "◉";
+
+
+            updatePasswordAccessibility();
+
+        }
+    );
+
+
+    /* =====================================================
+       MESSAGE
+    ====================================================== */
+
+    function showError(
+        text
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "message error show";
+
+    }
+
+
+    function showSuccess(
+        text
+    ) {
+
+        message.textContent =
+            text;
+
+        message.className =
+            "message success show";
+
+    }
+
+
+    function clearMessage() {
+
+        message.textContent =
+            "";
+
+        message.className =
+            "message";
+
+    }
+
+
+    /* =====================================================
+       FIREBASE LOAD
+    ====================================================== */
+
+    async function loadFirebase() {
+
+        if (firebaseModule) {
+
+            return firebaseModule;
+
+        }
+
+
+        if (firebaseLoading) {
+
+            return firebaseLoading;
+
+        }
+
+
+        /*
+         * Firebase browser modules require HTTP/HTTPS.
+         */
+
+        if (
+            window.location.protocol ===
+            "file:"
+        ) {
+
+            const error =
+                new Error(
+                    "VANIKIO_FIREBASE_FILE_PROTOCOL"
+                );
+
+
+            console.error(
+                "VANIKIO Firebase error:",
+                error
+            );
+
+
+            throw error;
+
+        }
+
+
+        /*
+         * Cache-busting ensures that an older
+         * firebase.js is not being used.
+         */
+
+        const firebaseUrl =
+            new URL(
+                "../firebase.js?v=20260924",
+                window.location.href
+            ).href;
+
+
+        console.log(
+            "Loading Firebase:",
+            firebaseUrl
+        );
+
+
+        firebaseLoading =
+            import(firebaseUrl)
+                .then(
+                    module => {
+
+                        firebaseModule =
+                            module;
+
+
+                        console.log(
+                            "VANIKIO Firebase loaded successfully."
+                        );
+
+
+                        console.log(
+                            "Firebase Auth:",
+                            firebaseModule.auth
+                        );
+
+
+                        return module;
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        firebaseModule =
+                            null;
+
+
+                        console.error(
+                            "===================================="
+                        );
+
+                        console.error(
+                            "VANIKIO FIREBASE LOAD ERROR"
+                        );
+
+                        console.error(
+                            "Firebase URL:",
+                            firebaseUrl
+                        );
+
+                        console.error(
+                            "Page URL:",
+                            window.location.href
+                        );
+
+                        console.error(
+                            "Protocol:",
+                            window.location.protocol
+                        );
+
+                        console.error(
+                            "Original error:",
+                            error
+                        );
+
+                        console.error(
+                            "===================================="
+                        );
+
+
+                        throw error;
+
+                    }
+                );
+
+
+        return firebaseLoading;
+
+    }
+
+
+    /* =====================================================
+       FIREBASE LOAD ERROR MESSAGE
+    ====================================================== */
+
+    function showFirebaseLoadError(
+        error
+    ) {
+
+        if (
+            error?.message ===
+            "VANIKIO_FIREBASE_FILE_PROTOCOL"
+        ) {
+
+            showError(
+                translations[
+                    currentLanguage
+                ].firebaseFileError
+            );
+
+            return;
+
+        }
+
+
+        /*
+         * Do not call an import failure
+         * "Firebase not configured".
+         */
+
+        showError(
+            translations[
+                currentLanguage
+            ].firebaseLoadError
+        );
+
+    }
+
+
+    /* =====================================================
+       EMAIL VALIDATION
+    ====================================================== */
+
+    function isValidEmail(
+        email
+    ) {
+
+        return (
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        ).test(email);
+
+    }
+
+
+    /* =====================================================
+       FIREBASE AUTH ERROR
+    ====================================================== */
+
+    function getFirebaseErrorMessage(
+        error
+    ) {
+
+        const code =
+            error?.code || "";
+
+
+        const tamil =
+            currentLanguage === "ta";
+
+
+        const errors = {
+
+            "auth/invalid-email":
+                tamil
+                    ? "தவறான மின்னஞ்சல் முகவரி."
+                    : "Invalid email address.",
+
+
+            "auth/invalid-credential":
+                tamil
+                    ? "மின்னஞ்சல் அல்லது கடவுச்சொல் தவறாக உள்ளது."
+                    : "Invalid email or password.",
+
+
+            "auth/user-not-found":
+                tamil
+                    ? "இந்த மின்னஞ்சலுடன் கணக்கு எதுவும் இல்லை."
+                    : "No account was found with this email.",
+
+
+            "auth/wrong-password":
+                tamil
+                    ? "தவறான கடவுச்சொல்."
+                    : "Incorrect password.",
+
+
+            "auth/user-disabled":
+                tamil
+                    ? "இந்த கணக்கு முடக்கப்பட்டுள்ளது."
+                    : "This account has been disabled.",
+
+
+            "auth/too-many-requests":
+                tamil
+                    ? "அதிகமான முயற்சிகள். சிறிது நேரம் கழித்து முயற்சிக்கவும்."
+                    : "Too many attempts. Please try again later.",
+
+
+            "auth/network-request-failed":
+                tamil
+                    ? "இணைய இணைப்பில் சிக்கல்."
+                    : "Network error. Please check your connection.",
+
+
+            "auth/operation-not-allowed":
+                tamil
+                    ? "இந்த உள்நுழைவு முறை Firebase-ல் இயக்கப்படவில்லை."
+                    : "This sign-in method is not enabled in Firebase.",
+
+
+            "auth/popup-closed-by-user":
+                tamil
+                    ? "Google உள்நுழைவு ரத்து செய்யப்பட்டது."
+                    : "Google sign-in was cancelled.",
+
+
+            "auth/popup-blocked":
+                tamil
+                    ? "உலாவி Google உள்நுழைவு சாளரத்தை தடுத்துள்ளது."
+                    : "The browser blocked the Google sign-in window.",
+
+
+            "auth/unauthorized-domain":
+                tamil
+                    ? "இந்த டொமைன் Firebase-ல் அனுமதிக்கப்படவில்லை."
+                    : "This domain is not authorized in Firebase.",
+
+
+            "auth/account-exists-with-different-credential":
+                tamil
+                    ? "இந்த மின்னஞ்சலுடன் வேறு உள்நுழைவு முறையில் கணக்கு ஏற்கனவே உள்ளது."
+                    : "An account already exists with another sign-in method."
+
+        };
+
+
+        return (
+            errors[code] ||
+            translations[
+                currentLanguage
+            ].generic
+        );
+
+    }
+
+
+    /* =====================================================
+       LOADING STATE
+    ====================================================== */
+
+    function setLoading(
+        loading
+    ) {
+
+        loginButton.disabled =
+            loading;
+
+
+        googleButton.disabled =
+            loading;
+
+
+        if (loading) {
+
+            loginButton.textContent =
+                translations[
+                    currentLanguage
+                ].loginLoading;
+
+
+            googleText.textContent =
+                translations[
+                    currentLanguage
+                ].googleLoading;
+
+        } else {
+
+            loginButton.textContent =
+                translations[
+                    currentLanguage
+                ].login;
+
+
+            googleText.textContent =
+                translations[
+                    currentLanguage
+                ].google;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       OPEN PROFILE
+    ====================================================== */
+
+    function openProfile() {
+
+        window.location.href =
+            PROFILE_PAGE;
+
+    }
+
+
+    /* =====================================================
+       EMAIL LOGIN
+    ====================================================== */
+
+    loginButton.addEventListener(
+        "click",
+        async () => {
+
+            clearMessage();
+
+
+            const email =
+                emailInput.value.trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            if (!email) {
+
+                showError(
+                    translations[
+                        currentLanguage
+                    ].emailRequired
+                );
+
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                !isValidEmail(
+                    email
+                )
+            ) {
+
+                showError(
+                    translations[
+                        currentLanguage
+                    ].emailInvalid
+                );
+
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (!password) {
+
+                showError(
+                    translations[
+                        currentLanguage
+                    ].passwordRequired
+                );
+
+
+                passwordInput.focus();
+
+                return;
+
+            }
+
+
+            try {
+
+                setLoading(true);
+
+
+                const firebase =
+                    await loadFirebase();
+
+
+                await firebase.setAuthPersistence(
+                    rememberMe.checked
+                );
+
+
+                const result =
+                    await firebase.signInWithEmailAndPassword(
+                        firebase.auth,
+                        email,
+                        password
+                    );
+
+
+                console.log(
+                    "VANIKIO email login:",
+                    result.user.uid
+                );
+
+
+                showSuccess(
+                    translations[
+                        currentLanguage
+                    ].success
+                );
+
+
+                setTimeout(
+                    openProfile,
+                    400
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "VANIKIO Login error:",
+                    error
+                );
+
+
+                setLoading(false);
+
+
+                if (
+                    error?.message ===
+                    "VANIKIO_FIREBASE_FILE_PROTOCOL"
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                /*
+                 * If there is no Firebase error code,
+                 * the module itself probably failed.
+                 */
+
+                if (
+                    !error?.code &&
+                    !firebaseModule
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                showError(
+                    getFirebaseErrorMessage(
+                        error
+                    )
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       GOOGLE LOGIN
+    ====================================================== */
+
+    googleButton.addEventListener(
+        "click",
+        async () => {
+
+            clearMessage();
+
+
+            try {
+
+                setLoading(true);
+
+
+                const firebase =
+                    await loadFirebase();
+
+
+                await firebase.setAuthPersistence(
+                    rememberMe.checked
+                );
+
+
+                const result =
+                    await firebase.signInWithPopup(
+                        firebase.auth,
+                        firebase.googleProvider
+                    );
+
+
+                console.log(
+                    "VANIKIO Google login:",
+                    result.user.uid
+                );
+
+
+                showSuccess(
+                    translations[
+                        currentLanguage
+                    ].success
+                );
+
+
+                setTimeout(
+                    openProfile,
+                    400
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "VANIKIO Google login error:",
+                    error
+                );
+
+
+                /*
+                 * Popup blocked -> redirect.
+                 */
+
+                if (
+                    error?.code ===
+                    "auth/popup-blocked"
+                ) {
+
+                    try {
+
+                        const firebase =
+                            await loadFirebase();
+
+
+                        await firebase.signInWithRedirect(
+                            firebase.auth,
+                            firebase.googleProvider
+                        );
+
+
+                        return;
+
+                    }
+
+                    catch (redirectError) {
+
+                        console.error(
+                            "VANIKIO redirect error:",
+                            redirectError
+                        );
+
+
+                        setLoading(false);
+
+
+                        if (
+                            !redirectError?.code &&
+                            !firebaseModule
+                        ) {
+
+                            showFirebaseLoadError(
+                                redirectError
+                            );
+
+                            return;
+
+                        }
+
+
+                        showError(
+                            getFirebaseErrorMessage(
+                                redirectError
+                            )
+                        );
+
+
+                        return;
+
+                    }
+
+                }
+
+
+                setLoading(false);
+
+
+                if (
+                    error?.message ===
+                    "VANIKIO_FIREBASE_FILE_PROTOCOL"
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !error?.code &&
+                    !firebaseModule
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                showError(
+                    getFirebaseErrorMessage(
+                        error
+                    )
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       FORGOT PASSWORD
+    ====================================================== */
+
+    forgotPassword.addEventListener(
+        "click",
+        async event => {
+
+            event.preventDefault();
+
+
+            clearMessage();
+
+
+            const email =
+                emailInput.value.trim();
+
+
+            if (!email) {
+
+                showError(
+                    translations[
+                        currentLanguage
+                    ].resetEmail
+                );
+
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                !isValidEmail(
+                    email
+                )
+            ) {
+
+                showError(
+                    translations[
+                        currentLanguage
+                    ].emailInvalid
+                );
+
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            try {
+
+                const firebase =
+                    await loadFirebase();
+
+
+                await firebase.sendPasswordResetEmail(
+                    firebase.auth,
+                    email
+                );
+
+
+                showSuccess(
+                    translations[
+                        currentLanguage
+                    ].resetSent
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "VANIKIO password reset error:",
+                    error
+                );
+
+
+                if (
+                    error?.message ===
+                    "VANIKIO_FIREBASE_FILE_PROTOCOL"
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                if (
+                    !error?.code &&
+                    !firebaseModule
+                ) {
+
+                    showFirebaseLoadError(
+                        error
+                    );
+
+                    return;
+
+                }
+
+
+                showError(
+                    getFirebaseErrorMessage(
+                        error
+                    )
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       GOOGLE REDIRECT RESULT
+    ====================================================== */
+
+    async function handleGoogleRedirect() {
+
+        try {
+
+            const firebase =
+                await loadFirebase();
+
+
+            const result =
+                await firebase.getRedirectResult(
+                    firebase.auth
+                );
+
+
+            if (
+                result?.user
+            ) {
+
+                console.log(
+                    "VANIKIO Google redirect login:",
+                    result.user.uid
+                );
+
+
+                showSuccess(
+                    translations[
+                        currentLanguage
+                    ].success
+                );
+
+
+                setTimeout(
+                    openProfile,
+                    400
+                );
+
+            }
+
+        }
+
+        catch (error) {
+
+            /*
+             * On normal page load, Firebase redirect
+             * may not need to return anything.
+             */
+
+            if (
+                error?.code
+            ) {
+
+                console.error(
+                    "VANIKIO redirect result error:",
+                    error
+                );
+
+            }
+
+        }
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE UI
+    ====================================================== */
+
+    applyLanguage();
+
+
+    /*
+     * Handle Google redirect only when the page
+     * is running through HTTP/HTTPS.
+     */
+
+    if (
+        window.location.protocol !==
+        "file:"
+    ) {
+
+        handleGoogleRedirect();
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

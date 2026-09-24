@@ -1,0 +1,3081 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Stickerly — Labeel Editor</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Josefin+Sans:wght@400;500;600;700&family=Lato:wght@400;700;900&family=Libre+Baskerville:wght@400;700&family=Lora:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Merriweather:wght@400;700;900&family=Montserrat:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800&family=Oswald:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&family=Raleway:wght@400;500;600;700;800&family=Roboto:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        /* =====================================================
+           FONT SELECT PREVIEW
+        ====================================================== */
+
+        #fontSelect option[value="Poppins"] {
+            font-family: "Poppins", sans-serif;
+        }
+
+        #fontSelect option[value="Inter"] {
+            font-family: "Inter", sans-serif;
+        }
+
+        #fontSelect option[value="DM Sans"] {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        #fontSelect option[value="Nunito"] {
+            font-family: "Nunito", sans-serif;
+        }
+
+        #fontSelect option[value="Lora"] {
+            font-family: "Lora", serif;
+        }
+
+        #fontSelect option[value="Montserrat"] {
+            font-family: "Montserrat", sans-serif;
+        }
+
+        #fontSelect option[value="Roboto"] {
+            font-family: "Roboto", sans-serif;
+        }
+
+        #fontSelect option[value="Open Sans"] {
+            font-family: "Arial", sans-serif;
+        }
+
+        /* =====================================================
+           TEXT COLOR AREA
+        ====================================================== */
+
+        .text-field-block {
+            margin-bottom: 15px;
+        }
+
+        .text-field-block > label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .field-color-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+
+            margin-top: 7px;
+
+            padding: 8px 10px;
+
+            background: #faf8fd;
+
+            border: 1px solid #ece7f3;
+
+            border-radius: 8px;
+        }
+
+        .field-color-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #746a7d;
+        }
+
+        .field-color-control {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .field-color-control input[type="color"] {
+            width: 34px;
+            height: 28px;
+
+            padding: 2px;
+
+            border: 1px solid #ddd6e5;
+
+            border-radius: 6px;
+
+            background: white;
+
+            cursor: pointer;
+        }
+
+        .color-value {
+            font-size: 10px;
+            color: #8f8698;
+            min-width: 58px;
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           FONT SEARCH
+        ====================================================== */
+
+        .font-search {
+            margin-bottom: 8px;
+        }
+
+        .font-search input {
+            width: 100%;
+            height: 34px;
+
+            border: 1px solid #ddd6e5;
+
+            border-radius: 7px;
+
+            padding: 0 9px;
+
+            outline: none;
+
+            font-size: 11px;
+        }
+
+        .font-search input:focus {
+            border-color: #8061d7;
+        }
+
+
+        /* =====================================================
+           BARCODE SECTION
+        ====================================================== */
+
+        .barcode-upload-card {
+            border: 1px solid #e7e0ef;
+
+            border-radius: 11px;
+
+            padding: 12px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #fbf9fd
+                );
+        }
+
+        .barcode-upload-title {
+            font-size: 11px;
+            font-weight: 700;
+
+            color: #4b4152;
+
+            margin-bottom: 4px;
+        }
+
+        .barcode-upload-subtitle {
+            font-size: 9px;
+
+            line-height: 1.5;
+
+            color: #948a9c;
+
+            margin-bottom: 10px;
+        }
+
+        .barcode-file-input {
+            width: 100%;
+
+            font-size: 10px;
+
+            border: 1px solid #ddd6e5;
+
+            border-radius: 7px;
+
+            padding: 7px;
+
+            background: white;
+        }
+
+        .barcode-file-input::file-selector-button {
+            border: none;
+
+            border-radius: 6px;
+
+            background: #eee8fb;
+
+            color: #6841d8;
+
+            padding: 6px 9px;
+
+            margin-right: 8px;
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+        .barcode-attach-button {
+            width: 100%;
+
+            height: 37px;
+
+            margin-top: 9px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6841d8,
+                    #8e68e8
+                );
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .barcode-remove-button {
+            width: 100%;
+
+            height: 34px;
+
+            margin-top: 7px;
+
+            border: 1px solid #edcbd2;
+
+            border-radius: 8px;
+
+            background: #fff7f8;
+
+            color: #d05a70;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+        }
+
+        .barcode-status {
+            margin-top: 8px;
+
+            font-size: 9px;
+
+            color: #8e8497;
+
+            line-height: 1.4;
+        }
+
+
+        /* =====================================================
+           BARCODE PREVIEW ON STICKER
+        ====================================================== */
+
+        #barcodeElement {
+            position: absolute;
+
+            display: none;
+
+            left: 25px;
+            bottom: 18px;
+
+            width: 180px;
+
+            background: white;
+
+            padding: 4px;
+
+            border-radius: 4px;
+
+            cursor: move;
+
+            z-index: 30;
+        }
+
+        #barcodeElement img {
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            object-fit: contain;
+        }
+
+
+        /* =====================================================
+           SINGLE QR
+        ====================================================== */
+
+        #qrElement {
+            position: absolute;
+        }
+
+        #qrcode {
+            width: 76px;
+            height: 76px;
+
+            background: white;
+
+            padding: 3px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            overflow: hidden;
+
+            border-radius: 4px;
+        }
+
+        #qrcode img,
+        #qrcode canvas {
+            display: block !important;
+
+            width: 70px !important;
+            height: 70px !important;
+
+            max-width: 70px !important;
+            max-height: 70px !important;
+        }
+
+
+        /* =====================================================
+           FONT PREVIEW
+        ====================================================== */
+
+        .font-preview-text {
+            margin-top: 9px;
+
+            padding: 10px;
+
+            background: #faf8fd;
+
+            border-radius: 8px;
+
+            font-size: 19px;
+
+            color: #33283c;
+
+            text-align: center;
+        }
+
+
+        /* =====================================================
+           COLOR PICKER GRID
+        ====================================================== */
+
+        .text-colors-section {
+            margin-top: 5px;
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 900px) {
+
+            .field-color-row {
+                padding: 7px 9px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="editor-page">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="editor-header">
+
+
+    <div class="editor-header-left">
+
+
+        <a
+            href="templates.html"
+            class="back-button">
+
+            ←
+
+        </a>
+
+
+        <a
+            href="index.html"
+            class="brand">
+
+            <span class="brand-mark">
+                S
+            </span>
+
+            <span>
+                Stickerly
+            </span>
+
+        </a>
+
+
+        <span class="editor-divider"></span>
+
+
+        <span
+            class="editor-title"
+            data-i18n="labelEditor">
+
+            Label Editor
+
+        </span>
+
+    </div>
+
+
+    <div class="editor-header-actions">
+
+
+        <button
+            class="header-tool-button"
+            onclick="resetEditor()">
+
+            ↻
+
+            <span data-i18n="reset">
+                Reset
+            </span>
+
+        </button>
+
+
+        <button
+            class="header-tool-button"
+            onclick="saveEditor()">
+
+            ✓
+
+            <span data-i18n="save">
+                Save
+            </span>
+
+        </button>
+
+
+        <button
+            class="print-button"
+            onclick="printLabel()">
+
+            🖨
+
+            <span data-i18n="print">
+                Print
+            </span>
+
+        </button>
+
+
+        <button
+            class="language-button"
+            onclick="toggleLanguage()">
+
+            <span id="languageLabel">
+                தமிழ்
+            </span>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="editor-layout">
+
+
+<!-- =====================================================
+     LEFT PANEL
+====================================================== -->
+
+<aside class="editor-panel left-panel">
+
+
+    <div class="panel-heading">
+
+
+        <span
+            class="panel-eyebrow"
+            data-i18n="productDetails">
+
+            PRODUCT DETAILS
+
+        </span>
+
+
+        <h2 data-i18n="content">
+            Content
+        </h2>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BUSINESS
+    ================================================== -->
+
+    <div class="form-section text-field-block">
+
+
+        <label>
+
+            <span data-i18n="businessName">
+                Business Name
+            </span>
+
+            <span class="required">
+                *
+            </span>
+
+        </label>
+
+
+        <input
+            id="businessInput"
+            type="text"
+            value="WOOD & HOME"
+            placeholder="Business name"
+        >
+
+
+        <div class="field-color-row">
+
+
+            <span class="field-color-label">
+                Text color
+            </span>
+
+
+            <div class="field-color-control">
+
+
+                <input
+                    id="businessColor"
+                    type="color"
+                    value="#6841D8"
+                    onchange="changeFieldColor('business', this.value)"
+                >
+
+
+                <span
+                    id="businessColorValue"
+                    class="color-value">
+
+                    #6841D8
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PRODUCT
+    ================================================== -->
+
+    <div class="form-section text-field-block">
+
+
+        <label>
+
+            <span data-i18n="productName">
+                Product Name
+            </span>
+
+            <span class="required">
+                *
+            </span>
+
+        </label>
+
+
+        <input
+            id="productInput"
+            type="text"
+            value="Modern 3-Seater Sofa"
+            placeholder="Product name"
+        >
+
+
+        <div class="field-color-row">
+
+            <span class="field-color-label">
+                Text color
+            </span>
+
+
+            <div class="field-color-control">
+
+                <input
+                    id="productColor"
+                    type="color"
+                    value="#38235F"
+                    onchange="changeFieldColor('product', this.value)"
+                >
+
+
+                <span
+                    id="productColorValue"
+                    class="color-value">
+
+                    #38235F
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         PRICE
+    ================================================== -->
+
+    <div class="form-row">
+
+
+        <div class="form-section text-field-block">
+
+
+            <label>
+
+                <span data-i18n="sellingPrice">
+                    Selling Price
+                </span>
+
+                <span class="required">
+                    *
+                </span>
+
+            </label>
+
+
+            <input
+                id="priceInput"
+                type="text"
+                value="₹38,500"
+                placeholder="₹0"
+            >
+
+
+            <div class="field-color-row">
+
+                <span class="field-color-label">
+                    Color
+                </span>
+
+
+                <div class="field-color-control">
+
+                    <input
+                        id="priceColor"
+                        type="color"
+                        value="#E45772"
+                        onchange="changeFieldColor('price', this.value)"
+                    >
+
+
+                    <span
+                        id="priceColorValue"
+                        class="color-value">
+
+                        #E45772
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SKU -->
+
+        <div class="form-section text-field-block">
+
+
+            <label>
+
+                <span data-i18n="sku">
+                    SKU
+                </span>
+
+                <span class="required">
+                    *
+                </span>
+
+            </label>
+
+
+            <input
+                id="skuInput"
+                type="text"
+                value="SOF-104"
+                placeholder="SKU"
+            >
+
+
+            <div class="field-color-row">
+
+                <span class="field-color-label">
+                    Color
+                </span>
+
+
+                <div class="field-color-control">
+
+                    <input
+                        id="skuColor"
+                        type="color"
+                        value="#58719D"
+                        onchange="changeFieldColor('sku', this.value)"
+                    >
+
+
+                    <span
+                        id="skuColorValue"
+                        class="color-value">
+
+                        #58719D
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         URL
+    ================================================== -->
+
+    <div class="form-section">
+
+
+        <label>
+
+            <span data-i18n="productUrl">
+                Product URL
+            </span>
+
+            <span class="required">
+                *
+            </span>
+
+        </label>
+
+
+        <input
+            id="urlInput"
+            type="url"
+            value="https://example.com/products/sof-104"
+            placeholder="https://..."
+        >
+
+
+        <small data-i18n="urlHint">
+
+            This URL is used to generate the QR code.
+
+        </small>
+
+    </div>
+
+
+
+    <!-- =================================================
+         OPTIONAL INFORMATION
+    ================================================== -->
+
+    <div class="optional-heading">
+
+        <span data-i18n="optionalInformation">
+
+            OPTIONAL INFORMATION
+
+        </span>
+
+    </div>
+
+
+
+    <div class="optional-grid">
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showMrp"
+                onchange="toggleOptionalField('mrp', this.checked)"
+            >
+
+            <span data-i18n="mrp">
+                MRP
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showDiscount"
+                onchange="toggleOptionalField('discount', this.checked)"
+            >
+
+            <span data-i18n="discount">
+                Discount
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showCategory"
+                onchange="toggleOptionalField('category', this.checked)"
+            >
+
+            <span data-i18n="category">
+                Category
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showColour"
+                onchange="toggleOptionalField('colour', this.checked)"
+            >
+
+            <span data-i18n="colour">
+                Colour
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showDimensions"
+                onchange="toggleOptionalField('dimensions', this.checked)"
+            >
+
+            <span data-i18n="dimensions">
+                Dimensions
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showWarranty"
+                onchange="toggleOptionalField('warranty', this.checked)"
+            >
+
+            <span data-i18n="warranty">
+                Warranty
+            </span>
+
+        </label>
+
+
+
+        <label class="check-field">
+
+            <input
+                type="checkbox"
+                id="showStock"
+                onchange="toggleOptionalField('stock', this.checked)"
+            >
+
+            <span data-i18n="stockStatus">
+                Stock Status
+            </span>
+
+        </label>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         OPTIONAL INPUTS
+    ================================================== -->
+
+    <div class="form-section optional-input-section">
+
+
+        <div id="optionalInputs">
+
+
+            <!-- MRP -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputMrp">
+
+
+                <label data-i18n="mrp">
+                    MRP
+                </label>
+
+
+                <input
+                    id="mrpInput"
+                    type="text"
+                    value="₹42,000"
+                    oninput="syncOptional('mrp', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="mrpColor"
+                            type="color"
+                            value="#7A6C99"
+                            onchange="changeFieldColor('mrp', this.value)"
+                        >
+
+
+                        <span
+                            id="mrpColorValue"
+                            class="color-value">
+
+                            #7A6C99
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DISCOUNT -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputDiscount">
+
+
+                <label data-i18n="discount">
+                    Discount
+                </label>
+
+
+                <input
+                    id="discountInput"
+                    type="text"
+                    value="8% OFF"
+                    oninput="syncOptional('discount', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="discountColor"
+                            type="color"
+                            value="#1E9D78"
+                            onchange="changeFieldColor('discount', this.value)"
+                        >
+
+
+                        <span
+                            id="discountColorValue"
+                            class="color-value">
+
+                            #1E9D78
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- CATEGORY -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputCategory">
+
+
+                <label data-i18n="category">
+                    Category
+                </label>
+
+
+                <input
+                    id="categoryInput"
+                    type="text"
+                    value="Furniture"
+                    oninput="syncOptional('category', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="categoryColor"
+                            type="color"
+                            value="#58719D"
+                            onchange="changeFieldColor('category', this.value)"
+                        >
+
+
+                        <span
+                            id="categoryColorValue"
+                            class="color-value">
+
+                            #58719D
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- COLOUR -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputColour">
+
+
+                <label data-i18n="colour">
+                    Colour
+                </label>
+
+
+                <input
+                    id="colourInput"
+                    type="text"
+                    value="Grey"
+                    oninput="syncOptional('colour', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="colourColor"
+                            type="color"
+                            value="#B56B58"
+                            onchange="changeFieldColor('colour', this.value)"
+                        >
+
+
+                        <span
+                            id="colourColorValue"
+                            class="color-value">
+
+                            #B56B58
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- DIMENSIONS -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputDimensions">
+
+
+                <label data-i18n="dimensions">
+                    Dimensions
+                </label>
+
+
+                <input
+                    id="dimensionsInput"
+                    type="text"
+                    value="210 × 85 cm"
+                    oninput="syncOptional('dimensions', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="dimensionsColor"
+                            type="color"
+                            value="#58719D"
+                            onchange="changeFieldColor('dimensions', this.value)"
+                        >
+
+
+                        <span
+                            id="dimensionsColorValue"
+                            class="color-value">
+
+                            #58719D
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- WARRANTY -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputWarranty">
+
+
+                <label data-i18n="warranty">
+                    Warranty
+                </label>
+
+
+                <input
+                    id="warrantyInput"
+                    type="text"
+                    value="2 Years"
+                    oninput="syncOptional('warranty', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="warrantyColor"
+                            type="color"
+                            value="#58719D"
+                            onchange="changeFieldColor('warranty', this.value)"
+                        >
+
+
+                        <span
+                            id="warrantyColorValue"
+                            class="color-value">
+
+                            #58719D
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- STOCK -->
+
+            <div
+                class="optional-input-row text-field-block"
+                id="inputStock">
+
+
+                <label data-i18n="stockStatus">
+                    Stock Status
+                </label>
+
+
+                <input
+                    id="stockInput"
+                    type="text"
+                    value="In Stock"
+                    oninput="syncOptional('stock', this.value)"
+                >
+
+
+                <div class="field-color-row">
+
+                    <span class="field-color-label">
+                        Text color
+                    </span>
+
+
+                    <div class="field-color-control">
+
+                        <input
+                            id="stockColor"
+                            type="color"
+                            value="#1E9D78"
+                            onchange="changeFieldColor('stock', this.value)"
+                        >
+
+
+                        <span
+                            id="stockColorValue"
+                            class="color-value">
+
+                            #1E9D78
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         BARCODE UPLOAD
+    ================================================== -->
+
+    <div class="optional-heading">
+
+        <span>
+            BARCODE
+        </span>
+
+    </div>
+
+
+    <div class="barcode-upload-card">
+
+
+        <div class="barcode-upload-title">
+
+            Attach Barcode
+
+        </div>
+
+
+        <div class="barcode-upload-subtitle">
+
+            Upload an existing barcode image from your
+            billing system or barcode generator.
+
+        </div>
+
+
+        <input
+            id="barcodeFile"
+            class="barcode-file-input"
+            type="file"
+            accept=".png,.jpg,.jpeg,.webp,.svg,image/png,image/jpeg,image/webp,image/svg+xml"
+        >
+
+
+        <button
+            type="button"
+            class="barcode-attach-button"
+            onclick="openBarcodePicker()">
+
+            + Attach Barcode
+
+        </button>
+
+
+        <button
+            type="button"
+            class="barcode-remove-button"
+            onclick="removeBarcode()">
+
+            Remove Barcode
+
+        </button>
+
+
+        <div
+            id="barcodeStatus"
+            class="barcode-status">
+
+            No barcode attached.
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+     CENTER CANVAS
+====================================================== -->
+
+<section class="canvas-area">
+
+
+    <div class="canvas-toolbar">
+
+
+        <div>
+
+            <span
+                class="toolbar-label"
+                data-i18n="preview">
+
+                PREVIEW
+
+            </span>
+
+
+            <span id="templateNameDisplay">
+
+                Price Pop
+
+            </span>
+
+        </div>
+
+
+        <div class="canvas-actions">
+
+
+            <button
+                onclick="zoomCanvas(-0.1)">
+
+                −
+
+            </button>
+
+
+            <span id="zoomLabel">
+                100%
+            </span>
+
+
+            <button
+                onclick="zoomCanvas(0.1)">
+
+                +
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="canvas-stage">
+
+
+        <div
+            id="stickerCanvas"
+            class="sticker-canvas template-01">
+
+
+            <!-- =================================================
+                 BUSINESS
+            ================================================== -->
+
+            <div
+                id="el-business"
+                class="sticker-element element-business"
+                contenteditable="true"
+                spellcheck="false">
+
+                WOOD & HOME
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRODUCT
+            ================================================== -->
+
+            <div
+                id="el-product"
+                class="sticker-element element-product"
+                contenteditable="true"
+                spellcheck="false">
+
+                Modern 3-Seater Sofa
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SKU
+            ================================================== -->
+
+            <div
+                id="el-sku"
+                class="sticker-element element-sku"
+                contenteditable="true"
+                spellcheck="false">
+
+                SOF-104
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PRICE
+            ================================================== -->
+
+            <div
+                id="el-price"
+                class="sticker-element element-price"
+                contenteditable="true"
+                spellcheck="false">
+
+                ₹38,500
+
+            </div>
+
+
+
+            <!-- =================================================
+                 OPTIONAL
+            ================================================== -->
+
+            <div
+                id="el-mrp"
+                class="sticker-element element-mrp optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                ₹42,000
+
+            </div>
+
+
+
+            <div
+                id="el-discount"
+                class="sticker-element element-discount optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                8% OFF
+
+            </div>
+
+
+
+            <div
+                id="el-category"
+                class="sticker-element element-category optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                Furniture
+
+            </div>
+
+
+
+            <div
+                id="el-colour"
+                class="sticker-element element-colour optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                Grey
+
+            </div>
+
+
+
+            <div
+                id="el-dimensions"
+                class="sticker-element element-dimensions optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                210 × 85 cm
+
+            </div>
+
+
+
+            <div
+                id="el-warranty"
+                class="sticker-element element-warranty optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                2 Years
+
+            </div>
+
+
+
+            <div
+                id="el-stock"
+                class="sticker-element element-stock optional-element"
+                contenteditable="true"
+                spellcheck="false">
+
+                IN STOCK
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SINGLE QR
+            ================================================== -->
+
+            <div
+                id="qrElement"
+                class="sticker-element qr-element">
+
+                <div id="qrcode"></div>
+
+                <span data-i18n="scanDetails">
+
+                    SCAN FOR DETAILS
+
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EXTERNAL BARCODE
+            ================================================== -->
+
+            <div
+                id="barcodeElement"
+                class="sticker-element"
+                style="display:none;">
+
+                <img
+                    id="barcodeImage"
+                    alt="Uploaded barcode">
+
+            </div>
+
+
+
+            <!-- =================================================
+                 DECORATION
+            ================================================== -->
+
+            <div
+                class="label-decoration decoration-one">
+            </div>
+
+
+            <div
+                class="label-decoration decoration-two">
+            </div>
+
+
+            <div
+                class="label-decoration decoration-three">
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <div class="canvas-hint">
+
+
+        <span>
+            ✦
+        </span>
+
+
+        <span data-i18n="dragHint">
+
+            Drag any visible item to reposition it.
+            Click text to edit.
+
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     RIGHT PANEL
+====================================================== -->
+
+<aside class="editor-panel right-panel">
+
+
+    <div class="panel-heading">
+
+
+        <span
+            class="panel-eyebrow"
+            data-i18n="design">
+
+            DESIGN
+
+        </span>
+
+
+        <h2 data-i18n="customize">
+
+            Customize
+
+        </h2>
+
+    </div>
+
+
+
+    <!-- =================================================
+         TEMPLATE
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="template">
+                Template
+            </span>
+
+
+            <a
+                href="templates.html"
+                data-i18n="change">
+
+                Change
+
+            </a>
+
+        </div>
+
+
+        <div
+            class="current-template-preview"
+            id="currentTemplatePreview">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         FONT
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="font">
+                Font
+            </span>
+
+        </div>
+
+
+        <div class="font-search">
+
+            <input
+                id="fontSearch"
+                type="text"
+                placeholder="Search font..."
+                oninput="filterFonts(this.value)"
+            >
+
+        </div>
+
+
+        <select
+            id="fontSelect"
+            onchange="changeFont(this.value)">
+
+
+            <option value="Poppins">
+                Poppins
+            </option>
+
+
+            <option value="Inter">
+                Inter
+            </option>
+
+
+            <option value="DM Sans">
+                DM Sans
+            </option>
+
+
+            <option value="Nunito">
+                Nunito
+            </option>
+
+
+            <option value="Lora">
+                Lora
+            </option>
+
+
+            <option value="Montserrat">
+                Montserrat
+            </option>
+
+
+            <option value="Roboto">
+                Roboto
+            </option>
+
+
+            <option value="Oswald">
+                Oswald
+            </option>
+
+
+            <option value="Raleway">
+                Raleway
+            </option>
+
+
+            <option value="Outfit">
+                Outfit
+            </option>
+
+
+            <option value="Manrope">
+                Manrope
+            </option>
+
+
+            <option value="Archivo">
+                Archivo
+            </option>
+
+
+            <option value="Josefin Sans">
+                Josefin Sans
+            </option>
+
+
+            <option value="Space Grotesk">
+                Space Grotesk
+            </option>
+
+
+            <option value="Playfair Display">
+                Playfair Display
+            </option>
+
+
+            <option value="Libre Baskerville">
+                Libre Baskerville
+            </option>
+
+
+            <option value="Merriweather">
+                Merriweather
+            </option>
+
+
+            <option value="EB Garamond">
+                EB Garamond
+            </option>
+
+
+            <option value="Lato">
+                Lato
+            </option>
+
+
+            <option value="Bebas Neue">
+                Bebas Neue
+            </option>
+
+
+        </select>
+
+
+        <div
+            id="fontPreview"
+            class="font-preview-text">
+
+            Modern 3-Seater Sofa
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         SIZE
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="labelSize">
+                Label Size
+            </span>
+
+        </div>
+
+
+        <div class="size-options">
+
+
+            <button
+                class="size-button"
+                data-size="30x20"
+                onclick="changeLabelSize('30x20', this)">
+
+                30 × 20
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="40x25"
+                onclick="changeLabelSize('40x25', this)">
+
+                40 × 25
+
+            </button>
+
+
+            <button
+                class="size-button active"
+                data-size="50x30"
+                onclick="changeLabelSize('50x30', this)">
+
+                50 × 30
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="60x40"
+                onclick="changeLabelSize('60x40', this)">
+
+                60 × 40
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="50x80"
+                onclick="changeLabelSize('50x80', this)">
+
+                50 × 80
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="50x90"
+                onclick="changeLabelSize('50x90', this)">
+
+                50 × 90
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="60x100"
+                onclick="changeLabelSize('60x100', this)">
+
+                60 × 100
+
+            </button>
+
+
+            <button
+                class="size-button"
+                data-size="70x100"
+                onclick="changeLabelSize('70x100', this)">
+
+                70 × 100
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         GENERAL COLORS
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="colors">
+                Design Colors
+            </span>
+
+        </div>
+
+
+        <div class="color-control">
+
+            <span>
+                Default Text
+            </span>
+
+
+            <input
+                type="color"
+                id="textColorPicker"
+                value="#40265f"
+                onchange="changeTextColor(this.value)"
+            >
+
+        </div>
+
+
+        <div class="color-control">
+
+            <span>
+                QR Foreground
+            </span>
+
+
+            <input
+                type="color"
+                id="qrDarkPicker"
+                value="#54377d"
+                onchange="changeQrColors()"
+            >
+
+        </div>
+
+
+        <div class="color-control">
+
+            <span>
+                QR Background
+            </span>
+
+
+            <input
+                type="color"
+                id="qrLightPicker"
+                value="#f4eefe"
+                onchange="changeQrColors()"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         QR
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="qrCode">
+                QR Code
+            </span>
+
+        </div>
+
+
+        <button
+            class="regenerate-button"
+            onclick="generateQR()">
+
+            ↻
+
+            <span data-i18n="regenerateQr">
+
+                Regenerate QR
+
+            </span>
+
+        </button>
+
+
+        <small
+            class="qr-note"
+            data-i18n="qrNote">
+
+            The QR is generated from your Product URL.
+
+        </small>
+
+    </div>
+
+
+
+    <!-- =================================================
+         POSITION
+    ================================================== -->
+
+    <div class="control-section">
+
+
+        <div class="control-title">
+
+            <span data-i18n="positions">
+                Positions
+            </span>
+
+        </div>
+
+
+        <button
+            class="reset-position-button"
+            onclick="resetPositions()">
+
+            ↺
+
+            <span data-i18n="resetPositions">
+
+                Reset element positions
+
+            </span>
+
+        </button>
+
+    </div>
+
+
+
+    <!-- =================================================
+         TIP
+    ================================================== -->
+
+    <div class="editor-tip">
+
+
+        <span class="tip-icon">
+            ✦
+        </span>
+
+
+        <div>
+
+
+            <strong data-i18n="tipTitle">
+
+                Quick tip
+
+            </strong>
+
+
+            <p data-i18n="tipText">
+
+                Keep the QR clear of the price and
+                product name. Customers should be able
+                to scan it easily.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</aside>
+
+
+</main>
+
+
+<!-- =====================================================
+     QR LIBRARY
+====================================================== -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+
+<!-- =====================================================
+     SELECTED DESIGN
+====================================================== -->
+
+<script>
+
+    /*
+     * Read the design selected from templates.html.
+     *
+     * Example:
+     * editor.html?design=07
+     *
+     * Only the template class is changed.
+     * Existing visual styling is untouched.
+     */
+
+    (function () {
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        let designId =
+            params.get("design");
+
+
+        if (!designId) {
+
+            designId = "01";
+
+        }
+
+
+        designId =
+            String(designId).padStart(2, "0");
+
+
+        /*
+         * Only allow designs 01 → 20.
+         */
+
+        if (
+            !/^(0[1-9]|1[0-9]|20)$/.test(
+                designId
+            )
+        ) {
+
+            designId = "01";
+
+        }
+
+
+        /*
+         * Make the selected design
+         * available to app.js.
+         */
+
+        window.stickerlySelectedDesign =
+            designId;
+
+
+        /*
+         * Apply the selected
+         * template class.
+         */
+
+        const canvas =
+            document.getElementById(
+                "stickerCanvas"
+            );
+
+
+        if (canvas) {
+
+            Array.from(
+                canvas.classList
+            ).forEach(
+                className => {
+
+                    if (
+                        /^template-\d+$/.test(
+                            className
+                        )
+                    ) {
+
+                        canvas.classList.remove(
+                            className
+                        );
+
+                    }
+
+                }
+            );
+
+
+            canvas.classList.add(
+                "template-" + designId
+            );
+
+        }
+
+    })();
+
+</script>
+
+
+<!-- =====================================================
+     EXISTING APP JS
+====================================================== -->
+
+<script src="app.js"></script>
+
+
+<!-- =====================================================
+     EDITOR ENHANCEMENTS
+====================================================== -->
+
+<script>
+
+    /* =====================================================
+       20 FONT STYLES
+    ====================================================== */
+
+    const stickerFonts = [
+
+        "Poppins",
+        "Inter",
+        "DM Sans",
+        "Nunito",
+        "Lora",
+        "Montserrat",
+        "Roboto",
+        "Oswald",
+        "Raleway",
+        "Outfit",
+        "Manrope",
+        "Archivo",
+        "Josefin Sans",
+        "Space Grotesk",
+        "Playfair Display",
+        "Libre Baskerville",
+        "Merriweather",
+        "EB Garamond",
+        "Lato",
+        "Bebas Neue"
+
+    ];
+
+
+    /* =====================================================
+       FONT SEARCH
+    ====================================================== */
+
+    function filterFonts(query) {
+
+        const select =
+            document.getElementById("fontSelect");
+
+        if (!select) {
+            return;
+        }
+
+
+        const normalized =
+            query
+                .toLowerCase()
+                .trim();
+
+
+        Array.from(select.options)
+            .forEach(option => {
+
+                option.hidden =
+                    normalized &&
+                    !option.value
+                        .toLowerCase()
+                        .includes(normalized);
+
+            });
+
+    }
+
+
+    /* =====================================================
+       FONT PREVIEW
+    ====================================================== */
+
+    const fontSelect =
+        document.getElementById("fontSelect");
+
+    const fontPreview =
+        document.getElementById("fontPreview");
+
+
+    if (fontSelect) {
+
+        fontSelect.addEventListener(
+            "change",
+            function () {
+
+                if (fontPreview) {
+
+                    fontPreview.style.fontFamily =
+                        `"${this.value}", sans-serif`;
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       COLOR VALUE LABELS
+    ====================================================== */
+
+    const colorFields = [
+
+        "business",
+        "product",
+        "price",
+        "sku",
+        "mrp",
+        "discount",
+        "category",
+        "colour",
+        "dimensions",
+        "warranty",
+        "stock"
+
+    ];
+
+
+    colorFields.forEach(
+        field => {
+
+            const picker =
+                document.getElementById(
+                    field + "Color"
+                );
+
+
+            const value =
+                document.getElementById(
+                    field + "ColorValue"
+                );
+
+
+            if (!picker || !value) {
+                return;
+            }
+
+
+            picker.addEventListener(
+                "input",
+                function () {
+
+                    value.textContent =
+                        this.value
+                            .toUpperCase();
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       FIELD COLOR
+    ====================================================== */
+
+    window.changeFieldColor =
+        function (
+            field,
+            color
+        ) {
+
+            const element =
+                document.getElementById(
+                    "el-" + field
+                );
+
+
+            if (!element) {
+                return;
+            }
+
+
+            element.style.color =
+                color;
+
+
+            const value =
+                document.getElementById(
+                    field + "ColorValue"
+                );
+
+
+            if (value) {
+
+                value.textContent =
+                    color.toUpperCase();
+
+            }
+
+        };
+
+
+    /* =====================================================
+       OPEN BARCODE FILE PICKER
+    ====================================================== */
+
+    window.openBarcodePicker =
+        function () {
+
+            const input =
+                document.getElementById(
+                    "barcodeFile"
+                );
+
+
+            if (!input) {
+                return;
+            }
+
+
+            input.click();
+
+        };
+
+
+    /* =====================================================
+       BARCODE FILE
+    ====================================================== */
+
+    window.attachBarcode =
+        function () {
+
+            const input =
+                document.getElementById(
+                    "barcodeFile"
+                );
+
+
+            if (!input) {
+                return;
+            }
+
+
+            const file =
+                input.files &&
+                input.files[0];
+
+
+            if (!file) {
+
+                openBarcodePicker();
+
+                return;
+
+            }
+
+
+            const validTypes = [
+
+                "image/png",
+                "image/jpeg",
+                "image/webp",
+                "image/svg+xml"
+
+            ];
+
+
+            const extension =
+                file.name
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
+
+
+            const validExtensions = [
+
+                "png",
+                "jpg",
+                "jpeg",
+                "webp",
+                "svg"
+
+            ];
+
+
+            if (
+                !validTypes.includes(
+                    file.type
+                ) &&
+                !validExtensions.includes(
+                    extension
+                )
+            ) {
+
+                alert(
+                    "Please upload PNG, JPG, WEBP or SVG."
+                );
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+
+            reader.onload =
+                function (event) {
+
+                    const barcodeElement =
+                        document.getElementById(
+                            "barcodeElement"
+                        );
+
+
+                    const barcodeImage =
+                        document.getElementById(
+                            "barcodeImage"
+                        );
+
+
+                    if (
+                        !barcodeElement ||
+                        !barcodeImage
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    barcodeImage.src =
+                        event.target.result;
+
+
+                    barcodeElement.style.display =
+                        "block";
+
+
+                    barcodeElement.dataset.attached =
+                        "true";
+
+
+                    barcodeElement.dataset.source =
+                        event.target.result;
+
+
+                    barcodeElement.style.left =
+                        "25px";
+
+
+                    barcodeElement.style.top =
+                        "240px";
+
+
+                    barcodeElement.style.bottom =
+                        "auto";
+
+
+                    const status =
+                        document.getElementById(
+                            "barcodeStatus"
+                        );
+
+
+                    if (status) {
+
+                        status.textContent =
+                            "Barcode attached: " +
+                            file.name;
+
+                    }
+
+
+                    /*
+                     * Use existing drag system
+                     * when available.
+                     */
+
+                    if (
+                        typeof initDraggableElements ===
+                        "function"
+                    ) {
+
+                        initDraggableElements();
+
+                    }
+
+
+                    localStorage.setItem(
+                        "stickerlyBarcode",
+                        JSON.stringify({
+
+                            source:
+                                event.target.result,
+
+                            name:
+                                file.name,
+
+                            left:
+                                barcodeElement.offsetLeft,
+
+                            top:
+                                barcodeElement.offsetTop
+
+                        })
+                    );
+
+                };
+
+
+            reader.readAsDataURL(file);
+
+        };
+
+
+    /* =====================================================
+       REMOVE BARCODE
+    ====================================================== */
+
+    window.removeBarcode =
+        function () {
+
+            const element =
+                document.getElementById(
+                    "barcodeElement"
+                );
+
+
+            const image =
+                document.getElementById(
+                    "barcodeImage"
+                );
+
+
+            if (image) {
+
+                image.src =
+                    "";
+
+            }
+
+
+            if (element) {
+
+                element.style.display =
+                    "none";
+
+                element.dataset.attached =
+                    "false";
+
+                element.dataset.source =
+                    "";
+
+            }
+
+
+            const input =
+                document.getElementById(
+                    "barcodeFile"
+                );
+
+
+            if (input) {
+
+                input.value =
+                    "";
+
+            }
+
+
+            const status =
+                document.getElementById(
+                    "barcodeStatus"
+                );
+
+
+            if (status) {
+
+                status.textContent =
+                    "No barcode attached.";
+
+            }
+
+
+            localStorage.removeItem(
+                "stickerlyBarcode"
+            );
+
+        };
+
+
+    /* =====================================================
+       LOAD BARCODE
+    ====================================================== */
+
+    function loadSavedBarcode() {
+
+        const saved =
+            localStorage.getItem(
+                "stickerlyBarcode"
+            );
+
+
+        if (!saved) {
+            return;
+        }
+
+
+        try {
+
+            const data =
+                JSON.parse(saved);
+
+
+            if (
+                !data.source
+            ) {
+
+                return;
+
+            }
+
+
+            const element =
+                document.getElementById(
+                    "barcodeElement"
+                );
+
+
+            const image =
+                document.getElementById(
+                    "barcodeImage"
+                );
+
+
+            if (!element || !image) {
+                return;
+            }
+
+
+            image.src =
+                data.source;
+
+
+            element.style.display =
+                "block";
+
+
+            element.dataset.attached =
+                "true";
+
+
+            element.dataset.source =
+                data.source;
+
+
+            if (
+                typeof data.left ===
+                "number"
+            ) {
+
+                element.style.left =
+                    data.left + "px";
+
+            }
+
+
+            if (
+                typeof data.top ===
+                "number"
+            ) {
+
+                element.style.top =
+                    data.top + "px";
+
+            }
+
+
+            const status =
+                document.getElementById(
+                    "barcodeStatus"
+                );
+
+
+            if (status) {
+
+                status.textContent =
+                    "Barcode attached: " +
+                    (data.name || "Saved barcode");
+
+            }
+
+
+        } catch (error) {
+
+            console.error(
+                "Barcode load error:",
+                error
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       COLOR INITIALIZATION
+    ====================================================== */
+
+    function updateAllColorLabels() {
+
+        colorFields.forEach(
+            field => {
+
+                const picker =
+                    document.getElementById(
+                        field + "Color"
+                    );
+
+
+                const value =
+                    document.getElementById(
+                        field + "ColorValue"
+                    );
+
+
+                if (
+                    picker &&
+                    value
+                ) {
+
+                    value.textContent =
+                        picker.value
+                            .toUpperCase();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZATION
+    ====================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            updateAllColorLabels();
+
+            loadSavedBarcode();
+
+
+            if (fontPreview && fontSelect) {
+
+                fontPreview.style.fontFamily =
+                    `"${fontSelect.value}", sans-serif`;
+
+            }
+
+
+            /*
+             * Make the barcode respond
+             * immediately when a file is picked.
+             */
+
+            const barcodeInput =
+                document.getElementById(
+                    "barcodeFile"
+                );
+
+
+            if (barcodeInput) {
+
+                barcodeInput.addEventListener(
+                    "change",
+                    function () {
+
+                        if (
+                            this.files &&
+                            this.files.length > 0
+                        ) {
+
+                            attachBarcode();
+
+                        }
+
+                    }
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

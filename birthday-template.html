@@ -1,0 +1,1797 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vanikio QR Frame Designer</title>
+
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.8.4/lib/qr-code-styling.js"></script>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Inter, Arial, sans-serif;
+    background: #f5f6fa;
+    color: #171717;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+    height: 68px;
+    background: #ffffff;
+    border-bottom: 1px solid #e8e8e8;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 28px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #7c3aed;
+}
+
+.download-btn {
+    border: 0;
+    background: #7c3aed;
+    color: white;
+
+    padding: 11px 20px;
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.download-btn:hover {
+    background: #6d28d9;
+}
+
+/* ================= LAYOUT ================= */
+
+.app {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    padding: 28px;
+
+    display: grid;
+    grid-template-columns: 1fr 390px;
+
+    gap: 28px;
+}
+
+/* ================= PREVIEW ================= */
+
+.preview-area {
+    min-height: calc(100vh - 124px);
+
+    background: #e9eaf0;
+
+    border-radius: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    overflow: hidden;
+}
+
+.frame {
+    width: 440px;
+    height: 520px;
+
+    max-width: 90%;
+
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 35px;
+
+    overflow: hidden;
+
+    transition:
+        background .25s,
+        border .25s,
+        border-radius .25s,
+        box-shadow .25s;
+}
+
+/* ================= QR ================= */
+
+.qr-container {
+    width: 270px;
+    height: 270px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+
+    position: relative;
+    z-index: 5;
+
+    transition: .25s;
+}
+
+#qr {
+    width: 250px;
+    height: 250px;
+}
+
+/* ================= FRAME TEXT ================= */
+
+.frame-title {
+    position: relative;
+    z-index: 10;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    margin-bottom: 18px;
+}
+
+.frame-subtitle {
+    position: relative;
+    z-index: 10;
+
+    font-size: 14px;
+
+    margin-top: 18px;
+
+    opacity: .8;
+}
+
+.frame-footer {
+    position: relative;
+    z-index: 10;
+
+    font-size: 12px;
+
+    margin-top: 16px;
+
+    opacity: .65;
+}
+
+/* =========================================================
+   FRAME 1 — SIMPLE
+========================================================= */
+
+.frame.simple {
+    background: white;
+    border-radius: 24px;
+
+    box-shadow: 0 25px 70px rgba(0,0,0,.12);
+}
+
+/* =========================================================
+   FRAME 2 — PURPLE
+========================================================= */
+
+.frame.purple {
+    background: #7c3aed;
+    color: white;
+
+    border-radius: 28px;
+}
+
+.frame.purple .qr-container {
+    border-radius: 22px;
+}
+
+/* =========================================================
+   FRAME 3 — PINK
+========================================================= */
+
+.frame.pink {
+    background: linear-gradient(145deg,#ec4899,#f472b6);
+    color: white;
+
+    border-radius: 30px;
+}
+
+.frame.pink .qr-container {
+    border-radius: 25px;
+}
+
+/* =========================================================
+   FRAME 4 — DARK
+========================================================= */
+
+.frame.dark {
+    background: #111827;
+    color: white;
+
+    border-radius: 18px;
+}
+
+.frame.dark .qr-container {
+    border-radius: 10px;
+}
+
+/* =========================================================
+   FRAME 5 — NEON
+========================================================= */
+
+.frame.neon {
+    background: #0f172a;
+    color: #a7f3d0;
+
+    border: 5px solid #22c55e;
+
+    border-radius: 25px;
+}
+
+.frame.neon .qr-container {
+    border: 4px solid #22c55e;
+    border-radius: 15px;
+}
+
+/* =========================================================
+   FRAME 6 — GOLD
+========================================================= */
+
+.frame.gold {
+    background: #fff8dc;
+    color: #7c5a00;
+
+    border: 8px solid #d4af37;
+
+    border-radius: 20px;
+}
+
+.frame.gold .qr-container {
+    border: 5px solid #d4af37;
+    border-radius: 12px;
+}
+
+/* =========================================================
+   FRAME 7 — BIRTHDAY
+========================================================= */
+
+.frame.birthday {
+    background:
+        radial-gradient(circle at 10% 10%, #ffd6e8 0 7%, transparent 8%),
+        radial-gradient(circle at 90% 15%, #ffe8a8 0 7%, transparent 8%),
+        radial-gradient(circle at 15% 90%, #d7f9ff 0 7%, transparent 8%),
+        linear-gradient(145deg,#fff4fa,#ffe7f1);
+
+    color: #9d174d;
+
+    border-radius: 35px;
+}
+
+.frame.birthday::before {
+    content: "🎂";
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    font-size: 32px;
+}
+
+.frame.birthday::after {
+    content: "🎉";
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 32px;
+}
+
+.frame.birthday .qr-container {
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(157,23,77,.15);
+}
+
+/* =========================================================
+   FRAME 8 — BUSINESS
+========================================================= */
+
+.frame.business {
+    background: white;
+    color: #111827;
+
+    border: 2px solid #111827;
+
+    border-radius: 8px;
+}
+
+.frame.business::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 12px;
+
+    background: #111827;
+}
+
+.frame.business .qr-container {
+    border-radius: 5px;
+}
+
+/* =========================================================
+   FRAME 9 — INSTAGRAM
+========================================================= */
+
+.frame.instagram {
+    background:
+        linear-gradient(
+            135deg,
+            #833ab4,
+            #fd1d1d,
+            #fcb045
+        );
+
+    color: white;
+
+    border-radius: 32px;
+}
+
+.frame.instagram .qr-container {
+    border-radius: 25px;
+}
+
+/* =========================================================
+   FRAME 10 — HEART
+========================================================= */
+
+.frame.heart {
+    background: #fff1f2;
+    color: #be123c;
+
+    border-radius: 35px;
+
+    border: 3px solid #fb7185;
+}
+
+.frame.heart::before {
+    content: "♥";
+    position: absolute;
+
+    font-size: 150px;
+
+    opacity: .08;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%,-50%);
+}
+
+/* =========================================================
+   FRAME 11 — MINIMAL
+========================================================= */
+
+.frame.minimal {
+    background: #fafafa;
+    color: #222;
+
+    border-radius: 0;
+
+    border: 1px solid #ddd;
+}
+
+.frame.minimal .qr-container {
+    border-radius: 0;
+}
+
+/* =========================================================
+   FRAME 12 — ROUNDED
+========================================================= */
+
+.frame.rounded {
+    background: white;
+
+    border-radius: 55px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.10);
+}
+
+.frame.rounded .qr-container {
+    border-radius: 35px;
+}
+
+/* =========================================================
+   FRAME 13 — BLUE
+========================================================= */
+
+.frame.blue {
+    background: linear-gradient(145deg,#2563eb,#06b6d4);
+    color: white;
+
+    border-radius: 30px;
+}
+
+.frame.blue .qr-container {
+    border-radius: 20px;
+}
+
+/* =========================================================
+   FRAME 14 — GREEN
+========================================================= */
+
+.frame.green {
+    background: #ecfdf5;
+    color: #065f46;
+
+    border: 5px solid #10b981;
+
+    border-radius: 28px;
+}
+
+.frame.green .qr-container {
+    border-radius: 15px;
+}
+
+/* =========================================================
+   FRAME 15 — FESTIVE
+========================================================= */
+
+.frame.festive {
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #fff7ed,
+            #fff7ed 12px,
+            #fee2e2 12px,
+            #fee2e2 24px
+        );
+
+    color: #991b1b;
+
+    border: 10px solid #991b1b;
+
+    border-radius: 22px;
+}
+
+.frame.festive .qr-container {
+    border-radius: 12px;
+}
+
+/* =========================================================
+   FRAME 16 — OFFER
+========================================================= */
+
+.frame.offer {
+    background: #111827;
+    color: white;
+
+    border-radius: 15px;
+
+    border: 8px solid #facc15;
+}
+
+.frame.offer .qr-container {
+    border-radius: 8px;
+}
+
+/* =========================================================
+   FRAME 17 — ELEGANT
+========================================================= */
+
+.frame.elegant {
+    background: #faf7f2;
+
+    color: #3f3f46;
+
+    border: 2px solid #a8a29e;
+
+    border-radius: 20px;
+}
+
+.frame.elegant .qr-container {
+    border-radius: 50%;
+    padding: 8px;
+}
+
+/* =========================================================
+   FRAME 18 — TECH
+========================================================= */
+
+.frame.tech {
+    background: #020617;
+    color: #38bdf8;
+
+    border: 2px solid #38bdf8;
+
+    border-radius: 10px;
+}
+
+.frame.tech::before {
+    content: "";
+    position: absolute;
+
+    inset: 15px;
+
+    border: 1px dashed #38bdf8;
+
+    opacity: .4;
+}
+
+.frame.tech .qr-container {
+    border-radius: 8px;
+}
+
+/* =========================================================
+   FRAME 19 — FLOWER
+========================================================= */
+
+.frame.flower {
+    background: #fdf2f8;
+    color: #9d174d;
+
+    border: 4px solid #f9a8d4;
+
+    border-radius: 40px;
+}
+
+.frame.flower::before {
+    content: "🌸";
+    position: absolute;
+
+    top: 15px;
+    left: 20px;
+
+    font-size: 35px;
+}
+
+.frame.flower::after {
+    content: "🌸";
+    position: absolute;
+
+    bottom: 15px;
+    right: 20px;
+
+    font-size: 35px;
+}
+
+/* =========================================================
+   FRAME 20 — CARD
+========================================================= */
+
+.frame.card {
+    background: white;
+
+    border-radius: 18px;
+
+    border-top: 15px solid #7c3aed;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.14);
+}
+
+.frame.card .qr-container {
+    border-radius: 18px;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.controls {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.07);
+
+    max-height: calc(100vh - 124px);
+
+    overflow-y: auto;
+}
+
+.controls h2 {
+    margin: 0;
+
+    font-size: 21px;
+}
+
+.controls-description {
+    margin: 5px 0 24px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+/* ================= SECTION ================= */
+
+.section {
+    margin-bottom: 24px;
+}
+
+.section-title {
+    font-size: 12px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+
+    font-weight: 800;
+
+    color: #6b7280;
+
+    margin-bottom: 10px;
+}
+
+/* ================= INPUT ================= */
+
+input[type="text"],
+select {
+    width: 100%;
+
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    background: white;
+
+    font-size: 14px;
+}
+
+input[type="text"]:focus,
+select:focus {
+    border-color: #7c3aed;
+}
+
+/* ================= COLORS ================= */
+
+.color-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px;
+}
+
+.color-item {
+    border: 1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    padding: 8px;
+}
+
+.color-item label {
+    display: block;
+
+    font-size: 11px;
+
+    color: #6b7280;
+
+    margin-bottom: 5px;
+}
+
+input[type="color"] {
+    width: 100%;
+
+    height: 35px;
+
+    border: 0;
+
+    padding: 0;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+/* ================= FRAME GRID ================= */
+
+.frame-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 9px;
+}
+
+.frame-option {
+    border: 1px solid #e5e7eb;
+
+    border-radius: 11px;
+
+    padding: 7px;
+
+    background: white;
+
+    cursor: pointer;
+
+    transition: .15s;
+}
+
+.frame-option:hover {
+    border-color: #7c3aed;
+}
+
+.frame-option.active {
+    border: 2px solid #7c3aed;
+
+    padding: 6px;
+}
+
+.mini-frame {
+    width: 100%;
+    height: 70px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 8px;
+    font-weight: 700;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.mini-qr {
+    width: 32px;
+    height: 32px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #111 0 3px,
+            #fff 3px 6px
+        );
+
+    border: 3px solid white;
+}
+
+.frame-name {
+    text-align: center;
+
+    font-size: 10px;
+
+    margin-top: 6px;
+
+    color: #555;
+}
+
+/* ================= FRAME MINI COLORS ================= */
+
+.mini-simple {
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.mini-purple {
+    background: #7c3aed;
+    color: white;
+}
+
+.mini-pink {
+    background: linear-gradient(135deg,#ec4899,#f472b6);
+    color: white;
+}
+
+.mini-dark {
+    background: #111827;
+    color: white;
+}
+
+.mini-neon {
+    background: #0f172a;
+    color: #22c55e;
+    border: 3px solid #22c55e;
+}
+
+.mini-gold {
+    background: #fff8dc;
+    border: 3px solid #d4af37;
+}
+
+.mini-birthday {
+    background: #ffe7f1;
+    color: #9d174d;
+}
+
+.mini-business {
+    background: white;
+    border: 2px solid #111;
+}
+
+.mini-instagram {
+    background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);
+    color: white;
+}
+
+.mini-heart {
+    background: #fff1f2;
+    color: #be123c;
+    border: 2px solid #fb7185;
+}
+
+.mini-minimal {
+    background: #fafafa;
+    border: 1px solid #ddd;
+}
+
+.mini-blue {
+    background: linear-gradient(135deg,#2563eb,#06b6d4);
+    color: white;
+}
+
+.mini-green {
+    background: #ecfdf5;
+    border: 3px solid #10b981;
+}
+
+.mini-festive {
+    background: #fee2e2;
+    border: 3px solid #991b1b;
+}
+
+.mini-offer {
+    background: #111827;
+    color: white;
+    border: 3px solid #facc15;
+}
+
+.mini-elegant {
+    background: #faf7f2;
+    border: 2px solid #a8a29e;
+}
+
+.mini-tech {
+    background: #020617;
+    color: #38bdf8;
+    border: 2px solid #38bdf8;
+}
+
+.mini-flower {
+    background: #fdf2f8;
+    border: 3px solid #f9a8d4;
+}
+
+.mini-card {
+    background: white;
+    border-top: 5px solid #7c3aed;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .app {
+        grid-template-columns: 1fr;
+    }
+
+    .controls {
+        max-height: none;
+    }
+
+    .preview-area {
+        min-height: 650px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 0 15px;
+    }
+
+    .app {
+        padding: 15px;
+    }
+
+    .preview-area {
+        padding: 20px;
+    }
+
+    .frame {
+        width: 360px;
+        height: 450px;
+        padding: 25px;
+    }
+
+    .qr-container {
+        width: 230px;
+        height: 230px;
+    }
+
+    #qr {
+        width: 215px;
+        height: 215px;
+    }
+
+    .frame-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        <span>V</span>anikio
+    </div>
+
+    <button
+        class="download-btn"
+        onclick="downloadDesign()"
+    >
+        Download
+    </button>
+
+</header>
+
+
+<!-- ================= APP ================= -->
+
+<div class="app">
+
+    <!-- ================= PREVIEW ================= -->
+
+    <main class="preview-area">
+
+        <div
+            class="frame birthday"
+            id="frame"
+        >
+
+            <div
+                class="frame-title"
+                id="frameTitle"
+            >
+                Happy Birthday!
+            </div>
+
+            <div
+                class="qr-container"
+                id="qrContainer"
+            >
+                <div id="qr"></div>
+            </div>
+
+            <div
+                class="frame-subtitle"
+                id="frameSubtitle"
+            >
+                Scan for a special surprise
+            </div>
+
+            <div
+                class="frame-footer"
+                id="frameFooter"
+            >
+                Created with Vanikio
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= CONTROLS ================= -->
+
+    <aside class="controls">
+
+        <h2>QR Frame Designer</h2>
+
+        <div class="controls-description">
+            Choose a frame and customize your QR.
+        </div>
+
+
+        <!-- ================= FRAME TEMPLATES ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Frame Templates
+            </div>
+
+            <div class="frame-grid">
+
+                <div
+                    class="frame-option"
+                    data-frame="simple"
+                    onclick="selectFrame('simple', this)"
+                >
+                    <div class="mini-frame mini-simple">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Simple</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="purple"
+                    onclick="selectFrame('purple', this)"
+                >
+                    <div class="mini-frame mini-purple">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Purple</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="pink"
+                    onclick="selectFrame('pink', this)"
+                >
+                    <div class="mini-frame mini-pink">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Pink</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="dark"
+                    onclick="selectFrame('dark', this)"
+                >
+                    <div class="mini-frame mini-dark">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Dark</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="neon"
+                    onclick="selectFrame('neon', this)"
+                >
+                    <div class="mini-frame mini-neon">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Neon</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="gold"
+                    onclick="selectFrame('gold', this)"
+                >
+                    <div class="mini-frame mini-gold">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Gold</div>
+                </div>
+
+
+                <div
+                    class="frame-option active"
+                    data-frame="birthday"
+                    onclick="selectFrame('birthday', this)"
+                >
+                    <div class="mini-frame mini-birthday">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Birthday</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="business"
+                    onclick="selectFrame('business', this)"
+                >
+                    <div class="mini-frame mini-business">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Business</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="instagram"
+                    onclick="selectFrame('instagram', this)"
+                >
+                    <div class="mini-frame mini-instagram">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Gradient</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="heart"
+                    onclick="selectFrame('heart', this)"
+                >
+                    <div class="mini-frame mini-heart">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Love</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="minimal"
+                    onclick="selectFrame('minimal', this)"
+                >
+                    <div class="mini-frame mini-minimal">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Minimal</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="blue"
+                    onclick="selectFrame('blue', this)"
+                >
+                    <div class="mini-frame mini-blue">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Blue</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="green"
+                    onclick="selectFrame('green', this)"
+                >
+                    <div class="mini-frame mini-green">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Green</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="festive"
+                    onclick="selectFrame('festive', this)"
+                >
+                    <div class="mini-frame mini-festive">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Festive</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="offer"
+                    onclick="selectFrame('offer', this)"
+                >
+                    <div class="mini-frame mini-offer">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Offer</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="elegant"
+                    onclick="selectFrame('elegant', this)"
+                >
+                    <div class="mini-frame mini-elegant">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Elegant</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="tech"
+                    onclick="selectFrame('tech', this)"
+                >
+                    <div class="mini-frame mini-tech">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Tech</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="flower"
+                    onclick="selectFrame('flower', this)"
+                >
+                    <div class="mini-frame mini-flower">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Flower</div>
+                </div>
+
+
+                <div
+                    class="frame-option"
+                    data-frame="card"
+                    onclick="selectFrame('card', this)"
+                >
+                    <div class="mini-frame mini-card">
+                        <div class="mini-qr"></div>
+                    </div>
+                    <div class="frame-name">Card</div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= QR CONTENT ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                QR Content
+            </div>
+
+            <input
+                type="text"
+                id="qrData"
+                value="https://vanikio.com"
+            >
+
+        </div>
+
+
+        <!-- ================= TITLE ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Frame Title
+            </div>
+
+            <input
+                type="text"
+                id="titleInput"
+                value="Happy Birthday!"
+            >
+
+        </div>
+
+
+        <!-- ================= SUBTITLE ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Frame Subtitle
+            </div>
+
+            <input
+                type="text"
+                id="subtitleInput"
+                value="Scan for a special surprise"
+            >
+
+        </div>
+
+
+        <!-- ================= FOOTER ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                Footer
+            </div>
+
+            <input
+                type="text"
+                id="footerInput"
+                value="Created with Vanikio"
+            >
+
+        </div>
+
+
+        <!-- ================= QR COLORS ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                QR Colors
+            </div>
+
+            <div class="color-grid">
+
+                <div class="color-item">
+
+                    <label>
+                        Color 1
+                    </label>
+
+                    <input
+                        type="color"
+                        id="color1"
+                        value="#7c3aed"
+                    >
+
+                </div>
+
+
+                <div class="color-item">
+
+                    <label>
+                        Color 2
+                    </label>
+
+                    <input
+                        type="color"
+                        id="color2"
+                        value="#ec4899"
+                    >
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= BACKGROUND ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                QR Background
+            </div>
+
+            <input
+                type="color"
+                id="background"
+                value="#ffffff"
+            >
+
+        </div>
+
+
+        <!-- ================= PATTERN ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                QR Pattern
+            </div>
+
+            <select id="pattern">
+
+                <option value="square">
+                    Square
+                </option>
+
+                <option value="dots">
+                    Dots
+                </option>
+
+                <option value="rounded">
+                    Rounded
+                </option>
+
+                <option value="extra-rounded">
+                    Extra Rounded
+                </option>
+
+                <option value="classy">
+                    Classy
+                </option>
+
+                <option value="classy-rounded">
+                    Classy Rounded
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- ================= CORNER STYLE ================= -->
+
+        <div class="section">
+
+            <div class="section-title">
+                QR Corner
+            </div>
+
+            <select id="corner">
+
+                <option value="square">
+                    Square
+                </option>
+
+                <option value="dot">
+                    Dot
+                </option>
+
+                <option value="extra-rounded">
+                    Extra Rounded
+                </option>
+
+            </select>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+<script>
+
+let qr;
+
+
+/* =========================================================
+   QR GENERATOR
+========================================================= */
+
+function buildQR() {
+
+    const data =
+        document.getElementById("qrData").value ||
+        "https://vanikio.com";
+
+
+    const color1 =
+        document.getElementById("color1").value;
+
+
+    const color2 =
+        document.getElementById("color2").value;
+
+
+    const background =
+        document.getElementById("background").value;
+
+
+    const pattern =
+        document.getElementById("pattern").value;
+
+
+    const corner =
+        document.getElementById("corner").value;
+
+
+    document.getElementById("qr").innerHTML = "";
+
+
+    qr = new QRCodeStyling({
+
+        width: 250,
+
+        height: 250,
+
+        type: "canvas",
+
+        data: data,
+
+        margin: 5,
+
+        qrOptions: {
+
+            errorCorrectionLevel: "H"
+
+        },
+
+
+        /* ================= PATTERN ================= */
+
+        dotsOptions: {
+
+            type: pattern,
+
+            gradient: {
+
+                type: "linear",
+
+                rotation: 45,
+
+                colorStops: [
+
+                    {
+                        offset: 0,
+                        color: color1
+                    },
+
+                    {
+                        offset: 1,
+                        color: color2
+                    }
+
+                ]
+
+            }
+
+        },
+
+
+        /* ================= OUTER CORNERS ================= */
+
+        cornersSquareOptions: {
+
+            type: corner,
+
+            color: color1
+
+        },
+
+
+        /* ================= INNER CORNERS ================= */
+
+        cornersDotOptions: {
+
+            type: "dot",
+
+            color: color2
+
+        },
+
+
+        /* ================= BACKGROUND ================= */
+
+        backgroundOptions: {
+
+            color: background
+
+        }
+
+    });
+
+
+    qr.append(
+        document.getElementById("qr")
+    );
+}
+
+
+/* =========================================================
+   FRAME
+========================================================= */
+
+function selectFrame(frameName, element) {
+
+    const frame =
+        document.getElementById("frame");
+
+
+    const classes = [
+
+        "simple",
+        "purple",
+        "pink",
+        "dark",
+        "neon",
+        "gold",
+        "birthday",
+        "business",
+        "instagram",
+        "heart",
+        "minimal",
+        "rounded",
+        "blue",
+        "green",
+        "festive",
+        "offer",
+        "elegant",
+        "tech",
+        "flower",
+        "card"
+
+    ];
+
+
+    classes.forEach(
+        c => frame.classList.remove(c)
+    );
+
+
+    frame.classList.add(frameName);
+
+
+    document
+        .querySelectorAll(".frame-option")
+        .forEach(
+            item =>
+                item.classList.remove("active")
+        );
+
+
+    element.classList.add("active");
+}
+
+
+/* =========================================================
+   TEXT
+========================================================= */
+
+function updateText() {
+
+    document.getElementById(
+        "frameTitle"
+    ).textContent =
+        document.getElementById(
+            "titleInput"
+        ).value;
+
+
+    document.getElementById(
+        "frameSubtitle"
+    ).textContent =
+        document.getElementById(
+            "subtitleInput"
+        ).value;
+
+
+    document.getElementById(
+        "frameFooter"
+    ).textContent =
+        document.getElementById(
+            "footerInput"
+        ).value;
+}
+
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+function downloadDesign() {
+
+    if (!qr) {
+
+        buildQR();
+
+        return;
+    }
+
+
+    qr.download({
+
+        name: "vanikio-qr",
+
+        extension: "png"
+
+    });
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document
+    .getElementById("qrData")
+    .addEventListener(
+        "input",
+        buildQR
+    );
+
+
+document
+    .getElementById("color1")
+    .addEventListener(
+        "input",
+        buildQR
+    );
+
+
+document
+    .getElementById("color2")
+    .addEventListener(
+        "input",
+        buildQR
+    );
+
+
+document
+    .getElementById("background")
+    .addEventListener(
+        "input",
+        buildQR
+    );
+
+
+document
+    .getElementById("pattern")
+    .addEventListener(
+        "change",
+        buildQR
+    );
+
+
+document
+    .getElementById("corner")
+    .addEventListener(
+        "change",
+        buildQR
+    );
+
+
+document
+    .getElementById("titleInput")
+    .addEventListener(
+        "input",
+        updateText
+    );
+
+
+document
+    .getElementById("subtitleInput")
+    .addEventListener(
+        "input",
+        updateText
+    );
+
+
+document
+    .getElementById("footerInput")
+    .addEventListener(
+        "input",
+        updateText
+    );
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+buildQR();
+
+updateText();
+
+</script>
+
+</body>
+</html>
+```

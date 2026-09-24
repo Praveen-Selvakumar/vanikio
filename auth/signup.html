@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Stickerly — Create Account</title>
+
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ====================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        html,
+        body {
+            min-height: 100%;
+        }
+
+
+        body {
+
+            font-family: "Inter", sans-serif;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #fbf9fe 0%,
+                    #f6f3fa 100%
+                );
+
+            color: #2d2436;
+
+        }
+
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           PAGE
+        ====================================================== */
+
+        .signup-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+        /* =====================================================
+           HEADER
+        ====================================================== */
+
+        .topbar {
+
+            height: 68px;
+
+            padding: 0 28px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    .94
+                );
+
+            border-bottom:
+                1px solid #ebe5f2;
+
+            backdrop-filter:
+                blur(12px);
+
+        }
+
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            text-decoration: none;
+
+            color: #291f35;
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+        }
+
+
+        .brand-mark {
+
+            width: 31px;
+
+            height: 31px;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6841d8,
+                    #a16ff2
+                );
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 15px;
+
+            box-shadow:
+                0 6px 16px
+                rgba(
+                    104,
+                    65,
+                    216,
+                    .24
+                );
+
+        }
+
+
+        .header-link {
+
+            color: #776b82;
+
+            text-decoration: none;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+        }
+
+
+        .header-link:hover {
+
+            color: #6841d8;
+
+        }
+
+
+        /* =====================================================
+           MAIN
+        ====================================================== */
+
+        .main {
+
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding:
+                40px 20px 55px;
+
+        }
+
+
+        .signup-container {
+
+            width: 100%;
+
+            max-width: 430px;
+
+        }
+
+
+        /* =====================================================
+           INTRO
+        ====================================================== */
+
+        .intro {
+
+            text-align: center;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        .intro-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            height: 28px;
+
+            padding: 0 11px;
+
+            border-radius: 20px;
+
+            background: #eee8fa;
+
+            color: #6841d8;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: .7px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .intro h1 {
+
+            font-family:
+                "Poppins",
+                sans-serif;
+
+            font-size: 29px;
+
+            line-height: 1.15;
+
+            color: #30263b;
+
+            margin-bottom: 9px;
+
+        }
+
+
+        .intro p {
+
+            max-width: 350px;
+
+            margin: 0 auto;
+
+            color: #817688;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =====================================================
+           CARD
+        ====================================================== */
+
+        .signup-card {
+
+            background: white;
+
+            border:
+                1px solid #ebe5f1;
+
+            border-radius: 18px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 20px 50px
+                rgba(
+                    53,
+                    35,
+                    70,
+                    .08
+                );
+
+        }
+
+
+        /* =====================================================
+           ERROR
+        ====================================================== */
+
+        .error-message {
+
+            display: none;
+
+            margin-bottom: 15px;
+
+            padding: 9px 11px;
+
+            border:
+                1px solid #f0d1d7;
+
+            border-radius: 8px;
+
+            background: #fff7f8;
+
+            color: #c85c70;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+
+        }
+
+
+        .error-message.show {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           SUCCESS
+        ====================================================== */
+
+        .success-message {
+
+            display: none;
+
+            margin-bottom: 15px;
+
+            padding: 9px 11px;
+
+            border:
+                1px solid #cfe8d7;
+
+            border-radius: 8px;
+
+            background: #f5fff7;
+
+            color: #39814e;
+
+            font-size: 10px;
+
+            line-height: 1.4;
+
+        }
+
+
+        .success-message.show {
+
+            display: block;
+
+        }
+
+
+        /* =====================================================
+           FORM
+        ====================================================== */
+
+        .form-group {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .form-label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #4f435a;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+        }
+
+
+        .input-wrap {
+
+            position: relative;
+
+        }
+
+
+        .form-input {
+
+            width: 100%;
+
+            height: 45px;
+
+            border:
+                1px solid #ddd5e7;
+
+            border-radius: 9px;
+
+            background: white;
+
+            padding: 0 13px;
+
+            outline: none;
+
+            color: #44394e;
+
+            font-size: 12px;
+
+            transition:
+                border-color .18s ease,
+                box-shadow .18s ease;
+
+        }
+
+
+        .form-input::placeholder {
+
+            color: #aaa0af;
+
+        }
+
+
+        .form-input:focus {
+
+            border-color: #8d69db;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(
+                    104,
+                    65,
+                    216,
+                    .08
+                );
+
+        }
+
+
+        .password-input {
+
+            padding-right: 45px;
+
+        }
+
+
+        .password-toggle {
+
+            position: absolute;
+
+            right: 11px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: transparent;
+
+            color: #8d8197;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            width: 27px;
+
+            height: 27px;
+
+        }
+
+
+        /* =====================================================
+           CREATE BUTTON
+        ====================================================== */
+
+        .signup-button {
+
+            width: 100%;
+
+            height: 45px;
+
+            border: none;
+
+            border-radius: 9px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6841d8,
+                    #9069e9
+                );
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 7px 18px
+                rgba(
+                    104,
+                    65,
+                    216,
+                    .20
+                );
+
+            transition:
+                transform .15s ease,
+                box-shadow .15s ease;
+
+        }
+
+
+        .signup-button:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 10px 22px
+                rgba(
+                    104,
+                    65,
+                    216,
+                    .25
+                );
+
+        }
+
+
+        .signup-button:disabled {
+
+            opacity: .65;
+
+            cursor:
+                not-allowed;
+
+            transform: none;
+
+        }
+
+
+        /* =====================================================
+           DIVIDER
+        ====================================================== */
+
+        .divider {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 22px 0;
+
+        }
+
+
+        .divider-line {
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #eee8f2;
+
+        }
+
+
+        .divider-text {
+
+            color: #aaa0af;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+        }
+
+
+        /* =====================================================
+           GOOGLE
+        ====================================================== */
+
+        .google-button {
+
+            width: 100%;
+
+            height: 43px;
+
+            border:
+                1px solid #ddd6e5;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #514657;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+        }
+
+
+        .google-button:disabled {
+
+            opacity: .65;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .google-icon {
+
+            width: 17px;
+
+            height: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            color: #4285f4;
+
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ====================================================== */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 21px;
+
+            color: #8a7f91;
+
+            font-size: 10px;
+
+        }
+
+
+        .login-text a {
+
+            color: #6841d8;
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+        }
+
+
+        .login-text a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =====================================================
+           TERMS
+        ====================================================== */
+
+        .terms {
+
+            margin-top: 16px;
+
+            text-align: center;
+
+            color: #9b91a2;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .terms a {
+
+            color: #6841d8;
+
+            text-decoration: none;
+
+        }
+
+
+        /* =====================================================
+           TRUST
+        ====================================================== */
+
+        .trust-note {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 6px;
+
+            margin-top: 14px;
+
+            color: #9b91a2;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+            text-align: center;
+
+        }
+
+
+        .trust-dot {
+
+            width: 6px;
+
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #5cb77a;
+
+            flex-shrink: 0;
+
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ====================================================== */
+
+        .footer {
+
+            text-align: center;
+
+            padding:
+                0 20px 28px;
+
+            color: #aaa0af;
+
+            font-size: 9px;
+
+        }
+
+
+        /* =====================================================
+           MOBILE
+        ====================================================== */
+
+        @media (max-width: 600px) {
+
+            .topbar {
+
+                height: 62px;
+
+                padding: 0 17px;
+
+            }
+
+
+            .brand {
+
+                font-size: 18px;
+
+            }
+
+
+            .brand-mark {
+
+                width: 29px;
+
+                height: 29px;
+
+            }
+
+
+            .header-link {
+
+                font-size: 10px;
+
+            }
+
+
+            .main {
+
+                padding:
+                    30px 15px 45px;
+
+            }
+
+
+            .signup-card {
+
+                padding:
+                    23px 19px;
+
+                border-radius:
+                    15px;
+
+            }
+
+
+            .intro h1 {
+
+                font-size:
+                    26px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="signup-page">
+
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
+<header class="topbar">
+
+
+    <a
+        href="index.html"
+        class="brand">
+
+        <span class="brand-mark">
+            S
+        </span>
+
+        <span>
+            Stickerly
+        </span>
+
+    </a>
+
+
+    <a
+        href="templates.html"
+        class="header-link">
+
+        Browse designs →
+
+    </a>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
+
+<main class="main">
+
+
+    <div class="signup-container">
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <div class="intro">
+
+
+            <div class="intro-badge">
+
+                Stickerly Account
+
+            </div>
+
+
+            <h1>
+
+                Create your account
+
+            </h1>
+
+
+            <p>
+
+                Save your product labels,
+                continue editing and access them
+                from your Stickerly account.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CARD
+        ================================================== -->
+
+        <section class="signup-card">
+
+
+            <!-- =================================================
+                 ERROR
+            ================================================== -->
+
+            <div
+                id="errorMessage"
+                class="error-message">
+            </div>
+
+
+            <!-- =================================================
+                 SUCCESS
+            ================================================== -->
+
+            <div
+                id="successMessage"
+                class="success-message">
+            </div>
+
+
+
+            <!-- =================================================
+                 NAME
+            ================================================== -->
+
+            <div class="form-group">
+
+
+                <label
+                    class="form-label"
+                    for="displayName">
+
+                    Your name
+
+                </label>
+
+
+                <input
+                    id="displayName"
+                    class="form-input"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Enter your name">
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EMAIL
+            ================================================== -->
+
+            <div class="form-group">
+
+
+                <label
+                    class="form-label"
+                    for="email">
+
+                    Email address
+
+                </label>
+
+
+                <input
+                    id="email"
+                    class="form-input"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="you@example.com">
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PASSWORD
+            ================================================== -->
+
+            <div class="form-group">
+
+
+                <label
+                    class="form-label"
+                    for="password">
+
+                    Password
+
+                </label>
+
+
+                <div class="input-wrap">
+
+
+                    <input
+                        id="password"
+                        class="form-input password-input"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Create a password">
+
+
+                    <button
+                        id="passwordToggle"
+                        class="password-toggle"
+                        type="button"
+                        aria-label="Show password">
+
+                        ◉
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONFIRM PASSWORD
+            ================================================== -->
+
+            <div class="form-group">
+
+
+                <label
+                    class="form-label"
+                    for="confirmPassword">
+
+                    Confirm password
+
+                </label>
+
+
+                <div class="input-wrap">
+
+
+                    <input
+                        id="confirmPassword"
+                        class="form-input password-input"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Enter the password again">
+
+
+                    <button
+                        id="confirmPasswordToggle"
+                        class="password-toggle"
+                        type="button"
+                        aria-label="Show password">
+
+                        ◉
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CREATE ACCOUNT
+            ================================================== -->
+
+            <button
+                id="signupButton"
+                class="signup-button"
+                type="button">
+
+                Create account
+
+            </button>
+
+
+
+            <!-- =================================================
+                 DIVIDER
+            ================================================== -->
+
+            <div class="divider">
+
+                <span class="divider-line"></span>
+
+                <span class="divider-text">
+                    OR
+                </span>
+
+                <span class="divider-line"></span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 GOOGLE
+            ================================================== -->
+
+            <button
+                id="googleButton"
+                class="google-button"
+                type="button">
+
+                <span class="google-icon">
+                    G
+                </span>
+
+                Continue with Google
+
+            </button>
+
+
+
+            <!-- =================================================
+                 LOGIN
+            ================================================== -->
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+
+                    Sign in
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TERMS
+            ================================================== -->
+
+            <div class="terms">
+
+                By creating an account, you agree to
+                Stickerly's
+
+                <a href="#">
+
+                    Terms
+
+                </a>
+
+                and
+
+                <a href="#">
+
+                    Privacy Policy
+
+                </a>.
+
+            </div>
+
+
+
+            <!-- =================================================
+                 TRUST
+            ================================================== -->
+
+            <div class="trust-note">
+
+                <span class="trust-dot"></span>
+
+                <span>
+
+                    Your account is protected by Firebase Authentication.
+
+                </span>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    © 2026 Stickerly · Smart product labels
+
+</footer>
+
+
+
+<!-- =====================================================
+     FIREBASE AUTH
+====================================================== -->
+
+<script type="module">
+
+    import {
+        initializeApp
+    }
+    from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        createUserWithEmailAndPassword,
+        updateProfile,
+        GoogleAuthProvider,
+        signInWithPopup
+    }
+    from
+    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+
+    /* =====================================================
+       FIREBASE CONFIGURATION
+       Replace these values with your Firebase Web App
+       configuration.
+    ====================================================== */
+
+    const firebaseConfig = {
+
+        apiKey:
+            "YOUR_API_KEY",
+
+        authDomain:
+            "YOUR_PROJECT.firebaseapp.com",
+
+        projectId:
+            "YOUR_PROJECT_ID",
+
+        storageBucket:
+            "YOUR_PROJECT.firebasestorage.app",
+
+        messagingSenderId:
+            "YOUR_MESSAGING_SENDER_ID",
+
+        appId:
+            "YOUR_APP_ID"
+
+    };
+
+
+    /* =====================================================
+       INITIALIZE FIREBASE
+    ====================================================== */
+
+    const app =
+        initializeApp(
+            firebaseConfig
+        );
+
+
+    const auth =
+        getAuth(app);
+
+
+    const googleProvider =
+        new GoogleAuthProvider();
+
+
+    /* =====================================================
+       ELEMENTS
+    ====================================================== */
+
+    const nameInput =
+        document.getElementById(
+            "displayName"
+        );
+
+
+    const emailInput =
+        document.getElementById(
+            "email"
+        );
+
+
+    const passwordInput =
+        document.getElementById(
+            "password"
+        );
+
+
+    const confirmPasswordInput =
+        document.getElementById(
+            "confirmPassword"
+        );
+
+
+    const signupButton =
+        document.getElementById(
+            "signupButton"
+        );
+
+
+    const googleButton =
+        document.getElementById(
+            "googleButton"
+        );
+
+
+    const passwordToggle =
+        document.getElementById(
+            "passwordToggle"
+        );
+
+
+    const confirmPasswordToggle =
+        document.getElementById(
+            "confirmPasswordToggle"
+        );
+
+
+    const errorMessage =
+        document.getElementById(
+            "errorMessage"
+        );
+
+
+    const successMessage =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    /* =====================================================
+       MESSAGE HELPERS
+    ====================================================== */
+
+    function showError(message) {
+
+        errorMessage.textContent =
+            message;
+
+        errorMessage.classList.add(
+            "show"
+        );
+
+        successMessage.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    function showSuccess(message) {
+
+        successMessage.textContent =
+            message;
+
+        successMessage.classList.add(
+            "show"
+        );
+
+        errorMessage.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    function clearMessages() {
+
+        errorMessage.textContent =
+            "";
+
+        successMessage.textContent =
+            "";
+
+        errorMessage.classList.remove(
+            "show"
+        );
+
+        successMessage.classList.remove(
+            "show"
+        );
+
+    }
+
+
+    /* =====================================================
+       PASSWORD TOGGLE
+    ====================================================== */
+
+    function setupPasswordToggle(
+        input,
+        button
+    ) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const hidden =
+                    input.type ===
+                    "password";
+
+
+                input.type =
+                    hidden
+                        ? "text"
+                        : "password";
+
+
+                this.textContent =
+                    hidden
+                        ? "○"
+                        : "◉";
+
+
+                this.setAttribute(
+                    "aria-label",
+                    hidden
+                        ? "Hide password"
+                        : "Show password"
+                );
+
+            }
+        );
+
+    }
+
+
+    setupPasswordToggle(
+        passwordInput,
+        passwordToggle
+    );
+
+
+    setupPasswordToggle(
+        confirmPasswordInput,
+        confirmPasswordToggle
+    );
+
+
+    /* =====================================================
+       FIREBASE ERROR MESSAGES
+    ====================================================== */
+
+    function firebaseErrorMessage(
+        error
+    ) {
+
+        switch (
+            error.code
+        ) {
+
+            case
+            "auth/email-already-in-use":
+
+                return
+                    "An account already exists with this email address.";
+
+            case
+            "auth/invalid-email":
+
+                return
+                    "Please enter a valid email address.";
+
+            case
+            "auth/weak-password":
+
+                return
+                    "The password is too weak. Please choose a stronger password.";
+
+            case
+            "auth/popup-closed-by-user":
+
+                return
+                    "Google sign-in was cancelled.";
+
+            case
+            "auth/popup-blocked":
+
+                return
+                    "Your browser blocked the Google sign-in popup.";
+
+            case
+            "auth/operation-not-allowed":
+
+                return
+                    "This sign-in method is not enabled in Firebase.";
+
+            case
+            "auth/network-request-failed":
+
+                return
+                    "Network error. Please check your internet connection.";
+
+            default:
+
+                return
+                    error.message ||
+                    "Something went wrong. Please try again.";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       EMAIL SIGN UP
+    ====================================================== */
+
+    signupButton.addEventListener(
+        "click",
+        async function () {
+
+            clearMessages();
+
+
+            const name =
+                nameInput.value.trim();
+
+
+            const email =
+                emailInput.value.trim();
+
+
+            const password =
+                passwordInput.value;
+
+
+            const confirmPassword =
+                confirmPasswordInput.value;
+
+
+            if (!name) {
+
+                showError(
+                    "Please enter your name."
+                );
+
+                nameInput.focus();
+
+                return;
+
+            }
+
+
+            if (!email) {
+
+                showError(
+                    "Please enter your email address."
+                );
+
+                emailInput.focus();
+
+                return;
+
+            }
+
+
+            if (!password) {
+
+                showError(
+                    "Please create a password."
+                );
+
+                passwordInput.focus();
+
+                return;
+
+            }
+
+
+            if (!confirmPassword) {
+
+                showError(
+                    "Please confirm your password."
+                );
+
+                confirmPasswordInput.focus();
+
+                return;
+
+            }
+
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                showError(
+                    "Passwords do not match."
+                );
+
+                confirmPasswordInput.focus();
+
+                return;
+
+            }
+
+
+            signupButton.disabled =
+                true;
+
+            googleButton.disabled =
+                true;
+
+            signupButton.textContent =
+                "Creating account...";
+
+
+            try {
+
+                /*
+                 * Create Firebase account.
+                 */
+
+                const userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                /*
+                 * Save the user's display
+                 * name in Firebase Auth.
+                 */
+
+                await updateProfile(
+                    user,
+                    {
+                        displayName:
+                            name
+                    }
+                );
+
+
+                /*
+                 * Keep the current account
+                 * available for the rest of
+                 * the Stickerly app.
+                 */
+
+                showSuccess(
+                    "Account created successfully."
+                );
+
+
+                /*
+                 * Small delay so the user
+                 * sees the success state.
+                 */
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "editor.html?design=01";
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Stickerly signup error:",
+                    error
+                );
+
+
+                showError(
+                    firebaseErrorMessage(
+                        error
+                    )
+                );
+
+
+                signupButton.disabled =
+                    false;
+
+                googleButton.disabled =
+                    false;
+
+                signupButton.textContent =
+                    "Create account";
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       GOOGLE SIGN UP / SIGN IN
+    ====================================================== */
+
+    googleButton.addEventListener(
+        "click",
+        async function () {
+
+            clearMessages();
+
+
+            googleButton.disabled =
+                true;
+
+            signupButton.disabled =
+                true;
+
+            googleButton.textContent =
+                "Connecting...";
+
+
+            try {
+
+                /*
+                 * Google account creation
+                 * and Google sign-in use the
+                 * same Firebase provider flow.
+                 */
+
+                const result =
+                    await signInWithPopup(
+                        auth,
+                        googleProvider
+                    );
+
+
+                const user =
+                    result.user;
+
+
+                console.log(
+                    "Stickerly Google user:",
+                    user
+                );
+
+
+                showSuccess(
+                    "Google account connected successfully."
+                );
+
+
+                setTimeout(
+                    function () {
+
+                        window.location.href =
+                            "editor.html?design=01";
+
+                    },
+                    700
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Stickerly Google signup error:",
+                    error
+                );
+
+
+                showError(
+                    firebaseErrorMessage(
+                        error
+                    )
+                );
+
+
+                googleButton.disabled =
+                    false;
+
+                signupButton.disabled =
+                    false;
+
+                googleButton.textContent =
+                    "Continue with Google";
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
