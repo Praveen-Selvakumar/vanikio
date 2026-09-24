@@ -1,3 +1,7 @@
+// ============================================================
+// VANIKIO - Firebase Configuration
+// ============================================================
+
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
@@ -20,13 +24,21 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
-    getFirestore
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 import {
     getStorage
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-storage.js";
 
+
+// ============================================================
+// Firebase Config
+// ============================================================
 
 const firebaseConfig = {
 
@@ -53,36 +65,35 @@ const firebaseConfig = {
 };
 
 
-const app =
-    initializeApp(
-        firebaseConfig
-    );
+// ============================================================
+// Initialize Firebase
+// ============================================================
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const storage = getStorage(app);
 
 
-const auth =
-    getAuth(app);
+// ============================================================
+// Google Authentication
+// ============================================================
 
-
-const googleProvider =
-    new GoogleAuthProvider();
-
+const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
     prompt: "select_account"
 });
 
 
-const db =
-    getFirestore(app);
+// ============================================================
+// Authentication Persistence
+// ============================================================
 
-
-const storage =
-    getStorage(app);
-
-
-async function setAuthPersistence(
-    rememberMe
-) {
+async function setAuthPersistence(rememberMe) {
 
     await setPersistence(
         auth,
@@ -94,36 +105,106 @@ async function setAuthPersistence(
 }
 
 
+// ============================================================
+// Create / Update User Profile
+// Firestore:
+// /users/{uid}
+// ============================================================
+
+async function createUserProfile(user, extraData = {}) {
+
+    if (!user) {
+        throw new Error("User is required.");
+    }
+
+    const userRef = doc(
+        db,
+        "users",
+        user.uid
+    );
+
+    const existingUser = await getDoc(userRef);
+
+    const userData = {
+
+        uid: user.uid,
+
+        displayName:
+            user.displayName ||
+            extraData.displayName ||
+            "",
+
+        email:
+            user.email || "",
+
+        photoURL:
+            user.photoURL || "",
+
+        provider:
+            extraData.provider || "password",
+
+        updatedAt:
+            serverTimestamp()
+    };
+
+
+    // Only create createdAt for a new user.
+    if (!existingUser.exists()) {
+
+        userData.createdAt =
+            serverTimestamp();
+
+    }
+
+
+    await setDoc(
+        userRef,
+        userData,
+        {
+            merge: true
+        }
+    );
+
+}
+
+
+// ============================================================
+// Exports
+// ============================================================
+
 export {
 
+    // Firebase
     app,
     auth,
     db,
     storage,
 
+    // Google
     googleProvider,
 
+    // Login
     signInWithEmailAndPassword,
-
     signInWithPopup,
-
     signInWithRedirect,
-
     getRedirectResult,
-
     sendPasswordResetEmail,
 
+    // Persistence
     setAuthPersistence,
-
     browserLocalPersistence,
-
     browserSessionPersistence,
 
+    // Auth state
     onAuthStateChanged,
 
+    // Signup
     createUserWithEmailAndPassword,
-
     updateProfile,
 
+    // User profile
+    createUserProfile,
+
+    // Logout
     signOut
 };
