@@ -7,81 +7,62 @@
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <title>Stickerly — Create Account</title>
-
+    <title>VANIKIO — Create Account</title>
 
     <!-- =====================================================
-         GOOGLE FONTS
+         Google Font
     ====================================================== -->
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
     <link
         rel="preconnect"
         href="https://fonts.gstatic.com"
-        crossorigin>
-
+        crossorigin
+    >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap"
-        rel="stylesheet">
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
 
     <style>
 
-        /* =====================================================
-           RESET
-        ====================================================== */
-
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
 
         html,
         body {
+            margin: 0;
+            padding: 0;
             min-height: 100%;
         }
 
 
         body {
 
-            font-family: "Inter", sans-serif;
+            font-family: "Poppins", sans-serif;
 
-            background:
-                linear-gradient(
-                    180deg,
-                    #fbf9fe 0%,
-                    #f6f3fa 100%
-                );
+            background: #f8f7f5;
 
-            color: #2d2436;
+            color: #171717;
 
+            -webkit-font-smoothing: antialiased;
         }
 
 
-        button,
-        input {
-            font-family: inherit;
-        }
-
-
-        /* =====================================================
-           PAGE
-        ====================================================== */
-
-        .signup-page {
-
-            min-height: 100vh;
-
-            display: flex;
-
-            flex-direction: column;
-
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
 
@@ -91,9 +72,7 @@
 
         .topbar {
 
-            height: 68px;
-
-            padding: 0 28px;
+            height: 76px;
 
             display: flex;
 
@@ -101,20 +80,11 @@
 
             justify-content: space-between;
 
-            background:
-                rgba(
-                    255,
-                    255,
-                    255,
-                    .94
-                );
+            padding: 0 32px;
 
-            border-bottom:
-                1px solid #ebe5f2;
+            background: #ffffff;
 
-            backdrop-filter:
-                blur(12px);
-
+            border-bottom: 1px solid #eeeeee;
         }
 
 
@@ -124,102 +94,139 @@
 
             align-items: center;
 
-            gap: 9px;
-
-            text-decoration: none;
-
-            color: #291f35;
-
-            font-size: 20px;
-
-            font-weight: 800;
-
+            gap: 10px;
         }
 
 
         .brand-mark {
 
-            width: 31px;
+            width: 34px;
+            height: 34px;
 
-            height: 31px;
+            border-radius: 10px;
 
-            border-radius: 9px;
+            display: flex;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #6841d8,
-                    #a16ff2
-                );
+            align-items: center;
+            justify-content: center;
 
-            color: white;
+            background: #171717;
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .brand-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.1;
+        }
+
+
+        .brand-name {
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        .brand-tagline {
+
+            margin-top: 3px;
+
+            font-size: 9px;
+
+            font-weight: 500;
+
+            color: #888888;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .nav {
 
             display: flex;
 
             align-items: center;
 
-            justify-content: center;
-
-            font-size: 15px;
-
-            box-shadow:
-                0 6px 16px
-                rgba(
-                    104,
-                    65,
-                    216,
-                    .24
-                );
-
-        }
-
-
-        .header-link {
-
-            color: #776b82;
-
-            text-decoration: none;
+            gap: 25px;
 
             font-size: 11px;
 
-            font-weight: 600;
+            font-weight: 500;
 
+            color: #555555;
         }
 
 
-        .header-link:hover {
+        .nav a:hover {
+            color: #111111;
+        }
 
-            color: #6841d8;
 
+        .language-btn {
+
+            border: 1px solid #dddddd;
+
+            background: #ffffff;
+
+            border-radius: 8px;
+
+            padding: 7px 10px;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            cursor: pointer;
         }
 
 
         /* =====================================================
-           MAIN
+           PAGE
         ====================================================== */
 
-        .main {
+        .page {
 
-            flex: 1;
+            min-height: calc(100vh - 76px);
 
             display: flex;
 
-            justify-content: center;
-
             align-items: center;
 
-            padding:
-                40px 20px 55px;
+            justify-content: center;
 
+            padding: 50px 20px;
         }
 
 
-        .signup-container {
+        .card {
 
             width: 100%;
 
-            max-width: 430px;
+            max-width: 470px;
 
+            background: #ffffff;
+
+            border: 1px solid #e9e9e9;
+
+            border-radius: 22px;
+
+            padding: 34px;
+
+            box-shadow:
+                0 18px 50px rgba(0, 0, 0, 0.05);
         }
 
 
@@ -227,172 +234,49 @@
            INTRO
         ====================================================== */
 
-        .intro {
-
-            text-align: center;
-
-            margin-bottom: 22px;
-
-        }
-
-
-        .intro-badge {
+        .badge {
 
             display: inline-flex;
 
             align-items: center;
 
-            justify-content: center;
-
-            height: 28px;
-
-            padding: 0 11px;
+            padding: 6px 10px;
 
             border-radius: 20px;
 
-            background: #eee8fa;
+            background: #f3f3f3;
 
-            color: #6841d8;
+            color: #555555;
 
-            font-size: 9px;
+            font-size: 10px;
 
-            font-weight: 800;
-
-            letter-spacing: .7px;
-
-            text-transform: uppercase;
-
-            margin-bottom: 14px;
-
+            font-weight: 600;
         }
 
 
-        .intro h1 {
+        h1 {
 
-            font-family:
-                "Poppins",
-                sans-serif;
+            margin: 17px 0 8px;
 
-            font-size: 29px;
+            font-size: 34px;
 
             line-height: 1.15;
 
-            color: #30263b;
+            letter-spacing: -1px;
 
-            margin-bottom: 9px;
-
+            font-weight: 700;
         }
 
 
-        .intro p {
+        .description {
 
-            max-width: 350px;
+            margin: 0 0 27px;
 
-            margin: 0 auto;
+            color: #777777;
 
-            color: #817688;
+            font-size: 13px;
 
-            font-size: 12px;
-
-            line-height: 1.6;
-
-        }
-
-
-        /* =====================================================
-           CARD
-        ====================================================== */
-
-        .signup-card {
-
-            background: white;
-
-            border:
-                1px solid #ebe5f1;
-
-            border-radius: 18px;
-
-            padding: 28px;
-
-            box-shadow:
-                0 20px 50px
-                rgba(
-                    53,
-                    35,
-                    70,
-                    .08
-                );
-
-        }
-
-
-        /* =====================================================
-           ERROR
-        ====================================================== */
-
-        .error-message {
-
-            display: none;
-
-            margin-bottom: 15px;
-
-            padding: 9px 11px;
-
-            border:
-                1px solid #f0d1d7;
-
-            border-radius: 8px;
-
-            background: #fff7f8;
-
-            color: #c85c70;
-
-            font-size: 10px;
-
-            line-height: 1.4;
-
-        }
-
-
-        .error-message.show {
-
-            display: block;
-
-        }
-
-
-        /* =====================================================
-           SUCCESS
-        ====================================================== */
-
-        .success-message {
-
-            display: none;
-
-            margin-bottom: 15px;
-
-            padding: 9px 11px;
-
-            border:
-                1px solid #cfe8d7;
-
-            border-radius: 8px;
-
-            background: #f5fff7;
-
-            color: #39814e;
-
-            font-size: 10px;
-
-            line-height: 1.4;
-
-        }
-
-
-        .success-message.show {
-
-            display: block;
-
+            line-height: 1.7;
         }
 
 
@@ -400,90 +284,77 @@
            FORM
         ====================================================== */
 
-        .form-group {
+        .field {
 
-            margin-bottom: 15px;
-
+            margin-bottom: 17px;
         }
 
 
-        .form-label {
+        label {
 
             display: block;
 
             margin-bottom: 7px;
 
-            color: #4f435a;
+            font-size: 12px;
 
-            font-size: 11px;
+            font-weight: 600;
 
-            font-weight: 700;
-
+            color: #333333;
         }
 
 
-        .input-wrap {
-
-            position: relative;
-
-        }
-
-
-        .form-input {
+        input {
 
             width: 100%;
 
-            height: 45px;
+            height: 51px;
 
-            border:
-                1px solid #ddd5e7;
+            border: 1px solid #dddddd;
 
-            border-radius: 9px;
+            border-radius: 11px;
 
-            background: white;
-
-            padding: 0 13px;
+            padding: 0 14px;
 
             outline: none;
 
-            color: #44394e;
+            background: #ffffff;
 
-            font-size: 12px;
+            color: #171717;
+
+            font-family: inherit;
+
+            font-size: 13px;
 
             transition:
-                border-color .18s ease,
-                box-shadow .18s ease;
-
+                border-color 0.2s,
+                box-shadow 0.2s;
         }
 
 
-        .form-input::placeholder {
+        input:focus {
 
-            color: #aaa0af;
-
-        }
-
-
-        .form-input:focus {
-
-            border-color: #8d69db;
+            border-color: #171717;
 
             box-shadow:
-                0 0 0 3px
-                rgba(
-                    104,
-                    65,
-                    216,
-                    .08
-                );
-
+                0 0 0 3px rgba(23, 23, 23, 0.06);
         }
 
 
-        .password-input {
+        input::placeholder {
+            color: #aaaaaa;
+        }
 
-            padding-right: 45px;
 
+        .password-wrap {
+
+            position: relative;
+        }
+
+
+        .password-wrap input {
+
+            padding-right: 48px;
         }
 
 
@@ -491,101 +362,77 @@
 
             position: absolute;
 
-            right: 11px;
+            right: 14px;
 
             top: 50%;
 
-            transform:
-                translateY(-50%);
+            transform: translateY(-50%);
 
-            border: none;
+            border: 0;
 
             background: transparent;
 
-            color: #8d8197;
+            color: #777777;
 
-            font-size: 15px;
+            font-family: inherit;
+
+            font-size: 11px;
 
             cursor: pointer;
 
-            width: 27px;
-
-            height: 27px;
-
+            padding: 4px;
         }
 
 
         /* =====================================================
-           CREATE BUTTON
+           BUTTON
         ====================================================== */
 
-        .signup-button {
+        .primary-btn {
 
             width: 100%;
 
-            height: 45px;
+            height: 52px;
 
-            border: none;
+            margin-top: 5px;
 
-            border-radius: 9px;
+            border: 0;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #6841d8,
-                    #9069e9
-                );
+            border-radius: 11px;
 
-            color: white;
+            background: #171717;
 
-            font-size: 11px;
+            color: #ffffff;
 
-            font-weight: 800;
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 600;
 
             cursor: pointer;
 
-            box-shadow:
-                0 7px 18px
-                rgba(
-                    104,
-                    65,
-                    216,
-                    .20
-                );
-
             transition:
-                transform .15s ease,
-                box-shadow .15s ease;
-
+                opacity 0.2s,
+                transform 0.1s;
         }
 
 
-        .signup-button:hover {
-
-            transform:
-                translateY(-1px);
-
-            box-shadow:
-                0 10px 22px
-                rgba(
-                    104,
-                    65,
-                    216,
-                    .25
-                );
-
+        .primary-btn:hover {
+            opacity: 0.92;
         }
 
 
-        .signup-button:disabled {
+        .primary-btn:active {
+            transform: scale(0.99);
+        }
 
-            opacity: .65;
 
-            cursor:
-                not-allowed;
+        .primary-btn:disabled {
 
-            transform: none;
+            opacity: 0.55;
 
+            cursor: not-allowed;
         }
 
 
@@ -599,10 +446,9 @@
 
             align-items: center;
 
-            gap: 10px;
+            gap: 12px;
 
-            margin: 22px 0;
-
+            margin: 23px 0;
         }
 
 
@@ -612,19 +458,17 @@
 
             height: 1px;
 
-            background: #eee8f2;
-
+            background: #eeeeee;
         }
 
 
-        .divider-text {
+        .divider span {
 
-            color: #aaa0af;
+            color: #999999;
 
-            font-size: 9px;
+            font-size: 10px;
 
-            font-weight: 600;
-
+            font-weight: 500;
         }
 
 
@@ -632,20 +476,17 @@
            GOOGLE
         ====================================================== */
 
-        .google-button {
+        .google-btn {
 
             width: 100%;
 
-            height: 43px;
+            height: 52px;
 
-            border:
-                1px solid #ddd6e5;
+            border: 1px solid #dddddd;
 
-            border-radius: 9px;
+            border-radius: 11px;
 
-            background: white;
-
-            color: #514657;
+            background: #ffffff;
 
             display: flex;
 
@@ -653,150 +494,171 @@
 
             justify-content: center;
 
-            gap: 9px;
+            gap: 10px;
 
-            font-size: 11px;
+            font-family: inherit;
 
-            font-weight: 700;
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: #222222;
 
             cursor: pointer;
 
+            transition:
+                background 0.2s,
+                border-color 0.2s;
         }
 
 
-        .google-button:disabled {
+        .google-btn:hover {
 
-            opacity: .65;
+            background: #fafafa;
 
-            cursor:
-                not-allowed;
-
+            border-color: #cccccc;
         }
 
 
         .google-icon {
 
-            width: 17px;
+            width: 18px;
 
-            height: 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 15px;
-
-            font-weight: 800;
-
-            color: #4285f4;
-
+            height: 18px;
         }
 
 
         /* =====================================================
-           LOGIN
+           FOOT TEXT
         ====================================================== */
 
         .login-text {
 
+            margin-top: 23px;
+
             text-align: center;
 
-            margin-top: 21px;
+            color: #777777;
 
-            color: #8a7f91;
-
-            font-size: 10px;
-
+            font-size: 11px;
         }
 
 
         .login-text a {
 
-            color: #6841d8;
+            color: #171717;
 
-            text-decoration: none;
-
-            font-weight: 800;
-
+            font-weight: 600;
         }
 
-
-        .login-text a:hover {
-
-            text-decoration: underline;
-
-        }
-
-
-        /* =====================================================
-           TERMS
-        ====================================================== */
 
         .terms {
 
-            margin-top: 16px;
+            margin-top: 17px;
 
             text-align: center;
 
-            color: #9b91a2;
+            color: #999999;
 
-            font-size: 9px;
+            font-size: 10px;
 
             line-height: 1.6;
-
         }
 
 
         .terms a {
 
-            color: #6841d8;
+            color: #555555;
 
-            text-decoration: none;
+            text-decoration: underline;
+        }
 
+
+        .trust {
+
+            margin-top: 22px;
+
+            padding-top: 18px;
+
+            border-top: 1px solid #eeeeee;
+
+            text-align: center;
+
+            color: #999999;
+
+            font-size: 10px;
         }
 
 
         /* =====================================================
-           TRUST
+           ERROR
         ====================================================== */
 
-        .trust-note {
+        .error {
 
-            display: flex;
+            display: none;
 
-            justify-content: center;
+            margin-bottom: 17px;
 
-            align-items: center;
+            padding: 11px 13px;
 
-            gap: 6px;
+            border-radius: 10px;
 
-            margin-top: 14px;
+            background: #fff3f3;
 
-            color: #9b91a2;
+            border: 1px solid #f1d2d2;
 
-            font-size: 9px;
+            color: #b42318;
+
+            font-size: 11px;
 
             line-height: 1.5;
-
-            text-align: center;
-
         }
 
 
-        .trust-dot {
+        .error.show {
+            display: block;
+        }
 
-            width: 6px;
 
-            height: 6px;
+        /* =====================================================
+           LOADING
+        ====================================================== */
+
+        .loading {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .spinner {
+
+            width: 14px;
+            height: 14px;
+
+            border: 2px solid rgba(255, 255, 255, 0.35);
+
+            border-top-color: #ffffff;
 
             border-radius: 50%;
 
-            background: #5cb77a;
+            animation: spin 0.7s linear infinite;
+        }
 
-            flex-shrink: 0;
 
+        @keyframes spin {
+
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
 
@@ -804,17 +666,15 @@
            FOOTER
         ====================================================== */
 
-        .footer {
+        footer {
+
+            margin-top: 25px;
 
             text-align: center;
 
-            padding:
-                0 20px 28px;
+            color: #aaaaaa;
 
-            color: #aaa0af;
-
-            font-size: 9px;
-
+            font-size: 10px;
         }
 
 
@@ -822,64 +682,36 @@
            MOBILE
         ====================================================== */
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
             .topbar {
-
-                height: 62px;
-
-                padding: 0 17px;
-
+                padding: 0 18px;
             }
 
 
-            .brand {
-
-                font-size: 18px;
-
+            .nav {
+                gap: 12px;
             }
 
 
-            .brand-mark {
-
-                width: 29px;
-
-                height: 29px;
-
+            .nav a:not(.language-link) {
+                display: none;
             }
 
 
-            .header-link {
-
-                font-size: 10px;
-
+            .page {
+                padding: 30px 15px;
             }
 
 
-            .main {
-
-                padding:
-                    30px 15px 45px;
-
+            .card {
+                padding: 27px 22px;
+                border-radius: 18px;
             }
 
 
-            .signup-card {
-
-                padding:
-                    23px 19px;
-
-                border-radius:
-                    15px;
-
-            }
-
-
-            .intro h1 {
-
-                font-size:
-                    26px;
-
+            h1 {
+                font-size: 30px;
             }
 
         }
@@ -889,810 +721,797 @@
 </head>
 
 
-<body class="signup-page">
+<body>
 
 
-<!-- =====================================================
+<!-- ==========================================================
      HEADER
-====================================================== -->
+=========================================================== -->
 
 <header class="topbar">
 
-
     <a
-        href="index.html"
-        class="brand">
+        href="../index.html"
+        class="brand"
+    >
 
-        <span class="brand-mark">
-            S
-        </span>
+        <div class="brand-mark">
+            V
+        </div>
 
-        <span>
-            Stickerly
-        </span>
+        <div class="brand-text">
+
+            <div
+                class="brand-name"
+                data-en="VANIKIO"
+                data-ta="வானிகியோ"
+            >
+                VANIKIO
+            </div>
+
+            <div
+                class="brand-tagline"
+                data-en="Digital Business Identity"
+                data-ta="டிஜிட்டல் வணிக அடையாளம்"
+            >
+                Digital Business Identity
+            </div>
+
+        </div>
 
     </a>
 
 
-    <a
-        href="templates.html"
-        class="header-link">
+    <nav class="nav">
 
-        Browse designs →
+        <a
+            href="../index.html"
+            data-en="Home"
+            data-ta="முகப்பு"
+        >
+            Home
+        </a>
 
-    </a>
+        <a
+            href="../templates.html"
+            data-en="Designs"
+            data-ta="வடிவமைப்புகள்"
+        >
+            Designs
+        </a>
+
+        <a
+            href="login.html"
+            data-en="Sign in"
+            data-ta="உள்நுழை"
+        >
+            Sign in
+        </a>
+
+        <button
+            type="button"
+            class="language-btn"
+            id="languageBtn"
+        >
+            EN / தமிழ்
+        </button>
+
+    </nav>
 
 </header>
 
 
-
-<!-- =====================================================
+<!-- ==========================================================
      MAIN
-====================================================== -->
+=========================================================== -->
 
-<main class="main">
+<main class="page">
 
-
-    <div class="signup-container">
-
-
-        <!-- =================================================
-             INTRO
-        ================================================== -->
-
-        <div class="intro">
+    <section class="card">
 
 
-            <div class="intro-badge">
+        <!-- Badge -->
 
-                Stickerly Account
+        <div
+            class="badge"
+            data-en="VANIKIO Account"
+            data-ta="VANIKIO கணக்கு"
+        >
+            VANIKIO Account
+        </div>
+
+
+        <!-- Heading -->
+
+        <h1
+            data-en="Create your account"
+            data-ta="உங்கள் கணக்கை உருவாக்குங்கள்"
+        >
+            Create your account
+        </h1>
+
+
+        <p
+            class="description"
+            data-en="Create your VANIKIO account to manage your digital business identity, product labels and public business profile."
+            data-ta="உங்கள் டிஜிட்டல் வணிக அடையாளம், தயாரிப்பு லேபிள்கள் மற்றும் பொது வணிக சுயவிவரத்தை நிர்வகிக்க VANIKIO கணக்கை உருவாக்குங்கள்."
+        >
+            Create your VANIKIO account to manage your digital business
+            identity, product labels and public business profile.
+        </p>
+
+
+        <!-- Error -->
+
+        <div
+            class="error"
+            id="errorBox"
+        ></div>
+
+
+        <!-- ==================================================
+             FORM
+        =================================================== -->
+
+        <form id="signupForm">
+
+
+            <!-- Name -->
+
+            <div class="field">
+
+                <label
+                    for="name"
+                    data-en="Your name"
+                    data-ta="உங்கள் பெயர்"
+                >
+                    Your name
+                </label>
+
+                <input
+                    id="name"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Enter your name"
+                    data-placeholder-en="Enter your name"
+                    data-placeholder-ta="உங்கள் பெயரை உள்ளிடுங்கள்"
+                    required
+                >
 
             </div>
 
 
-            <h1>
+            <!-- Email -->
 
-                Create your account
+            <div class="field">
 
-            </h1>
+                <label
+                    for="email"
+                    data-en="Email address"
+                    data-ta="மின்னஞ்சல் முகவரி"
+                >
+                    Email address
+                </label>
+
+                <input
+                    id="email"
+                    type="email"
+                    autocomplete="email"
+                    placeholder="Enter your email"
+                    data-placeholder-en="Enter your email"
+                    data-placeholder-ta="உங்கள் மின்னஞ்சலை உள்ளிடுங்கள்"
+                    required
+                >
+
+            </div>
 
 
-            <p>
+            <!-- Password -->
 
-                Save your product labels,
-                continue editing and access them
-                from your Stickerly account.
+            <div class="field">
 
-            </p>
+                <label
+                    for="password"
+                    data-en="Password"
+                    data-ta="கடவுச்சொல்"
+                >
+                    Password
+                </label>
+
+                <div class="password-wrap">
+
+                    <input
+                        id="password"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Create a password"
+                        data-placeholder-en="Create a password"
+                        data-placeholder-ta="கடவுச்சொல்லை உருவாக்குங்கள்"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="password"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+
+            <div class="field">
+
+                <label
+                    for="confirmPassword"
+                    data-en="Confirm password"
+                    data-ta="கடவுச்சொல்லை உறுதிப்படுத்தவும்"
+                >
+                    Confirm password
+                </label>
+
+                <div class="password-wrap">
+
+                    <input
+                        id="confirmPassword"
+                        type="password"
+                        autocomplete="new-password"
+                        placeholder="Confirm your password"
+                        data-placeholder-en="Confirm your password"
+                        data-placeholder-ta="உங்கள் கடவுச்சொல்லை உறுதிப்படுத்துங்கள்"
+                        minlength="6"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="password-toggle"
+                        data-target="confirmPassword"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Create Account -->
+
+            <button
+                type="submit"
+                class="primary-btn"
+                id="signupBtn"
+            >
+                <span
+                    id="signupBtnText"
+                    data-en="Create account"
+                    data-ta="கணக்கை உருவாக்கு"
+                >
+                    Create account
+                </span>
+            </button>
+
+
+        </form>
+
+
+        <!-- Divider -->
+
+        <div class="divider">
+
+            <div class="divider-line"></div>
+
+            <span
+                data-en="OR"
+                data-ta="அல்லது"
+            >
+                OR
+            </span>
+
+            <div class="divider-line"></div>
 
         </div>
 
 
-
-        <!-- =================================================
-             CARD
-        ================================================== -->
-
-        <section class="signup-card">
-
-
-            <!-- =================================================
-                 ERROR
-            ================================================== -->
-
-            <div
-                id="errorMessage"
-                class="error-message">
-            </div>
-
-
-            <!-- =================================================
-                 SUCCESS
-            ================================================== -->
-
-            <div
-                id="successMessage"
-                class="success-message">
-            </div>
-
-
-
-            <!-- =================================================
-                 NAME
-            ================================================== -->
-
-            <div class="form-group">
-
-
-                <label
-                    class="form-label"
-                    for="displayName">
-
-                    Your name
-
-                </label>
-
-
-                <input
-                    id="displayName"
-                    class="form-input"
-                    type="text"
-                    autocomplete="name"
-                    placeholder="Enter your name">
-
-            </div>
-
-
-
-            <!-- =================================================
-                 EMAIL
-            ================================================== -->
-
-            <div class="form-group">
-
-
-                <label
-                    class="form-label"
-                    for="email">
-
-                    Email address
-
-                </label>
-
-
-                <input
-                    id="email"
-                    class="form-input"
-                    type="email"
-                    autocomplete="email"
-                    placeholder="you@example.com">
-
-            </div>
-
-
-
-            <!-- =================================================
-                 PASSWORD
-            ================================================== -->
-
-            <div class="form-group">
-
-
-                <label
-                    class="form-label"
-                    for="password">
-
-                    Password
-
-                </label>
-
-
-                <div class="input-wrap">
-
-
-                    <input
-                        id="password"
-                        class="form-input password-input"
-                        type="password"
-                        autocomplete="new-password"
-                        placeholder="Create a password">
-
-
-                    <button
-                        id="passwordToggle"
-                        class="password-toggle"
-                        type="button"
-                        aria-label="Show password">
-
-                        ◉
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 CONFIRM PASSWORD
-            ================================================== -->
-
-            <div class="form-group">
-
-
-                <label
-                    class="form-label"
-                    for="confirmPassword">
-
-                    Confirm password
-
-                </label>
-
-
-                <div class="input-wrap">
-
-
-                    <input
-                        id="confirmPassword"
-                        class="form-input password-input"
-                        type="password"
-                        autocomplete="new-password"
-                        placeholder="Enter the password again">
-
-
-                    <button
-                        id="confirmPasswordToggle"
-                        class="password-toggle"
-                        type="button"
-                        aria-label="Show password">
-
-                        ◉
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 CREATE ACCOUNT
-            ================================================== -->
-
-            <button
-                id="signupButton"
-                class="signup-button"
-                type="button">
-
-                Create account
-
-            </button>
-
-
-
-            <!-- =================================================
-                 DIVIDER
-            ================================================== -->
-
-            <div class="divider">
-
-                <span class="divider-line"></span>
-
-                <span class="divider-text">
-                    OR
-                </span>
-
-                <span class="divider-line"></span>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 GOOGLE
-            ================================================== -->
-
-            <button
-                id="googleButton"
-                class="google-button"
-                type="button">
-
-                <span class="google-icon">
-                    G
-                </span>
-
+        <!-- Google -->
+
+        <button
+            type="button"
+            class="google-btn"
+            id="googleBtn"
+        >
+
+            <svg
+                class="google-icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+            >
+
+                <path
+                    fill="#4285F4"
+                    d="M21.35 12.27c0-.79-.07-1.55-.22-2.27H12v4.3h5.22a4.46 4.46 0 0 1-1.94 2.92v2.42h3.14c1.84-1.69 2.93-4.18 2.93-7.37z"
+                />
+
+                <path
+                    fill="#34A853"
+                    d="M12 21.9c2.63 0 4.84-.87 6.45-2.36l-3.14-2.42c-.87.58-1.98.93-3.31.93-2.54 0-4.69-1.72-5.46-4.03H3.3v2.5A9.75 9.75 0 0 0 12 21.9z"
+                />
+
+                <path
+                    fill="#FBBC05"
+                    d="M6.54 14.02a5.86 5.86 0 0 1 0-3.74v-2.5H3.3a9.78 9.78 0 0 0 0 8.74l3.24-2.5z"
+                />
+
+                <path
+                    fill="#EA4335"
+                    d="M12 6.25c1.43 0 2.71.49 3.72 1.45l2.79-2.79C16.84 3.32 14.63 2.45 12 2.45A9.75 9.75 0 0 0 3.3 7.78l3.24 2.5C7.31 7.97 9.46 6.25 12 6.25z"
+                />
+
+            </svg>
+
+            <span
+                data-en="Continue with Google"
+                data-ta="Google மூலம் தொடரவும்"
+            >
                 Continue with Google
+            </span>
 
-            </button>
+        </button>
 
 
+        <!-- Login -->
 
-            <!-- =================================================
-                 LOGIN
-            ================================================== -->
+        <div class="login-text">
 
-            <div class="login-text">
-
+            <span
+                data-en="Already have an account?"
+                data-ta="ஏற்கனவே கணக்கு உள்ளதா?"
+            >
                 Already have an account?
+            </span>
 
-                <a href="login.html">
+            <a
+                href="login.html"
+                data-en="Sign in"
+                data-ta="உள்நுழை"
+            >
+                Sign in
+            </a>
 
-                    Sign in
-
-                </a>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 TERMS
-            ================================================== -->
-
-            <div class="terms">
-
-                By creating an account, you agree to
-                Stickerly's
-
-                <a href="#">
-
-                    Terms
-
-                </a>
-
-                and
-
-                <a href="#">
-
-                    Privacy Policy
-
-                </a>.
-
-            </div>
+        </div>
 
 
+        <!-- Terms -->
 
-            <!-- =================================================
-                 TRUST
-            ================================================== -->
-
-            <div class="trust-note">
-
-                <span class="trust-dot"></span>
-
-                <span>
-
-                    Your account is protected by Firebase Authentication.
-
-                </span>
-
-            </div>
+        <div
+            class="terms"
+            data-en='By creating an account, you agree to our Terms of Service and Privacy Policy.'
+            data-ta='கணக்கை உருவாக்குவதன் மூலம், எங்கள் சேவை விதிமுறைகள் மற்றும் தனியுரிமைக் கொள்கையை ஏற்கிறீர்கள்.'
+        >
+            By creating an account, you agree to our
+            <a href="#">Terms of Service</a>
+            and
+            <a href="#">Privacy Policy</a>.
+        </div>
 
 
-        </section>
+        <!-- Trust -->
 
-    </div>
+        <div
+            class="trust"
+            data-en="Your account is protected by Firebase Authentication."
+            data-ta="உங்கள் கணக்கு Firebase Authentication மூலம் பாதுகாக்கப்படுகிறது."
+        >
+            Your account is protected by Firebase Authentication.
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer>
+
+            © 2026 VANIKIO · Digital Business Identity
+
+        </footer>
+
+
+    </section>
 
 </main>
 
 
-
-<!-- =====================================================
-     FOOTER
-====================================================== -->
-
-<footer class="footer">
-
-    © 2026 Stickerly · Smart product labels
-
-</footer>
-
-
-
-<!-- =====================================================
-     FIREBASE AUTH
-====================================================== -->
+<!-- ==========================================================
+     FIREBASE + PAGE SCRIPT
+=========================================================== -->
 
 <script type="module">
 
     import {
-        initializeApp
-    }
-    from
-    "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
+        auth,
 
-    import {
-        getAuth,
+        googleProvider,
+
         createUserWithEmailAndPassword,
+
         updateProfile,
-        GoogleAuthProvider,
-        signInWithPopup
-    }
-    from
-    "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        signInWithPopup,
+
+        createUserProfile
+
+    } from "../firebase.js";
 
 
-    /* =====================================================
-       FIREBASE CONFIGURATION
-       Replace these values with your Firebase Web App
-       configuration.
-    ====================================================== */
+    // ========================================================
+    // Elements
+    // ========================================================
 
-    const firebaseConfig = {
-
-        apiKey:
-            "YOUR_API_KEY",
-
-        authDomain:
-            "YOUR_PROJECT.firebaseapp.com",
-
-        projectId:
-            "YOUR_PROJECT_ID",
-
-        storageBucket:
-            "YOUR_PROJECT.firebasestorage.app",
-
-        messagingSenderId:
-            "YOUR_MESSAGING_SENDER_ID",
-
-        appId:
-            "YOUR_APP_ID"
-
-    };
-
-
-    /* =====================================================
-       INITIALIZE FIREBASE
-    ====================================================== */
-
-    const app =
-        initializeApp(
-            firebaseConfig
-        );
-
-
-    const auth =
-        getAuth(app);
-
-
-    const googleProvider =
-        new GoogleAuthProvider();
-
-
-    /* =====================================================
-       ELEMENTS
-    ====================================================== */
+    const signupForm =
+        document.getElementById("signupForm");
 
     const nameInput =
-        document.getElementById(
-            "displayName"
-        );
-
+        document.getElementById("name");
 
     const emailInput =
-        document.getElementById(
-            "email"
-        );
-
+        document.getElementById("email");
 
     const passwordInput =
-        document.getElementById(
-            "password"
-        );
-
+        document.getElementById("password");
 
     const confirmPasswordInput =
-        document.getElementById(
-            "confirmPassword"
-        );
+        document.getElementById("confirmPassword");
+
+    const signupBtn =
+        document.getElementById("signupBtn");
+
+    const signupBtnText =
+        document.getElementById("signupBtnText");
+
+    const googleBtn =
+        document.getElementById("googleBtn");
+
+    const errorBox =
+        document.getElementById("errorBox");
+
+    const languageBtn =
+        document.getElementById("languageBtn");
 
 
-    const signupButton =
-        document.getElementById(
-            "signupButton"
-        );
+    // ========================================================
+    // Language
+    // ========================================================
+
+    let currentLanguage =
+        localStorage.getItem("vanikio_language") || "en";
 
 
-    const googleButton =
-        document.getElementById(
-            "googleButton"
-        );
+    function updateLanguage() {
+
+        document
+            .querySelectorAll("[data-en]")
+            .forEach(element => {
+
+                const value =
+                    element.dataset[currentLanguage];
+
+                if (value !== undefined) {
+
+                    element.textContent =
+                        value;
+
+                }
+
+            });
 
 
-    const passwordToggle =
-        document.getElementById(
-            "passwordToggle"
-        );
+        document
+            .querySelectorAll("input[data-placeholder-en]")
+            .forEach(input => {
+
+                input.placeholder =
+                    input.dataset[
+                        `placeholder-${currentLanguage}`
+                    ];
+
+            });
 
 
-    const confirmPasswordToggle =
-        document.getElementById(
-            "confirmPasswordToggle"
-        );
+        languageBtn.textContent =
+            currentLanguage === "en"
+                ? "EN / தமிழ்"
+                : "தமிழ் / EN";
+
+    }
 
 
-    const errorMessage =
-        document.getElementById(
-            "errorMessage"
-        );
+    languageBtn.addEventListener(
+        "click",
+        () => {
+
+            currentLanguage =
+                currentLanguage === "en"
+                    ? "ta"
+                    : "en";
+
+            localStorage.setItem(
+                "vanikio_language",
+                currentLanguage
+            );
+
+            updateLanguage();
+
+        }
+    );
 
 
-    const successMessage =
-        document.getElementById(
-            "successMessage"
-        );
+    updateLanguage();
 
 
-    /* =====================================================
-       MESSAGE HELPERS
-    ====================================================== */
+    // ========================================================
+    // Error
+    // ========================================================
 
     function showError(message) {
 
-        errorMessage.textContent =
+        errorBox.textContent =
             message;
 
-        errorMessage.classList.add(
-            "show"
-        );
-
-        successMessage.classList.remove(
-            "show"
-        );
+        errorBox.classList.add("show");
 
     }
 
 
-    function showSuccess(message) {
+    function hideError() {
 
-        successMessage.textContent =
-            message;
+        errorBox.textContent = "";
 
-        successMessage.classList.add(
-            "show"
-        );
-
-        errorMessage.classList.remove(
-            "show"
-        );
+        errorBox.classList.remove("show");
 
     }
 
 
-    function clearMessages() {
+    // ========================================================
+    // Firebase Error Messages
+    // ========================================================
 
-        errorMessage.textContent =
-            "";
+    function firebaseErrorMessage(error) {
 
-        successMessage.textContent =
-            "";
+        switch (error.code) {
 
-        errorMessage.classList.remove(
-            "show"
-        );
+            case "auth/email-already-in-use":
+                return currentLanguage === "ta"
+                    ? "இந்த மின்னஞ்சல் ஏற்கனவே பயன்படுத்தப்படுகிறது."
+                    : "This email address is already registered.";
 
-        successMessage.classList.remove(
-            "show"
-        );
+            case "auth/invalid-email":
+                return currentLanguage === "ta"
+                    ? "சரியான மின்னஞ்சல் முகவரியை உள்ளிடுங்கள்."
+                    : "Please enter a valid email address.";
 
-    }
+            case "auth/weak-password":
+                return currentLanguage === "ta"
+                    ? "கடவுச்சொல் மிகவும் பலவீனமாக உள்ளது. குறைந்தது 6 எழுத்துகள் பயன்படுத்தவும்."
+                    : "Password is too weak. Use at least 6 characters.";
 
+            case "auth/missing-password":
+                return currentLanguage === "ta"
+                    ? "கடவுச்சொல்லை உள்ளிடுங்கள்."
+                    : "Please enter a password.";
 
-    /* =====================================================
-       PASSWORD TOGGLE
-    ====================================================== */
+            case "auth/network-request-failed":
+                return currentLanguage === "ta"
+                    ? "இணைய இணைப்பை சரிபார்க்கவும்."
+                    : "Please check your internet connection.";
 
-    function setupPasswordToggle(
-        input,
-        button
-    ) {
+            case "auth/popup-closed-by-user":
+                return currentLanguage === "ta"
+                    ? "Google உள்நுழைவு சாளரம் மூடப்பட்டது."
+                    : "The Google sign-in window was closed.";
 
-        button.addEventListener(
-            "click",
-            function () {
+            case "auth/popup-blocked":
+                return currentLanguage === "ta"
+                    ? "உலாவி Google popup-ஐ தடுத்துள்ளது."
+                    : "Your browser blocked the Google sign-in popup.";
 
-                const hidden =
-                    input.type ===
-                    "password";
+            case "auth/unauthorized-domain":
+                return currentLanguage === "ta"
+                    ? "இந்த இணையதளம் Firebase Authentication-ல் அனுமதிக்கப்படவில்லை."
+                    : "This website is not authorized in Firebase Authentication.";
 
+            case "auth/operation-not-allowed":
+                return currentLanguage === "ta"
+                    ? "இந்த login method Firebase-ல் இயக்கப்படவில்லை."
+                    : "This sign-in method is not enabled in Firebase.";
 
-                input.type =
-                    hidden
-                        ? "text"
-                        : "password";
-
-
-                this.textContent =
-                    hidden
-                        ? "○"
-                        : "◉";
-
-
-                this.setAttribute(
-                    "aria-label",
-                    hidden
-                        ? "Hide password"
-                        : "Show password"
-                );
-
-            }
-        );
-
-    }
-
-
-    setupPasswordToggle(
-        passwordInput,
-        passwordToggle
-    );
-
-
-    setupPasswordToggle(
-        confirmPasswordInput,
-        confirmPasswordToggle
-    );
-
-
-    /* =====================================================
-       FIREBASE ERROR MESSAGES
-    ====================================================== */
-
-    function firebaseErrorMessage(
-        error
-    ) {
-
-        switch (
-            error.code
-        ) {
-
-            case
-            "auth/email-already-in-use":
-
-                return
-                    "An account already exists with this email address.";
-
-            case
-            "auth/invalid-email":
-
-                return
-                    "Please enter a valid email address.";
-
-            case
-            "auth/weak-password":
-
-                return
-                    "The password is too weak. Please choose a stronger password.";
-
-            case
-            "auth/popup-closed-by-user":
-
-                return
-                    "Google sign-in was cancelled.";
-
-            case
-            "auth/popup-blocked":
-
-                return
-                    "Your browser blocked the Google sign-in popup.";
-
-            case
-            "auth/operation-not-allowed":
-
-                return
-                    "This sign-in method is not enabled in Firebase.";
-
-            case
-            "auth/network-request-failed":
-
-                return
-                    "Network error. Please check your internet connection.";
+            case "auth/account-exists-with-different-credential":
+                return currentLanguage === "ta"
+                    ? "இந்த email ஏற்கனவே வேறு login method மூலம் பயன்படுத்தப்படுகிறது."
+                    : "This email is already associated with another sign-in method.";
 
             default:
-
-                return
-                    error.message ||
-                    "Something went wrong. Please try again.";
+                return currentLanguage === "ta"
+                    ? "கணக்கை உருவாக்க முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
+                    : "Unable to create the account. Please try again.";
 
         }
 
     }
 
 
-    /* =====================================================
-       EMAIL SIGN UP
-    ====================================================== */
+    // ========================================================
+    // Loading State
+    // ========================================================
 
-    signupButton.addEventListener(
-        "click",
-        async function () {
+    function setLoading(isLoading) {
 
-            clearMessages();
+        signupBtn.disabled =
+            isLoading;
+
+        googleBtn.disabled =
+            isLoading;
+
+
+        if (isLoading) {
+
+            signupBtnText.innerHTML = `
+                <span class="loading">
+                    <span class="spinner"></span>
+                    <span>
+                        ${currentLanguage === "ta"
+                            ? "உருவாக்குகிறது..."
+                            : "Creating account..."}
+                    </span>
+                </span>
+            `;
+
+        } else {
+
+            signupBtnText.textContent =
+                currentLanguage === "ta"
+                    ? "கணக்கை உருவாக்கு"
+                    : "Create account";
+
+        }
+
+    }
+
+
+    // ========================================================
+    // Password Toggle
+    // ========================================================
+
+    document
+        .querySelectorAll(".password-toggle")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const target =
+                        document.getElementById(
+                            button.dataset.target
+                        );
+
+                    const isPassword =
+                        target.type === "password";
+
+
+                    target.type =
+                        isPassword
+                            ? "text"
+                            : "password";
+
+
+                    button.textContent =
+                        isPassword
+                            ? (
+                                currentLanguage === "ta"
+                                    ? "மறை"
+                                    : "Hide"
+                              )
+                            : (
+                                currentLanguage === "ta"
+                                    ? "காண்பி"
+                                    : "Show"
+                              );
+
+                }
+            );
+
+        });
+
+
+    // ========================================================
+    // Email Signup
+    // ========================================================
+
+    signupForm.addEventListener(
+        "submit",
+        async event => {
+
+            event.preventDefault();
+
+            hideError();
 
 
             const name =
                 nameInput.value.trim();
 
-
             const email =
                 emailInput.value.trim();
 
-
             const password =
                 passwordInput.value;
-
 
             const confirmPassword =
                 confirmPasswordInput.value;
 
 
-            if (!name) {
+            // -----------------------------------------------
+            // Validation
+            // -----------------------------------------------
+
+            if (name.length < 2) {
 
                 showError(
-                    "Please enter your name."
+                    currentLanguage === "ta"
+                        ? "உங்கள் பெயரை உள்ளிடுங்கள்."
+                        : "Please enter your name."
                 );
 
                 nameInput.focus();
 
                 return;
-
             }
 
 
-            if (!email) {
+            if (password.length < 6) {
 
                 showError(
-                    "Please enter your email address."
-                );
-
-                emailInput.focus();
-
-                return;
-
-            }
-
-
-            if (!password) {
-
-                showError(
-                    "Please create a password."
+                    currentLanguage === "ta"
+                        ? "கடவுச்சொல் குறைந்தது 6 எழுத்துகள் இருக்க வேண்டும்."
+                        : "Password must contain at least 6 characters."
                 );
 
                 passwordInput.focus();
 
                 return;
-
             }
 
 
-            if (!confirmPassword) {
+            if (password !== confirmPassword) {
 
                 showError(
-                    "Please confirm your password."
+                    currentLanguage === "ta"
+                        ? "இரண்டு கடவுச்சொற்களும் பொருந்தவில்லை."
+                        : "The passwords do not match."
                 );
 
                 confirmPasswordInput.focus();
 
                 return;
-
             }
-
-
-            if (
-                password !==
-                confirmPassword
-            ) {
-
-                showError(
-                    "Passwords do not match."
-                );
-
-                confirmPasswordInput.focus();
-
-                return;
-
-            }
-
-
-            signupButton.disabled =
-                true;
-
-            googleButton.disabled =
-                true;
-
-            signupButton.textContent =
-                "Creating account...";
 
 
             try {
 
-                /*
-                 * Create Firebase account.
-                 */
+                setLoading(true);
 
-                const userCredential =
+
+                // -------------------------------------------
+                // Firebase Authentication
+                // -------------------------------------------
+
+                const credential =
                     await createUserWithEmailAndPassword(
                         auth,
                         email,
@@ -1701,73 +1520,53 @@
 
 
                 const user =
-                    userCredential.user;
+                    credential.user;
 
 
-                /*
-                 * Save the user's display
-                 * name in Firebase Auth.
-                 */
+                // -------------------------------------------
+                // Firebase display name
+                // -------------------------------------------
 
                 await updateProfile(
                     user,
                     {
-                        displayName:
-                            name
+                        displayName: name
                     }
                 );
 
 
-                /*
-                 * Keep the current account
-                 * available for the rest of
-                 * the Stickerly app.
-                 */
+                // -------------------------------------------
+                // Firestore User Profile
+                // -------------------------------------------
 
-                showSuccess(
-                    "Account created successfully."
+                await createUserProfile(
+                    user,
+                    {
+                        displayName: name,
+                        provider: "password"
+                    }
                 );
 
 
-                /*
-                 * Small delay so the user
-                 * sees the success state.
-                 */
+                // -------------------------------------------
+                // Redirect
+                // -------------------------------------------
 
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "editor.html?design=01";
-
-                    },
-                    700
-                );
-
+                window.location.href =
+                    "../profile/profile.html";
 
             } catch (error) {
 
                 console.error(
-                    "Stickerly signup error:",
+                    "VANIKIO signup error:",
                     error
                 );
 
+                setLoading(false);
 
                 showError(
-                    firebaseErrorMessage(
-                        error
-                    )
+                    firebaseErrorMessage(error)
                 );
-
-
-                signupButton.disabled =
-                    false;
-
-                googleButton.disabled =
-                    false;
-
-                signupButton.textContent =
-                    "Create account";
 
             }
 
@@ -1775,34 +1574,21 @@
     );
 
 
-    /* =====================================================
-       GOOGLE SIGN UP / SIGN IN
-    ====================================================== */
+    // ========================================================
+    // Google Signup
+    // ========================================================
 
-    googleButton.addEventListener(
+    googleBtn.addEventListener(
         "click",
-        async function () {
+        async () => {
 
-            clearMessages();
-
-
-            googleButton.disabled =
-                true;
-
-            signupButton.disabled =
-                true;
-
-            googleButton.textContent =
-                "Connecting...";
+            hideError();
 
 
             try {
 
-                /*
-                 * Google account creation
-                 * and Google sign-in use the
-                 * same Firebase provider flow.
-                 */
+                setLoading(true);
+
 
                 const result =
                     await signInWithPopup(
@@ -1815,57 +1601,42 @@
                     result.user;
 
 
-                console.log(
-                    "Stickerly Google user:",
-                    user
+                // -------------------------------------------
+                // Create/update Firestore profile
+                // -------------------------------------------
+
+                await createUserProfile(
+                    user,
+                    {
+                        provider: "google"
+                    }
                 );
 
 
-                showSuccess(
-                    "Google account connected successfully."
-                );
+                // -------------------------------------------
+                // Redirect
+                // -------------------------------------------
 
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "editor.html?design=01";
-
-                    },
-                    700
-                );
-
+                window.location.href =
+                    "../profile/profile.html";
 
             } catch (error) {
 
                 console.error(
-                    "Stickerly Google signup error:",
+                    "VANIKIO Google signup error:",
                     error
                 );
 
+                setLoading(false);
 
                 showError(
-                    firebaseErrorMessage(
-                        error
-                    )
+                    firebaseErrorMessage(error)
                 );
-
-
-                googleButton.disabled =
-                    false;
-
-                signupButton.disabled =
-                    false;
-
-                googleButton.textContent =
-                    "Continue with Google";
 
             }
 
         }
     );
-
 
 </script>
 
