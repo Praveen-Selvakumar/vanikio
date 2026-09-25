@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VANIKIO — Choose a Design</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        :root {
+            --bg: #f7f5ff;
+            --surface: #fcfbff;
+
+            --primary: #6c4cf1;
+            --primary-dark: #5938dc;
+            --primary-soft: #ece7ff;
+
+            --secondary: #20b8a6;
+
+            --text: #27243a;
+            --text-soft: #514b60;
+            --muted: #77738a;
+            --muted-light: #9993aa;
+
+            --border: #e6e2f0;
+
+            --danger: #d85c6e;
+            --danger-soft: #fff4f6;
+
+            --success: #168271;
+            --success-soft: #edfbf7;
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+            font-family: "Poppins", sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 0%,
+                    rgba(108, 76, 241, 0.08),
+                    transparent 28%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            min-height: 100vh;
+
+            padding-bottom: 110px;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            height: 72px;
+
+            background: rgba(252, 251, 255, 0.9);
+
+            backdrop-filter: blur(18px);
+
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 6%;
+
+            justify-content: space-between;
+        }
+
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+
+        .logo {
+            width: 39px;
+            height: 39px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-dark)
+                );
+
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+
+        .brand-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+
+        .back {
+            color: var(--muted);
+
+            font-size: 12px;
+            font-weight: 500;
+
+            cursor: pointer;
+        }
+
+
+        .back:hover {
+            color: var(--primary);
+        }
+
+
+        /* =========================
+           PAGE
+        ========================= */
+
+        .page {
+            width: min(1180px, 92%);
+
+            margin: auto;
+
+            padding-top: 45px;
+        }
+
+
+        .intro {
+            margin-bottom: 30px;
+        }
+
+
+        .eyebrow {
+            color: var(--primary);
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 8px;
+        }
+
+
+        h1 {
+            font-size: clamp(30px, 5vw, 48px);
+
+            line-height: 1.15;
+
+            letter-spacing: -1.5px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .intro p {
+            color: var(--text-soft);
+
+            max-width: 650px;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           STEP
+        ========================= */
+
+        .step {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .step-number {
+            width: 29px;
+            height: 29px;
+
+            border-radius: 9px;
+
+            background: var(--primary);
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 11px;
+
+            font-weight: 700;
+        }
+
+
+        .step-title {
+            font-size: 15px;
+
+            font-weight: 700;
+        }
+
+
+        /* =========================
+           CATEGORY GRID
+        ========================= */
+
+        .category-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+
+        .category-card {
+            position: relative;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 19px;
+
+            padding: 21px;
+
+            cursor: pointer;
+
+            transition:
+                transform .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+
+            overflow: hidden;
+        }
+
+
+        .category-card:hover {
+            transform: translateY(-3px);
+
+            border-color: #cfc5f7;
+
+            box-shadow:
+                0 15px 35px rgba(108, 76, 241, .09);
+        }
+
+
+        .category-card.selected {
+            border: 2px solid var(--primary);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary-soft),
+                    var(--surface)
+                );
+
+            box-shadow:
+                0 14px 35px rgba(108, 76, 241, .12);
+        }
+
+
+        .category-icon {
+            width: 44px;
+            height: 44px;
+
+            border-radius: 13px;
+
+            background: var(--primary-soft);
+
+            color: var(--primary);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .category-card:nth-child(2n) .category-icon {
+            background: var(--success-soft);
+            color: var(--success);
+        }
+
+
+        .category-name {
+            font-size: 15px;
+
+            font-weight: 700;
+
+            margin-bottom: 4px;
+        }
+
+
+        .category-count {
+            color: var(--muted);
+
+            font-size: 10px;
+        }
+
+
+        .check {
+            position: absolute;
+
+            top: 14px;
+            right: 14px;
+
+            width: 24px;
+            height: 24px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 12px;
+        }
+
+
+        .category-card.selected .check {
+            display: flex;
+
+            background: var(--primary);
+
+            border-color: var(--primary);
+        }
+
+
+        /* =========================
+           SUB CATEGORY
+        ========================= */
+
+        .sub-section {
+            margin-top: 45px;
+
+            display: none;
+        }
+
+
+        .sub-section.show {
+            display: block;
+
+            animation: fadeUp .3s ease;
+        }
+
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        .selected-main {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            background: var(--primary-soft);
+
+            color: var(--primary);
+
+            border-radius: 20px;
+
+            padding: 7px 12px;
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            margin-bottom: 17px;
+        }
+
+
+        .sub-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 10px;
+        }
+
+
+        .sub-card {
+            min-height: 76px;
+
+            padding: 14px;
+
+            border-radius: 15px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            cursor: pointer;
+
+            transition:
+                .2s ease;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+        }
+
+
+        .sub-card:hover {
+            border-color: #cfc5f7;
+
+            transform: translateY(-2px);
+        }
+
+
+        .sub-card.selected {
+            background: var(--primary-soft);
+
+            border-color: var(--primary);
+
+            color: var(--primary);
+        }
+
+
+        .sub-number {
+            width: 25px;
+            height: 25px;
+
+            flex-shrink: 0;
+
+            border-radius: 8px;
+
+            background: #f0edf8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+
+            color: var(--muted);
+
+            font-weight: 600;
+        }
+
+
+        .sub-card.selected .sub-number {
+            background: var(--primary);
+
+            color: white;
+        }
+
+
+        .sub-name {
+            flex: 1;
+
+            font-size: 11px;
+
+            line-height: 1.4;
+
+            font-weight: 600;
+        }
+
+
+        .sub-check {
+            opacity: 0;
+
+            color: var(--primary);
+
+            font-size: 15px;
+        }
+
+
+        .sub-card.selected .sub-check {
+            opacity: 1;
+        }
+
+
+        /* =========================
+           BOTTOM ACTION
+        ========================= */
+
+        .bottom-action {
+            position: fixed;
+
+            z-index: 200;
+
+            bottom: 0;
+            left: 0;
+            right: 0;
+
+            padding: 14px 6%;
+
+            background:
+                rgba(252, 251, 255, .94);
+
+            backdrop-filter: blur(18px);
+
+            border-top: 1px solid var(--border);
+        }
+
+
+        .bottom-inner {
+            max-width: 1180px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        .selection-info {
+            font-size: 11px;
+
+            color: var(--muted);
+        }
+
+
+        .selection-info strong {
+            color: var(--text);
+        }
+
+
+        .fill-btn {
+            height: 49px;
+
+            padding: 0 25px;
+
+            border: 0;
+
+            border-radius: 13px;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            opacity: .4;
+
+            pointer-events: none;
+
+            transition: .2s ease;
+
+            box-shadow:
+                0 10px 25px rgba(108, 76, 241, .18);
+        }
+
+
+        .fill-btn.enabled {
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        .fill-btn.enabled:hover {
+            background: var(--primary-dark);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media(max-width: 850px) {
+
+            .category-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .sub-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media(max-width: 520px) {
+
+            .header {
+                padding: 0 5%;
+            }
+
+            .page {
+                width: 90%;
+
+                padding-top: 30px;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sub-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-inner {
+                align-items: center;
+            }
+
+            .selection-info {
+                max-width: 150px;
+            }
+
+            .fill-btn {
+                padding: 0 17px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+    <a
+        href="../index.html"
+        class="brand"
+    >
+
+        <div class="logo">
+            V
+        </div>
+
+        <div class="brand-name">
+            VANIKIO
+        </div>
+
+    </a>
+
+
+    <div
+        class="back"
+        onclick="history.back()"
+    >
+        ← Back
+    </div>
+
+</header>
+
+
+
+<main class="page">
+
+
+    <section class="intro">
+
+        <div class="eyebrow">
+            Create your design
+        </div>
+
+        <h1>
+            Choose what you want to create.
+        </h1>
+
+        <p>
+            Select a main category and then choose the specific
+            design type. Once selected, you can fill in your
+            information and generate a shareable QR.
+        </p>
+
+    </section>
+
+
+
+    <!-- MAIN CATEGORY -->
+
+    <div class="step">
+
+        <div class="step-number">
+            1
+        </div>
+
+        <div class="step-title">
+            Select a main category
+        </div>
+
+    </div>
+
+
+    <div
+        class="category-grid"
+        id="categoryGrid"
+    ></div>
+
+
+
+    <!-- SUB CATEGORY -->
+
+    <section
+        class="sub-section"
+        id="subSection"
+    >
+
+        <div class="step">
+
+            <div class="step-number">
+                2
+            </div>
+
+            <div class="step-title">
+                Select a design
+            </div>
+
+        </div>
+
+
+        <div
+            class="selected-main"
+            id="selectedMain"
+        ></div>
+
+
+        <div
+            class="sub-grid"
+            id="subGrid"
+        ></div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- BOTTOM -->
+
+<div class="bottom-action">
+
+    <div class="bottom-inner">
+
+        <div
+            class="selection-info"
+            id="selectionInfo"
+        >
+            Select a category and design
+        </div>
+
+
+        <button
+            class="fill-btn"
+            id="fillButton"
+        >
+            Fill Data's →
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   VANIKIO DESIGN DATA
+========================================================= */
+
+const categories = [
+
+    {
+        id: "events",
+        icon: "✦",
+        name: "Events",
+        items: [
+            ["1", "Wedding"],
+            ["2", "Engagement"],
+            ["3", "Reception"],
+            ["4", "Birthday party"],
+            ["5", "Anniversary"],
+            ["6", "Baby shower"],
+            ["7", "Naming ceremony"],
+            ["8", "Housewarming"],
+            ["9", "Graduation"],
+            ["10", "College reunion"],
+            ["11", "Family function"],
+            ["12", "Religious function"],
+            ["13", "Corporate event"],
+            ["14", "Conference"],
+            ["15", "Workshop"],
+            ["16", "Seminar"],
+            ["17", "Meetup"],
+            ["18", "Festival event"],
+            ["19", "Exhibition"],
+            ["20", "Trade show"]
+        ]
+    },
+
+
+    {
+        id: "photography",
+        icon: "◉",
+        name: "Photography",
+        items: [
+            ["21", "Wedding photographers"],
+            ["22", "Pre-wedding photography"],
+            ["23", "Event photographers"],
+            ["24", "Photo studios"],
+            ["25", "Photobooths"],
+            ["26", "Wedding videographers"],
+            ["27", "Drone photography"],
+            ["28", "Portfolio sharing"],
+            ["29", "Album delivery"],
+            ["30", "Client photo collection"]
+        ]
+    },
+
+
+    {
+        id: "property",
+        icon: "⌂",
+        name: "Property",
+        items: [
+            ["31", "Property for sale"],
+            ["32", "Rental property"],
+            ["33", "Apartment"],
+            ["34", "Villa"],
+            ["35", "Plot"],
+            ["36", "Farm land"],
+            ["37", "Commercial property"],
+            ["38", "PG / hostel"],
+            ["39", "Airbnb-style property"],
+            ["40", "Property exhibition"]
+        ]
+    },
+
+
+    {
+        id: "services",
+        icon: "⚒",
+        name: "Local Services",
+        items: [
+            ["41", "Electrician"],
+            ["42", "Plumber"],
+            ["43", "Carpenter"],
+            ["44", "Painter"],
+            ["45", "AC service"],
+            ["46", "Appliance repair"],
+            ["47", "Cleaning service"],
+            ["48", "Beauty service"],
+            ["49", "Mechanic"],
+            ["50", "Interior designer"],
+            ["51", "Architect"],
+            ["52", "Construction contractor"],
+            ["53", "Tailor"],
+            ["54", "Photographer"],
+            ["55", "Caterer"]
+        ]
+    },
+
+
+    {
+        id: "food",
+        icon: "♨",
+        name: "Food & Hospitality",
+        items: [
+            ["56", "Restaurant"],
+            ["57", "Cafe"],
+            ["58", "Bakery"],
+            ["59", "Catering"],
+            ["60", "Food truck"],
+            ["61", "Home kitchen"],
+            ["62", "Hotel"],
+            ["63", "Resort"],
+            ["64", "Wedding catering"],
+            ["65", "Food stall"]
+        ]
+    },
+
+
+    {
+        id: "shops",
+        icon: "▣",
+        name: "Shops & Products",
+        items: [
+            ["66", "Clothing shop"],
+            ["67", "Jewellery"],
+            ["68", "Furniture"],
+            ["69", "Hardware"],
+            ["70", "Electrical shop"],
+            ["71", "Electronics"],
+            ["72", "Mobile shop"],
+            ["73", "Automobile spare parts"],
+            ["74", "Handmade products"],
+            ["75", "Local manufacturers"],
+            ["76", "Gift shop"],
+            ["77", "Cosmetic shop"],
+            ["78", "Book shop"],
+            ["79", "Supermarket"],
+            ["80", "Plant / nursery business"]
+        ]
+    },
+
+
+    {
+        id: "education",
+        icon: "◇",
+        name: "Education",
+        items: [
+            ["81", "Tuition centre"],
+            ["82", "Coaching centre"],
+            ["83", "Workshop"],
+            ["84", "Training institute"],
+            ["85", "College event"],
+            ["86", "School event"],
+            ["87", "Course information"],
+            ["88", "Study material"],
+            ["89", "Teacher profile"],
+            ["90", "Seminar"]
+        ]
+    },
+
+
+    {
+        id: "vehicles",
+        icon: "◈",
+        name: "Vehicles",
+        items: [
+            ["91", "Used car"],
+            ["92", "Used bike"],
+            ["93", "Car rental"],
+            ["94", "Bike rental"],
+            ["95", "Driving school"],
+            ["96", "Vehicle service centre"],
+            ["97", "Car detailing"],
+            ["98", "Car accessories"],
+            ["99", "Automobile dealer"]
+        ]
+    },
+
+
+    {
+        id: "travel",
+        icon: "✈",
+        name: "Travel & Tourism",
+        items: [
+            ["111", "Tour package"],
+            ["112", "Travel agency"],
+            ["113", "Tourist attraction"],
+            ["114", "Resort"],
+            ["115", "Homestay"],
+            ["116", "Trek"],
+            ["117", "Camping"],
+            ["118", "Tourist guide"],
+            ["119", "Rental service"],
+            ["120", "Travel itinerary"]
+        ]
+    }
+
+];
+
+
+let selectedCategory = null;
+let selectedSubCategory = null;
+
+
+/* =========================================================
+   RENDER MAIN CATEGORIES
+========================================================= */
+
+const categoryGrid =
+    document.getElementById("categoryGrid");
+
+
+categories.forEach(category => {
+
+    const card =
+        document.createElement("div");
+
+    card.className = "category-card";
+
+    card.innerHTML = `
+
+        <div class="category-icon">
+            ${category.icon}
+        </div>
+
+        <div class="category-name">
+            ${category.name}
+        </div>
+
+        <div class="category-count">
+            ${category.items.length} designs available
+        </div>
+
+        <div class="check">
+            ✓
+        </div>
+
+    `;
+
+
+    card.addEventListener("click", () => {
+
+        selectCategory(category, card);
+
+    });
+
+
+    categoryGrid.appendChild(card);
+
+});
+
+
+
+/* =========================================================
+   SELECT CATEGORY
+========================================================= */
+
+function selectCategory(category, card) {
+
+    selectedCategory = category;
+
+    selectedSubCategory = null;
+
+
+    document
+        .querySelectorAll(".category-card")
+        .forEach(item => {
+
+            item.classList.remove("selected");
+
+        });
+
+
+    card.classList.add("selected");
+
+
+    const subSection =
+        document.getElementById("subSection");
+
+
+    const selectedMain =
+        document.getElementById("selectedMain");
+
+
+    const subGrid =
+        document.getElementById("subGrid");
+
+
+    selectedMain.innerHTML = `
+        ${category.icon}
+        ${category.name}
+    `;
+
+
+    subGrid.innerHTML = "";
+
+
+    category.items.forEach(item => {
+
+        const [number, name] = item;
+
+
+        const subCard =
+            document.createElement("div");
+
+
+        subCard.className = "sub-card";
+
+
+        subCard.innerHTML = `
+
+            <div class="sub-number">
+                ${number}
+            </div>
+
+            <div class="sub-name">
+                ${name}
+            </div>
+
+            <div class="sub-check">
+                ✓
+            </div>
+
+        `;
+
+
+        subCard.addEventListener("click", () => {
+
+            selectSubCategory(
+                item,
+                subCard
+            );
+
+        });
+
+
+        subGrid.appendChild(subCard);
+
+    });
+
+
+    subSection.classList.add("show");
+
+
+    setTimeout(() => {
+
+        subSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }, 100);
+
+
+    updateButton();
+
+}
+
+
+
+/* =========================================================
+   SELECT SUB CATEGORY
+========================================================= */
+
+function selectSubCategory(item, card) {
+
+    selectedSubCategory = item;
+
+
+    document
+        .querySelectorAll(".sub-card")
+        .forEach(item => {
+
+            item.classList.remove("selected");
+
+        });
+
+
+    card.classList.add("selected");
+
+
+    updateButton();
+
+}
+
+
+
+/* =========================================================
+   UPDATE BUTTON
+========================================================= */
+
+function updateButton() {
+
+    const button =
+        document.getElementById("fillButton");
+
+    const info =
+        document.getElementById("selectionInfo");
+
+
+    if (
+        selectedCategory &&
+        selectedSubCategory
+    ) {
+
+        button.classList.add("enabled");
+
+
+        info.innerHTML = `
+            <strong>
+                ${selectedCategory.name}
+            </strong>
+            ·
+            ${selectedSubCategory[1]}
+        `;
+
+    } else {
+
+        button.classList.remove("enabled");
+
+        info.innerHTML =
+            "Select a category and design";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   GO TO FILL DATA
+========================================================= */
+
+document
+    .getElementById("fillButton")
+    .addEventListener("click", () => {
+
+
+        if (
+            !selectedCategory ||
+            !selectedSubCategory
+        ) {
+            return;
+        }
+
+
+        const params =
+            new URLSearchParams({
+
+                category:
+                    selectedCategory.name,
+
+                categoryId:
+                    selectedCategory.id,
+
+                design:
+                    selectedSubCategory[1],
+
+                designId:
+                    selectedSubCategory[0]
+
+            });
+
+
+        window.location.href =
+            `fill-data.html?${params.toString()}`;
+
+    });
+
+
+</script>
+
+</body>
+</html>

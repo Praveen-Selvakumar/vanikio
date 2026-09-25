@@ -1,0 +1,540 @@
+/* =========================================================
+   VANIKIO BASE
+========================================================= */
+
+:root {
+
+    --bg: #f7f5ff;
+
+    --surface: #fcfbff;
+
+    --primary: #6c4cf1;
+
+    --primary-dark: #5938dc;
+
+    --primary-soft: #ece7ff;
+
+    --secondary: #20b8a6;
+
+    --text: #27243a;
+
+    --text-soft: #514b60;
+
+    --muted: #77738a;
+
+    --muted-light: #9993aa;
+
+    --border: #e6e2f0;
+
+    --danger: #d85c6e;
+
+    --danger-soft: #fff4f6;
+
+    --success: #168271;
+
+    --success-soft: #edfbf7;
+}
+
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+body {
+
+    font-family: Poppins, sans-serif;
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(108, 76, 241, .12),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(32, 184, 166, .10),
+            transparent 25%
+        ),
+
+        var(--bg);
+
+    color: var(--text);
+
+    padding-bottom: 40px;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+
+    height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background:
+        rgba(252, 251, 255, .9);
+
+    border-bottom:
+        1px solid var(--border);
+
+    backdrop-filter:
+        blur(18px);
+}
+
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    text-decoration: none;
+
+    color: inherit;
+}
+
+
+.logo {
+
+    width: 39px;
+
+    height: 39px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary-dark)
+        );
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-weight: 800;
+
+    font-size: 20px;
+}
+
+
+.brand-name {
+
+    font-size: 20px;
+
+    font-weight: 700;
+}
+
+
+.back {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.page {
+
+    width: min(900px, 92%);
+
+    margin: auto;
+
+    padding-top: 55px;
+}
+
+
+.success {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+}
+
+
+.success-icon {
+
+    width: 60px;
+
+    height: 60px;
+
+    border-radius: 20px;
+
+    background:
+        var(--success-soft);
+
+    color:
+        var(--success);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin: 0 auto 17px;
+
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+.eyebrow {
+
+    color: var(--primary);
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.4px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+
+    font-size:
+        clamp(30px, 5vw, 44px);
+
+    letter-spacing: -1.4px;
+
+    line-height: 1.15;
+}
+
+
+.success p {
+
+    max-width: 550px;
+
+    margin: 10px auto 0;
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   RESULT
+========================================================= */
+
+.result {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 20px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   PREVIEW CARD
+========================================================= */
+
+.preview {
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 26px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 20px 55px
+        rgba(108, 76, 241, .08);
+
+    overflow: hidden;
+}
+
+
+.preview-label {
+
+    color: var(--muted);
+
+    font-size: 9px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================================================
+   QR SIDE
+========================================================= */
+
+.qr-side {
+
+    background:
+        var(--surface);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 26px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 55px
+        rgba(108, 76, 241, .08);
+}
+
+
+#qrcode {
+
+    background: white;
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+    border: 1px solid var(--border);
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+#qrcode img {
+
+    width: 210px !important;
+
+    height: 210px !important;
+}
+
+
+.qr-title {
+
+    margin-top: 22px;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.qr-description {
+
+    margin-top: 6px;
+
+    max-width: 280px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.actions {
+
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+
+.button {
+
+    height: 47px;
+
+    padding: 0 19px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    color: var(--text);
+
+    font-family: inherit;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+}
+
+
+.button:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #cfc5f7;
+}
+
+
+.button.primary {
+
+    background:
+        var(--primary);
+
+    color: white;
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 10px 25px
+        rgba(108, 76, 241, .18);
+}
+
+
+.button.primary:hover {
+
+    background:
+        var(--primary-dark);
+}
+
+
+/* =========================================================
+   INFO
+========================================================= */
+
+.info {
+
+    margin-top: 20px;
+
+    padding: 16px;
+
+    border-radius: 15px;
+
+    background:
+        var(--success-soft);
+
+    color:
+        var(--success);
+
+    font-size: 9px;
+
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:700px) {
+
+    .page {
+
+        padding-top: 35px;
+    }
+
+
+    .result {
+
+        grid-template-columns: 1fr;
+    }
+
+
+    .preview {
+
+        padding: 21px;
+    }
+
+
+    .qr-side {
+
+        padding: 25px 20px;
+    }
+
+
+    #qrcode img {
+
+        width: 190px !important;
+
+        height: 190px !important;
+    }
+
+
+    .actions {
+
+        flex-direction: column;
+    }
+
+
+    .button {
+
+        width: 100%;
+    }
+
+}

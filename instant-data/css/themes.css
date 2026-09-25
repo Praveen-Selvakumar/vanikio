@@ -1,0 +1,1583 @@
+/* =========================================================
+   EVENT PREVIEW CONTAINER
+========================================================= */
+
+.event-preview {
+
+    display: none;
+
+    width: 100%;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+
+.event-preview.visible {
+
+    display: block;
+}
+
+
+/* =========================================================
+   EXACT EVENT DESIGN SCALING
+========================================================= */
+
+/*
+   Original Event Theme:
+   width  = 850px
+   height = 680px
+
+   We keep those exact dimensions.
+
+   JavaScript scales the entire invitation down
+   to fit the QR-result preview card.
+*/
+
+.event-preview-stage {
+
+    width: 100%;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+}
+
+
+.event-invitation-frame {
+
+    width: 850px;
+
+    height: 680px;
+
+    margin: 0 auto;
+
+    transform-origin: top center;
+
+    flex-shrink: 0;
+}
+
+
+.event-invitation {
+
+    position: relative;
+
+    width: 850px;
+
+    height: 680px;
+
+    min-height: 680px;
+
+    margin: auto;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.12);
+
+    transition:
+        all 0.6s ease;
+}
+
+
+/* =========================================================
+   EVENT DECORATIONS
+========================================================= */
+
+.event-decoration {
+
+    position: absolute;
+
+    pointer-events: none;
+
+    transition:
+        all 0.6s ease;
+}
+
+
+.event-circle {
+
+    border-radius: 50%;
+}
+
+
+.event-corner {
+
+    width: 180px;
+
+    height: 180px;
+}
+
+
+.event-corner.one {
+
+    top: -80px;
+
+    left: -80px;
+}
+
+
+.event-corner.two {
+
+    bottom: -80px;
+
+    right: -80px;
+}
+
+
+/* =========================================================
+   EVENT CONTENT
+========================================================= */
+
+.event-invitation-content {
+
+    position: relative;
+
+    z-index: 5;
+
+    min-height: 680px;
+
+    padding: 75px 60px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+}
+
+
+.event-small-label {
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 18px;
+}
+
+
+.event-title {
+
+    margin: 0;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    font-size: 64px;
+
+    line-height: 1.05;
+
+    font-weight: 600;
+}
+
+
+.event-subtitle {
+
+    margin-top: 18px;
+
+    max-width: 550px;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+.event-divider {
+
+    width: 100px;
+
+    height: 1px;
+
+    margin: 28px 0;
+}
+
+
+.event-names {
+
+    font-family:
+        "Great Vibes",
+        cursive;
+
+    font-size: 52px;
+
+    line-height: 1.2;
+}
+
+
+.event-details {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 30px;
+
+    margin-top: 30px;
+}
+
+
+.event-detail {
+
+    min-width: 130px;
+}
+
+
+.event-detail-label {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    opacity: .65;
+}
+
+
+.event-detail-value {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    word-break: break-word;
+}
+
+
+.event-location {
+
+    margin-top: 25px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    max-width: 550px;
+}
+
+
+.event-action {
+
+    margin-top: 32px;
+
+    border: 0;
+
+    padding: 13px 26px;
+
+    border-radius: 30px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        all 0.25s ease;
+}
+
+
+/* =========================================================
+   EVENT THEME 1 — WEDDING
+========================================================= */
+
+.theme-wedding {
+
+    background: #f6eee8;
+
+    color: #4c3531;
+}
+
+
+.theme-wedding .event-invitation {
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf7,
+            #f8eee8
+        );
+}
+
+
+.theme-wedding .event-title {
+
+    font-family:
+        "Cormorant Garamond",
+        serif;
+
+    font-size: 76px;
+
+    color: #76534b;
+}
+
+
+.theme-wedding .event-names {
+
+    color: #a87970;
+}
+
+
+.theme-wedding .event-divider {
+
+    background: #c69c91;
+}
+
+
+.theme-wedding .event-corner.one {
+
+    background: #ead1c9;
+}
+
+
+.theme-wedding .event-corner.two {
+
+    background: #e7c8be;
+}
+
+
+.theme-wedding .event-action {
+
+    background: #76534b;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 2 — ENGAGEMENT
+========================================================= */
+
+.theme-engagement {
+
+    background: #eeeaf5;
+
+    color: #443d58;
+}
+
+
+.theme-engagement .event-invitation {
+
+    background: #fdfaff;
+}
+
+
+.theme-engagement .event-title {
+
+    color: #685b88;
+}
+
+
+.theme-engagement .event-names {
+
+    color: #9b7fb2;
+}
+
+
+.theme-engagement .event-divider {
+
+    background: #bba8cf;
+}
+
+
+.theme-engagement .event-corner.one {
+
+    background: #ddd2eb;
+}
+
+
+.theme-engagement .event-corner.two {
+
+    background: #e9def2;
+}
+
+
+.theme-engagement .event-action {
+
+    background: #685b88;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 3 — RECEPTION
+========================================================= */
+
+.theme-reception {
+
+    background: #f4efe3;
+
+    color: #493a25;
+}
+
+
+.theme-reception .event-invitation {
+
+    background: #fffdf6;
+}
+
+
+.theme-reception .event-title {
+
+    color: #9a702c;
+}
+
+
+.theme-reception .event-names {
+
+    color: #b18a43;
+}
+
+
+.theme-reception .event-divider {
+
+    background: #c7a66a;
+}
+
+
+.theme-reception .event-corner.one {
+
+    background: #eee0bd;
+}
+
+
+.theme-reception .event-corner.two {
+
+    background: #e7d4a6;
+}
+
+
+.theme-reception .event-action {
+
+    background: #9a702c;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 4 — BIRTHDAY
+========================================================= */
+
+.theme-birthday {
+
+    background: #e9f6f8;
+
+    color: #234b54;
+}
+
+
+.theme-birthday .event-invitation {
+
+    background: #fff;
+}
+
+
+.theme-birthday .event-title {
+
+    font-family:
+        "Pacifico",
+        cursive;
+
+    font-size: 57px;
+
+    color: #ef6c8f;
+}
+
+
+.theme-birthday .event-names {
+
+    color: #41a9bb;
+}
+
+
+.theme-birthday .event-divider {
+
+    background: #73c5d0;
+}
+
+
+.theme-birthday .event-corner.one {
+
+    background: #cceef2;
+}
+
+
+.theme-birthday .event-corner.two {
+
+    background: #f8d1dc;
+}
+
+
+.theme-birthday .event-action {
+
+    background: #ef6c8f;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 5 — ANNIVERSARY
+========================================================= */
+
+.theme-anniversary {
+
+    background: #f3e9eb;
+
+    color: #4d2d34;
+}
+
+
+.theme-anniversary .event-invitation {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffafa,
+            #f9edef
+        );
+}
+
+
+.theme-anniversary .event-title {
+
+    color: #8f4055;
+}
+
+
+.theme-anniversary .event-names {
+
+    color: #b55d70;
+}
+
+
+.theme-anniversary .event-divider {
+
+    background: #c98a98;
+}
+
+
+.theme-anniversary .event-corner.one {
+
+    background: #edd0d7;
+}
+
+
+.theme-anniversary .event-corner.two {
+
+    background: #e5bdc8;
+}
+
+
+.theme-anniversary .event-action {
+
+    background: #8f4055;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 6 — BABY SHOWER
+========================================================= */
+
+.theme-baby-shower {
+
+    background: #eef6f3;
+
+    color: #3d5550;
+}
+
+
+.theme-baby-shower .event-invitation {
+
+    background: #fbfffd;
+}
+
+
+.theme-baby-shower .event-title {
+
+    font-family:
+        "Quicksand",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #6a9e91;
+}
+
+
+.theme-baby-shower .event-names {
+
+    color: #91bcb0;
+}
+
+
+.theme-baby-shower .event-divider {
+
+    background: #a8cfc5;
+}
+
+
+.theme-baby-shower .event-corner.one {
+
+    background: #d9eee7;
+}
+
+
+.theme-baby-shower .event-corner.two {
+
+    background: #e9e0ef;
+}
+
+
+.theme-baby-shower .event-action {
+
+    background: #6a9e91;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 7 — NAMING
+========================================================= */
+
+.theme-naming {
+
+    background: #fff6e7;
+
+    color: #574126;
+}
+
+
+.theme-naming .event-invitation {
+
+    background: #fffdf8;
+}
+
+
+.theme-naming .event-title {
+
+    color: #b77b28;
+}
+
+
+.theme-naming .event-names {
+
+    color: #c79750;
+}
+
+
+.theme-naming .event-divider {
+
+    background: #d7b477;
+}
+
+
+.theme-naming .event-corner.one {
+
+    background: #f5dfb6;
+}
+
+
+.theme-naming .event-corner.two {
+
+    background: #f1d4a4;
+}
+
+
+.theme-naming .event-action {
+
+    background: #b77b28;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 8 — HOUSEWARMING
+========================================================= */
+
+.theme-housewarming {
+
+    background: #edf3e9;
+
+    color: #374c34;
+}
+
+
+.theme-housewarming .event-invitation {
+
+    background: #fbfff9;
+}
+
+
+.theme-housewarming .event-title {
+
+    color: #57784e;
+}
+
+
+.theme-housewarming .event-names {
+
+    color: #7b9c70;
+}
+
+
+.theme-housewarming .event-divider {
+
+    background: #9db692;
+}
+
+
+.theme-housewarming .event-corner.one {
+
+    background: #dce9d6;
+}
+
+
+.theme-housewarming .event-corner.two {
+
+    background: #d2e2ca;
+}
+
+
+.theme-housewarming .event-action {
+
+    background: #57784e;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 9 — GRADUATION
+========================================================= */
+
+.theme-graduation {
+
+    background: #e8edf7;
+
+    color: #263653;
+}
+
+
+.theme-graduation .event-invitation {
+
+    background: #f9fbff;
+}
+
+
+.theme-graduation .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #365a91;
+}
+
+
+.theme-graduation .event-names {
+
+    color: #6685b5;
+}
+
+
+.theme-graduation .event-divider {
+
+    background: #829cc3;
+}
+
+
+.theme-graduation .event-corner.one {
+
+    background: #d3def0;
+}
+
+
+.theme-graduation .event-corner.two {
+
+    background: #c7d5eb;
+}
+
+
+.theme-graduation .event-action {
+
+    background: #365a91;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 10 — REUNION
+========================================================= */
+
+.theme-reunion {
+
+    background: #f1ece4;
+
+    color: #493c32;
+}
+
+
+.theme-reunion .event-invitation {
+
+    background: #fffdf9;
+}
+
+
+.theme-reunion .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #b16038;
+}
+
+
+.theme-reunion .event-names {
+
+    color: #d1845a;
+}
+
+
+.theme-reunion .event-divider {
+
+    background: #d39a78;
+}
+
+
+.theme-reunion .event-corner.one {
+
+    background: #ead2c2;
+}
+
+
+.theme-reunion .event-corner.two {
+
+    background: #e4c3ae;
+}
+
+
+.theme-reunion .event-action {
+
+    background: #b16038;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 11 — FAMILY
+========================================================= */
+
+.theme-family {
+
+    background: #f8eee5;
+
+    color: #503b2c;
+}
+
+
+.theme-family .event-invitation {
+
+    background: #fffaf5;
+}
+
+
+.theme-family .event-title {
+
+    color: #a9653c;
+}
+
+
+.theme-family .event-names {
+
+    color: #c1845e;
+}
+
+
+.theme-family .event-divider {
+
+    background: #d1a180;
+}
+
+
+.theme-family .event-corner.one {
+
+    background: #f0d6c3;
+}
+
+
+.theme-family .event-corner.two {
+
+    background: #e9c8b1;
+}
+
+
+.theme-family .event-action {
+
+    background: #a9653c;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 12 — RELIGIOUS
+========================================================= */
+
+.theme-religious {
+
+    background: #f8f1df;
+
+    color: #554321;
+}
+
+
+.theme-religious .event-invitation {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffdf5,
+            #fbf2db
+        );
+}
+
+
+.theme-religious .event-title {
+
+    color: #9b6b1e;
+}
+
+
+.theme-religious .event-names {
+
+    color: #b98935;
+}
+
+
+.theme-religious .event-divider {
+
+    background: #d0aa64;
+}
+
+
+.theme-religious .event-corner.one {
+
+    background: #eeddb7;
+}
+
+
+.theme-religious .event-corner.two {
+
+    background: #e7d09b;
+}
+
+
+.theme-religious .event-action {
+
+    background: #9b6b1e;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 13 — CORPORATE
+========================================================= */
+
+.theme-corporate {
+
+    background: #e9edf1;
+
+    color: #202c39;
+}
+
+
+.theme-corporate .event-invitation {
+
+    background: #fff;
+}
+
+
+.theme-corporate .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 62px;
+
+    font-weight: 700;
+
+    color: #263f5b;
+}
+
+
+.theme-corporate .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 36px;
+
+    font-weight: 600;
+
+    color: #5b7187;
+}
+
+
+.theme-corporate .event-divider {
+
+    background: #9eafbe;
+}
+
+
+.theme-corporate .event-corner.one {
+
+    background: #d5dee7;
+}
+
+
+.theme-corporate .event-corner.two {
+
+    background: #cbd7e2;
+}
+
+
+.theme-corporate .event-action {
+
+    background: #263f5b;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 14 — CONFERENCE
+========================================================= */
+
+.theme-conference {
+
+    background: #e8f0f5;
+
+    color: #203a4a;
+}
+
+
+.theme-conference .event-invitation {
+
+    background:
+        linear-gradient(
+            160deg,
+            #fff,
+            #edf5f9
+        );
+}
+
+
+.theme-conference .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #19708a;
+}
+
+
+.theme-conference .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    color: #438da1;
+}
+
+
+.theme-conference .event-divider {
+
+    background: #82b8c6;
+}
+
+
+.theme-conference .event-corner.one {
+
+    background: #cce3eb;
+}
+
+
+.theme-conference .event-corner.two {
+
+    background: #bed9e3;
+}
+
+
+.theme-conference .event-action {
+
+    background: #19708a;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 15 — WORKSHOP
+========================================================= */
+
+.theme-workshop {
+
+    background: #f3efe7;
+
+    color: #493c2d;
+}
+
+
+.theme-workshop .event-invitation {
+
+    background: #fffdf8;
+}
+
+
+.theme-workshop .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #7c6849;
+}
+
+
+.theme-workshop .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    color: #a58e67;
+}
+
+
+.theme-workshop .event-divider {
+
+    background: #b9a681;
+}
+
+
+.theme-workshop .event-corner.one {
+
+    background: #e5dac4;
+}
+
+
+.theme-workshop .event-corner.two {
+
+    background: #dcd0b8;
+}
+
+
+.theme-workshop .event-action {
+
+    background: #7c6849;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 16 — SEMINAR
+========================================================= */
+
+.theme-seminar {
+
+    background: #eeeef6;
+
+    color: #37384d;
+}
+
+
+.theme-seminar .event-invitation {
+
+    background: #fcfcff;
+}
+
+
+.theme-seminar .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #575a91;
+}
+
+
+.theme-seminar .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    color: #777ab0;
+}
+
+
+.theme-seminar .event-divider {
+
+    background: #9b9dcc;
+}
+
+
+.theme-seminar .event-corner.one {
+
+    background: #dcdcf0;
+}
+
+
+.theme-seminar .event-corner.two {
+
+    background: #d2d3ea;
+}
+
+
+.theme-seminar .event-action {
+
+    background: #575a91;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 17 — MEETUP
+========================================================= */
+
+.theme-meetup {
+
+    background: #f0f4ea;
+
+    color: #35432e;
+}
+
+
+.theme-meetup .event-invitation {
+
+    background: #fcfff9;
+}
+
+
+.theme-meetup .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #66864e;
+}
+
+
+.theme-meetup .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    color: #8ca870;
+}
+
+
+.theme-meetup .event-divider {
+
+    background: #a6bd8f;
+}
+
+
+.theme-meetup .event-corner.one {
+
+    background: #dce8d2;
+}
+
+
+.theme-meetup .event-corner.two {
+
+    background: #d3e2c8;
+}
+
+
+.theme-meetup .event-action {
+
+    background: #66864e;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 18 — FESTIVAL
+========================================================= */
+
+.theme-festival {
+
+    background: #fff0df;
+
+    color: #55351f;
+}
+
+
+.theme-festival .event-invitation {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fffaf3,
+            #fff1df
+        );
+}
+
+
+.theme-festival .event-title {
+
+    color: #c45f24;
+}
+
+
+.theme-festival .event-names {
+
+    color: #df7d3b;
+}
+
+
+.theme-festival .event-divider {
+
+    background: #e0a06d;
+}
+
+
+.theme-festival .event-corner.one {
+
+    background: #f4d2ae;
+}
+
+
+.theme-festival .event-corner.two {
+
+    background: #efc49a;
+}
+
+
+.theme-festival .event-action {
+
+    background: #c45f24;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 19 — EXHIBITION
+========================================================= */
+
+.theme-exhibition {
+
+    background: #ededed;
+
+    color: #242424;
+}
+
+
+.theme-exhibition .event-invitation {
+
+    background: #fff;
+}
+
+
+.theme-exhibition .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 68px;
+
+    font-weight: 700;
+
+    letter-spacing: -2px;
+
+    color: #111;
+}
+
+
+.theme-exhibition .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    font-weight: 600;
+
+    color: #555;
+}
+
+
+.theme-exhibition .event-divider {
+
+    background: #222;
+}
+
+
+.theme-exhibition .event-corner.one {
+
+    background: #e0e0e0;
+}
+
+
+.theme-exhibition .event-corner.two {
+
+    background: #d5d5d5;
+}
+
+
+.theme-exhibition .event-action {
+
+    background: #111;
+
+    color: white;
+}
+
+
+/* =========================================================
+   EVENT THEME 20 — TRADE
+========================================================= */
+
+.theme-trade {
+
+    background: #e9eef2;
+
+    color: #24323e;
+}
+
+
+.theme-trade .event-invitation {
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #edf2f5
+        );
+}
+
+
+.theme-trade .event-title {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-weight: 700;
+
+    color: #285d73;
+}
+
+
+.theme-trade .event-names {
+
+    font-family:
+        "DM Sans",
+        sans-serif;
+
+    font-size: 35px;
+
+    font-weight: 600;
+
+    color: #4c8297;
+}
+
+
+.theme-trade .event-divider {
+
+    background: #83aebe;
+}
+
+
+.theme-trade .event-corner.one {
+
+    background: #d1e0e6;
+}
+
+
+.theme-trade .event-corner.two {
+
+    background: #c5d8e0;
+}
+
+
+.theme-trade .event-action {
+
+    background: #285d73;
+
+    color: white;
+}

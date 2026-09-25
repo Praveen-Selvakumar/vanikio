@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>VANIKIO — Your QR</title>
+
+
+    <!-- =========================================================
+         FONTS
+    ========================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Pacifico&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         QR GENERATOR
+    ========================================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+    ></script>
+
+
+    <!-- =========================================================
+         VANIKIO CSS
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="css/base.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/profile.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/themes.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <a
+        href="upcoming-files.html"
+        class="brand"
+    >
+
+        <div class="logo">
+            V
+        </div>
+
+        <div class="brand-name">
+            VANIKIO
+        </div>
+
+    </a>
+
+
+    <div
+        class="back"
+        onclick="history.back()"
+    >
+        ← Back
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="page">
+
+
+    <section class="success">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <div class="eyebrow">
+            Your design is ready
+        </div>
+
+
+        <h1>
+            Share it with a QR.
+        </h1>
+
+
+        <p>
+            Anyone can scan this QR to open the information
+            you created.
+        </p>
+
+    </section>
+
+
+
+    <section class="result">
+
+
+        <!-- =====================================================
+             PREVIEW
+        ====================================================== -->
+
+        <div
+            class="preview"
+            id="previewCard"
+        >
+
+            <div class="preview-label">
+                Page preview
+            </div>
+
+
+            <!-- =================================================
+                 NORMAL PROFILE PREVIEW
+            ================================================== -->
+
+            <div
+                class="profile"
+                id="profilePreview"
+            >
+
+                <div class="profile-top">
+
+                    <div
+                        class="avatar"
+                        id="avatar"
+                    >
+                        V
+                    </div>
+
+
+                    <div>
+
+                        <div
+                            class="name"
+                            id="name"
+                        >
+                            VANIKIO
+                        </div>
+
+
+                        <div
+                            class="profile-location"
+                            id="location"
+                        >
+                            Digital identity
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-line"></div>
+
+
+                <div
+                    class="profile-title"
+                    id="title"
+                >
+                    Your digital information
+                </div>
+
+
+                <div
+                    class="profile-description"
+                    id="description"
+                >
+                    Scan the QR code to view the shared information.
+                </div>
+
+
+                <div class="profile-contact">
+
+                    <div id="phone"></div>
+
+                    <div id="email"></div>
+
+                    <div id="business"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EVENT PREVIEW
+            ================================================== -->
+
+            <div
+                class="event-preview"
+                id="eventPreview"
+            >
+
+                <div
+                    class="event-preview-stage"
+                    id="eventPreviewStage"
+                >
+
+                    <div
+                        class="event-invitation-frame"
+                        id="eventInvitationFrame"
+                    >
+
+                        <div
+                            class="event-invitation"
+                            id="eventInvitation"
+                        >
+
+                            <div
+                                class="event-decoration event-circle event-corner one"
+                            ></div>
+
+
+                            <div
+                                class="event-decoration event-circle event-corner two"
+                            ></div>
+
+
+                            <div class="event-invitation-content">
+
+
+                                <div
+                                    class="event-small-label"
+                                    id="eventLabel"
+                                >
+                                    You Are Invited
+                                </div>
+
+
+                                <h2
+                                    class="event-title"
+                                    id="eventTitle"
+                                >
+                                    Wedding
+                                </h2>
+
+
+                                <p
+                                    class="event-subtitle"
+                                    id="eventDescription"
+                                >
+                                    Join us as we celebrate a beautiful beginning
+                                    filled with love, happiness and unforgettable moments.
+                                </p>
+
+
+                                <div
+                                    class="event-divider"
+                                ></div>
+
+
+                                <div
+                                    class="event-names"
+                                    id="eventNames"
+                                >
+                                    Arjun & Priya
+                                </div>
+
+
+                                <div class="event-details">
+
+
+                                    <div
+                                        class="event-detail"
+                                        id="eventDateContainer"
+                                    >
+
+                                        <span class="event-detail-label">
+                                            Date
+                                        </span>
+
+                                        <span
+                                            class="event-detail-value"
+                                            id="eventDate"
+                                        >
+                                            —
+                                        </span>
+
+                                    </div>
+
+
+                                    <div
+                                        class="event-detail"
+                                        id="eventTimeContainer"
+                                    >
+
+                                        <span class="event-detail-label">
+                                            Time
+                                        </span>
+
+                                        <span
+                                            class="event-detail-value"
+                                            id="eventTime"
+                                        >
+                                            —
+                                        </span>
+
+                                    </div>
+
+
+                                    <div
+                                        class="event-detail"
+                                        id="eventVenueContainer"
+                                    >
+
+                                        <span class="event-detail-label">
+                                            Venue
+                                        </span>
+
+                                        <span
+                                            class="event-detail-value"
+                                            id="eventVenue"
+                                        >
+                                            —
+                                        </span>
+
+                                    </div>
+
+
+                                </div>
+
+
+                                <div
+                                    class="event-location"
+                                    id="eventLocation"
+                                >
+                                    Madurai, Tamil Nadu
+                                </div>
+
+
+                                <button
+                                    class="event-action"
+                                    id="eventAction"
+                                    type="button"
+                                >
+                                    View Invitation
+                                </button>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             QR SIDE
+        ====================================================== -->
+
+        <div class="qr-side">
+
+            <div id="qrcode"></div>
+
+
+            <div class="qr-title">
+                Scan to open
+            </div>
+
+
+            <div class="qr-description">
+                Your selected design and information
+                are encoded into this QR.
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="button primary"
+                    id="saveQrButton"
+                    type="button"
+                >
+                    Save QR
+                </button>
+
+
+                <button
+                    class="button"
+                    id="copyDataButton"
+                    type="button"
+                >
+                    Copy Data
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div class="info">
+
+        Frontend preview mode · Your information is currently
+        stored only in this browser session. No VANIKIO account
+        or database is required.
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================================================
+     THEME DATA
+========================================================= -->
+
+<script src="themes/events.js"></script>
+
+<script src="js/themes.js"></script>
+
+<script src="js/theme-engine.js"></script>
+
+<script src="js/qr-result.js"></script>
+
+
+</body>
+
+</html>
