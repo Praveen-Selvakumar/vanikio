@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -501,15 +502,6 @@
         }
 
 
-        .btn-secondary:disabled,
-        .btn-primary:disabled {
-
-            opacity: 0.65;
-
-            cursor: wait;
-        }
-
-
         /* =========================================================
            PREVIEW AREA
         ========================================================== */
@@ -957,166 +949,6 @@
 
 
         /* =========================================================
-           PUBLISH MODAL
-        ========================================================== */
-
-        #publishModal {
-
-            display: none;
-
-            position: fixed;
-
-            inset: 0;
-
-            z-index: 9999;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 20px;
-
-            background: rgba(39, 36, 58, 0.45);
-
-            backdrop-filter: blur(4px);
-        }
-
-
-        #publishModal.show {
-
-            display: flex;
-
-            animation: publishModalFade 0.18s ease;
-        }
-
-
-        #publishModalCard {
-
-            width: 100%;
-
-            max-width: 390px;
-
-            background: #fcfbff;
-
-            border: 1px solid #e6e2f0;
-
-            border-radius: 20px;
-
-            padding: 26px;
-
-            text-align: center;
-
-            box-shadow: 0 20px 60px rgba(39, 36, 58, 0.20);
-
-            animation: publishModalScale 0.18s ease;
-        }
-
-
-        #publishModalIcon {
-
-            width: 52px;
-
-            height: 52px;
-
-            margin: 0 auto 15px;
-
-            border-radius: 50%;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 25px;
-
-            font-weight: 700;
-        }
-
-
-        #publishModalTitle {
-
-            margin: 0 0 8px;
-
-            font-size: 18px;
-
-            font-weight: 700;
-
-            color: #27243a;
-        }
-
-
-        #publishModalMessage {
-
-            margin: 0 0 20px;
-
-            font-size: 12px;
-
-            line-height: 1.7;
-
-            color: #77738a;
-        }
-
-
-        #publishModalButton {
-
-            width: 100%;
-
-            height: 40px;
-
-            border: none;
-
-            border-radius: 10px;
-
-            background: #6c4cf1;
-
-            color: white;
-
-            font-family: Poppins, sans-serif;
-
-            font-size: 12px;
-
-            font-weight: 600;
-
-            cursor: pointer;
-
-            transition: 0.2s;
-        }
-
-
-        #publishModalButton:hover {
-
-            opacity: 0.92;
-        }
-
-
-        @keyframes publishModalFade {
-
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-
-        }
-
-
-        @keyframes publishModalScale {
-
-            from {
-                transform: scale(0.96);
-            }
-
-            to {
-                transform: scale(1);
-            }
-
-        }
-
-
-        /* =========================================================
            PRINT
         ========================================================== */
 
@@ -1132,8 +964,7 @@
 
             .panel,
             .preview-header,
-            .note,
-            #publishModal {
+            .note {
 
                 display: none !important;
             }
@@ -1306,7 +1137,9 @@
         </div>
 
 
-        <!-- PRODUCT NAME -->
+        <!-- =====================================================
+             NEW FIELD — PRODUCT NAME
+        ====================================================== -->
 
         <div class="field">
 
@@ -1326,7 +1159,9 @@
         </div>
 
 
-        <!-- PRODUCT DESCRIPTION -->
+        <!-- =====================================================
+             NEW FIELD — PRODUCT DESCRIPTION
+        ====================================================== -->
 
         <div class="field">
 
@@ -1866,7 +1701,6 @@
 
             <button
                     class="btn-primary"
-                    type="button"
                     onclick="generateSticker()"
                     data-i18n="generateSticker"
             >
@@ -1876,7 +1710,6 @@
 
             <button
                     class="btn-secondary"
-                    type="button"
                     onclick="downloadSticker()"
                     data-i18n="downloadPng"
             >
@@ -1886,11 +1719,20 @@
 
             <button
                     class="btn-secondary"
-                    type="button"
                     onclick="printSticker()"
                     data-i18n="printSticker"
             >
                 Print Sticker
+            </button>
+
+
+            <button
+                    class="btn-secondary"
+                    type="button"
+                    onclick="openPublishBusiness()"
+                    data-i18n="publishProduct"
+            >
+                Publish Product
             </button>
 
         </div>
@@ -2067,25 +1909,6 @@
         </div>
 
 
-        <!-- =====================================================
-             PUBLISH PRODUCT
-        ====================================================== -->
-
-        <div style="margin-top: 14px;">
-
-            <button
-                    class="btn-secondary"
-                    type="button"
-                    onclick="publishProduct()"
-                    id="publishProductButton"
-                    data-i18n="publishProduct"
-            >
-                Publish Product
-            </button>
-
-        </div>
-
-
         <!-- NOTE -->
 
         <div
@@ -2096,42 +1919,6 @@
             for reliable scanning. QR is optional.
         </div>
 
-
-    </div>
-
-</div>
-
-
-<!-- =============================================================
-     PUBLISH RESULT MODAL
-============================================================= -->
-
-<div id="publishModal">
-
-    <div id="publishModalCard">
-
-        <div id="publishModalIcon">
-            ✓
-        </div>
-
-
-        <h2 id="publishModalTitle">
-            Product Published
-        </h2>
-
-
-        <p id="publishModalMessage">
-            Your product has been published successfully.
-        </p>
-
-
-        <button
-                type="button"
-                id="publishModalButton"
-                onclick="closePublishModal()"
-        >
-            OK
-        </button>
 
     </div>
 
@@ -2273,7 +2060,7 @@
                 "Reset",
 
             publishProduct:
-                "Publish Product",
+                 "Publish Product",
 
             note:
                 "For very small stickers, keep the QR size large enough for reliable scanning. QR is optional."
@@ -2364,7 +2151,7 @@
             reset:
                 "மீட்டமை",
 
-            publishProduct:
+            publishBusiness:
                 "பொருளை வெளியிடு",
 
             note:
@@ -2406,91 +2193,6 @@
 
 
     let currentLanguage = "en";
-
-
-    /* =============================================================
-       FIREBASE
-    ============================================================= */
-
-    let firebaseDatabase = null;
-
-    let firebaseDoc = null;
-
-    let firebaseGetDoc = null;
-
-    let firebaseSetDoc = null;
-
-    let firebaseServerTimestamp = null;
-
-
-    async function loadFirebase() {
-
-        if (firebaseDatabase) {
-
-            return;
-
-        }
-
-
-        try {
-
-            const firebaseModule =
-                await import("./firebase.js");
-
-
-            firebaseDatabase =
-                firebaseModule.db;
-
-
-            firebaseDoc =
-                firebaseModule.doc;
-
-
-            firebaseGetDoc =
-                firebaseModule.getDoc;
-
-
-            firebaseSetDoc =
-                firebaseModule.setDoc;
-
-
-            firebaseServerTimestamp =
-                firebaseModule.serverTimestamp;
-
-
-            if (!firebaseDatabase) {
-
-                throw new Error(
-                    "Firestore database is not exported from firebase.js"
-                );
-
-            }
-
-
-            if (
-                !firebaseDoc ||
-                !firebaseGetDoc ||
-                !firebaseSetDoc
-            ) {
-
-                throw new Error(
-                    "Firestore functions are not exported from firebase.js"
-                );
-
-            }
-
-        } catch (error) {
-
-            console.error(
-                "Firebase loading error:",
-                error
-            );
-
-            throw error;
-
-        }
-
-    }
 
 
     /* =============================================================
@@ -2814,7 +2516,7 @@
 
         if (!businessId) {
 
-            qr.innerHTML = "";
+            document.getElementById("qrcode").innerHTML = "";
 
             return;
 
@@ -2857,7 +2559,9 @@
 
 
         /* =========================================================
-           BUSINESS ID NOT PRINTED
+           BUSINESS ID
+           The Business ID is used in the QR destination and is not
+           printed on the sticker.
         ========================================================== */
 
         companyNameText.style.display =
@@ -3623,8 +3327,7 @@
                 sticker.getBoundingClientRect();
 
 
-            const scale =
-                4;
+            const scale = 4;
 
 
             const canvas =
@@ -3833,8 +3536,7 @@
             );
 
 
-            showPublishModal(
-                false,
+            alert(
                 currentLanguage === "ta"
                     ? "ஸ்டிக்கரை பதிவிறக்க முடியவில்லை."
                     : "Unable to download sticker."
@@ -3869,8 +3571,7 @@
 
         if (!qrEnabled) {
 
-            showPublishModal(
-                false,
+            alert(
                 currentLanguage === "ta"
                     ? "QR குறியீடு இயக்கப்படவில்லை."
                     : "QR Code is disabled."
@@ -3966,8 +3667,7 @@
 
         if (!downloadUrl) {
 
-            showPublishModal(
-                false,
+            alert(
                 currentLanguage === "ta"
                     ? "QR ஐ பதிவிறக்க முடியவில்லை."
                     : "Unable to download QR."
@@ -4026,666 +3726,15 @@
 
 
     /* =============================================================
-       PUBLISH PRODUCT
+       BUSINESS PUBLISHING
     ============================================================= */
 
-    async function publishProduct() {
+    function openPublishBusiness() {
 
-        const businessId =
-            document
-                .getElementById(
-                    "businessId"
-                )
-                .value
-                .trim();
-
-
-        const productName =
-            document
-                .getElementById(
-                    "productName"
-                )
-                .value
-                .trim();
-
-
-        const productDescription =
-            document
-                .getElementById(
-                    "productDescription"
-                )
-                .value
-                .trim();
-
-
-        const serial =
-            document
-                .getElementById(
-                    "serial"
-                )
-                .value
-                .trim();
-
-
-        const price =
-            document
-                .getElementById(
-                    "price"
-                )
-                .value
-                .trim();
-
-
-        const itemId =
-            document
-                .getElementById(
-                    "itemId"
-                )
-                .value
-                .trim();
-
-
-        /* =========================================================
-           REQUIRED FIELD VALIDATION
-        ========================================================== */
-
-        if (!businessId) {
-
-            showPublishModal(
-                false,
-                currentLanguage === "ta"
-                    ? "வணிக ID தேவை."
-                    : "Business ID is required."
-            );
-
-            return;
-
-        }
-
-
-        if (!productName) {
-
-            showPublishModal(
-                false,
-                currentLanguage === "ta"
-                    ? "பொருளின் பெயரை உள்ளிடவும்."
-                    : "Please enter the product name."
-            );
-
-            return;
-
-        }
-
-
-        if (!productDescription) {
-
-            showPublishModal(
-                false,
-                currentLanguage === "ta"
-                    ? "பொருளின் விளக்கத்தை உள்ளிடவும்."
-                    : "Please enter the product description."
-            );
-
-            return;
-
-        }
-
-
-        if (!itemId) {
-
-            showPublishModal(
-                false,
-                currentLanguage === "ta"
-                    ? "QR / பொருள் ID தேவை."
-                    : "QR / Item ID is required."
-            );
-
-            return;
-
-        }
-
-
-        /* =========================================================
-           FIRESTORE DOCUMENT ID VALIDATION
-        ========================================================== */
-
-        if (itemId.includes("/")) {
-
-            showPublishModal(
-                false,
-                currentLanguage === "ta"
-                    ? "QR / பொருள் ID-ல் '/' இருக்கக்கூடாது."
-                    : "QR / Item ID cannot contain '/'."
-            );
-
-            return;
-
-        }
-
-
-        /* =========================================================
-           BUTTON
-        ========================================================== */
-
-        const publishButton =
-            document.getElementById(
-                "publishProductButton"
-            );
-
-
-        if (publishButton) {
-
-            publishButton.disabled =
-                true;
-
-
-            publishButton.style.opacity =
-                "0.65";
-
-
-            publishButton.style.cursor =
-                "wait";
-
-
-            publishButton.textContent =
-                currentLanguage === "ta"
-                    ? "வெளியிடுகிறது..."
-                    : "Publishing...";
-
-        }
-
-
-        try {
-
-            /* =====================================================
-               LOAD FIREBASE
-            ====================================================== */
-
-            await loadFirebase();
-
-
-            /* =====================================================
-               BUSINESS REFERENCE
-            ====================================================== */
-
-            const businessRef =
-                firebaseDoc(
-                    firebaseDatabase,
-                    "businesses",
-                    businessId
-                );
-
-
-            /* =====================================================
-               CHECK BUSINESS EXISTS
-            ====================================================== */
-
-            const businessSnapshot =
-                await firebaseGetDoc(
-                    businessRef
-                );
-
-
-            if (
-                !businessSnapshot.exists()
-            ) {
-
-                showPublishModal(
-                    false,
-                    currentLanguage === "ta"
-                        ? "இந்த Business ID செல்லுபடியாகாது. சரியான Business ID-ஐ உள்ளிடவும்."
-                        : "This Business ID is not valid. Please enter a valid Business ID."
-                );
-
-                return;
-
-            }
-
-
-            /* =====================================================
-               PRODUCT REFERENCE
-            ====================================================== */
-
-            const productRef =
-                firebaseDoc(
-                    firebaseDatabase,
-                    "businesses",
-                    businessId,
-                    "products",
-                    itemId
-                );
-
-
-            /* =====================================================
-               PRODUCT DATA
-            ====================================================== */
-
-            const productData = {
-
-                businessId:
-                    businessId,
-
-                itemId:
-                    itemId,
-
-                productName:
-                    productName,
-
-                productDescription:
-                    productDescription,
-
-                serial:
-                    serial,
-
-                price:
-                    price,
-
-                qrEnabled:
-                    document
-                        .getElementById(
-                            "qrEnabled"
-                        )
-                        .checked,
-
-                qrSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "qrSize"
-                            )
-                            .value
-                    ) || 15,
-
-                stickerWidth:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "stickerWidth"
-                            )
-                            .value
-                    ) || 35,
-
-                stickerHeight:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "stickerHeight"
-                            )
-                            .value
-                    ) || 20,
-
-                labelSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "labelSize"
-                            )
-                            .value
-                    ) || 1.7,
-
-                valueSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "valueSize"
-                            )
-                            .value
-                    ) || 4.2,
-
-                borderSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "borderSize"
-                            )
-                            .value
-                    ) || 0,
-
-                stickerBackground:
-                    selectedColors.stickerBackground,
-
-                borderColor:
-                    selectedColors.border,
-
-                serialLabelColor:
-                    selectedColors.serialLabel,
-
-                serialValueColor:
-                    selectedColors.serialValue,
-
-                priceLabelColor:
-                    selectedColors.priceLabel,
-
-                priceValueColor:
-                    selectedColors.priceValue,
-
-                qrColor:
-                    selectedColors.qr
-
-            };
-
-
-            /* =====================================================
-               TIMESTAMP
-            ====================================================== */
-
-            if (firebaseServerTimestamp) {
-
-                productData.createdAt =
-                    firebaseServerTimestamp();
-
-                productData.updatedAt =
-                    firebaseServerTimestamp();
-
-            } else {
-
-                productData.createdAt =
-                    new Date().toISOString();
-
-                productData.updatedAt =
-                    new Date().toISOString();
-
-            }
-
-
-            /* =====================================================
-               SAVE PRODUCT
-            ====================================================== */
-
-            await firebaseSetDoc(
-                productRef,
-                productData
-            );
-
-
-            /* =====================================================
-               SAVE BUSINESS ID LOCALLY
-            ====================================================== */
-
-            localStorage.setItem(
-                "vanikioBusinessId",
-                businessId
-            );
-
-
-            /* =====================================================
-               SUCCESS
-            ====================================================== */
-
-            showPublishModal(
-                true,
-                currentLanguage === "ta"
-                    ? "உங்கள் பொருள் வெற்றிகரமாக வெளியிடப்பட்டது."
-                    : "Your product has been published successfully."
-            );
-
-
-        } catch (error) {
-
-            console.error(
-                "Publish Product Error:",
-                error
-            );
-
-
-            let errorMessage =
-                currentLanguage === "ta"
-                    ? "பொருளை வெளியிட முடியவில்லை. மீண்டும் முயற்சிக்கவும்."
-                    : "Unable to publish the product. Please try again.";
-
-
-            /* =====================================================
-               FIRESTORE PERMISSION ERROR
-            ====================================================== */
-
-            if (
-                error &&
-                error.code ===
-                "permission-denied"
-            ) {
-
-                errorMessage =
-                    currentLanguage === "ta"
-                        ? "Firestore அனுமதி மறுக்கப்பட்டது. Firestore Security Rules-ஐ சரிபார்க்கவும்."
-                        : "Firestore permission was denied. Please check your Firestore Security Rules.";
-
-            }
-
-
-            /* =====================================================
-               NETWORK ERROR
-            ====================================================== */
-
-            else if (
-                error &&
-                (
-                    error.code ===
-                    "unavailable" ||
-                    error.code ===
-                    "network-request-failed"
-                )
-            ) {
-
-                errorMessage =
-                    currentLanguage === "ta"
-                        ? "இணைய இணைப்பில் சிக்கல் உள்ளது. மீண்டும் முயற்சிக்கவும்."
-                        : "There is a network problem. Please check your internet connection and try again.";
-
-            }
-
-
-            showPublishModal(
-                false,
-                errorMessage
-            );
-
-
-        } finally {
-
-            if (publishButton) {
-
-                publishButton.disabled =
-                    false;
-
-
-                publishButton.style.opacity =
-                    "1";
-
-
-                publishButton.style.cursor =
-                    "pointer";
-
-
-                publishButton.textContent =
-                    currentLanguage === "ta"
-                        ? "பொருளை வெளியிடு"
-                        : "Publish Product";
-
-            }
-
-        }
+        window.location.href =
+            "publish-business.html";
 
     }
-
-
-    /* =============================================================
-       SHOW PUBLISH MODAL
-    ============================================================= */
-
-    function showPublishModal(
-        success,
-        message
-    ) {
-
-        const modal =
-            document.getElementById(
-                "publishModal"
-            );
-
-
-        const icon =
-            document.getElementById(
-                "publishModalIcon"
-            );
-
-
-        const title =
-            document.getElementById(
-                "publishModalTitle"
-            );
-
-
-        const messageElement =
-            document.getElementById(
-                "publishModalMessage"
-            );
-
-
-        const button =
-            document.getElementById(
-                "publishModalButton"
-            );
-
-
-        if (!modal) {
-
-            return;
-
-        }
-
-
-        if (success) {
-
-            icon.textContent =
-                "✓";
-
-
-            icon.style.background =
-                "#edfbf7";
-
-
-            icon.style.color =
-                "#168271";
-
-
-            title.textContent =
-                currentLanguage === "ta"
-                    ? "பொருள் வெளியிடப்பட்டது"
-                    : "Product Published";
-
-
-            button.textContent =
-                currentLanguage === "ta"
-                    ? "முகப்புக்குச் செல்லவும்"
-                    : "Go Home";
-
-
-            button.style.background =
-                "#168271";
-
-
-            button.onclick =
-                function () {
-
-                    window.location.href =
-                        "index.html";
-
-                };
-
-
-        } else {
-
-            icon.textContent =
-                "×";
-
-
-            icon.style.background =
-                "#fff4f6";
-
-
-            icon.style.color =
-                "#d85c6e";
-
-
-            title.textContent =
-                currentLanguage === "ta"
-                    ? "வெளியிட முடியவில்லை"
-                    : "Unable to Publish";
-
-
-            button.textContent =
-                currentLanguage === "ta"
-                    ? "சரி"
-                    : "OK";
-
-
-            button.style.background =
-                "#6c4cf1";
-
-
-            button.onclick =
-                closePublishModal;
-
-        }
-
-
-        messageElement.textContent =
-            message;
-
-
-        modal.classList.add(
-            "show"
-        );
-
-    }
-
-
-    /* =============================================================
-       CLOSE PUBLISH MODAL
-    ============================================================= */
-
-    function closePublishModal() {
-
-        const modal =
-            document.getElementById(
-                "publishModal"
-            );
-
-
-        if (modal) {
-
-            modal.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-
-
-    /* =============================================================
-       CLOSE MODAL WHEN CLICKING OUTSIDE
-    ============================================================= */
-
-    document
-        .getElementById(
-            "publishModal"
-        )
-        .addEventListener(
-            "click",
-            function(event) {
-
-                if (
-                    event.target ===
-                    this
-                ) {
-
-                    closePublishModal();
-
-                }
-
-            }
-        );
 
 
     /* =============================================================
