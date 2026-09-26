@@ -1,0 +1,2606 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>VANIKIO — Publish Business</title>
+
+<!-- =========================================================
+     GOOGLE FONT
+========================================================== -->
+
+<link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+    :root {
+
+        --bg:#f7f5ff;
+        --surface:#fcfbff;
+
+        --primary:#6c4cf1;
+        --primary-dark:#5938dc;
+        --primary-soft:#ece7ff;
+
+        --text:#27243a;
+        --text-soft:#514b60;
+
+        --muted:#77738a;
+        --muted-light:#9993aa;
+
+        --border:#e6e2f0;
+
+        --danger:#d85c6e;
+        --danger-soft:#fff4f6;
+
+        --success:#168271;
+        --success-soft:#edfbf7;
+
+    }
+
+    * {
+        box-sizing:border-box;
+    }
+
+    body {
+
+        margin:0;
+        padding:35px;
+
+        background:var(--bg);
+
+        color:var(--text);
+
+        font-family:Poppins,sans-serif;
+
+    }
+
+    .container {
+
+        max-width:700px;
+
+        margin:auto;
+
+    }
+
+    .panel {
+
+        background:var(--surface);
+
+        border:1px solid var(--border);
+
+        border-radius:18px;
+
+        padding:24px;
+
+        box-shadow:
+            0 10px 30px rgba(39,36,58,.06);
+
+    }
+
+    .panel-header {
+
+        display:flex;
+
+        align-items:flex-start;
+
+        justify-content:space-between;
+
+        gap:10px;
+
+        margin-bottom:5px;
+
+    }
+
+    h1 {
+
+        margin:0;
+
+        font-size:20px;
+
+    }
+
+    .description {
+
+        margin:0 0 24px;
+
+        font-size:12px;
+
+        line-height:1.6;
+
+        color:var(--muted);
+
+    }
+
+    /* =====================================================
+       LANGUAGE
+    ====================================================== */
+
+    .language-toggle {
+
+        display:flex;
+
+        gap:2px;
+
+        padding:3px;
+
+        background:#f0edf8;
+
+        border-radius:8px;
+
+    }
+
+    .language-button {
+
+        border:0;
+
+        background:transparent;
+
+        color:var(--muted);
+
+        font-size:10px;
+
+        font-weight:600;
+
+        padding:5px 7px;
+
+        border-radius:6px;
+
+        cursor:pointer;
+
+        font-family:Poppins;
+
+    }
+
+    .language-button.active {
+
+        background:white;
+
+        color:var(--primary-dark);
+
+        box-shadow:
+            0 1px 4px rgba(39,36,58,.08);
+
+    }
+
+    /* =====================================================
+       SECTION
+    ====================================================== */
+
+    .section-title {
+
+        margin:0 0 3px;
+
+        font-size:15px;
+
+        font-weight:700;
+
+    }
+
+    .section-description {
+
+        margin:0 0 18px;
+
+        font-size:11px;
+
+        line-height:1.6;
+
+        color:var(--muted);
+
+    }
+
+    /* =====================================================
+       FORM
+    ====================================================== */
+
+    .grid {
+
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:0 12px;
+
+    }
+
+    .full {
+
+        grid-column:1/-1;
+
+    }
+
+    .field {
+
+        margin-bottom:14px;
+
+    }
+
+    .field label {
+
+        display:block;
+
+        margin-bottom:6px;
+
+        font-size:11px;
+
+        font-weight:600;
+
+        color:var(--text-soft);
+
+    }
+
+    .field input,
+    .field textarea {
+
+        width:100%;
+
+        border:1px solid var(--border);
+
+        border-radius:9px;
+
+        outline:none;
+
+        background:white;
+
+        color:var(--text);
+
+        font-family:Poppins;
+
+        font-size:12px;
+
+        transition:.2s;
+
+    }
+
+    .field input {
+
+        height:38px;
+
+        padding:0 11px;
+
+    }
+
+    .field textarea {
+
+        min-height:85px;
+
+        padding:10px 11px;
+
+        resize:vertical;
+
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+
+        border-color:var(--primary);
+
+        box-shadow:
+            0 0 0 3px var(--primary-soft);
+
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+
+        color:var(--muted-light);
+
+    }
+
+    /* =====================================================
+       BUSINESS ID
+    ====================================================== */
+
+    .business-id-input {
+
+        text-transform:lowercase;
+
+    }
+
+    .business-id-hint {
+
+        margin:5px 0 0;
+
+        font-size:9px;
+
+        line-height:1.5;
+
+        color:var(--muted);
+
+    }
+
+    /* =====================================================
+       BUTTONS
+    ====================================================== */
+
+    .publish-button {
+
+        width:100%;
+
+        height:42px;
+
+        margin-top:4px;
+
+        border:0;
+
+        border-radius:10px;
+
+        background:var(--primary);
+
+        color:white;
+
+        font-family:Poppins;
+
+        font-size:12px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+    }
+
+    .publish-button:hover {
+
+        background:var(--primary-dark);
+
+    }
+
+    .publish-button:disabled {
+
+        opacity:.65;
+
+        cursor:not-allowed;
+
+    }
+
+    .secondary {
+
+        width:100%;
+
+        height:38px;
+
+        margin-top:8px;
+
+        border:0;
+
+        border-radius:10px;
+
+        background:var(--primary-soft);
+
+        color:var(--primary-dark);
+
+        font-family:Poppins;
+
+        font-size:12px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+    }
+
+    /* =====================================================
+       BUSINESS ID
+    ====================================================== */
+
+    .business-id-box {
+
+        display:none;
+
+        margin:16px 0 4px;
+
+        padding:14px;
+
+        border:1px solid #d9d2ff;
+
+        border-radius:10px;
+
+        background:var(--primary-soft);
+
+    }
+
+    .business-id-label {
+
+        font-size:10px;
+
+        font-weight:600;
+
+        color:var(--text-soft);
+
+        margin-bottom:5px;
+
+    }
+
+    .business-id-value {
+
+        font-size:14px;
+
+        font-weight:700;
+
+        word-break:break-all;
+
+        color:var(--primary-dark);
+
+    }
+
+    /* =====================================================
+       MODAL
+    ====================================================== */
+
+    .modal-overlay {
+
+        position:fixed;
+
+        inset:0;
+
+        background:rgba(39,36,58,.45);
+
+        backdrop-filter:blur(4px);
+
+        display:none;
+
+        align-items:center;
+
+        justify-content:center;
+
+        padding:20px;
+
+        z-index:1000;
+
+    }
+
+    .modal-overlay.show {
+
+        display:flex;
+
+    }
+
+    .modal {
+
+        width:100%;
+
+        max-width:390px;
+
+        background:white;
+
+        border-radius:18px;
+
+        padding:25px;
+
+        text-align:center;
+
+        box-shadow:
+            0 20px 60px rgba(39,36,58,.18);
+
+        animation:modalIn .2s ease;
+
+    }
+
+    @keyframes modalIn {
+
+        from {
+
+            opacity:0;
+
+            transform:translateY(8px) scale(.98);
+
+        }
+
+        to {
+
+            opacity:1;
+
+            transform:translateY(0) scale(1);
+
+        }
+
+    }
+
+    .modal-title {
+
+        margin:0 0 7px;
+
+        font-size:16px;
+
+        font-weight:700;
+
+    }
+
+    .modal-message {
+
+        margin:0;
+
+        font-size:11px;
+
+        line-height:1.6;
+
+        color:var(--muted);
+
+    }
+
+    .modal-actions {
+
+        display:flex;
+
+        gap:8px;
+
+        margin-top:20px;
+
+    }
+
+    .modal-button {
+
+        flex:1;
+
+        height:40px;
+
+        border:0;
+
+        border-radius:9px;
+
+        font-family:Poppins;
+
+        font-size:11px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+    }
+
+    .modal-cancel {
+
+        background:#f1eff6;
+
+        color:var(--text-soft);
+
+    }
+
+    .modal-confirm {
+
+        background:var(--primary);
+
+        color:white;
+
+    }
+
+    .modal-confirm:hover {
+
+        background:var(--primary-dark);
+
+    }
+
+    .modal-button:disabled {
+
+        opacity:.65;
+
+        cursor:not-allowed;
+
+    }
+
+    /* =====================================================
+       LOADING
+    ====================================================== */
+
+    .loading-content {
+
+        display:none;
+
+    }
+
+    .loading-content.show {
+
+        display:block;
+
+    }
+
+    .loading-spinner {
+
+        width:38px;
+
+        height:38px;
+
+        margin:0 auto 16px;
+
+        border:3px solid #e8e3fb;
+
+        border-top-color:var(--primary);
+
+        border-radius:50%;
+
+        animation:spin .8s linear infinite;
+
+    }
+
+    @keyframes spin {
+
+        to {
+
+            transform:rotate(360deg);
+
+        }
+
+    }
+
+    .loading-bar {
+
+        width:100%;
+
+        height:5px;
+
+        margin-top:18px;
+
+        background:#eeeaf8;
+
+        border-radius:10px;
+
+        overflow:hidden;
+
+    }
+
+    .loading-bar-inner {
+
+        width:35%;
+
+        height:100%;
+
+        background:var(--primary);
+
+        border-radius:10px;
+
+        animation:loading 1.2s ease-in-out infinite;
+
+    }
+
+    @keyframes loading {
+
+        0% {
+
+            transform:translateX(-120%);
+
+        }
+
+        50% {
+
+            transform:translateX(150%);
+
+        }
+
+        100% {
+
+            transform:translateX(300%);
+
+        }
+
+    }
+
+    /* =====================================================
+       SUCCESS
+    ====================================================== */
+
+    .success-content {
+
+        display:none;
+
+    }
+
+    .success-content.show {
+
+        display:block;
+
+    }
+
+    .success-icon {
+
+        width:58px;
+
+        height:58px;
+
+        margin:0 auto 15px;
+
+        border-radius:50%;
+
+        background:var(--success-soft);
+
+        color:var(--success);
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        font-size:30px;
+
+        font-weight:700;
+
+    }
+
+    .success-message {
+
+        margin:7px 0 17px;
+
+        font-size:11px;
+
+        color:var(--muted);
+
+    }
+
+    .success-id {
+
+        padding:11px;
+
+        border-radius:9px;
+
+        background:var(--primary-soft);
+
+        color:var(--primary-dark);
+
+        font-size:12px;
+
+        font-weight:700;
+
+        word-break:break-all;
+
+        margin-bottom:10px;
+
+    }
+
+    /* =====================================================
+       ERROR
+    ====================================================== */
+
+    .error-content {
+
+        display:none;
+
+    }
+
+    .error-content.show {
+
+        display:block;
+
+    }
+
+    .error-icon {
+
+        width:58px;
+
+        height:58px;
+
+        margin:0 auto 15px;
+
+        border-radius:50%;
+
+        background:var(--danger-soft);
+
+        color:var(--danger);
+
+        display:flex;
+
+        align-items:center;
+
+        justify-content:center;
+
+        font-size:27px;
+
+        font-weight:700;
+
+    }
+
+    .error-message {
+
+        margin:7px 0 20px;
+
+        font-size:11px;
+
+        line-height:1.6;
+
+        color:var(--muted);
+
+    }
+
+    .modal-close {
+
+        width:100%;
+
+        height:40px;
+
+        border:0;
+
+        border-radius:9px;
+
+        background:var(--primary);
+
+        color:white;
+
+        font-family:Poppins;
+
+        font-size:11px;
+
+        font-weight:600;
+
+        cursor:pointer;
+
+    }
+
+    @media(max-width:700px) {
+
+        body {
+
+            padding:18px;
+
+        }
+
+        .grid {
+
+            grid-template-columns:1fr;
+
+        }
+
+        .full {
+
+            grid-column:auto;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="panel">
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <div class="panel-header">
+
+        <h1>VANIKIO</h1>
+
+        <div class="language-toggle">
+
+            <button
+                type="button"
+                class="language-button active"
+                id="englishButton"
+            >
+                EN
+            </button>
+
+            <button
+                type="button"
+                class="language-button"
+                id="tamilButton"
+            >
+                தமிழ்
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <p
+        class="description"
+        data-i18n="description"
+    >
+        Create your business profile once and reuse its Business ID for your product QR codes.
+    </p>
+
+
+    <!-- =====================================================
+         BUSINESS INFORMATION
+    ====================================================== -->
+
+    <h2
+        class="section-title"
+        data-i18n="businessTitle"
+    >
+        Business Information
+    </h2>
+
+
+    <p
+        class="section-description"
+        data-i18n="businessDescription"
+    >
+        This information is stored separately from product details. Products use your Business ID to connect to this profile.
+    </p>
+
+
+    <div class="grid">
+
+        <!-- =================================================
+             BUSINESS ID
+        ================================================== -->
+
+        <div class="field full">
+
+            <label data-i18n="businessId">
+                BUSINESS ID *
+            </label>
+
+            <input
+                id="businessId"
+                class="business-id-input"
+                type="text"
+                maxlength="50"
+                autocomplete="off"
+                placeholder="Example: babybliss"
+            >
+
+            <p
+                class="business-id-hint"
+                data-i18n="businessIdHint"
+            >
+                Choose a unique ID. This ID will become your Firestore business document ID.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             BUSINESS NAME
+        ================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="businessName">
+                BUSINESS NAME *
+            </label>
+
+            <input
+                id="businessName"
+                type="text"
+                placeholder="Example: ABC Furniture"
+            >
+
+        </div>
+
+
+        <!-- =================================================
+             CATEGORY
+        ================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="businessCategory">
+                CATEGORY
+            </label>
+
+            <input
+                id="businessCategory"
+                type="text"
+                placeholder="Example: Furniture"
+            >
+
+        </div>
+
+
+        <!-- =================================================
+             TAGLINE
+        ================================================== -->
+
+        <div class="field full">
+
+            <label data-i18n="businessTagline">
+                TAGLINE / MOTTO
+            </label>
+
+            <input
+                id="businessTagline"
+                type="text"
+                placeholder="Example: Quality furniture for every home"
+            >
+
+        </div>
+
+
+        <!-- =================================================
+             ABOUT
+        ================================================== -->
+
+        <div class="field full">
+
+            <label data-i18n="businessAbout">
+                DESCRIPTION / ABOUT US
+            </label>
+
+            <textarea
+                id="businessAbout"
+                placeholder="Tell people about your business..."
+            ></textarea>
+
+        </div>
+
+
+        <!-- =================================================
+             MOBILE
+        ================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="businessMobile">
+                MOBILE NUMBER
+            </label>
+
+            <input
+                id="businessMobile"
+                type="tel"
+                placeholder="9876543210"
+            >
+
+        </div>
+
+
+        <!-- =================================================
+             WEBSITE
+        ================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="businessWebsite">
+                WEBSITE
+            </label>
+
+            <input
+                id="businessWebsite"
+                type="url"
+                placeholder="https://example.com"
+            >
+
+        </div>
+
+
+        <!-- =================================================
+             ADDRESS
+        ================================================== -->
+
+        <div class="field full">
+
+            <label data-i18n="businessAddress">
+                ADDRESS
+            </label>
+
+            <textarea
+                id="businessAddress"
+                placeholder="Business address..."
+            ></textarea>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         PUBLISH
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="publish-button"
+        id="publishButton"
+        data-i18n="publishBusiness"
+    >
+        Publish Business
+    </button>
+
+
+    <!-- =====================================================
+         BUSINESS ID
+    ====================================================== -->
+
+    <div
+        id="businessIdBox"
+        class="business-id-box"
+    >
+
+        <div
+            class="business-id-label"
+            data-i18n="businessIdLabel"
+        >
+            YOUR BUSINESS ID
+        </div>
+
+        <div
+            id="businessIdValue"
+            class="business-id-value"
+        ></div>
+
+        <button
+            type="button"
+            class="secondary"
+            id="copyBusinessIdButton"
+            data-i18n="copyBusinessId"
+        >
+            Copy Business ID
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         GO TO PRODUCT
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="secondary"
+        id="goProductButton"
+        data-i18n="goProduct"
+    >
+        Go to Publish Product
+    </button>
+
+
+</div>
+
+</div>
+
+
+<!-- =============================================================
+     MODAL
+============================================================== -->
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+<div class="modal">
+
+
+    <!-- =====================================================
+         CONFIRM
+    ====================================================== -->
+
+    <div id="confirmContent">
+
+        <h2
+            class="modal-title"
+            data-i18n="confirmTitle"
+        >
+            Publish Business?
+        </h2>
+
+        <p
+            class="modal-message"
+            data-i18n="confirmMessage"
+        >
+            Your business information will be saved to VANIKIO using the Business ID you entered.
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="modal-button modal-cancel"
+                id="cancelButton"
+                data-i18n="cancel"
+            >
+                Cancel
+            </button>
+
+            <button
+                type="button"
+                class="modal-button modal-confirm"
+                id="confirmButton"
+                data-i18n="confirm"
+            >
+                Publish
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         LOADING
+    ====================================================== -->
+
+    <div
+        id="loadingContent"
+        class="loading-content"
+    >
+
+        <div class="loading-spinner"></div>
+
+        <h2
+            class="modal-title"
+            data-i18n="publishing"
+        >
+            Publishing Business
+        </h2>
+
+        <p
+            class="modal-message"
+            data-i18n="pleaseWait"
+        >
+            Please wait while your business information is being saved.
+        </p>
+
+        <div class="loading-bar">
+
+            <div class="loading-bar-inner"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         SUCCESS
+    ====================================================== -->
+
+    <div
+        id="successContent"
+        class="success-content"
+    >
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2
+            class="modal-title"
+            data-i18n="successTitle"
+        >
+            Business Published Successfully
+        </h2>
+
+        <p
+            class="success-message"
+            data-i18n="successMessage"
+        >
+            Your business has been published successfully.
+        </p>
+
+        <div
+            class="success-id"
+            id="successBusinessId"
+        ></div>
+
+        <button
+            type="button"
+            class="modal-close"
+            id="doneButton"
+            data-i18n="done"
+        >
+            Done
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         ERROR
+    ====================================================== -->
+
+    <div
+        id="errorContent"
+        class="error-content"
+    >
+
+        <div class="error-icon">
+            !
+        </div>
+
+        <h2
+            class="modal-title"
+            data-i18n="errorTitle"
+        >
+            Unable to Publish Business
+        </h2>
+
+        <p
+            class="error-message"
+            id="errorMessage"
+        >
+            Something went wrong while publishing your business.
+        </p>
+
+        <button
+            type="button"
+            class="modal-close"
+            id="errorCloseButton"
+            data-i18n="close"
+        >
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =============================================================
+     FIREBASE + PAGE SCRIPT
+============================================================== -->
+
+<script type="module">
+
+import {
+    db,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+} from "./firebase.js";
+
+
+// ============================================================
+// ELEMENTS
+// ============================================================
+
+const publishButton =
+    document.getElementById("publishButton");
+
+const englishButton =
+    document.getElementById("englishButton");
+
+const tamilButton =
+    document.getElementById("tamilButton");
+
+const cancelButton =
+    document.getElementById("cancelButton");
+
+const confirmButton =
+    document.getElementById("confirmButton");
+
+const doneButton =
+    document.getElementById("doneButton");
+
+const errorCloseButton =
+    document.getElementById("errorCloseButton");
+
+const copyBusinessIdButton =
+    document.getElementById("copyBusinessIdButton");
+
+const goProductButton =
+    document.getElementById("goProductButton");
+
+
+// ============================================================
+// LANGUAGE
+// ============================================================
+
+let currentLanguage =
+    localStorage.getItem(
+        "vanikioBusinessLanguage"
+    ) || "en";
+
+
+const translations = {
+
+    en: {
+
+        description:
+            "Create your business profile once and reuse its Business ID for your product QR codes.",
+
+        businessTitle:
+            "Business Information",
+
+        businessDescription:
+            "This information is stored separately from product details. Products use your Business ID to connect to this profile.",
+
+        businessId:
+            "BUSINESS ID *",
+
+        businessIdHint:
+            "Choose a unique ID. This ID will become your Firestore business document ID.",
+
+        businessName:
+            "BUSINESS NAME *",
+
+        businessCategory:
+            "CATEGORY",
+
+        businessTagline:
+            "TAGLINE / MOTTO",
+
+        businessAbout:
+            "DESCRIPTION / ABOUT US",
+
+        businessMobile:
+            "MOBILE NUMBER",
+
+        businessWebsite:
+            "WEBSITE",
+
+        businessAddress:
+            "ADDRESS",
+
+        publishBusiness:
+            "Publish Business",
+
+        businessIdLabel:
+            "YOUR BUSINESS ID",
+
+        copyBusinessId:
+            "Copy Business ID",
+
+        goProduct:
+            "Go to Publish Product",
+
+        confirmTitle:
+            "Publish Business?",
+
+        confirmMessage:
+            "Your business information will be saved to VANIKIO using the Business ID you entered.",
+
+        cancel:
+            "Cancel",
+
+        confirm:
+            "Publish",
+
+        publishing:
+            "Publishing Business",
+
+        pleaseWait:
+            "Please wait while your business information is being saved.",
+
+        successTitle:
+            "Business Published Successfully",
+
+        successMessage:
+            "Your business has been published successfully.",
+
+        done:
+            "Done",
+
+        errorTitle:
+            "Unable to Publish Business",
+
+        errorMessage:
+            "Something went wrong while publishing your business. Please try again.",
+
+        close:
+            "Close"
+
+    },
+
+
+    ta: {
+
+        description:
+            "உங்கள் வணிக தகவலை ஒருமுறை பதிவு செய்து, அதன் Business ID-ஐ உங்கள் Product QR குறியீடுகளில் பயன்படுத்தலாம்.",
+
+        businessTitle:
+            "வணிக தகவல்",
+
+        businessDescription:
+            "இந்த தகவல் Product தகவலிலிருந்து தனியாக சேமிக்கப்படும். Product உங்கள் Business ID மூலம் இந்த வணிக சுயவிவரத்துடன் இணைக்கப்படும்.",
+
+        businessId:
+            "BUSINESS ID *",
+
+        businessIdHint:
+            "தனித்துவமான Business ID-ஐ தேர்வு செய்யவும். இது Firestore-ல் உங்கள் வணிகத்தின் Document ID ஆக இருக்கும்.",
+
+        businessName:
+            "வணிகத்தின் பெயர் *",
+
+        businessCategory:
+            "வகை",
+
+        businessTagline:
+            "வணிக வாசகம் / Motto",
+
+        businessAbout:
+            "விளக்கம் / எங்களைப் பற்றி",
+
+        businessMobile:
+            "மொபைல் எண்",
+
+        businessWebsite:
+            "வலைத்தளம்",
+
+        businessAddress:
+            "முகவரி",
+
+        publishBusiness:
+            "வணிகத்தை வெளியிடு",
+
+        businessIdLabel:
+            "உங்கள் Business ID",
+
+        copyBusinessId:
+            "Business ID-ஐ நகலெடு",
+
+        goProduct:
+            "Product வெளியீட்டிற்கு செல்லவும்",
+
+        confirmTitle:
+            "வணிகத்தை வெளியிடவா?",
+
+        confirmMessage:
+            "நீங்கள் உள்ளிட்ட Business ID-ஐ பயன்படுத்தி உங்கள் வணிக தகவல் VANIKIO-வில் சேமிக்கப்படும்.",
+
+        cancel:
+            "ரத்து செய்",
+
+        confirm:
+            "வெளியிடு",
+
+        publishing:
+            "வணிகம் வெளியிடப்படுகிறது",
+
+        pleaseWait:
+            "உங்கள் வணிக தகவல் சேமிக்கப்படும் வரை காத்திருக்கவும்.",
+
+        successTitle:
+            "வணிகம் வெற்றிகரமாக வெளியிடப்பட்டது",
+
+        successMessage:
+            "உங்கள் வணிகம் வெற்றிகரமாக வெளியிடப்பட்டது.",
+
+        done:
+            "முடிந்தது",
+
+        errorTitle:
+            "வணிகத்தை வெளியிட முடியவில்லை",
+
+        errorMessage:
+            "வணிகத்தை வெளியிடும்போது பிழை ஏற்பட்டது. மீண்டும் முயற்சிக்கவும்.",
+
+        close:
+            "மூடு"
+
+    }
+
+};
+
+
+// ============================================================
+// LANGUAGE FUNCTION
+// ============================================================
+
+function setLanguage(lang) {
+
+    currentLanguage = lang;
+
+    localStorage.setItem(
+        "vanikioBusinessLanguage",
+        lang
+    );
+
+    document.documentElement.lang =
+        lang === "ta"
+            ? "ta"
+            : "en";
+
+
+    document
+        .querySelectorAll("[data-i18n]")
+        .forEach(element => {
+
+            const key =
+                element.dataset.i18n;
+
+            if (
+                translations[lang] &&
+                translations[lang][key]
+            ) {
+
+                element.textContent =
+                    translations[lang][key];
+
+            }
+
+        });
+
+
+    englishButton.classList.toggle(
+        "active",
+        lang === "en"
+    );
+
+    tamilButton.classList.toggle(
+        "active",
+        lang === "ta"
+    );
+
+}
+
+
+// ============================================================
+// VALUE HELPER
+// ============================================================
+
+function value(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return "";
+    }
+
+    return element.value.trim();
+
+}
+
+
+// ============================================================
+// NORMALIZE BUSINESS ID
+// ============================================================
+
+function normalizeBusinessId(id) {
+
+    return id
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, "-");
+
+}
+
+
+// ============================================================
+// VALIDATE BUSINESS ID
+// ============================================================
+
+function validateBusinessId(businessId) {
+
+    if (!businessId) {
+
+        return currentLanguage === "ta"
+            ? "Business ID கட்டாயம்."
+            : "Business ID is required.";
+
+    }
+
+
+    /*
+     * Allowed:
+     * a-z
+     * 0-9
+     * hyphen
+     * underscore
+     */
+
+    const validPattern =
+        /^[a-z0-9_-]+$/;
+
+
+    if (!validPattern.test(businessId)) {
+
+        return currentLanguage === "ta"
+            ? "Business ID-ல் a-z, 0-9, - மற்றும் _ மட்டும் பயன்படுத்தவும்."
+            : "Business ID can contain only a-z, 0-9, hyphen (-), and underscore (_).";
+
+    }
+
+
+    if (businessId.length < 3) {
+
+        return currentLanguage === "ta"
+            ? "Business ID குறைந்தது 3 எழுத்துகள் இருக்க வேண்டும்."
+            : "Business ID must be at least 3 characters.";
+
+    }
+
+
+    return "";
+
+}
+
+
+// ============================================================
+// OPEN CONFIRMATION
+// ============================================================
+
+function openConfirmDialog() {
+
+    const businessId =
+        normalizeBusinessId(
+            value("businessId")
+        );
+
+    const businessName =
+        value("businessName");
+
+
+    if (!businessId) {
+
+        showError(
+            currentLanguage === "ta"
+                ? "Business ID கட்டாயம்."
+                : "Business ID is required."
+        );
+
+        return;
+
+    }
+
+
+    const businessIdError =
+        validateBusinessId(
+            businessId
+        );
+
+
+    if (businessIdError) {
+
+        showError(
+            businessIdError
+        );
+
+        return;
+
+    }
+
+
+    if (!businessName) {
+
+        showError(
+            currentLanguage === "ta"
+                ? "வணிகத்தின் பெயர் கட்டாயம்."
+                : "Business name is required."
+        );
+
+        return;
+
+    }
+
+
+    /*
+     * Store normalized ID back into input.
+     */
+
+    document.getElementById(
+        "businessId"
+    ).value = businessId;
+
+
+    showModalState("confirm");
+
+}
+
+
+// ============================================================
+// CONFIRM PUBLISH
+// ============================================================
+
+async function confirmPublish() {
+
+    const businessId =
+        normalizeBusinessId(
+            value("businessId")
+        );
+
+    const businessName =
+        value("businessName");
+
+
+    // ========================================================
+    // VALIDATE BUSINESS ID
+    // ========================================================
+
+    const businessIdError =
+        validateBusinessId(
+            businessId
+        );
+
+
+    if (businessIdError) {
+
+        showError(
+            businessIdError
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // VALIDATE BUSINESS NAME
+    // ========================================================
+
+    if (!businessName) {
+
+        showError(
+            currentLanguage === "ta"
+                ? "வணிகத்தின் பெயர் கட்டாயம்."
+                : "Business name is required."
+        );
+
+        return;
+
+    }
+
+
+    // ========================================================
+    // SHOW LOADING
+    // ========================================================
+
+    showModalState("loading");
+
+    publishButton.disabled = true;
+
+    confirmButton.disabled = true;
+
+
+    try {
+
+        // ====================================================
+        // CREATE DOCUMENT REFERENCE
+        //
+        // businesses/{USER_ENTERED_BUSINESS_ID}
+        // ====================================================
+
+        const businessRef =
+            doc(
+                db,
+                "businesses",
+                businessId
+            );
+
+
+        // ====================================================
+        // CHECK IF BUSINESS ID ALREADY EXISTS
+        // ====================================================
+
+        const existingBusiness =
+            await getDoc(
+                businessRef
+            );
+
+
+        if (existingBusiness.exists()) {
+
+            throw new Error(
+                "BUSINESS_ID_EXISTS"
+            );
+
+        }
+
+
+        // ====================================================
+        // BUSINESS DATA
+        // ====================================================
+
+        const businessData = {
+
+            businessId:
+                businessId,
+
+            businessName:
+                businessName,
+
+            category:
+                value("businessCategory"),
+
+            tagline:
+                value("businessTagline"),
+
+            about:
+                value("businessAbout"),
+
+            mobile:
+                value("businessMobile"),
+
+            website:
+                value("businessWebsite"),
+
+            address:
+                value("businessAddress"),
+
+            createdAt:
+                serverTimestamp(),
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
+
+        // ====================================================
+        // SAVE TO FIRESTORE
+        //
+        // businesses/{businessId}
+        // ====================================================
+
+        await setDoc(
+            businessRef,
+            businessData
+        );
+
+
+        // ====================================================
+        // SAVE BUSINESS ID LOCALLY
+        // ====================================================
+
+        localStorage.setItem(
+            "vanikioBusinessId",
+            businessId
+        );
+
+
+        // ====================================================
+        // UPDATE BUSINESS ID BOX
+        // ====================================================
+
+        document
+            .getElementById(
+                "businessIdValue"
+            )
+            .textContent =
+                businessId;
+
+
+        document
+            .getElementById(
+                "businessIdBox"
+            )
+            .style.display =
+                "block";
+
+
+        // ====================================================
+        // SUCCESS MODAL
+        // ====================================================
+
+        document
+            .getElementById(
+                "successBusinessId"
+            )
+            .textContent =
+                businessId;
+
+
+        showModalState(
+            "success"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Business publish error:",
+            error
+        );
+
+
+        // ====================================================
+        // BUSINESS ID ALREADY EXISTS
+        // ====================================================
+
+        if (
+            error.message ===
+            "BUSINESS_ID_EXISTS"
+        ) {
+
+            showError(
+
+                currentLanguage === "ta"
+                    ? "இந்த Business ID ஏற்கனவே உள்ளது. வேறு Business ID-ஐ தேர்வு செய்யவும்."
+                    : "This Business ID already exists. Please choose a different Business ID."
+
+            );
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // FIRESTORE PERMISSION ERROR
+        // ====================================================
+
+        if (
+            error.code ===
+            "permission-denied"
+        ) {
+
+            showError(
+
+                currentLanguage === "ta"
+                    ? "Firestore அனுமதி மறுக்கப்பட்டது. உங்கள் Firestore Rules-ஐ சரிபார்க்கவும்."
+                    : "Firestore permission denied. Please check your Firestore Rules."
+
+            );
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // FIREBASE CONFIGURATION ERROR
+        // ====================================================
+
+        if (
+            error.code ===
+            "failed-precondition"
+        ) {
+
+            showError(
+
+                currentLanguage === "ta"
+                    ? "Firebase அமைப்பில் சிக்கல் உள்ளது."
+                    : "There is a problem with the Firebase configuration."
+
+            );
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // NETWORK ERROR
+        // ====================================================
+
+        if (
+            error.code ===
+            "unavailable"
+        ) {
+
+            showError(
+
+                currentLanguage === "ta"
+                    ? "இணைய இணைப்பு அல்லது Firebase சேவையில் சிக்கல் உள்ளது."
+                    : "There is a network or Firebase service problem."
+
+            );
+
+            return;
+
+        }
+
+
+        // ====================================================
+        // GENERAL ERROR
+        // ====================================================
+
+        showError(
+
+            currentLanguage === "ta"
+                ? "வணிகத்தை வெளியிட முடியவில்லை. Firebase மற்றும் Firestore Rules-ஐ சரிபார்க்கவும்."
+                : "Unable to publish business. Please check Firebase and Firestore Rules."
+
+        );
+
+    } finally {
+
+        publishButton.disabled = false;
+
+        confirmButton.disabled = false;
+
+    }
+
+}
+
+
+// ============================================================
+// MODAL STATE
+// ============================================================
+
+function showModalState(state) {
+
+    const overlay =
+        document.getElementById(
+            "modalOverlay"
+        );
+
+    const confirmContent =
+        document.getElementById(
+            "confirmContent"
+        );
+
+    const loadingContent =
+        document.getElementById(
+            "loadingContent"
+        );
+
+    const successContent =
+        document.getElementById(
+            "successContent"
+        );
+
+    const errorContent =
+        document.getElementById(
+            "errorContent"
+        );
+
+
+    confirmContent.style.display =
+        "none";
+
+    loadingContent.classList.remove(
+        "show"
+    );
+
+    successContent.classList.remove(
+        "show"
+    );
+
+    errorContent.classList.remove(
+        "show"
+    );
+
+
+    overlay.classList.add(
+        "show"
+    );
+
+
+    if (state === "confirm") {
+
+        confirmContent.style.display =
+            "block";
+
+    }
+
+
+    if (state === "loading") {
+
+        loadingContent.classList.add(
+            "show"
+        );
+
+    }
+
+
+    if (state === "success") {
+
+        successContent.classList.add(
+            "show"
+        );
+
+    }
+
+
+    if (state === "error") {
+
+        errorContent.classList.add(
+            "show"
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// SHOW ERROR
+// ============================================================
+
+function showError(message) {
+
+    document
+        .getElementById(
+            "errorMessage"
+        )
+        .textContent =
+            message;
+
+    showModalState(
+        "error"
+    );
+
+}
+
+
+// ============================================================
+// CLOSE MODAL
+// ============================================================
+
+function closeModal() {
+
+    document
+        .getElementById(
+            "modalOverlay"
+        )
+        .classList
+        .remove(
+            "show"
+        );
+
+}
+
+
+// ============================================================
+// COPY BUSINESS ID
+// ============================================================
+
+async function copyBusinessId() {
+
+    const id =
+        document
+            .getElementById(
+                "businessIdValue"
+            )
+            .textContent;
+
+
+    if (!id) {
+        return;
+    }
+
+
+    try {
+
+        await navigator.clipboard.writeText(
+            id
+        );
+
+
+        /*
+         * Use the existing error/modal system
+         * instead of relying on console.
+         */
+
+        const message =
+            currentLanguage === "ta"
+                ? "Business ID நகலெடுக்கப்பட்டது."
+                : "Business ID copied.";
+
+
+        alert(
+            message
+        );
+
+
+    } catch (error) {
+
+        alert(
+
+            currentLanguage === "ta"
+                ? "Business ID-ஐ கைமுறையாக நகலெடுக்கவும்."
+                : "Copy failed. Please copy the Business ID manually."
+
+        );
+
+    }
+
+}
+
+
+// ============================================================
+// LOAD SAVED BUSINESS ID
+// ============================================================
+
+const savedBusinessId =
+    localStorage.getItem(
+        "vanikioBusinessId"
+    );
+
+
+if (savedBusinessId) {
+
+    document
+        .getElementById(
+            "businessId"
+        )
+        .value =
+            savedBusinessId;
+
+
+    document
+        .getElementById(
+            "businessIdValue"
+        )
+        .textContent =
+            savedBusinessId;
+
+
+    document
+        .getElementById(
+            "businessIdBox"
+        )
+        .style.display =
+            "block";
+
+}
+
+
+// ============================================================
+// EVENT LISTENERS
+//
+// IMPORTANT:
+// No inline onclick handlers are used.
+// Everything is registered here.
+// ============================================================
+
+englishButton.addEventListener(
+    "click",
+    () => setLanguage("en")
+);
+
+
+tamilButton.addEventListener(
+    "click",
+    () => setLanguage("ta")
+);
+
+
+publishButton.addEventListener(
+    "click",
+    openConfirmDialog
+);
+
+
+cancelButton.addEventListener(
+    "click",
+    closeModal
+);
+
+
+confirmButton.addEventListener(
+    "click",
+    confirmPublish
+);
+
+
+doneButton.addEventListener(
+    "click",
+    closeModal
+);
+
+
+errorCloseButton.addEventListener(
+    "click",
+    closeModal
+);
+
+
+copyBusinessIdButton.addEventListener(
+    "click",
+    copyBusinessId
+);
+
+
+goProductButton.addEventListener(
+    "click",
+    () => {
+
+        window.location.href =
+            "publish-product.html";
+
+    }
+);
+
+
+// ============================================================
+// INITIAL LANGUAGE
+// ============================================================
+
+setLanguage(
+    currentLanguage
+);
+
+
+// ============================================================
+// DEBUG
+// ============================================================
+
+console.log(
+    "VANIKIO Publish Business page loaded."
+);
+
+console.log(
+    "Firebase DB initialized:",
+    !!db
+);
+
+</script>
+
+
+<!-- =========================================================
+     VANIKIO ERROR DISPLAY
+========================================================= -->
+
+<div
+    id="vanikioErrorBox"
+    style="
+        display:none;
+        position:fixed;
+        top:20px;
+        left:50%;
+        transform:translateX(-50%);
+        width:min(92%,700px);
+        z-index:99999;
+        background:#fff4f6;
+        border:1px solid #d85c6e;
+        border-radius:12px;
+        padding:16px 18px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.15);
+        font-family:Poppins,sans-serif;
+    "
+>
+
+    <div
+        style="
+            font-size:14px;
+            font-weight:700;
+            color:#b83f52;
+            margin-bottom:6px;
+        "
+    >
+        VANIKIO Error
+    </div>
+
+
+    <div
+        id="vanikioErrorMessage"
+        style="
+            font-size:12px;
+            line-height:1.6;
+            color:#514b60;
+            white-space:pre-wrap;
+            word-break:break-word;
+        "
+    ></div>
+
+
+    <button
+        type="button"
+        id="vanikioErrorCloseButton"
+        style="
+            margin-top:10px;
+            padding:7px 12px;
+            border:none;
+            border-radius:7px;
+            background:#d85c6e;
+            color:white;
+            font-family:Poppins,sans-serif;
+            font-size:11px;
+            font-weight:600;
+            cursor:pointer;
+        "
+    >
+        Close
+    </button>
+
+</div>
+
+
+<script>
+
+/*
+ * ============================================================
+ * GLOBAL ERROR DISPLAY
+ *
+ * This script is intentionally outside the Firebase module.
+ * Therefore it can still display errors if firebase.js itself
+ * fails to load.
+ * ============================================================
+ */
+
+(function () {
+
+    const box =
+        document.getElementById(
+            "vanikioErrorBox"
+        );
+
+    const message =
+        document.getElementById(
+            "vanikioErrorMessage"
+        );
+
+    const closeButton =
+        document.getElementById(
+            "vanikioErrorCloseButton"
+        );
+
+
+    if (closeButton) {
+
+        closeButton.addEventListener(
+            "click",
+            function () {
+
+                box.style.display =
+                    "none";
+
+            }
+        );
+
+    }
+
+
+    window.addEventListener(
+        "error",
+        function (event) {
+
+            if (!box || !message) {
+                return;
+            }
+
+
+            message.textContent =
+                "JavaScript Error:\n\n" +
+                (event.message ||
+                    "Unknown error") +
+                "\n\nFile: " +
+                (event.filename ||
+                    "Unknown") +
+                "\nLine: " +
+                (event.lineno ||
+                    "Unknown") +
+                "\nColumn: " +
+                (event.colno ||
+                    "Unknown");
+
+
+            box.style.display =
+                "block";
+
+        }
+    );
+
+
+    window.addEventListener(
+        "unhandledrejection",
+        function (event) {
+
+            if (!box || !message) {
+                return;
+            }
+
+
+            let errorText =
+                "Unknown Promise error";
+
+
+            if (event.reason) {
+
+                errorText =
+                    event.reason.message ||
+                    String(event.reason);
+
+            }
+
+
+            message.textContent =
+                "JavaScript Promise Error:\n\n" +
+                errorText;
+
+
+            box.style.display =
+                "block";
+
+        }
+    );
+
+
+})();
+
+</script>
+
+
+</body>
+
+</html>
+
