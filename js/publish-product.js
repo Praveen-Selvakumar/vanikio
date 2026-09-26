@@ -1511,237 +1511,65 @@ function setLanguage(language) {
 
 async function publishProduct() {
 
-    const product =
-        getProductData();
+    const businessId =
+        document.getElementById("businessId").value.trim();
 
+    const itemId =
+        document.getElementById("itemId").value.trim();
 
-    // ========================================================
-    // VALIDATION
-    // ========================================================
+    const productName =
+        document.getElementById("productName").value.trim();
 
-    if (!product.businessId) {
+    const productDescription =
+        document.getElementById("productDescription").value.trim();
 
-        alert(
-            product.language === "ta"
-                ? "வணிக ID அவசியம்."
-                : "Business ID is required."
-        );
-
-        return false;
-
+    if (!businessId) {
+        alert("Please enter Business ID.");
+        return;
     }
 
-
-    if (!product.productName) {
-
-        alert(
-            product.language === "ta"
-                ? "பொருளின் பெயர் அவசியம்."
-                : "Product name is required."
-        );
-
-        return false;
-
+    if (!productName) {
+        alert("Please enter Product Name.");
+        return;
     }
 
-
-    if (!product.productDescription) {
-
-        alert(
-            product.language === "ta"
-                ? "பொருளின் விளக்கம் அவசியம்."
-                : "Product description is required."
-        );
-
-        return false;
-
+    if (!productDescription) {
+        alert("Please enter Product Description.");
+        return;
     }
 
-
-    if (!product.itemId) {
-
-        alert(
-            product.language === "ta"
-                ? "QR / பொருள் ID அவசியம்."
-                : "QR / Item ID is required."
-        );
-
-        return false;
-
+    if (!itemId) {
+        alert("Please enter QR / Item ID.");
+        return;
     }
 
-
-    // ========================================================
-    // SAVE BUSINESS ID
-    // ========================================================
-
-    localStorage.setItem(
-        "vanikioBusinessId",
-        product.businessId
+    const productRef = doc(
+        db,
+        "businesses",
+        businessId,
+        "products",
+        itemId
     );
 
+    await setDoc(productRef, {
+        businessId: businessId,
+        itemId: itemId,
+        productName: productName,
+        productDescription: productDescription,
+        serial: document.getElementById("serial").value.trim(),
+        price: document.getElementById("price").value.trim(),
+        qrEnabled: document.getElementById("qrEnabled").checked,
+        qrUrl:
+            "https://vanikio.com/i/" +
+            encodeURIComponent(businessId) +
+            "/" +
+            encodeURIComponent(itemId),
+        updatedAt: serverTimestamp()
+    }, {
+        merge: true
+    });
 
-    // ========================================================
-    // FIRESTORE PATH
-    //
-    // businesses/{businessId}/products/{itemId}
-    // ========================================================
-
-    const productRef =
-        doc(
-            db,
-            "businesses",
-            product.businessId,
-            "products",
-            product.itemId
-        );
-
-
-    try {
-
-        // ====================================================
-        // CHECK EXISTING PRODUCT
-        // ====================================================
-
-        const existingProduct =
-            await getDoc(
-                productRef
-            );
-
-
-        // ====================================================
-        // PRODUCT DATA
-        // ====================================================
-
-        const productData = {
-
-            businessId:
-                product.businessId,
-
-            itemId:
-                product.itemId,
-
-            productName:
-                product.productName,
-
-            productDescription:
-                product.productDescription,
-
-            serial:
-                product.serial,
-
-            price:
-                product.price,
-
-            qrUrl:
-                product.qrUrl,
-
-            qrEnabled:
-                product.qrEnabled,
-
-            sticker:
-                product.sticker,
-
-            language:
-                product.language,
-
-            updatedAt:
-                serverTimestamp()
-
-        };
-
-
-        // ====================================================
-        // ONLY SET CREATED AT FOR NEW PRODUCT
-        // ====================================================
-
-        if (!existingProduct.exists()) {
-
-            productData.createdAt =
-                serverTimestamp();
-
-        }
-
-
-        // ====================================================
-        // SAVE
-        // ====================================================
-
-        await setDoc(
-            productRef,
-            productData,
-            {
-                merge: true
-            }
-        );
-
-
-        console.log(
-            "VANIKIO product published:",
-            productRef.path
-        );
-
-
-        alert(
-            product.language === "ta"
-                ? "பொருள் வெற்றிகரமாக வெளியிடப்பட்டது."
-                : "Product published successfully."
-        );
-
-
-        return true;
-
-
-    } catch (error) {
-
-        console.error(
-            "Firestore product publish error:",
-            error
-        );
-
-
-        let message =
-            "Unable to publish product.";
-
-
-        if (
-            error &&
-            error.code ===
-            "permission-denied"
-        ) {
-
-            message =
-                product.language === "ta"
-                    ? "Firestore அனுமதி மறுக்கப்பட்டது."
-                    : "Firestore permission denied.";
-
-        } else if (
-            error &&
-            error.code ===
-            "unavailable"
-        ) {
-
-            message =
-                product.language === "ta"
-                    ? "Firebase சேவை தற்போது கிடைக்கவில்லை."
-                    : "Firebase service is currently unavailable.";
-
-        }
-
-
-        alert(
-            product.language === "ta"
-                ? "பொருளை வெளியிட முடியவில்லை.\n\n" +
-                  message
-                : "Unable to publish product.\n\n" +
-                  message
-        );
-
-
-        return false;
-
-    }
-
+    alert("Product published successfully.");
 }
 
 
