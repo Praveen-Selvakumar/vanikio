@@ -1,906 +1,1053 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>VANIKIO — Publish Product</title>
-
-
-    <!-- =========================================================
-         GOOGLE FONT — POPPINS
-    ========================================================== -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    >
+<title>VANIKIO — Publish Product</title>
 
 
-    <!-- =========================================================
-         QR CODE
-    ========================================================== -->
+<!-- =========================================================
+     GOOGLE FONT — POPPINS
+========================================================== -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
 
 
-    <!-- =========================================================
-         HTML2CANVAS
-    ========================================================== -->
+<!-- =========================================================
+     QR CODE LIBRARY
+========================================================== -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
-    <!-- =========================================================
-         PAGE CSS
-    ========================================================== -->
+<!-- =========================================================
+     HTML2CANVAS
+========================================================== -->
 
-    <link
-            rel="stylesheet"
-            href="css/publish-product.css"
-    >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+<!-- =========================================================
+     PAGE CSS
+========================================================== -->
+
+<link
+    rel="stylesheet"
+    href="css/publish-product.css"
+>
+```
 
 </head>
 
-
 <body>
-
 
 <div class="container">
 
+```
+<!-- =========================================================
+     LEFT PANEL
+========================================================== -->
 
-    <!-- =========================================================
-         CONTROL PANEL
-    ========================================================== -->
+<div class="panel">
 
-    <div class="panel">
+    <div class="panel-header">
 
+        <h1>VANIKIO</h1>
 
-        <div class="panel-header">
-
-            <h1>VANIKIO</h1>
-
-
-            <div class="language-toggle">
-
-                <button
-                        type="button"
-                        class="language-button active"
-                        id="englishButton"
-                        onclick="setLanguage('en')"
-                >
-                    EN
-                </button>
-
-
-                <button
-                        type="button"
-                        class="language-button"
-                        id="tamilButton"
-                        onclick="setLanguage('ta')"
-                >
-                    தமிழ்
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <p
-                class="panel-description"
-                data-i18n="description"
-        >
+        <p data-i18n="description">
             Create a compact QR sticker linked to your business.
         </p>
 
+    </div>
 
-        <!-- BUSINESS ID -->
 
-        <div class="field">
+    <!-- =====================================================
+         LANGUAGE
+    ====================================================== -->
 
-            <label data-i18n="businessId">
-                BUSINESS ID *
-            </label>
+    <div class="language-switch">
 
-            <input
-                    type="text"
-                    id="businessId"
-                    placeholder="Example: abc123XYZ"
-                    data-placeholder-en="Example: abc123XYZ"
-                    data-placeholder-ta="உதாரணம்: abc123XYZ"
-                    required
-            >
-
-        </div>
-
-
-        <!-- PRODUCT NAME -->
-
-        <div class="field">
-
-            <label data-i18n="productName">
-                PRODUCT NAME *
-            </label>
-
-            <input
-                    type="text"
-                    id="productName"
-                    placeholder="Example: Wooden Chair"
-                    data-placeholder-en="Example: Wooden Chair"
-                    data-placeholder-ta="உதாரணம்: மர நாற்காலி"
-                    required
-            >
-
-        </div>
-
-
-        <!-- PRODUCT DESCRIPTION -->
-
-        <div class="field">
-
-            <label data-i18n="productDescription">
-                PRODUCT DESCRIPTION *
-            </label>
-
-            <textarea
-                    id="productDescription"
-                    placeholder="Example: Premium wooden chair for home and office use."
-                    data-placeholder-en="Example: Premium wooden chair for home and office use."
-                    data-placeholder-ta="உதாரணம்: வீடு மற்றும் அலுவலக பயன்பாட்டிற்கான தரமான மர நாற்காலி."
-                    required
-            ></textarea>
-
-        </div>
-
-
-        <!-- SERIAL NUMBER -->
-
-        <div class="field">
-
-            <label data-i18n="serialNumber">
-                SERIAL NUMBER
-            </label>
-
-            <input
-                    type="text"
-                    id="serial"
-                    value="12"
-            >
-
-        </div>
-
-
-        <!-- PRICE -->
-
-        <div class="field">
-
-            <label data-i18n="price">
-                PRICE
-            </label>
-
-            <input
-                    type="text"
-                    id="price"
-                    value="499"
-            >
-
-        </div>
-
-
-        <!-- QR / ITEM ID -->
-
-        <div class="field">
-
-            <label data-i18n="qrItemId">
-                QR / ITEM ID
-            </label>
-
-            <input
-                    type="text"
-                    id="itemId"
-                    value="CHAIR-12"
-            >
-
-        </div>
-
-
-        <!-- DIMENSIONS -->
-
-        <div class="two-column">
-
-            <div class="field">
-
-                <label data-i18n="width">
-                    WIDTH (mm)
-                </label>
-
-                <input
-                        type="number"
-                        id="stickerWidth"
-                        value="35"
-                        min="10"
-                        step="1"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label data-i18n="height">
-                    HEIGHT (mm)
-                </label>
-
-                <input
-                        type="number"
-                        id="stickerHeight"
-                        value="20"
-                        min="8"
-                        step="1"
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- QR ENABLE -->
-
-        <div class="checkbox-row">
-
-            <input
-                    type="checkbox"
-                    id="qrEnabled"
-                    checked
-            >
-
-            <label
-                    for="qrEnabled"
-                    data-i18n="showQr"
-            >
-                Show QR Code
-            </label>
-
-        </div>
-
-
-        <!-- QR SIZE -->
-
-        <div class="field">
-
-            <label data-i18n="qrSize">
-                QR SIZE (mm)
-            </label>
-
-            <input
-                    type="number"
-                    id="qrSize"
-                    value="15"
-                    min="5"
-                    step="0.5"
-            >
-
-        </div>
-
-
-        <!-- TEXT SIZES -->
-
-        <div class="two-column">
-
-            <div class="field">
-
-                <label data-i18n="labelSize">
-                    LABEL SIZE
-                </label>
-
-                <input
-                        type="number"
-                        id="labelSize"
-                        value="1.7"
-                        min="0.8"
-                        step="0.1"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label data-i18n="valueSize">
-                    SERIAL / PRICE
-                </label>
-
-                <input
-                        type="number"
-                        id="valueSize"
-                        value="4.2"
-                        min="1"
-                        step="0.1"
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- BORDER SIZE -->
-
-        <div class="field">
-
-            <label data-i18n="borderSize">
-                BORDER SIZE (mm)
-            </label>
-
-            <input
-                    type="number"
-                    id="borderSize"
-                    value="0.3"
-                    min="0"
-                    max="3"
-                    step="0.1"
-            >
-
-        </div>
-
-
-        <!-- STICKER BACKGROUND -->
-
-        <div
-                class="color-title"
-                data-i18n="stickerBackground"
+        <button
+            type="button"
+            id="languageEn"
+            onclick="setLanguage('en')"
         >
+            English
+        </button>
+
+        <button
+            type="button"
+            id="languageTa"
+            onclick="setLanguage('ta')"
+        >
+            தமிழ்
+        </button>
+
+    </div>
+
+
+    <!-- =====================================================
+         BUSINESS ID
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label for="businessId" data-i18n="businessId">
+            BUSINESS ID *
+        </label>
+
+        <input
+            type="text"
+            id="businessId"
+            placeholder="Enter business ID"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         PRODUCT NAME
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label for="productName" data-i18n="productName">
+            PRODUCT NAME *
+        </label>
+
+        <input
+            type="text"
+            id="productName"
+            placeholder="Enter product name"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         PRODUCT DESCRIPTION
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label
+            for="productDescription"
+            data-i18n="productDescription"
+        >
+            PRODUCT DESCRIPTION *
+        </label>
+
+        <textarea
+            id="productDescription"
+            rows="3"
+            placeholder="Enter product description"
+        ></textarea>
+
+    </div>
+
+
+    <!-- =====================================================
+         SERIAL NUMBER
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label for="serial" data-i18n="serialNumber">
+            SERIAL NUMBER
+        </label>
+
+        <input
+            type="text"
+            id="serial"
+            value="12"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         PRICE
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label for="price" data-i18n="price">
+            PRICE
+        </label>
+
+        <input
+            type="text"
+            id="price"
+            value="499"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         QR / ITEM ID
+    ====================================================== -->
+
+    <div class="form-group">
+
+        <label for="itemId" data-i18n="qrItemId">
+            QR / ITEM ID
+        </label>
+
+        <input
+            type="text"
+            id="itemId"
+            value="CHAIR-12"
+            autocomplete="off"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         STICKER SIZE
+    ====================================================== -->
+
+    <div class="section-title">
+        Sticker Size
+    </div>
+
+
+    <div class="two-column">
+
+
+        <div class="form-group">
+
+            <label for="stickerWidth" data-i18n="width">
+                WIDTH (mm)
+            </label>
+
+            <input
+                type="number"
+                id="stickerWidth"
+                value="35"
+                min="1"
+                step="0.1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="stickerHeight" data-i18n="height">
+                HEIGHT (mm)
+            </label>
+
+            <input
+                type="number"
+                id="stickerHeight"
+                value="20"
+                min="1"
+                step="0.1"
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================================
+         QR SETTINGS
+    ====================================================== -->
+
+    <div class="section-title">
+        QR Settings
+    </div>
+
+
+    <div class="checkbox-row">
+
+        <input
+            type="checkbox"
+            id="qrEnabled"
+            checked
+        >
+
+        <label for="qrEnabled" data-i18n="showQr">
+            Show QR Code
+        </label>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="qrSize" data-i18n="qrSize">
+            QR SIZE (mm)
+        </label>
+
+        <input
+            type="number"
+            id="qrSize"
+            value="15"
+            min="1"
+            step="0.1"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         TEXT SIZE
+    ====================================================== -->
+
+    <div class="section-title">
+        Text Settings
+    </div>
+
+
+    <div class="two-column">
+
+
+        <div class="form-group">
+
+            <label for="labelSize" data-i18n="labelSize">
+                LABEL SIZE
+            </label>
+
+            <input
+                type="number"
+                id="labelSize"
+                value="1.7"
+                min="0.1"
+                step="0.1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="valueSize" data-i18n="valueSize">
+                SERIAL / PRICE
+            </label>
+
+            <input
+                type="number"
+                id="valueSize"
+                value="4.2"
+                min="0.1"
+                step="0.1"
+            >
+
+        </div>
+
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="borderSize" data-i18n="borderSize">
+            BORDER SIZE (mm)
+        </label>
+
+        <input
+            type="number"
+            id="borderSize"
+            value="0.3"
+            min="0"
+            step="0.1"
+        >
+
+    </div>
+
+
+    <!-- =====================================================
+         COLOR SETTINGS
+    ====================================================== -->
+
+    <div class="section-title">
+        Colors
+    </div>
+
+
+    <!-- =====================================================
+         STICKER BACKGROUND
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="stickerBackground">
             STICKER BACKGROUND
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="stickerBackground"
-                    data-color="#ffffff"
-                    style="background:#ffffff"></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#f7f5ff"
-                    style="background:#f7f5ff"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="stickerBackground"
+                data-color="#ffffff"
+                style="background:#ffffff"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#ece7ff"
-                    style="background:#ece7ff"></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#e8f8f5"
-                    style="background:#e8f8f5"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="stickerBackground"
+                data-color="#f5f5f5"
+                style="background:#f5f5f5"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#fff4f6"
-                    style="background:#fff4f6"></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#fff8e7"
-                    style="background:#fff8e7"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="stickerBackground"
+                data-color="#fff8e7"
+                style="background:#fff8e7"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="stickerBackground"
-                    data-color="#f1f1f1"
-                    style="background:#f1f1f1"></button>
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="stickerBackground"
+                data-color="#eef7ff"
+                style="background:#eef7ff"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="stickerBackground"
+                data-color="#f2fff4"
+                style="background:#f2fff4"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- BORDER COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="borderColor"
-        >
+    <!-- =====================================================
+         BORDER COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="borderColor">
             BORDER COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="border"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="border"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="border"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#168271"
-                    style="background:#168271"></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#d85c6e"
-                    style="background:#d85c6e"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="border"
+                data-color="#555555"
+                style="background:#555555"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="border"
-                    data-color="#000000"
-                    style="background:#000000"></button>
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="border"
+                data-color="#d97706"
+                style="background:#d97706"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="border"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- S.NO LABEL COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="serialLabelColor"
-        >
+    <!-- =====================================================
+         SERIAL LABEL COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="serialLabelColor">
             S.NO LABEL COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="serialLabel"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialLabel"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="serialLabel"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialLabel"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialLabel"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialLabel"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialLabel"
-                    data-color="#77738a"
-                    style="background:#77738a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialLabel"
-                    data-color="#d85c6e"
-                    style="background:#d85c6e"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialLabel"
+                data-color="#d97706"
+                style="background:#d97706"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialLabel"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- S.NO VALUE COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="serialValueColor"
-        >
+    <!-- =====================================================
+         SERIAL VALUE COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="serialValueColor">
             S.NO VALUE COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="serialValue"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialValue"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="serialValue"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialValue"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialValue"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialValue"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialValue"
-                    data-color="#168271"
-                    style="background:#168271"></button>
 
-            <button type="button" class="color-option"
-                    data-target="serialValue"
-                    data-color="#d85c6e"
-                    style="background:#d85c6e"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialValue"
+                data-color="#d97706"
+                style="background:#d97706"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="serialValue"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- PRICE LABEL COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="priceLabelColor"
-        >
+    <!-- =====================================================
+         PRICE LABEL COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="priceLabelColor">
             PRICE LABEL COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="priceLabel"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceLabel"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="priceLabel"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceLabel"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceLabel"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceLabel"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceLabel"
-                    data-color="#77738a"
-                    style="background:#77738a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceLabel"
-                    data-color="#d85c6e"
-                    style="background:#d85c6e"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceLabel"
+                data-color="#d97706"
+                style="background:#d97706"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceLabel"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- PRICE VALUE COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="priceValueColor"
-        >
+    <!-- =====================================================
+         PRICE VALUE COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="priceValueColor">
             PRICE VALUE COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="priceValue"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceValue"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
+            <button
+                type="button"
+                class="color-option active"
+                data-target="priceValue"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceValue"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceValue"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceValue"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceValue"
-                    data-color="#168271"
-                    style="background:#168271"></button>
 
-            <button type="button" class="color-option"
-                    data-target="priceValue"
-                    data-color="#d85c6e"
-                    style="background:#d85c6e"></button>
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceValue"
+                data-color="#d97706"
+                style="background:#d97706"
+            ></button>
+
+
+            <button
+                type="button"
+                class="color-option"
+                data-target="priceValue"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
+
 
         </div>
 
+    </div>
 
-        <!-- QR COLOR -->
 
-        <div
-                class="color-title"
-                data-i18n="qrColor"
-        >
+    <!-- =====================================================
+         QR COLOR
+    ====================================================== -->
+
+    <div class="color-section">
+
+        <label data-i18n="qrColor">
             QR COLOR
-        </div>
-
+        </label>
 
         <div class="color-palette">
 
-            <button type="button" class="color-option active"
-                    data-target="qr"
-                    data-color="#000000"
-                    style="background:#000000"></button>
-
-            <button type="button" class="color-option"
-                    data-target="qr"
-                    data-color="#27243a"
-                    style="background:#27243a"></button>
-
-            <button type="button" class="color-option"
-                    data-target="qr"
-                    data-color="#5938dc"
-                    style="background:#5938dc"></button>
-
-            <button type="button" class="color-option"
-                    data-target="qr"
-                    data-color="#6c4cf1"
-                    style="background:#6c4cf1"></button>
-
-            <button type="button" class="color-option"
-                    data-target="qr"
-                    data-color="#168271"
-                    style="background:#168271"></button>
-
-            <button type="button" class="color-option"
-                    data-target="qr"
-                    data-color="#20b8a6"
-                    style="background:#20b8a6"></button>
-
-        </div>
-
-
-        <!-- BUTTONS -->
-
-        <div class="button-group">
 
             <button
-                    class="btn-primary"
-                    onclick="generateSticker()"
-                    data-i18n="generateSticker"
-            >
-                Generate Sticker
-            </button>
+                type="button"
+                class="color-option active"
+                data-target="qr"
+                data-color="#000000"
+                style="background:#000000"
+            ></button>
 
 
             <button
-                    class="btn-secondary"
-                    onclick="downloadSticker()"
-                    data-i18n="downloadPng"
-            >
-                Download PNG
-            </button>
+                type="button"
+                class="color-option"
+                data-target="qr"
+                data-color="#27243a"
+                style="background:#27243a"
+            ></button>
 
 
             <button
-                    class="btn-secondary"
-                    onclick="printSticker()"
-                    data-i18n="printSticker"
-            >
-                Print Sticker
-            </button>
+                type="button"
+                class="color-option"
+                data-target="qr"
+                data-color="#2563eb"
+                style="background:#2563eb"
+            ></button>
 
 
             <button
-                    class="btn-secondary"
-                    type="button"
-                    onclick="openPublishBusiness()"
-                    data-i18n="publishProduct"
-            >
-                Publish Product
-            </button>
+                type="button"
+                class="color-option"
+                data-target="qr"
+                data-color="#166534"
+                style="background:#166534"
+            ></button>
+
 
         </div>
 
     </div>
 
 
-    <!-- =========================================================
-         PREVIEW AREA
-    ========================================================== -->
+    <!-- =====================================================
+         ACTION BUTTONS
+    ====================================================== -->
 
-    <div class="preview-area">
-
-
-        <div class="preview-header">
-
-            <div
-                    class="preview-title"
-                    data-i18n="previewTitle"
-            >
-                Sticker Preview
-            </div>
+    <div class="action-buttons">
 
 
-            <div class="preview-actions">
-
-
-                <button
-                        type="button"
-                        class="download-qr-button"
-                        onclick="downloadQrOnly()"
-                >
-
-                    <span class="download-qr-icon">
-                        ↓
-                    </span>
-
-                    <span data-i18n="downloadQr">
-                        QR
-                    </span>
-
-                </button>
-
-
-                <button
-                        type="button"
-                        class="reset-button"
-                        onclick="resetSticker()"
-                >
-
-                    <span class="reset-icon">
-                        ↻
-                    </span>
-
-                    <span data-i18n="reset">
-                        Reset
-                    </span>
-
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div class="preview-box">
-
-
-            <div
-                    id="sticker"
-                    class="sticker"
-            >
-
-
-                <div class="sticker-info">
-
-
-                    <div
-                            class="company-name"
-                            id="companyNameText"
-                            style="display:none;"
-                    ></div>
-
-
-                    <div
-                            class="info-row"
-                            id="serialRow"
-                    >
-
-                        <span
-                                class="info-label"
-                                id="serialLabel"
-                        >
-                            SI.NO:
-                        </span>
-
-
-                        <span class="info-line">
-
-                            <span
-                                    class="info-value"
-                                    id="serialText"
-                            >
-                                12
-                            </span>
-
-                        </span>
-
-                    </div>
-
-
-                    <div
-                            class="info-row"
-                            id="priceRow"
-                    >
-
-                        <span
-                                class="info-label"
-                                id="priceLabel"
-                        >
-                            PRICE:
-                        </span>
-
-
-                        <span class="info-line">
-
-                            <span
-                                    class="info-value"
-                                    id="priceText"
-                            >
-                                499
-                            </span>
-
-                        </span>
-
-                    </div>
-
-
-                </div>
-
-
-                <div
-                        class="divider"
-                        id="divider"
-                ></div>
-
-
-                <div
-                        class="sticker-qr"
-                        id="qrSection"
-                >
-
-                    <div id="qrcode"></div>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <div
-                class="note"
-                data-i18n="note"
+        <button
+            type="button"
+            class="primary-button"
+            onclick="generateSticker()"
+            data-i18n="generateSticker"
         >
-            For very small stickers, keep the QR size large enough
-            for reliable scanning. QR is optional.
-        </div>
+            Generate Sticker
+        </button>
+
+
+        <button
+            type="button"
+            class="secondary-button"
+            onclick="downloadSticker()"
+            data-i18n="downloadPng"
+        >
+            Download PNG
+        </button>
+
+
+        <button
+            type="button"
+            class="secondary-button"
+            onclick="printSticker()"
+            data-i18n="printSticker"
+        >
+            Print Sticker
+        </button>
+
+
+        <!--
+            IMPORTANT:
+            Firestore publishing is handled by publish-product.js.
+            That function will save:
+
+            businesses/{businessId}/products/{itemId}
+
+            before continuing to the next page.
+        -->
+
+        <button
+            type="button"
+            class="publish-button"
+            onclick="openPublishBusiness()"
+            data-i18n="publishProduct"
+        >
+            Publish Product
+        </button>
 
 
     </div>
+
+
+    <!-- =====================================================
+         NOTE
+    ====================================================== -->
+
+    <div class="note" data-i18n="note">
+
+        For very small stickers, keep the QR size large enough
+        for reliable scanning. QR is optional.
+
+    </div>
+
 
 </div>
 
 
+<!-- =========================================================
+     RIGHT PREVIEW AREA
+========================================================== -->
+
+<div class="preview-area">
+
+
+    <div class="preview-header">
+
+        <h2 data-i18n="previewTitle">
+            Sticker Preview
+        </h2>
+
+    </div>
+
+
+    <!-- =====================================================
+         STICKER
+    ====================================================== -->
+
+    <div class="sticker-wrapper">
+
+        <div
+            id="sticker"
+            class="sticker"
+        >
+
+
+            <!-- =================================================
+                 INFORMATION AREA
+            ================================================== -->
+
+            <div
+                id="stickerInfo"
+                class="sticker-info"
+            >
+
+
+                <!-- =============================================
+                     COMPANY NAME
+                ============================================== -->
+
+                <div
+                    id="companyNameText"
+                    class="company-name"
+                ></div>
+
+
+                <!-- =============================================
+                     SERIAL
+                ============================================== -->
+
+                <div
+                    id="serialRow"
+                    class="info-line"
+                >
+
+                    <span
+                        id="serialLabel"
+                        class="info-label"
+                    >
+                        SI.NO:
+                    </span>
+
+                    <span
+                        id="serialText"
+                        class="info-value"
+                    >
+                        12
+                    </span>
+
+                </div>
+
+
+                <!-- =============================================
+                     PRICE
+                ============================================== -->
+
+                <div
+                    id="priceRow"
+                    class="info-line"
+                >
+
+                    <span
+                        id="priceLabel"
+                        class="info-label"
+                    >
+                        PRICE:
+                    </span>
+
+                    <span
+                        id="priceText"
+                        class="info-value"
+                    >
+                        499
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 DIVIDER
+            ================================================== -->
+
+            <div
+                id="divider"
+                class="divider"
+            ></div>
+
+
+            <!-- =================================================
+                 QR SECTION
+            ================================================== -->
+
+            <div
+                id="qrSection"
+                class="qr-section"
+            >
+
+                <div
+                    id="qrcode"
+                    class="qrcode"
+                ></div>
+
+
+                <button
+                    type="button"
+                    class="qr-download-button"
+                    onclick="downloadQrOnly()"
+                    data-i18n="downloadQr"
+                >
+                    QR
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         RESET
+    ====================================================== -->
+
+    <button
+        type="button"
+        class="reset-button"
+        onclick="resetSticker()"
+        data-i18n="reset"
+    >
+        Reset
+    </button>
+
+
+</div>
+```
+
+</div>
+
 <!-- =============================================================
-     JAVASCRIPT
-============================================================= -->
+     NORMAL JAVASCRIPT FILES
+============================================================== -->
 
 <script src="js/translations.js"></script>
-<script src="js/qr.js"></script>
-<script src="js/sticker.js"></script>
-<script src="js/print.js"></script>
-<script src="js/publish-product.js"></script>
 
+<script src="js/qr.js"></script>
+
+<script src="js/sticker.js"></script>
+
+<script src="js/print.js"></script>
+
+<!-- =============================================================
+     FIRESTORE / PRODUCT CONTROLLER
+
+     IMPORTANT:
+     This MUST be type="module" because
+     publish-product.js imports Firebase from ../firebase.js
+============================================================== -->
+
+<script
+    type="module"
+    src="js/publish-product.js"
+></script>
 
 </body>
 
