@@ -38,6 +38,11 @@
 }
 
 
+html {
+    height: 100%;
+}
+
+
 body {
 
     margin: 0;
@@ -58,7 +63,7 @@ body {
 
 .container {
 
-    max-width: 900px;
+    max-width: 1100px;
 
     margin: auto;
 
@@ -68,7 +73,7 @@ body {
 
     gap: 35px;
 
-    align-items: start;
+    align-items: stretch;
 }
 
 
@@ -465,6 +470,16 @@ button {
 .preview-area {
 
     min-width: 0;
+
+    min-height: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: stretch;
 }
 
 
@@ -570,6 +585,8 @@ button {
 .preview-box {
 
     min-height: 360px;
+
+    height: auto;
 
     display: flex;
 
@@ -905,10 +922,118 @@ button {
 
 
 /* =========================================================
+   DESKTOP — FIXED PREVIEW / SCROLLABLE CONTROLS
+========================================================= */
+
+@media (min-width: 701px) {
+
+    html,
+    body {
+
+        height: 100%;
+
+        overflow: hidden;
+    }
+
+
+    body {
+
+        padding: 35px;
+    }
+
+
+    .container {
+
+        width: 100%;
+
+        max-width: 1100px;
+
+        height: calc(100vh - 70px);
+
+        margin: 0 auto;
+
+        grid-template-columns: 280px minmax(0, 1fr);
+
+        gap: 35px;
+
+        align-items: stretch;
+    }
+
+
+    /* LEFT SIDE SCROLLS */
+
+    .panel {
+
+        height: 100%;
+
+        min-height: 0;
+
+        overflow-y: auto;
+
+        overflow-x: hidden;
+
+        scrollbar-width: thin;
+
+        scrollbar-color: var(--border) transparent;
+    }
+
+
+    .panel::-webkit-scrollbar {
+
+        width: 6px;
+    }
+
+
+    .panel::-webkit-scrollbar-track {
+
+        background: transparent;
+    }
+
+
+    .panel::-webkit-scrollbar-thumb {
+
+        background: var(--border);
+
+        border-radius: 10px;
+    }
+
+
+    /* RIGHT SIDE STAYS VISIBLE */
+
+    .preview-area {
+
+        height: 100%;
+
+        min-height: 0;
+
+        justify-content: center;
+    }
+
+
+    .preview-box {
+
+        min-height: 360px;
+
+        max-height: calc(100vh - 180px);
+    }
+
+}
+
+
+/* =========================================================
    PRINT
 ========================================================= */
 
 @media print {
+
+    html,
+    body {
+
+        height: auto;
+
+        overflow: visible;
+    }
+
 
     body {
 
@@ -931,18 +1056,26 @@ button {
         display: block;
 
         max-width: none;
+
+        height: auto;
     }
 
 
     .preview-area {
 
         width: 100%;
+
+        height: auto;
+
+        display: block;
     }
 
 
     .preview-box {
 
         min-height: auto;
+
+        max-height: none;
 
         padding: 0;
 
@@ -951,6 +1084,8 @@ button {
         box-shadow: none;
 
         display: block;
+
+        overflow: visible;
     }
 
 
@@ -971,6 +1106,8 @@ button {
     body {
 
         padding: 18px;
+
+        overflow: auto;
     }
 
 
@@ -979,12 +1116,34 @@ button {
         grid-template-columns: 1fr;
 
         gap: 20px;
+
+        height: auto;
+    }
+
+
+    .panel {
+
+        height: auto;
+
+        overflow: visible;
+    }
+
+
+    .preview-area {
+
+        height: auto;
+
+        min-height: 0;
+
+        display: block;
     }
 
 
     .preview-box {
 
         min-height: 300px;
+
+        max-height: none;
 
         padding: 20px;
     }
