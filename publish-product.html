@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -1725,16 +1724,6 @@
                 Print Sticker
             </button>
 
-
-            <button
-                    class="btn-secondary"
-                    type="button"
-                    onclick="openPublishBusiness()"
-                    data-i18n="publishProduct"
-            >
-                Publish Product
-            </button>
-
         </div>
 
     </div>
@@ -1905,6 +1894,22 @@
 
 
             </div>
+
+        </div>
+
+
+        <!-- PUBLISH PRODUCT -->
+
+        <div style="margin-top: 14px;">
+
+            <button
+                    class="btn-secondary"
+                    type="button"
+                    onclick="openPublishBusiness()"
+                    data-i18n="publishProduct"
+            >
+                Publish Product
+            </button>
 
         </div>
 
@@ -2769,1033 +2774,1026 @@
                 {
 
                     text:
-                        "https://vanikio.com/i/" +
-                        encodeURIComponent(
-                            businessId || "MISSING-BUSINESS-ID"
-                        ) +
-                        "/" +
-                        encodeURIComponent(
-                            itemId || "DEMO"
-                        ),
-
-                    width: 500,
-
-                    height: 500,
-
-                    colorDark:
-                        selectedColors.qr,
-
-                    colorLight:
-                        selectedColors.stickerBackground,
-
-                    correctLevel:
-                        QRCode.CorrectLevel.M
-
-                }
-            );
-
-
-            qr.style.width =
-                qrSize + "mm";
-
-
-            qr.style.height =
-                qrSize + "mm";
-
-
-            qr.style.marginLeft =
-                "0";
-
-
-            qr.style.marginRight =
-                "0";
-
-
-            qr.style.backgroundColor =
-                selectedColors.stickerBackground;
-
-
-            const generatedImage =
-                qr.querySelector("img");
-
-
-            const generatedCanvas =
-                qr.querySelector("canvas");
-
-
-            if (generatedImage) {
-
-                generatedImage.style.width =
-                    "100%";
-
-                generatedImage.style.height =
-                    "100%";
-
-                generatedImage.style.display =
-                    "block";
-
-                generatedImage.style.backgroundColor =
-                    selectedColors.stickerBackground;
-
-            }
-
-
-            if (generatedCanvas) {
-
-                generatedCanvas.style.width =
-                    "100%";
-
-                generatedCanvas.style.height =
-                    "100%";
-
-                generatedCanvas.style.display =
-                    "block";
-
-                generatedCanvas.style.backgroundColor =
-                    selectedColors.stickerBackground;
-
-            }
-
-        }
-
-    }
-
-
-    /* =============================================================
-       DRAGGABLE ELEMENT
-    ============================================================= */
-
-    function makeDraggable(element) {
-
-        if (!element) {
-
-            return;
-
-        }
-
-
-        let isDragging = false;
-
-        let startX = 0;
-
-        let startY = 0;
-
-        let startTranslateX = 0;
-
-        let startTranslateY = 0;
-
-
-        element.dataset.translateX =
-            "0";
-
-
-        element.dataset.translateY =
-            "0";
-
-
-        element.style.transform =
-            "translate(0mm, 0mm)";
-
-
-        element.addEventListener(
-            "pointerdown",
-            function(event) {
-
-                if (
-                    event.pointerType === "mouse" &&
-                    event.button !== 0
-                ) {
-
-                    return;
-
-                }
-
-
-                isDragging = true;
-
-
-                element.setPointerCapture(
-                    event.pointerId
-                );
-
-
-                startX =
-                    event.clientX;
-
-
-                startY =
-                    event.clientY;
-
-
-                startTranslateX =
-                    parseFloat(
-                        element.dataset.translateX ||
-                        "0"
-                    );
-
-
-                startTranslateY =
-                    parseFloat(
-                        element.dataset.translateY ||
-                        "0"
-                    );
-
-
-                element.style.cursor =
-                    "grabbing";
-
-
-                event.preventDefault();
-
-            }
-        );
-
-
-        element.addEventListener(
-            "pointermove",
-            function(event) {
-
-                if (!isDragging) {
-
-                    return;
-
-                }
-
-
-                const deltaX =
-                    event.clientX -
-                    startX;
-
-
-                const deltaY =
-                    event.clientY -
-                    startY;
-
-
-                const pixelsPerMm =
-                    3.78;
-
-
-                const moveX =
-                    deltaX /
-                    pixelsPerMm;
-
-
-                const moveY =
-                    deltaY /
-                    pixelsPerMm;
-
-
-                const newX =
-                    startTranslateX +
-                    moveX;
-
-
-                const newY =
-                    startTranslateY +
-                    moveY;
-
-
-                element.dataset.translateX =
-                    newX;
-
-
-                element.dataset.translateY =
-                    newY;
-
-
-                element.style.transform =
-                    "translate(" +
-                    newX +
-                    "mm, " +
-                    newY +
-                    "mm)";
-
-            }
-        );
-
-
-        function stopDragging(event) {
-
-            if (!isDragging) {
-
-                return;
-
-            }
-
-
-            isDragging = false;
-
-
-            element.style.cursor =
-                "grab";
-
-
-            if (
-                event &&
-                element.hasPointerCapture &&
-                element.hasPointerCapture(
-                    event.pointerId
-                )
-            ) {
-
-                element.releasePointerCapture(
-                    event.pointerId
-                );
-
-            }
-
-        }
-
-
-        element.addEventListener(
-            "pointerup",
-            stopDragging
-        );
-
-
-        element.addEventListener(
-            "pointercancel",
-            stopDragging
-        );
-
-    }
-
-
-    /* =============================================================
-       ENABLE DRAGGING
-    ============================================================= */
-
-    makeDraggable(
-        document.getElementById(
-            "companyNameText"
-        )
-    );
-
-
-    makeDraggable(
-        document.getElementById(
-            "serialRow"
-        )
-    );
-
-
-    makeDraggable(
-        document.getElementById(
-            "priceRow"
-        )
-    );
-
-
-    makeDraggable(
-        document.getElementById(
-            "qrSection"
-        )
-    );
-
-
-    /* =============================================================
-       RESET DRAGGED POSITIONS
-    ============================================================= */
-
-    function resetDraggedPositions() {
-
-        const draggableElements = [
-
-            document.getElementById(
-                "companyNameText"
-            ),
-
-            document.getElementById(
-                "serialRow"
-            ),
-
-            document.getElementById(
-                "priceRow"
-            ),
-
-            document.getElementById(
-                "qrSection"
-            )
-
-        ];
-
-
-        draggableElements.forEach(
-            element => {
-
-                if (!element) {
-
-                    return;
-
-                }
-
-
-                element.dataset.translateX =
-                    "0";
-
-
-                element.dataset.translateY =
-                    "0";
-
-
-                element.style.transform =
-                    "translate(0mm, 0mm)";
-
-
-                element.style.cursor =
-                    "grab";
-
-            }
-        );
-
-    }
-
-
-    /* =============================================================
-       RESET STICKER
-    ============================================================= */
-
-    function resetSticker() {
-
-
-        document
-            .getElementById("businessId")
-            .value =
-            DEFAULTS.businessId;
-
-
-        document
-            .getElementById("productName")
-            .value =
-            DEFAULTS.productName;
-
-
-        document
-            .getElementById("productDescription")
-            .value =
-            DEFAULTS.productDescription;
-
-
-        document
-            .getElementById("serial")
-            .value =
-            DEFAULTS.serial;
-
-
-        document
-            .getElementById("price")
-            .value =
-            DEFAULTS.price;
-
-
-        document
-            .getElementById("itemId")
-            .value =
-            DEFAULTS.itemId;
-
-
-        document
-            .getElementById("stickerWidth")
-            .value =
-            DEFAULTS.stickerWidth;
-
-
-        document
-            .getElementById("stickerHeight")
-            .value =
-            DEFAULTS.stickerHeight;
-
-
-        document
-            .getElementById("qrEnabled")
-            .checked =
-            DEFAULTS.qrEnabled;
-
-
-        document
-            .getElementById("qrSize")
-            .value =
-            DEFAULTS.qrSize;
-
-
-        document
-            .getElementById("labelSize")
-            .value =
-            DEFAULTS.labelSize;
-
-
-        document
-            .getElementById("valueSize")
-            .value =
-            DEFAULTS.valueSize;
-
-
-        document
-            .getElementById("borderSize")
-            .value =
-            DEFAULTS.borderSize;
-
-
-        selectedColors = {
-
-            ...DEFAULT_COLORS
-
-        };
-
-
-        document
-            .querySelectorAll(".color-option")
-            .forEach(option => {
-
-                const target =
-                    option.dataset.target;
-
-
-                const color =
-                    option.dataset.color;
-
-
-                if (
-                    DEFAULT_COLORS[target] &&
-                    DEFAULT_COLORS[target].toLowerCase() ===
-                    color.toLowerCase()
-                ) {
-
-                    option.classList.add(
-                        "active"
-                    );
-
-                } else {
-
-                    option.classList.remove(
-                        "active"
-                    );
-
-                }
-
-            });
-
-
-        resetDraggedPositions();
-
-
-        setLanguage(
-            DEFAULTS.language
-        );
-
-
-        generateSticker();
-
-    }
-
-
-    /* =============================================================
-       DOWNLOAD STICKER PNG
-    ============================================================= */
-
-    async function downloadSticker() {
-
-        generateSticker();
-
-
-        const sticker =
-            document.getElementById(
-                "sticker"
-            );
-
-
-        const oldShadow =
-            sticker.style.boxShadow;
-
-
-        const oldOverflow =
-            sticker.style.overflow;
-
-
-        sticker.style.boxShadow =
-            "none";
-
-
-        sticker.style.overflow =
-            "hidden";
-
-
-        try {
-
-            const rect =
-                sticker.getBoundingClientRect();
-
-
-            const scale = 4;
-
-
-            const canvas =
-                await html2canvas(
-                    sticker,
-                    {
-
-                        scale: scale,
-
-                        width: rect.width,
-
-                        height: rect.height,
-
-                        x: 0,
-
-                        y: 0,
-
-                        backgroundColor: null,
-
-                        useCORS: true,
-
-                        logging: false,
-
-                        allowTaint: false
-
-                    }
-                );
-
-
-            const finalCanvas =
-                document.createElement(
-                    "canvas"
-                );
-
-
-            finalCanvas.width =
-                canvas.width;
-
-
-            finalCanvas.height =
-                canvas.height;
-
-
-            const ctx =
-                finalCanvas.getContext(
-                    "2d"
-                );
-
-
-            ctx.clearRect(
-                0,
-                0,
-                finalCanvas.width,
-                finalCanvas.height
-            );
-
-
-            const computedStyle =
-                getComputedStyle(
-                    sticker
-                );
-
-
-            const radiusCss =
-                parseFloat(
-                    computedStyle.borderRadius
-                ) || 0;
-
-
-            const radius =
-                radiusCss * scale;
-
-
-            const w =
-                finalCanvas.width;
-
-
-            const h =
-                finalCanvas.height;
-
-
-            const r =
-                Math.min(
-                    radius,
-                    w / 2,
-                    h / 2
-                );
-
-
-            ctx.beginPath();
-
-
-            ctx.moveTo(
-                r,
-                0
-            );
-
-
-            ctx.lineTo(
-                w - r,
-                0
-            );
-
-
-            ctx.quadraticCurveTo(
-                w,
-                0,
-                w,
-                r
-            );
-
-
-            ctx.lineTo(
-                w,
-                h - r
-            );
-
-
-            ctx.quadraticCurveTo(
-                w,
-                h,
-                w - r,
-                h
-            );
-
-
-            ctx.lineTo(
-                r,
-                h
-            );
-
-
-            ctx.quadraticCurveTo(
-                0,
-                h,
-                0,
-                h - r
-            );
-
-
-            ctx.lineTo(
-                0,
-                r
-            );
-
-
-            ctx.quadraticCurveTo(
-                0,
-                0,
-                r,
-                0
-            );
-
-
-            ctx.closePath();
-
-
-            ctx.clip();
-
-
-            ctx.drawImage(
-                canvas,
-                0,
-                0
-            );
-
-
-            const serial =
-                document
-                    .getElementById(
-                        "serial"
-                    )
-                    .value
-                    .trim()
-                    .replace(
-                        /[^a-zA-Z0-9_-]/g,
-                        ""
-                    );
-
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-
-            link.download =
-                "VANIKIO-" +
-                (serial || "sticker") +
-                ".png";
-
-
-            link.href =
-                finalCanvas.toDataURL(
-                    "image/png"
-                );
-
-
-            link.click();
-
-
-        } catch (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                currentLanguage === "ta"
-                    ? "ஸ்டிக்கரை பதிவிறக்க முடியவில்லை."
-                    : "Unable to download sticker."
-            );
-
-        }
-
-
-        sticker.style.boxShadow =
-            oldShadow;
-
-
-        sticker.style.overflow =
-            oldOverflow;
-
-    }
-
-
-    /* =============================================================
-       DOWNLOAD QR ONLY
-    ============================================================= */
-
-    function downloadQrOnly() {
-
-        const qrEnabled =
-            document
-                .getElementById(
-                    "qrEnabled"
-                )
-                .checked;
-
-
-        if (!qrEnabled) {
-
-            alert(
-                currentLanguage === "ta"
-                    ? "QR குறியீடு இயக்கப்படவில்லை."
-                    : "QR Code is disabled."
-            );
-
-            return;
-
-        }
-
-
-        generateSticker();
-
-
-        const qr =
-            document.getElementById(
-                "qrcode"
-            );
-
-
-        const canvas =
-            qr.querySelector(
-                "canvas"
-            );
-
-
-        const image =
-            qr.querySelector(
-                "img"
-            );
-
-
-        let downloadUrl =
-            null;
-
-
-        if (canvas) {
-
-            downloadUrl =
-                canvas.toDataURL(
-                    "image/png"
-                );
-
-        } else if (image) {
-
-            const tempCanvas =
-                document.createElement(
-                    "canvas"
-                );
-
-
-            tempCanvas.width =
-                image.naturalWidth || 500;
-
-
-            tempCanvas.height =
-                image.naturalHeight || 500;
-
-
-            const ctx =
-                tempCanvas.getContext(
-                    "2d"
-                );
-
-
-            ctx.fillStyle =
-                selectedColors.stickerBackground;
-
-
-            ctx.fillRect(
-                0,
-                0,
-                tempCanvas.width,
-                tempCanvas.height
-            );
-
-
-            ctx.drawImage(
-                image,
-                0,
-                0,
-                tempCanvas.width,
-                tempCanvas.height
-            );
-
-
-            downloadUrl =
-                tempCanvas.toDataURL(
-                    "image/png"
-                );
-
-        }
-
-
-        if (!downloadUrl) {
-
-            alert(
-                currentLanguage === "ta"
-                    ? "QR ஐ பதிவிறக்க முடியவில்லை."
-                    : "Unable to download QR."
-            );
-
-            return;
-
-        }
-
-
-        const itemId =
-            document
-                .getElementById(
-                    "itemId"
-                )
-                .value
-                .trim()
-                .replace(
-                    /[^a-zA-Z0-9_-]/g,
-                    ""
-                );
-
-
-        const link =
-            document.createElement(
-                "a"
-            );
-
-
-        link.download =
-            "VANIKIO-QR-" +
-            (itemId || "code") +
-            ".png";
-
-
-        link.href =
-            downloadUrl;
-
-
-        link.click();
-
-    }
-
-
-    /* =============================================================
-       PRINT
-    ============================================================= */
-
-    function printSticker() {
-
-        generateSticker();
-
-        window.print();
-
-    }
-
-
-    /* =============================================================
-       BUSINESS PUBLISHING
-    ============================================================= */
-
-    function openPublishBusiness() {
-
-        window.location.href =
-            "publish-business.html";
-
-    }
-
-
-    /* =============================================================
-       AUTO UPDATE STICKER INPUTS
-    ============================================================= */
-
-    document
-        .querySelectorAll(
-            "#businessId, #serial, #price, #itemId, #stickerWidth, #stickerHeight, #qrEnabled, #qrSize, #labelSize, #valueSize, #borderSize"
-        )
-        .forEach(input => {
-
-            input.addEventListener(
-                "input",
-                generateSticker
-            );
-
-
-            input.addEventListener(
-                "change",
-                generateSticker
-            );
-
-        });
-
-
-    /* =============================================================
-       LOAD SAVED BUSINESS ID
-    ============================================================= */
-
-    const savedBusinessId =
-        localStorage.getItem(
-            "vanikioBusinessId"
-        );
-
-
-    if (savedBusinessId) {
-
-        document.getElementById(
-            "businessId"
-        ).value =
-            savedBusinessId;
-
-    }
-
-
-    /* =============================================================
-       INITIAL LANGUAGE
-    ============================================================= */
-
-    setLanguage("en");
-
-
-    /* =============================================================
-       INITIAL GENERATION
-    ============================================================= */
-
-    generateSticker();
-
-
-</script>
+                        "https://vanikio.com/i/" + 
+                        encodeURIComponent( 
+                            businessId || "MISSING-BUSINESS-ID" 
+                        ) + 
+                        "/" + 
+                        encodeURIComponent( 
+                            itemId || "DEMO" 
+                        ), 
+ 
+                    width: 500, 
+ 
+                    height: 500, 
+ 
+                    colorDark: 
+                        selectedColors.qr, 
+ 
+                    colorLight: 
+                        selectedColors.stickerBackground, 
+ 
+                    correctLevel: 
+                        QRCode.CorrectLevel.M 
+ 
+                } 
+            ); 
+ 
+ 
+            qr.style.width = 
+                qrSize + "mm"; 
+ 
+ 
+            qr.style.height = 
+                qrSize + "mm"; 
+ 
+ 
+            qr.style.marginLeft = 
+                "0"; 
+ 
+ 
+            qr.style.marginRight = 
+                "0"; 
+ 
+ 
+            qr.style.backgroundColor = 
+                selectedColors.stickerBackground; 
+ 
+ 
+            const generatedImage = 
+                qr.querySelector("img"); 
+ 
+ 
+            const generatedCanvas = 
+                qr.querySelector("canvas"); 
+ 
+ 
+            if (generatedImage) { 
+ 
+                generatedImage.style.width = 
+                    "100%"; 
+ 
+                generatedImage.style.height = 
+                    "100%"; 
+ 
+                generatedImage.style.display = 
+                    "block"; 
+ 
+                generatedImage.style.backgroundColor = 
+                    selectedColors.stickerBackground; 
+ 
+            } 
+ 
+ 
+            if (generatedCanvas) { 
+ 
+                generatedCanvas.style.width = 
+                    "100%"; 
+ 
+                generatedCanvas.style.height = 
+                    "100%"; 
+ 
+                generatedCanvas.style.display = 
+                    "block"; 
+ 
+                generatedCanvas.style.backgroundColor = 
+                    selectedColors.stickerBackground; 
+ 
+            } 
+ 
+        } 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DRAGGABLE ELEMENT 
+    ============================================================= */ 
+ 
+    function makeDraggable(element) { 
+ 
+        if (!element) { 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        let isDragging = false; 
+ 
+        let startX = 0; 
+ 
+        let startY = 0; 
+ 
+        let startTranslateX = 0; 
+ 
+        let startTranslateY = 0; 
+ 
+ 
+        element.dataset.translateX = 
+            "0"; 
+ 
+        element.dataset.translateY = 
+            "0"; 
+ 
+        element.style.transform = 
+            "translate(0mm, 0mm)"; 
+ 
+ 
+        element.addEventListener( 
+            "pointerdown", 
+            function(event) { 
+ 
+                if ( 
+                    event.pointerType === "mouse" && 
+                    event.button !== 0 
+                ) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                isDragging = true; 
+ 
+ 
+                element.setPointerCapture( 
+                    event.pointerId 
+                ); 
+ 
+ 
+                startX = 
+                    event.clientX; 
+ 
+ 
+                startY = 
+                    event.clientY; 
+ 
+ 
+                startTranslateX = 
+                    parseFloat( 
+                        element.dataset.translateX || 
+                        "0" 
+                    ); 
+ 
+ 
+                startTranslateY = 
+                    parseFloat( 
+                        element.dataset.translateY || 
+                        "0" 
+                    ); 
+ 
+ 
+                element.style.cursor = 
+                    "grabbing"; 
+ 
+ 
+                event.preventDefault(); 
+ 
+            } 
+        ); 
+ 
+ 
+        element.addEventListener( 
+            "pointermove", 
+            function(event) { 
+ 
+                if (!isDragging) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                const deltaX = 
+                    event.clientX - 
+                    startX; 
+ 
+ 
+                const deltaY = 
+                    event.clientY - 
+                    startY; 
+ 
+ 
+                const pixelsPerMm = 
+                    3.78; 
+ 
+ 
+                const moveX = 
+                    deltaX / 
+                    pixelsPerMm; 
+ 
+ 
+                const moveY = 
+                    deltaY / 
+                    pixelsPerMm; 
+ 
+ 
+                const newX = 
+                    startTranslateX + 
+                    moveX; 
+ 
+ 
+                const newY = 
+                    startTranslateY + 
+                    moveY; 
+ 
+ 
+                element.dataset.translateX = 
+                    newX; 
+ 
+                element.dataset.translateY = 
+                    newY; 
+ 
+                element.style.transform = 
+                    "translate(" + 
+                    newX + 
+                    "mm, " + 
+                    newY + 
+                    "mm)"; 
+ 
+            } 
+        ); 
+ 
+ 
+        function stopDragging(event) { 
+ 
+            if (!isDragging) { 
+ 
+                return; 
+ 
+            } 
+ 
+ 
+            isDragging = false; 
+ 
+ 
+            element.style.cursor = 
+                "grab"; 
+ 
+ 
+            if ( 
+                event && 
+                element.hasPointerCapture && 
+                element.hasPointerCapture( 
+                    event.pointerId 
+                ) 
+            ) { 
+ 
+                element.releasePointerCapture( 
+                    event.pointerId 
+                ); 
+ 
+            } 
+ 
+        } 
+ 
+ 
+        element.addEventListener( 
+            "pointerup", 
+            stopDragging 
+        ); 
+ 
+ 
+        element.addEventListener( 
+            "pointercancel", 
+            stopDragging 
+        ); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       ENABLE DRAGGING 
+    ============================================================= */ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "companyNameText" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "serialRow" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "priceRow" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "qrSection" 
+        ) 
+    ); 
+ 
+ 
+    /* ============================================================= 
+       RESET DRAGGED POSITIONS 
+    ============================================================= */ 
+ 
+    function resetDraggedPositions() { 
+ 
+        const draggableElements = [ 
+ 
+            document.getElementById( 
+                "companyNameText" 
+            ), 
+ 
+            document.getElementById( 
+                "serialRow" 
+            ), 
+ 
+            document.getElementById( 
+                "priceRow" 
+            ), 
+ 
+            document.getElementById( 
+                "qrSection" 
+            ) 
+ 
+        ]; 
+ 
+ 
+        draggableElements.forEach( 
+            element => { 
+ 
+                if (!element) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                element.dataset.translateX = 
+                    "0"; 
+ 
+ 
+                element.dataset.translateY = 
+                    "0"; 
+ 
+ 
+                element.style.transform = 
+                    "translate(0mm, 0mm)"; 
+ 
+ 
+                element.style.cursor = 
+                    "grab"; 
+ 
+            } 
+        ); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       RESET STICKER 
+    ============================================================= */ 
+ 
+    function resetSticker() { 
+ 
+ 
+        document 
+            .getElementById("businessId") 
+            .value = 
+            DEFAULTS.businessId; 
+ 
+ 
+        document 
+            .getElementById("productName") 
+            .value = 
+            DEFAULTS.productName; 
+ 
+ 
+        document 
+            .getElementById("productDescription") 
+            .value = 
+            DEFAULTS.productDescription; 
+ 
+ 
+        document 
+            .getElementById("serial") 
+            .value = 
+            DEFAULTS.serial; 
+ 
+ 
+        document 
+            .getElementById("price") 
+            .value = 
+            DEFAULTS.price; 
+ 
+ 
+        document 
+            .getElementById("itemId") 
+            .value = 
+            DEFAULTS.itemId; 
+ 
+ 
+        document 
+            .getElementById("stickerWidth") 
+            .value = 
+            DEFAULTS.stickerWidth; 
+ 
+ 
+        document 
+            .getElementById("stickerHeight") 
+            .value = 
+            DEFAULTS.stickerHeight; 
+ 
+ 
+        document 
+            .getElementById("qrEnabled") 
+            .checked = 
+            DEFAULTS.qrEnabled; 
+ 
+ 
+        document 
+            .getElementById("qrSize") 
+            .value = 
+            DEFAULTS.qrSize; 
+ 
+ 
+        document 
+            .getElementById("labelSize") 
+            .value = 
+            DEFAULTS.labelSize; 
+ 
+ 
+        document 
+            .getElementById("valueSize") 
+            .value = 
+            DEFAULTS.valueSize; 
+ 
+ 
+        document 
+            .getElementById("borderSize") 
+            .value = 
+            DEFAULTS.borderSize; 
+ 
+ 
+        selectedColors = { 
+ 
+            ...DEFAULT_COLORS 
+ 
+        }; 
+ 
+ 
+        document 
+            .querySelectorAll(".color-option") 
+            .forEach(option => { 
+ 
+                const target = 
+                    option.dataset.target; 
+ 
+ 
+                const color = 
+                    option.dataset.color; 
+ 
+ 
+                if ( 
+                    DEFAULT_COLORS[target] && 
+                    DEFAULT_COLORS[target].toLowerCase() === 
+                    color.toLowerCase() 
+                ) { 
+ 
+                    option.classList.add( 
+                        "active" 
+                    ); 
+ 
+                } else { 
+ 
+                    option.classList.remove( 
+                        "active" 
+                    ); 
+ 
+                } 
+ 
+            }); 
+ 
+ 
+        resetDraggedPositions(); 
+ 
+ 
+        setLanguage( 
+            DEFAULTS.language 
+        ); 
+ 
+ 
+        generateSticker(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DOWNLOAD STICKER PNG 
+    ============================================================= */ 
+ 
+    async function downloadSticker() { 
+ 
+        generateSticker(); 
+ 
+ 
+        const sticker = 
+            document.getElementById( 
+                "sticker" 
+            ); 
+ 
+ 
+        const oldShadow = 
+            sticker.style.boxShadow; 
+ 
+ 
+        const oldOverflow = 
+            sticker.style.overflow; 
+ 
+ 
+        sticker.style.boxShadow = 
+            "none"; 
+ 
+        sticker.style.overflow = 
+            "hidden"; 
+ 
+ 
+        try { 
+ 
+            const rect = 
+                sticker.getBoundingClientRect(); 
+ 
+ 
+            const scale = 4; 
+ 
+ 
+            const canvas = 
+                await html2canvas( 
+                    sticker, 
+                    { 
+ 
+                        scale: scale, 
+ 
+                        width: rect.width, 
+ 
+                        height: rect.height, 
+ 
+                        x: 0, 
+ 
+                        y: 0, 
+ 
+                        backgroundColor: null, 
+ 
+                        useCORS: true, 
+ 
+                        logging: false, 
+ 
+                        allowTaint: false 
+ 
+                    } 
+                ); 
+ 
+ 
+            const finalCanvas = 
+                document.createElement( 
+                    "canvas" 
+                ); 
+ 
+ 
+            finalCanvas.width = 
+                canvas.width; 
+ 
+ 
+            finalCanvas.height = 
+                canvas.height; 
+ 
+ 
+            const ctx = 
+                finalCanvas.getContext( 
+                    "2d" 
+                ); 
+ 
+ 
+            ctx.clearRect( 
+                0, 
+                0, 
+                finalCanvas.width, 
+                finalCanvas.height 
+            ); 
+ 
+ 
+            const computedStyle = 
+                getComputedStyle( 
+                    sticker 
+                ); 
+ 
+ 
+            const radiusCss = 
+                parseFloat( 
+                    computedStyle.borderRadius 
+                ) || 0; 
+ 
+ 
+            const radius = 
+                radiusCss * scale; 
+ 
+ 
+            const w = 
+                finalCanvas.width; 
+ 
+ 
+            const h = 
+                finalCanvas.height; 
+ 
+ 
+            const r = 
+                Math.min( 
+                    radius, 
+                    w / 2, 
+                    h / 2 
+                ); 
+ 
+ 
+            ctx.beginPath(); 
+ 
+ 
+            ctx.moveTo( 
+                r, 
+                0 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                w - r, 
+                0 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                w, 
+                0, 
+                w, 
+                r 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                w, 
+                h - r 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                w, 
+                h, 
+                w - r, 
+                h 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                r, 
+                h 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                0, 
+                h, 
+                0, 
+                h - r 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                0, 
+                r 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                0, 
+                0, 
+                r, 
+                0 
+            ); 
+ 
+ 
+            ctx.closePath(); 
+ 
+ 
+            ctx.clip(); 
+ 
+ 
+            ctx.drawImage( 
+                canvas, 
+                0, 
+                0 
+            ); 
+ 
+ 
+            const serial = 
+                document 
+                    .getElementById( 
+                        "serial" 
+                    ) 
+                    .value 
+                    .trim() 
+                    .replace( 
+                        /[^a-zA-Z0-9_-]/g, 
+                        "" 
+                    ); 
+ 
+ 
+            const link = 
+                document.createElement( 
+                    "a" 
+                ); 
+ 
+ 
+            link.download = 
+                "VANIKIO-" + 
+                (serial || "sticker") + 
+                ".png"; 
+ 
+ 
+            link.href = 
+                finalCanvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+ 
+            link.click(); 
+ 
+ 
+        } catch (error) { 
+ 
+            console.error( 
+                error 
+            ); 
+ 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "ஸ்டிக்கரை பதிவிறக்க முடியவில்லை." 
+                    : "Unable to download sticker." 
+            ); 
+ 
+        } 
+ 
+ 
+        sticker.style.boxShadow = 
+            oldShadow; 
+ 
+        sticker.style.overflow = 
+            oldOverflow; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DOWNLOAD QR ONLY 
+    ============================================================= */ 
+ 
+    function downloadQrOnly() { 
+ 
+        const qrEnabled = 
+            document 
+                .getElementById( 
+                    "qrEnabled" 
+                ) 
+                .checked; 
+ 
+ 
+        if (!qrEnabled) { 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "QR குறியீடு இயக்கப்படவில்லை." 
+                    : "QR Code is disabled." 
+            ); 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        generateSticker(); 
+ 
+ 
+        const qr = 
+            document.getElementById( 
+                "qrcode" 
+            ); 
+ 
+ 
+        const canvas = 
+            qr.querySelector( 
+                "canvas" 
+            ); 
+ 
+ 
+        const image = 
+            qr.querySelector( 
+                "img" 
+            ); 
+ 
+ 
+        let downloadUrl = 
+            null; 
+ 
+ 
+        if (canvas) { 
+ 
+            downloadUrl = 
+                canvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+        } else if (image) { 
+ 
+            const tempCanvas = 
+                document.createElement( 
+                    "canvas" 
+                ); 
+ 
+ 
+            tempCanvas.width = 
+                image.naturalWidth || 500; 
+ 
+            tempCanvas.height = 
+                image.naturalHeight || 500; 
+ 
+ 
+            const ctx = 
+                tempCanvas.getContext( 
+                    "2d" 
+                ); 
+ 
+ 
+            ctx.fillStyle = 
+                selectedColors.stickerBackground; 
+ 
+ 
+            ctx.fillRect( 
+                0, 
+                0, 
+                tempCanvas.width, 
+                tempCanvas.height 
+            ); 
+ 
+ 
+            ctx.drawImage( 
+                image, 
+                0, 
+                0, 
+                tempCanvas.width, 
+                tempCanvas.height 
+            ); 
+ 
+ 
+            downloadUrl = 
+                tempCanvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+        } 
+ 
+ 
+        if (!downloadUrl) { 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "QR ஐ பதிவிறக்க முடியவில்லை." 
+                    : "Unable to download QR." 
+            ); 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        const itemId = 
+            document 
+                .getElementById( 
+                    "itemId" 
+                ) 
+                .value 
+                .trim() 
+                .replace( 
+                    /[^a-zA-Z0-9_-]/g, 
+                    "" 
+                ); 
+ 
+ 
+        const link = 
+            document.createElement( 
+                "a" 
+            ); 
+ 
+ 
+        link.download = 
+            "VANIKIO-QR-" + 
+            (itemId || "code") + 
+            ".png"; 
+ 
+ 
+        link.href = 
+            downloadUrl; 
+ 
+ 
+        link.click(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       PRINT 
+    ============================================================= */ 
+ 
+    function printSticker() { 
+ 
+        generateSticker(); 
+ 
+        window.print(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       BUSINESS PUBLISHING 
+    ============================================================= */ 
+ 
+    function openPublishBusiness() { 
+ 
+        window.location.href = 
+            "publish-business.html"; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       AUTO UPDATE STICKER INPUTS 
+    ============================================================= */ 
+ 
+    document 
+        .querySelectorAll( 
+            "#businessId, #serial, #price, #itemId, #stickerWidth, #stickerHeight, #qrEnabled, #qrSize, #labelSize, #valueSize, #borderSize" 
+        ) 
+        .forEach(input => { 
+ 
+            input.addEventListener( 
+                "input", 
+                generateSticker 
+            ); 
+ 
+ 
+            input.addEventListener( 
+                "change", 
+                generateSticker 
+            ); 
+ 
+        }); 
+ 
+ 
+    /* ============================================================= 
+       LOAD SAVED BUSINESS ID 
+    ============================================================= */ 
+ 
+    const savedBusinessId = 
+        localStorage.getItem( 
+            "vanikioBusinessId" 
+        ); 
+ 
+ 
+    if (savedBusinessId) { 
+ 
+        document.getElementById( 
+            "businessId" 
+        ).value = 
+            savedBusinessId; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       INITIAL LANGUAGE 
+    ============================================================= */ 
+ 
+    setLanguage("en"); 
+ 
+ 
+    /* ============================================================= 
+       INITIAL GENERATION 
+    ============================================================= */ 
+ 
+    generateSticker(); 
+ 
+ 
+</script> 
 
 
 </body>
