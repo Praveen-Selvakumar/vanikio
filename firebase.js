@@ -28,6 +28,10 @@ import {
     doc,
     getDoc,
     setDoc,
+    collection,
+    getDocs,
+    query,
+    where,
     serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
@@ -107,6 +111,7 @@ async function setAuthPersistence(rememberMe) {
 
 // ============================================================
 // Create / Update User Profile
+//
 // Firestore:
 // /users/{uid}
 // ============================================================
@@ -127,7 +132,8 @@ async function createUserProfile(user, extraData = {}) {
 
     const userData = {
 
-        uid: user.uid,
+        uid:
+            user.uid,
 
         displayName:
             user.displayName ||
@@ -149,6 +155,7 @@ async function createUserProfile(user, extraData = {}) {
 
 
     // Only create createdAt for a new user.
+
     if (!existingUser.exists()) {
 
         userData.createdAt =
@@ -174,37 +181,82 @@ async function createUserProfile(user, extraData = {}) {
 
 export {
 
+    // --------------------------------------------------------
     // Firebase
+    // --------------------------------------------------------
+
     app,
     auth,
     db,
     storage,
 
+
+    // --------------------------------------------------------
     // Google
+    // --------------------------------------------------------
+
     googleProvider,
 
+
+    // --------------------------------------------------------
     // Login
+    // --------------------------------------------------------
+
     signInWithEmailAndPassword,
     signInWithPopup,
     signInWithRedirect,
     getRedirectResult,
     sendPasswordResetEmail,
 
+
+    // --------------------------------------------------------
     // Persistence
+    // --------------------------------------------------------
+
     setAuthPersistence,
     browserLocalPersistence,
     browserSessionPersistence,
 
-    // Auth state
+
+    // --------------------------------------------------------
+    // Auth State
+    // --------------------------------------------------------
+
     onAuthStateChanged,
 
+
+    // --------------------------------------------------------
     // Signup
+    // --------------------------------------------------------
+
     createUserWithEmailAndPassword,
     updateProfile,
 
-    // User profile
+
+    // --------------------------------------------------------
+    // User Profile
+    // --------------------------------------------------------
+
     createUserProfile,
 
+
+    // --------------------------------------------------------
+    // Firestore
+    // --------------------------------------------------------
+
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    getDocs,
+    query,
+    where,
+    serverTimestamp,
+
+
+    // --------------------------------------------------------
     // Logout
+    // --------------------------------------------------------
+
     signOut
 };
