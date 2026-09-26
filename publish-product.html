@@ -1,5378 +1,3800 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
 
-```
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
 
-<title>VANIKIO — Publish Product</title>
+    <title>VANIKIO — Publish Product</title>
 
 
-<!-- =========================================================
-     GOOGLE FONT — POPPINS
-========================================================== -->
+    <!-- =========================================================
+         GOOGLE FONT — POPPINS
+    ========================================================== -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link
-    rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
->
+    <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    >
 
 
-<!-- =========================================================
-     QR CODE
-========================================================== -->
+    <!-- =========================================================
+         QR CODE
+    ========================================================== -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 
-<!-- =========================================================
-     HTML2CANVAS
-========================================================== -->
+    <!-- =========================================================
+         HTML2CANVAS
+    ========================================================== -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
-<style>
+    <style>
 
-    /* =========================================================
-       THEME
-    ========================================================== */
+        /* =========================================================
+           THEME
+        ========================================================== */
 
-    :root {
+        :root {
 
-        --bg: #f7f5ff;
-        --surface: #fcfbff;
+            --bg: #f7f5ff;
+            --surface: #fcfbff;
 
-        --primary: #6c4cf1;
-        --primary-dark: #5938dc;
-        --primary-soft: #ece7ff;
+            --primary: #6c4cf1;
+            --primary-dark: #5938dc;
+            --primary-soft: #ece7ff;
 
-        --secondary: #20b8a6;
+            --secondary: #20b8a6;
 
-        --text: #27243a;
-        --text-soft: #514b60;
+            --text: #27243a;
+            --text-soft: #514b60;
 
-        --muted: #77738a;
-        --muted-light: #9993aa;
+            --muted: #77738a;
+            --muted-light: #9993aa;
 
-        --border: #e6e2f0;
+            --border: #e6e2f0;
 
-        --danger: #d85c6e;
-        --danger-soft: #fff4f6;
+            --danger: #d85c6e;
+            --danger-soft: #fff4f6;
 
-        --success: #168271;
-        --success-soft: #edfbf7;
-    }
-
-
-    /* =========================================================
-       RESET
-    ========================================================== */
-
-    * {
-        box-sizing: border-box;
-    }
-
-
-    body {
-
-        margin: 0;
-
-        padding: 35px;
-
-        background: var(--bg);
-
-        color: var(--text);
-
-        font-family: "Poppins", sans-serif;
-    }
-
-
-    /* =========================================================
-       MAIN CONTAINER
-    ========================================================== */
-
-    .container {
-
-        max-width: 900px;
-
-        margin: auto;
-
-        display: grid;
-
-        grid-template-columns: 280px 1fr;
-
-        gap: 35px;
-
-        align-items: start;
-    }
-
-
-    /* =========================================================
-       CONTROL PANEL
-    ========================================================== */
-
-    .panel {
-
-        background: var(--surface);
-
-        border: 1px solid var(--border);
-
-        border-radius: 18px;
-
-        padding: 22px;
-
-        box-shadow: 0 10px 30px rgba(39, 36, 58, 0.06);
-    }
-
-
-    .panel-header {
-
-        display: flex;
-
-        align-items: flex-start;
-
-        justify-content: space-between;
-
-        gap: 10px;
-
-        margin-bottom: 5px;
-    }
-
-
-    .panel h1 {
-
-        margin: 0;
-
-        font-size: 20px;
-
-        font-weight: 700;
-
-        color: var(--text);
-    }
-
-
-    .panel-description {
-
-        margin: 0 0 20px;
-
-        font-size: 12px;
-
-        line-height: 1.6;
-
-        color: var(--muted);
-    }
-
-
-    /* =========================================================
-       LANGUAGE TOGGLE
-    ========================================================== */
-
-    .language-toggle {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 2px;
-
-        padding: 3px;
-
-        background: #f0edf8;
-
-        border-radius: 8px;
-
-        flex-shrink: 0;
-    }
-
-
-    .language-button {
-
-        border: none;
-
-        background: transparent;
-
-        color: var(--muted);
-
-        font-size: 10px;
-
-        font-weight: 600;
-
-        padding: 5px 7px;
-
-        border-radius: 6px;
-
-        cursor: pointer;
-
-        font-family: "Poppins", sans-serif;
-    }
-
-
-    .language-button.active {
-
-        background: white;
-
-        color: var(--primary-dark);
-
-        box-shadow: 0 1px 4px rgba(39, 36, 58, 0.08);
-    }
-
-
-    /* =========================================================
-       FORM GROUP
-    ========================================================== */
-
-    .field {
-
-        margin-bottom: 14px;
-    }
-
-
-    .field label {
-
-        display: block;
-
-        margin-bottom: 6px;
-
-        font-size: 11px;
-
-        font-weight: 600;
-
-        color: var(--text-soft);
-    }
-
-
-    .field input,
-    .field textarea,
-    .field select {
-
-        width: 100%;
-
-        border: 1px solid var(--border);
-
-        border-radius: 9px;
-
-        outline: none;
-
-        background: white;
-
-        color: var(--text);
-
-        font-family: "Poppins", sans-serif;
-
-        font-size: 12px;
-
-        transition: 0.2s;
-    }
-
-
-    .field input,
-    .field select {
-
-        height: 38px;
-
-        padding: 0 11px;
-    }
-
-
-    .field textarea {
-
-        min-height: 85px;
-
-        padding: 10px 11px;
-
-        resize: vertical;
-    }
-
-
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus {
-
-        border-color: var(--primary);
-
-        box-shadow: 0 0 0 3px var(--primary-soft);
-    }
-
-
-    .field input::placeholder,
-    .field textarea::placeholder {
-
-        color: var(--muted-light);
-    }
-
-
-    /* =========================================================
-       TWO COLUMN INPUT
-    ========================================================== */
-
-    .two-column {
-
-        display: grid;
-
-        grid-template-columns: 1fr 1fr;
-
-        gap: 8px;
-    }
-
-
-    /* =========================================================
-       CHECKBOX
-    ========================================================== */
-
-    .checkbox-row {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 8px;
-
-        margin: 5px 0 14px;
-    }
-
-
-    .checkbox-row input {
-
-        width: 16px;
-
-        height: 16px;
-
-        accent-color: var(--primary);
-    }
-
-
-    .checkbox-row label {
-
-        margin: 0;
-
-        font-size: 12px;
-
-        font-weight: 500;
-
-        color: var(--text-soft);
-    }
-
-
-    /* =========================================================
-       COLOR PALETTE
-    ========================================================== */
-
-    .color-title {
-
-        margin-bottom: 7px;
-
-        font-size: 11px;
-
-        font-weight: 600;
-
-        color: var(--text-soft);
-    }
-
-
-    .color-palette {
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 7px;
-
-        margin-bottom: 14px;
-    }
-
-
-    .color-option {
-
-        width: 27px;
-
-        height: 27px;
-
-        padding: 0;
-
-        border-radius: 7px;
-
-        border: 2px solid white;
-
-        outline: 1px solid var(--border);
-
-        cursor: pointer;
-
-        transition: 0.15s;
-    }
-
-
-    .color-option:hover {
-
-        transform: scale(1.08);
-    }
-
-
-    .color-option.active {
-
-        outline: 2px solid var(--text);
-
-        outline-offset: 1px;
-    }
-
-
-    /* =========================================================
-       BUTTONS
-    ========================================================== */
-
-    .button-group {
-
-        display: flex;
-
-        flex-direction: column;
-
-        gap: 8px;
-
-        margin-top: 18px;
-    }
-
-
-    button {
-
-        border: none;
-
-        cursor: pointer;
-
-        font-family: "Poppins", sans-serif;
-    }
-
-
-    .btn-primary {
-
-        width: 100%;
-
-        height: 40px;
-
-        border-radius: 10px;
-
-        background: var(--primary);
-
-        color: white;
-
-        font-size: 12px;
-
-        font-weight: 600;
-
-        transition: 0.2s;
-    }
-
-
-    .btn-primary:hover {
-
-        background: var(--primary-dark);
-    }
-
-
-    .btn-primary:disabled {
-
-        opacity: 0.6;
-
-        cursor: not-allowed;
-    }
-
-
-    .btn-secondary {
-
-        width: 100%;
-
-        height: 38px;
-
-        border-radius: 10px;
-
-        background: var(--primary-soft);
-
-        color: var(--primary-dark);
-
-        font-size: 12px;
-
-        font-weight: 600;
-
-        transition: 0.2s;
-    }
-
-
-    .btn-secondary:hover {
-
-        background: #dfd8ff;
-    }
-
-
-    /* =========================================================
-       PREVIEW AREA
-    ========================================================== */
-
-    .preview-area {
-
-        min-width: 0;
-    }
-
-
-    /* =========================================================
-       PREVIEW HEADER
-    ========================================================== */
-
-    .preview-header {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        margin-bottom: 12px;
-    }
-
-
-    .preview-title {
-
-        margin: 0;
-
-        font-size: 13px;
-
-        font-weight: 600;
-
-        color: var(--text-soft);
-    }
-
-
-    /* =========================================================
-       RESET + DOWNLOAD QR
-    ========================================================== */
-
-    .preview-actions {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 6px;
-    }
-
-
-    .reset-button,
-    .download-qr-button {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 5px;
-
-        height: 30px;
-
-        padding: 0 10px;
-
-        border: 1px solid var(--border);
-
-        border-radius: 8px;
-
-        background: white;
-
-        color: var(--text-soft);
-
-        font-size: 10px;
-
-        font-weight: 600;
-
-        cursor: pointer;
-
-        transition: 0.2s;
-    }
-
-
-    .reset-button:hover,
-    .download-qr-button:hover {
-
-        border-color: var(--primary);
-
-        color: var(--primary-dark);
-
-        background: var(--primary-soft);
-    }
-
-
-    .reset-icon,
-    .download-qr-icon {
-
-        font-size: 13px;
-
-        line-height: 1;
-    }
-
-
-    /* =========================================================
-       PREVIEW BOX
-    ========================================================== */
-
-    .preview-box {
-
-        min-height: 360px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 30px;
-
-        background: var(--surface);
-
-        border: 1px solid var(--border);
-
-        border-radius: 18px;
-
-        overflow: auto;
-
-        box-shadow: 0 10px 30px rgba(39, 36, 58, 0.05);
-    }
-
-
-    /* =========================================================
-       STICKER
-    ========================================================== */
-
-    .sticker {
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        flex-shrink: 0;
-
-        background: #ffffff;
-
-        border-style: solid;
-
-        border-color: #27243a;
-
-        border-width: 0.3mm;
-
-        border-radius: 1mm;
-
-        padding: 1.5mm;
-
-        overflow: hidden;
-
-        box-shadow: 0 8px 20px rgba(39, 36, 58, 0.12);
-
-        font-family: "Poppins", sans-serif;
-
-        transition:
-            width 0.2s,
-            height 0.2s,
-            border-color 0.2s,
-            border-width 0.2s;
-    }
-
-
-    /* =========================================================
-       INFORMATION AREA
-    ========================================================== */
-
-    .sticker-info {
-
-        flex: 1;
-
-        width: auto;
-
-        min-width: 0;
-
-        height: 100%;
-
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        align-items: flex-start;
-
-        padding-left: 1.5mm;
-
-        overflow: hidden;
-    }
-
-
-    /* =========================================================
-       DRAGGABLE ELEMENTS
-    ========================================================== */
-
-    .company-name,
-    .info-row,
-    .sticker-qr {
-
-        position: relative;
-
-        user-select: none;
-
-        touch-action: none;
-
-        transition: transform 0.05s linear;
-    }
-
-
-    .company-name,
-    .info-row,
-    .sticker-qr {
-
-        cursor: grab;
-    }
-
-
-    .company-name:active,
-    .info-row:active,
-    .sticker-qr:active {
-
-        cursor: grabbing;
-    }
-
-
-    /* =========================================================
-       COMPANY NAME
-    ========================================================== */
-
-    .company-name {
-
-        width: 100%;
-
-        margin-bottom: 1mm;
-
-        font-weight: 700;
-
-        color: #27243a;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-    }
-
-
-    /* =========================================================
-       INFORMATION ROW
-    ========================================================== */
-
-    .info-row {
-
-        width: 100%;
-
-        display: flex;
-
-        align-items: baseline;
-
-        gap: 1mm;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-    }
-
-
-    .info-label {
-
-        flex-shrink: 0;
-
-        font-weight: 600;
-
-        color: #27243a;
-    }
-
-
-    .info-line {
-
-        flex: 1;
-
-        min-width: 5mm;
-
-        height: 1.5em;
-
-        display: flex;
-
-        align-items: flex-end;
-
-        border-bottom: 0.25mm solid #27243a;
-
-        overflow: hidden;
-    }
-
-
-    .info-value {
-
-        position: relative;
-
-        top: 0.5mm;
-
-        font-weight: 600;
-
-        color: #27243a;
-
-        background: transparent;
-
-        padding: 0 0.5mm;
-
-        max-width: 100%;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-    }
-
-
-    /* =========================================================
-       DIVIDER
-    ========================================================== */
-
-    .divider {
-
-        width: 0.25mm;
-
-        height: 15mm;
-
-        background: #27243a;
-
-        opacity: 0.2;
-
-        flex-shrink: 0;
-
-        align-self: center;
-
-        margin: 0 1.5mm;
-
-        position: relative;
-
-        z-index: 1;
-    }
-
-
-    /* =========================================================
-       QR
-    ========================================================== */
-
-    .sticker-qr {
-
-        width: auto;
-
-        height: 100%;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: flex-end;
-
-        flex-shrink: 0;
-
-        margin-left: 0;
-
-        background: transparent;
-
-        align-self: center;
-
-        position: relative;
-
-        z-index: 2;
-    }
-
-
-    #qrcode {
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        background: transparent;
-
-        flex-shrink: 0;
-
-        margin-left: 0;
-
-        margin-right: 0;
-
-        padding: 0;
-
-        line-height: 0;
-
-        position: relative;
-    }
-
-
-    #qrcode img,
-    #qrcode canvas {
-
-        display: block;
-
-        width: 100%;
-
-        height: 100%;
-
-        image-rendering: pixelated;
-
-        background: transparent;
-    }
-
-
-    /* =========================================================
-       NOTE
-    ========================================================== */
-
-    .note {
-
-        margin-top: 12px;
-
-        font-size: 10px;
-
-        line-height: 1.6;
-
-        color: var(--muted);
-
-        background: var(--primary-soft);
-
-        border-radius: 9px;
-
-        padding: 10px 12px;
-    }
-
-
-    /* =========================================================
-       PUBLISH PRODUCT AREA
-    ========================================================== */
-
-    .publish-area {
-
-        margin-top: 14px;
-
-        background: var(--surface);
-
-        border: 1px solid var(--border);
-
-        border-radius: 14px;
-
-        padding: 16px;
-
-        box-shadow: 0 8px 24px rgba(39, 36, 58, 0.04);
-    }
-
-
-    .publish-area-title {
-
-        margin: 0 0 5px;
-
-        font-size: 13px;
-
-        font-weight: 700;
-
-        color: var(--text);
-    }
-
-
-    .publish-area-description {
-
-        margin: 0 0 12px;
-
-        font-size: 10px;
-
-        line-height: 1.6;
-
-        color: var(--muted);
-    }
-
-
-    .publish-button {
-
-        width: 100%;
-
-        height: 42px;
-
-        border-radius: 10px;
-
-        background: var(--primary);
-
-        color: white;
-
-        font-size: 12px;
-
-        font-weight: 600;
-
-        transition: 0.2s;
-    }
-
-
-    .publish-button:hover {
-
-        background: var(--primary-dark);
-    }
-
-
-    .publish-button:disabled {
-
-        opacity: 0.6;
-
-        cursor: not-allowed;
-    }
-
-
-    /* =========================================================
-       MODAL
-    ========================================================== */
-
-    .modal {
-
-        position: fixed;
-
-        inset: 0;
-
-        z-index: 10000;
-
-        display: none;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 20px;
-
-        background: rgba(39, 36, 58, 0.45);
-
-        backdrop-filter: blur(4px);
-    }
-
-
-    .modal-card {
-
-        width: min(100%, 430px);
-
-        background: white;
-
-        border-radius: 18px;
-
-        padding: 24px;
-
-        box-shadow: 0 20px 60px rgba(39, 36, 58, 0.22);
-
-        text-align: center;
-    }
-
-
-    .modal-icon {
-
-        width: 48px;
-
-        height: 48px;
-
-        margin: 0 auto 12px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border-radius: 50%;
-
-        background: var(--primary-soft);
-
-        color: var(--primary-dark);
-
-        font-size: 22px;
-
-        font-weight: 700;
-    }
-
-
-    .modal-card.success .modal-icon {
-
-        background: var(--success-soft);
-
-        color: var(--success);
-    }
-
-
-    .modal-card.error .modal-icon {
-
-        background: var(--danger-soft);
-
-        color: var(--danger);
-    }
-
-
-    .modal-title {
-
-        margin: 0 0 7px;
-
-        font-size: 17px;
-
-        font-weight: 700;
-
-        color: var(--text);
-    }
-
-
-    .modal-message {
-
-        margin: 0 0 18px;
-
-        font-size: 11px;
-
-        line-height: 1.7;
-
-        color: var(--muted);
-    }
-
-
-    .modal-actions {
-
-        display: flex;
-
-        gap: 8px;
-
-        justify-content: center;
-    }
-
-
-    .modal-button {
-
-        min-width: 110px;
-
-        height: 38px;
-
-        padding: 0 16px;
-
-        border-radius: 9px;
-
-        font-size: 11px;
-
-        font-weight: 600;
-    }
-
-
-    .modal-cancel {
-
-        background: #f1eff7;
-
-        color: var(--text-soft);
-    }
-
-
-    .modal-confirm {
-
-        background: var(--primary);
-
-        color: white;
-    }
-
-
-    .modal-confirm:hover {
-
-        background: var(--primary-dark);
-    }
-
-
-    .business-id-box {
-
-        margin: 12px 0 18px;
-
-        padding: 12px;
-
-        background: var(--primary-soft);
-
-        border-radius: 10px;
-
-        word-break: break-all;
-    }
-
-
-    .business-id-label {
-
-        display: block;
-
-        margin-bottom: 4px;
-
-        font-size: 9px;
-
-        font-weight: 600;
-
-        color: var(--muted);
-    }
-
-
-    .business-id-value {
-
-        display: block;
-
-        font-size: 12px;
-
-        font-weight: 700;
-
-        color: var(--primary-dark);
-    }
-
-
-    .copy-button {
-
-        margin-top: 8px;
-
-        height: 30px;
-
-        padding: 0 12px;
-
-        border-radius: 7px;
-
-        background: white;
-
-        color: var(--primary-dark);
-
-        border: 1px solid var(--border);
-
-        font-size: 10px;
-
-        font-weight: 600;
-    }
-
-
-    .loading-spinner {
-
-        width: 30px;
-
-        height: 30px;
-
-        margin: 0 auto 15px;
-
-        border: 3px solid var(--primary-soft);
-
-        border-top-color: var(--primary);
-
-        border-radius: 50%;
-
-        animation: vanikioSpin 0.8s linear infinite;
-    }
-
-
-    @keyframes vanikioSpin {
-
-        to {
-
-            transform: rotate(360deg);
-
+            --success: #168271;
+            --success-soft: #edfbf7;
         }
 
-    }
 
+        /* =========================================================
+           RESET
+        ========================================================== */
 
-    /* =========================================================
-       ERROR BOX
-    ========================================================== */
+        * {
+            box-sizing: border-box;
+        }
 
-    #vanikioErrorBox {
-
-        display: none;
-
-        position: fixed;
-
-        top: 20px;
-
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        width: min(92%, 700px);
-
-        z-index: 99999;
-
-        background: #fff4f6;
-
-        border: 1px solid #d85c6e;
-
-        border-radius: 12px;
-
-        padding: 16px 18px;
-
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-
-        font-family: Poppins, sans-serif;
-    }
-
-
-    #vanikioErrorTitle {
-
-        margin: 0 0 5px;
-
-        font-size: 13px;
-
-        font-weight: 700;
-
-        color: #b33c50;
-    }
-
-
-    #vanikioErrorMessage {
-
-        margin: 0;
-
-        font-size: 11px;
-
-        line-height: 1.6;
-
-        color: #6f3340;
-
-        word-break: break-word;
-    }
-
-
-    /* =========================================================
-       PRINT
-    ========================================================== */
-
-    @media print {
 
         body {
 
-            padding: 0;
+            margin: 0;
 
-            background: white;
+            padding: 35px;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family: "Poppins", sans-serif;
         }
 
 
-        .panel,
-        .preview-header,
-        .note,
-        .publish-area {
-
-            display: none !important;
-        }
-
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================== */
 
         .container {
 
-            display: block;
+            max-width: 900px;
 
-            max-width: none;
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns: 280px 1fr;
+
+            gap: 35px;
+
+            align-items: start;
         }
 
 
-        .preview-area {
+        /* =========================================================
+           CONTROL PANEL
+        ========================================================== */
 
-            width: 100%;
+        .panel {
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow: 0 10px 30px rgba(39, 36, 58, 0.06);
         }
 
 
-        .preview-box {
+        .panel-header {
 
-            min-height: auto;
+            display: flex;
 
-            padding: 0;
+            align-items: flex-start;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .panel h1 {
+
+            margin: 0;
+
+            font-size: 20px;
+
+            font-weight: 700;
+
+            color: var(--text);
+        }
+
+
+        .panel-description {
+
+            margin: 0 0 20px;
+
+            font-size: 12px;
+
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+
+        /* =========================================================
+           LANGUAGE TOGGLE
+        ========================================================== */
+
+        .language-toggle {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 2px;
+
+            padding: 3px;
+
+            background: #f0edf8;
+
+            border-radius: 8px;
+
+            flex-shrink: 0;
+        }
+
+
+        .language-button {
 
             border: none;
 
-            box-shadow: none;
+            background: transparent;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            padding: 5px 7px;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        .language-button.active {
+
+            background: white;
+
+            color: var(--primary-dark);
+
+            box-shadow: 0 1px 4px rgba(39, 36, 58, 0.08);
+        }
+
+
+        /* =========================================================
+           FORM GROUP
+        ========================================================== */
+
+        .field {
+
+            margin-bottom: 14px;
+        }
+
+
+        .field label {
 
             display: block;
+
+            margin-bottom: 6px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: var(--text-soft);
         }
 
 
-        .sticker {
+        .field input,
+        .field textarea,
+        .field select {
 
-            box-shadow: none;
-        }
+            width: 100%;
 
-    }
+            border: 1px solid var(--border);
 
+            border-radius: 9px;
 
-    /* =========================================================
-       MOBILE
-    ========================================================== */
+            outline: none;
 
-    @media (max-width: 700px) {
+            background: white;
 
-        body {
+            color: var(--text);
 
-            padding: 18px;
-        }
+            font-family: "Poppins", sans-serif;
 
+            font-size: 12px;
 
-        .container {
-
-            grid-template-columns: 1fr;
-
-            gap: 20px;
+            transition: 0.2s;
         }
 
 
-        .preview-box {
+        .field input,
+        .field select {
 
-            min-height: 300px;
+            height: 38px;
 
-            padding: 20px;
+            padding: 0 11px;
         }
 
+
+        .field textarea {
+
+            min-height: 85px;
+
+            padding: 10px 11px;
+
+            resize: vertical;
+        }
+
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+
+            border-color: var(--primary);
+
+            box-shadow: 0 0 0 3px var(--primary-soft);
+        }
+
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+
+            color: var(--muted-light);
+        }
+
+
+        /* =========================================================
+           TWO COLUMN INPUT
+        ========================================================== */
+
+        .two-column {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 8px;
+        }
+
+
+        /* =========================================================
+           CHECKBOX
+        ========================================================== */
+
+        .checkbox-row {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin: 5px 0 14px;
+        }
+
+
+        .checkbox-row input {
+
+            width: 16px;
+
+            height: 16px;
+
+            accent-color: var(--primary);
+        }
+
+
+        .checkbox-row label {
+
+            margin: 0;
+
+            font-size: 12px;
+
+            font-weight: 500;
+
+            color: var(--text-soft);
+        }
+
+
+        /* =========================================================
+           COLOR PALETTE
+        ========================================================== */
+
+        .color-title {
+
+            margin-bottom: 7px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            color: var(--text-soft);
+        }
+
+
+        .color-palette {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 7px;
+
+            margin-bottom: 14px;
+        }
+
+
+        .color-option {
+
+            width: 27px;
+
+            height: 27px;
+
+            padding: 0;
+
+            border-radius: 7px;
+
+            border: 2px solid white;
+
+            outline: 1px solid var(--border);
+
+            cursor: pointer;
+
+            transition: 0.15s;
+        }
+
+
+        .color-option:hover {
+
+            transform: scale(1.08);
+        }
+
+
+        .color-option.active {
+
+            outline: 2px solid var(--text);
+
+            outline-offset: 1px;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================== */
+
+        .button-group {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-top: 18px;
+        }
+
+
+        button {
+
+            border: none;
+
+            cursor: pointer;
+
+            font-family: "Poppins", sans-serif;
+        }
+
+
+        .btn-primary {
+
+            width: 100%;
+
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-primary:hover {
+
+            background: var(--primary-dark);
+        }
+
+
+        .btn-secondary {
+
+            width: 100%;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            background: var(--primary-soft);
+
+            color: var(--primary-dark);
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-secondary:hover {
+
+            background: #dfd8ff;
+        }
+
+
+        /* =========================================================
+           PREVIEW AREA
+        ========================================================== */
+
+        .preview-area {
+
+            min-width: 0;
+        }
+
+
+        /* =========================================================
+           PREVIEW HEADER
+        ========================================================== */
+
+        .preview-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 12px;
+        }
+
+
+        .preview-title {
+
+            margin: 0;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            color: var(--text-soft);
+        }
+
+
+        /* =========================================================
+           RESET + DOWNLOAD QR
+        ========================================================== */
 
         .preview-actions {
 
-            gap: 4px;
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
         }
 
 
         .reset-button,
         .download-qr-button {
 
-            padding: 0 8px;
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 5px;
+
+            height: 30px;
+
+            padding: 0 10px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
         }
 
 
-        .business-grid {
+        .reset-button:hover,
+        .download-qr-button:hover {
 
-            grid-template-columns: 1fr;
+            border-color: var(--primary);
+
+            color: var(--primary-dark);
+
+            background: var(--primary-soft);
         }
 
 
-        .business-grid .full-width {
+        .reset-icon,
+        .download-qr-icon {
 
-            grid-column: auto;
+            font-size: 13px;
+
+            line-height: 1;
         }
 
-    }
 
-</style>
-```
+        /* =========================================================
+           PREVIEW BOX
+        ========================================================== */
+
+        .preview-box {
+
+            min-height: 360px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px;
+
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            overflow: auto;
+
+            box-shadow: 0 10px 30px rgba(39, 36, 58, 0.05);
+        }
+
+
+        /* =========================================================
+           STICKER
+        ========================================================== */
+
+        .sticker {
+
+            display: flex;
+
+            flex-direction: row;
+
+            align-items: center;
+
+            justify-content: flex-start;
+
+            flex-shrink: 0;
+
+            background: #ffffff;
+
+            border-style: solid;
+
+            border-color: #27243a;
+
+            border-width: 0.3mm;
+
+            border-radius: 1mm;
+
+            padding: 1.5mm;
+
+            overflow: hidden;
+
+            box-shadow: 0 8px 20px rgba(39, 36, 58, 0.12);
+
+            font-family: "Poppins", sans-serif;
+
+            transition:
+                width 0.2s,
+                height 0.2s,
+                border-color 0.2s,
+                border-width 0.2s;
+        }
+
+
+        /* =========================================================
+           INFORMATION AREA
+        ========================================================== */
+
+        .sticker-info {
+
+            flex: 1;
+
+            width: auto;
+
+            min-width: 0;
+
+            height: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            padding-left: 1.5mm;
+
+            overflow: hidden;
+        }
+
+
+        /* =========================================================
+           DRAGGABLE ELEMENTS
+        ========================================================== */
+
+        .company-name,
+        .info-row,
+        .sticker-qr {
+
+            position: relative;
+
+            user-select: none;
+
+            touch-action: none;
+
+            transition: transform 0.05s linear;
+        }
+
+
+        .company-name,
+        .info-row,
+        .sticker-qr {
+
+            cursor: grab;
+        }
+
+
+        .company-name:active,
+        .info-row:active,
+        .sticker-qr:active {
+
+            cursor: grabbing;
+        }
+
+
+        /* =========================================================
+           COMPANY NAME
+        ========================================================== */
+
+        .company-name {
+
+            width: 100%;
+
+            margin-bottom: 1mm;
+
+            font-weight: 700;
+
+            color: #27243a;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        /* =========================================================
+           INFORMATION ROW
+        ========================================================== */
+
+        .info-row {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: baseline;
+
+            gap: 1mm;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+        }
+
+
+        .info-label {
+
+            flex-shrink: 0;
+
+            font-weight: 600;
+
+            color: #27243a;
+        }
+
+
+        .info-line {
+
+            flex: 1;
+
+            min-width: 5mm;
+
+            height: 1.5em;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            border-bottom: 0.25mm solid #27243a;
+
+            overflow: hidden;
+        }
+
+
+        .info-value {
+
+            position: relative;
+
+            top: 0.5mm;
+
+            font-weight: 600;
+
+            color: #27243a;
+
+            background: transparent;
+
+            padding: 0 0.5mm;
+
+            max-width: 100%;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        /* =========================================================
+           DIVIDER
+        ========================================================== */
+
+        .divider {
+
+            width: 0.25mm;
+
+            height: 15mm;
+
+            background: #27243a;
+
+            opacity: 0.2;
+
+            flex-shrink: 0;
+
+            align-self: center;
+
+            margin: 0 1.5mm;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* =========================================================
+           QR
+        ========================================================== */
+
+        .sticker-qr {
+
+            width: auto;
+
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            flex-shrink: 0;
+
+            margin-left: 0;
+
+            background: transparent;
+
+            align-self: center;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        #qrcode {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: transparent;
+
+            flex-shrink: 0;
+
+            margin-left: 0;
+
+            margin-right: 0;
+
+            padding: 0;
+
+            line-height: 0;
+
+            position: relative;
+        }
+
+
+        #qrcode img,
+        #qrcode canvas {
+
+            display: block;
+
+            width: 100%;
+
+            height: 100%;
+
+            image-rendering: pixelated;
+
+            background: transparent;
+        }
+
+
+        /* =========================================================
+           NOTE
+        ========================================================== */
+
+        .note {
+
+            margin-top: 12px;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            color: var(--muted);
+
+            background: var(--primary-soft);
+
+            border-radius: 9px;
+
+            padding: 10px 12px;
+        }
+
+
+        /* =========================================================
+           PRINT
+        ========================================================== */
+
+        @media print {
+
+            body {
+
+                padding: 0;
+
+                background: white;
+            }
+
+
+            .panel,
+            .preview-header,
+            .note {
+
+                display: none !important;
+            }
+
+
+            .container {
+
+                display: block;
+
+                max-width: none;
+            }
+
+
+            .preview-area {
+
+                width: 100%;
+            }
+
+
+            .preview-box {
+
+                min-height: auto;
+
+                padding: 0;
+
+                border: none;
+
+                box-shadow: none;
+
+                display: block;
+            }
+
+
+            .sticker {
+
+                box-shadow: none;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================== */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding: 18px;
+            }
+
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+                gap: 20px;
+            }
+
+
+            .preview-box {
+
+                min-height: 300px;
+
+                padding: 20px;
+            }
+
+
+            .preview-actions {
+
+                gap: 4px;
+            }
+
+
+            .reset-button,
+            .download-qr-button {
+
+                padding: 0 8px;
+            }
+
+
+            .business-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .business-grid .full-width {
+
+                grid-column: auto;
+            }
+
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
+
+<div class="container">
+
+
+    <!-- =========================================================
+         CONTROL PANEL
+    ========================================================== -->
+
+    <div class="panel">
+
+
+        <div class="panel-header">
+
+            <h1>VANIKIO</h1>
+
+
+            <div class="language-toggle">
+
+                <button
+                        type="button"
+                        class="language-button active"
+                        id="englishButton"
+                        onclick="setLanguage('en')"
+                >
+                    EN
+                </button>
+
+
+                <button
+                        type="button"
+                        class="language-button"
+                        id="tamilButton"
+                        onclick="setLanguage('ta')"
+                >
+                    தமிழ்
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <p
+                class="panel-description"
+                data-i18n="description"
+        >
+            Create a compact QR sticker linked to your business.
+        </p>
+
+
+        <!-- BUSINESS ID -->
+
+        <div class="field">
+
+            <label data-i18n="businessId">
+                BUSINESS ID *
+            </label>
+
+            <input
+                    type="text"
+                    id="businessId"
+                    placeholder="Example: abc123XYZ"
+                    data-placeholder-en="Example: abc123XYZ"
+                    data-placeholder-ta="உதாரணம்: abc123XYZ"
+                    required
+            >
+
+        </div>
+
+
+        <!-- =====================================================
+             NEW FIELD — PRODUCT NAME
+        ====================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="productName">
+                PRODUCT NAME *
+            </label>
+
+            <input
+                    type="text"
+                    id="productName"
+                    placeholder="Example: Wooden Chair"
+                    data-placeholder-en="Example: Wooden Chair"
+                    data-placeholder-ta="உதாரணம்: மர நாற்காலி"
+                    required
+            >
+
+        </div>
+
+
+        <!-- =====================================================
+             NEW FIELD — PRODUCT DESCRIPTION
+        ====================================================== -->
+
+        <div class="field">
+
+            <label data-i18n="productDescription">
+                PRODUCT DESCRIPTION *
+            </label>
+
+            <textarea
+                    id="productDescription"
+                    placeholder="Example: Premium wooden chair for home and office use."
+                    data-placeholder-en="Example: Premium wooden chair for home and office use."
+                    data-placeholder-ta="உதாரணம்: வீடு மற்றும் அலுவலக பயன்பாட்டிற்கான தரமான மர நாற்காலி."
+                    required
+            ></textarea>
+
+        </div>
+
+
+        <!-- SERIAL NUMBER -->
+
+        <div class="field">
+
+            <label data-i18n="serialNumber">
+                SERIAL NUMBER
+            </label>
+
+            <input
+                    type="text"
+                    id="serial"
+                    value="12"
+            >
+
+        </div>
+
+
+        <!-- PRICE -->
+
+        <div class="field">
+
+            <label data-i18n="price">
+                PRICE
+            </label>
+
+            <input
+                    type="text"
+                    id="price"
+                    value="499"
+            >
+
+        </div>
+
+
+        <!-- QR / ITEM ID -->
+
+        <div class="field">
+
+            <label data-i18n="qrItemId">
+                QR / ITEM ID
+            </label>
+
+            <input
+                    type="text"
+                    id="itemId"
+                    value="CHAIR-12"
+            >
+
+        </div>
+
+
+        <!-- DIMENSIONS -->
+
+        <div class="two-column">
+
+            <div class="field">
+
+                <label data-i18n="width">
+                    WIDTH (mm)
+                </label>
+
+                <input
+                        type="number"
+                        id="stickerWidth"
+                        value="35"
+                        min="10"
+                        step="1"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label data-i18n="height">
+                    HEIGHT (mm)
+                </label>
+
+                <input
+                        type="number"
+                        id="stickerHeight"
+                        value="20"
+                        min="8"
+                        step="1"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- QR ENABLE -->
+
+        <div class="checkbox-row">
+
+            <input
+                    type="checkbox"
+                    id="qrEnabled"
+                    checked
+            >
+
+            <label
+                    for="qrEnabled"
+                    data-i18n="showQr"
+            >
+                Show QR Code
+            </label>
+
+        </div>
+
+
+        <!-- QR SIZE -->
+
+        <div class="field">
+
+            <label data-i18n="qrSize">
+                QR SIZE (mm)
+            </label>
+
+            <input
+                    type="number"
+                    id="qrSize"
+                    value="15"
+                    min="5"
+                    step="0.5"
+            >
+
+        </div>
+
+
+        <!-- TEXT SIZES -->
+
+        <div class="two-column">
+
+            <div class="field">
+
+                <label data-i18n="labelSize">
+                    LABEL SIZE
+                </label>
+
+                <input
+                        type="number"
+                        id="labelSize"
+                        value="1.7"
+                        min="0.8"
+                        step="0.1"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label data-i18n="valueSize">
+                    SERIAL / PRICE
+                </label>
+
+                <input
+                        type="number"
+                        id="valueSize"
+                        value="4.2"
+                        min="1"
+                        step="0.1"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- BORDER SIZE -->
+
+        <div class="field">
+
+            <label data-i18n="borderSize">
+                BORDER SIZE (mm)
+            </label>
+
+            <input
+                    type="number"
+                    id="borderSize"
+                    value="0.3"
+                    min="0"
+                    max="3"
+                    step="0.1"
+            >
+
+        </div>
+
+
+        <!-- STICKER BACKGROUND -->
+
+        <div
+                class="color-title"
+                data-i18n="stickerBackground"
+        >
+            STICKER BACKGROUND
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="stickerBackground"
+                    data-color="#ffffff"
+                    style="background:#ffffff"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#f7f5ff"
+                    style="background:#f7f5ff"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#ece7ff"
+                    style="background:#ece7ff"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#e8f8f5"
+                    style="background:#e8f8f5"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#fff4f6"
+                    style="background:#fff4f6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#fff8e7"
+                    style="background:#fff8e7"></button>
+
+            <button type="button" class="color-option"
+                    data-target="stickerBackground"
+                    data-color="#f1f1f1"
+                    style="background:#f1f1f1"></button>
+
+        </div>
+
+
+        <!-- BORDER COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="borderColor"
+        >
+            BORDER COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="border"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#168271"
+                    style="background:#168271"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#d85c6e"
+                    style="background:#d85c6e"></button>
+
+            <button type="button" class="color-option"
+                    data-target="border"
+                    data-color="#000000"
+                    style="background:#000000"></button>
+
+        </div>
+
+
+        <!-- S.NO LABEL COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="serialLabelColor"
+        >
+            S.NO LABEL COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="serialLabel"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialLabel"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialLabel"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialLabel"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialLabel"
+                    data-color="#77738a"
+                    style="background:#77738a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialLabel"
+                    data-color="#d85c6e"
+                    style="background:#d85c6e"></button>
+
+        </div>
+
+
+        <!-- S.NO VALUE COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="serialValueColor"
+        >
+            S.NO VALUE COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="serialValue"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialValue"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialValue"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialValue"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialValue"
+                    data-color="#168271"
+                    style="background:#168271"></button>
+
+            <button type="button" class="color-option"
+                    data-target="serialValue"
+                    data-color="#d85c6e"
+                    style="background:#d85c6e"></button>
+
+        </div>
+
+
+        <!-- PRICE LABEL COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="priceLabelColor"
+        >
+            PRICE LABEL COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="priceLabel"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceLabel"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceLabel"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceLabel"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceLabel"
+                    data-color="#77738a"
+                    style="background:#77738a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceLabel"
+                    data-color="#d85c6e"
+                    style="background:#d85c6e"></button>
+
+        </div>
+
+
+        <!-- PRICE VALUE COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="priceValueColor"
+        >
+            PRICE VALUE COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="priceValue"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceValue"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceValue"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceValue"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceValue"
+                    data-color="#168271"
+                    style="background:#168271"></button>
+
+            <button type="button" class="color-option"
+                    data-target="priceValue"
+                    data-color="#d85c6e"
+                    style="background:#d85c6e"></button>
+
+        </div>
+
+
+        <!-- QR COLOR -->
+
+        <div
+                class="color-title"
+                data-i18n="qrColor"
+        >
+            QR COLOR
+        </div>
+
+
+        <div class="color-palette">
+
+            <button type="button" class="color-option active"
+                    data-target="qr"
+                    data-color="#000000"
+                    style="background:#000000"></button>
+
+            <button type="button" class="color-option"
+                    data-target="qr"
+                    data-color="#27243a"
+                    style="background:#27243a"></button>
+
+            <button type="button" class="color-option"
+                    data-target="qr"
+                    data-color="#5938dc"
+                    style="background:#5938dc"></button>
+
+            <button type="button" class="color-option"
+                    data-target="qr"
+                    data-color="#6c4cf1"
+                    style="background:#6c4cf1"></button>
+
+            <button type="button" class="color-option"
+                    data-target="qr"
+                    data-color="#168271"
+                    style="background:#168271"></button>
+
+            <button type="button" class="color-option"
+                    data-target="qr"
+                    data-color="#20b8a6"
+                    style="background:#20b8a6"></button>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="button-group">
+
+            <button
+                    class="btn-primary"
+                    onclick="generateSticker()"
+                    data-i18n="generateSticker"
+            >
+                Generate Sticker
+            </button>
+
+
+            <button
+                    class="btn-secondary"
+                    onclick="downloadSticker()"
+                    data-i18n="downloadPng"
+            >
+                Download PNG
+            </button>
+
+
+            <button
+                    class="btn-secondary"
+                    onclick="printSticker()"
+                    data-i18n="printSticker"
+            >
+                Print Sticker
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         PREVIEW AREA
+    ========================================================== -->
+
+    <div class="preview-area">
+
+
+        <!-- PREVIEW HEADER -->
+
+        <div class="preview-header">
+
+            <div
+                    class="preview-title"
+                    data-i18n="previewTitle"
+            >
+                Sticker Preview
+            </div>
+
+
+            <div class="preview-actions">
+
+
+                <!-- DOWNLOAD QR ONLY -->
+
+                <button
+                        type="button"
+                        class="download-qr-button"
+                        onclick="downloadQrOnly()"
+                >
+
+                    <span class="download-qr-icon">
+                        ↓
+                    </span>
+
+                    <span data-i18n="downloadQr">
+                        QR
+                    </span>
+
+                </button>
+
+
+                <!-- RESET -->
+
+                <button
+                        type="button"
+                        class="reset-button"
+                        onclick="resetSticker()"
+                >
+
+                    <span class="reset-icon">
+                        ↻
+                    </span>
+
+                    <span data-i18n="reset">
+                        Reset
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STICKER PREVIEW -->
+
+        <div class="preview-box">
+
+
+            <div
+                    id="sticker"
+                    class="sticker"
+            >
+
+
+                <!-- INFORMATION -->
+
+                <div class="sticker-info">
+
+
+                    <div
+                            class="company-name"
+                            id="companyNameText"
+                            style="display:none;"
+                    ></div>
+
+
+                    <div
+                            class="info-row"
+                            id="serialRow"
+                    >
+
+                        <span
+                                class="info-label"
+                                id="serialLabel"
+                        >
+                            SI.NO:
+                        </span>
+
+
+                        <span class="info-line">
+
+                            <span
+                                    class="info-value"
+                                    id="serialText"
+                            >
+                                12
+                            </span>
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                            class="info-row"
+                            id="priceRow"
+                    >
+
+                        <span
+                                class="info-label"
+                                id="priceLabel"
+                        >
+                            PRICE:
+                        </span>
+
+
+                        <span class="info-line">
+
+                            <span
+                                    class="info-value"
+                                    id="priceText"
+                            >
+                                499
+                            </span>
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- DIVIDER -->
+
+                <div
+                        class="divider"
+                        id="divider"
+                ></div>
+
+
+                <!-- QR -->
+
+                <div
+                        class="sticker-qr"
+                        id="qrSection"
+                >
+
+                    <div id="qrcode"></div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- PUBLISH PRODUCT -->
+
+        <div style="margin-top: 14px;">
+
+            <button
+                    class="btn-secondary"
+                    type="button"
+                    onclick="openPublishBusiness()"
+                    data-i18n="publishProduct"
+            >
+                Publish Product
+            </button>
+
+        </div>
+
+
+        <!-- NOTE -->
+
+        <div
+                class="note"
+                data-i18n="note"
+        >
+            For very small stickers, keep the QR size large enough
+            for reliable scanning. QR is optional.
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
 <!-- =============================================================
-     STARTUP ERROR CATCH
+     JAVASCRIPT
 ============================================================= -->
 
 <script>
 
-window.addEventListener("error", function(event) {
 
-    const box =
-        document.getElementById("vanikioErrorBox");
+    /* =============================================================
+       DEFAULT VALUES
+    ============================================================= */
 
-    const message =
-        document.getElementById("vanikioErrorMessage");
+    const DEFAULTS = {
 
-    if (box && message) {
+        businessId: "",
 
-        message.textContent =
-            event.message ||
-            "Unknown page error.";
+        productName: "",
 
-        box.style.display =
-            "block";
+        productDescription: "",
 
-    }
+        serial: "12",
 
-});
+        price: "499",
+
+        itemId: "CHAIR-12",
+
+        stickerWidth: "35",
+
+        stickerHeight: "20",
+
+        qrEnabled: true,
+
+        qrSize: "15",
+
+        labelSize: "1.7",
+
+        valueSize: "4.2",
+
+        borderSize: "0.3",
+
+        language: "en"
+
+    };
 
 
-window.addEventListener(
-    "unhandledrejection",
-    function(event) {
+    /* =============================================================
+       TRANSLATIONS
+    ============================================================= */
 
-        const box =
-            document.getElementById("vanikioErrorBox");
+    const translations = {
 
-        const message =
-            document.getElementById("vanikioErrorMessage");
+        en: {
 
-        if (box && message) {
+            description:
+                "Create a compact QR sticker linked to your business.",
 
-            const reason =
-                event.reason;
+            businessId:
+                "BUSINESS ID *",
 
-            message.textContent =
-                reason && reason.message
-                    ? reason.message
-                    : String(reason || "Unknown promise error.");
+            productName:
+                "PRODUCT NAME *",
 
-            box.style.display =
-                "block";
+            productDescription:
+                "PRODUCT DESCRIPTION *",
+
+            serialNumber:
+                "SERIAL NUMBER",
+
+            price:
+                "PRICE",
+
+            qrItemId:
+                "QR / ITEM ID",
+
+            width:
+                "WIDTH (mm)",
+
+            height:
+                "HEIGHT (mm)",
+
+            showQr:
+                "Show QR Code",
+
+            qrSize:
+                "QR SIZE (mm)",
+
+            labelSize:
+                "LABEL SIZE",
+
+            valueSize:
+                "SERIAL / PRICE",
+
+            borderSize:
+                "BORDER SIZE (mm)",
+
+            stickerBackground:
+                "STICKER BACKGROUND",
+
+            borderColor:
+                "BORDER COLOR",
+
+            serialLabelColor:
+                "S.NO LABEL COLOR",
+
+            serialValueColor:
+                "S.NO VALUE COLOR",
+
+            priceLabelColor:
+                "PRICE LABEL COLOR",
+
+            priceValueColor:
+                "PRICE VALUE COLOR",
+
+            qrColor:
+                "QR COLOR",
+
+            generateSticker:
+                "Generate Sticker",
+
+            downloadPng:
+                "Download PNG",
+
+            printSticker:
+                "Print Sticker",
+
+            previewTitle:
+                "Sticker Preview",
+
+            downloadQr:
+                "QR",
+
+            reset:
+                "Reset",
+
+            publishProduct:
+                 "Publish Product",
+
+            note:
+                "For very small stickers, keep the QR size large enough for reliable scanning. QR is optional."
+
+        },
+
+
+        ta: {
+
+            description:
+                "உங்கள் பொருட்களுக்கு சிறிய QR ஸ்டிக்கரை உருவாக்குங்கள்.",
+
+            businessId:
+                "வணிக ID *",
+
+            productName:
+                "பொருளின் பெயர் *",
+
+            productDescription:
+                "பொருளின் விளக்கம் *",
+
+            serialNumber:
+                "வரிசை எண்",
+
+            price:
+                "விலை",
+
+            qrItemId:
+                "QR / பொருள் ID",
+
+            width:
+                "அகலம் (mm)",
+
+            height:
+                "உயரம் (mm)",
+
+            showQr:
+                "QR குறியீட்டைக் காட்டு",
+
+            qrSize:
+                "QR அளவு (mm)",
+
+            labelSize:
+                "லேபிள் அளவு",
+
+            valueSize:
+                "வரிசை எண் / விலை",
+
+            borderSize:
+                "பார்டர் அளவு (mm)",
+
+            stickerBackground:
+                "ஸ்டிக்கர் பின்னணி",
+
+            borderColor:
+                "பார்டர் நிறம்",
+
+            serialLabelColor:
+                "வரிசை எண் லேபிள் நிறம்",
+
+            serialValueColor:
+                "வரிசை எண் மதிப்பு நிறம்",
+
+            priceLabelColor:
+                "விலை லேபிள் நிறம்",
+
+            priceValueColor:
+                "விலை மதிப்பு நிறம்",
+
+            qrColor:
+                "QR நிறம்",
+
+            generateSticker:
+                "ஸ்டிக்கரை உருவாக்கு",
+
+            downloadPng:
+                "PNG பதிவிறக்கு",
+
+            printSticker:
+                "ஸ்டிக்கரை அச்சிடு",
+
+            previewTitle:
+                "ஸ்டிக்கர் முன்னோட்டம்",
+
+            downloadQr:
+                "QR",
+
+            reset:
+                "மீட்டமை",
+
+            publishBusiness:
+                "பொருளை வெளியிடு",
+
+            note:
+                "மிகச் சிறிய ஸ்டிக்கர்களுக்கு, QR குறியீட்டை எளிதாக ஸ்கேன் செய்ய போதுமான அளவில் வைத்திருக்கவும். QR விருப்பமானது."
 
         }
 
-    }
-);
+    };
 
-</script>
 
-<div class="container">
+    /* =============================================================
+       DEFAULT COLORS
+    ============================================================= */
 
-```
-<!-- =========================================================
-     CONTROL PANEL
-========================================================== -->
+    const DEFAULT_COLORS = {
 
-<div class="panel">
+        stickerBackground: "#ffffff",
 
+        border: "#27243a",
 
-    <div class="panel-header">
+        serialLabel: "#27243a",
 
-        <h1>VANIKIO</h1>
+        serialValue: "#27243a",
 
+        priceLabel: "#27243a",
 
-        <div class="language-toggle">
+        priceValue: "#27243a",
 
-            <button
-                type="button"
-                class="language-button active"
-                id="englishButton"
-            >
-                EN
-            </button>
+        qr: "#000000"
 
+    };
 
-            <button
-                type="button"
-                class="language-button"
-                id="tamilButton"
-            >
-                தமிழ்
-            </button>
 
-        </div>
-
-    </div>
-
-
-    <p
-        class="panel-description"
-        data-i18n="description"
-    >
-        Create a compact QR sticker linked to your business.
-    </p>
-
-
-    <!-- =====================================================
-         BUSINESS ID
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="businessId">
-            BUSINESS ID *
-        </label>
-
-        <input
-            type="text"
-            id="businessId"
-            placeholder="Example: abc123XYZ"
-            data-placeholder-en="Example: abc123XYZ"
-            data-placeholder-ta="உதாரணம்: abc123XYZ"
-            required
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         PRODUCT NAME
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="productName">
-            PRODUCT NAME *
-        </label>
-
-        <input
-            type="text"
-            id="productName"
-            placeholder="Example: Premium Office Chair"
-            data-placeholder-en="Example: Premium Office Chair"
-            data-placeholder-ta="உதாரணம்: பிரீமியம் அலுவலக நாற்காலி"
-            required
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         PRODUCT DESCRIPTION
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="productDescription">
-            PRODUCT DESCRIPTION *
-        </label>
-
-        <textarea
-            id="productDescription"
-            placeholder="Describe your product..."
-            data-placeholder-en="Describe your product..."
-            data-placeholder-ta="உங்கள் பொருளைப் பற்றி எழுதுங்கள்..."
-            required
-        ></textarea>
-
-    </div>
-
-
-    <!-- =====================================================
-         SERIAL NUMBER
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="serialNumber">
-            SERIAL NUMBER
-        </label>
-
-        <input
-            type="text"
-            id="serial"
-            value="12"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         PRICE
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="price">
-            PRICE
-        </label>
-
-        <input
-            type="text"
-            id="price"
-            value="499"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         QR / ITEM ID
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="qrItemId">
-            QR / ITEM ID
-        </label>
-
-        <input
-            type="text"
-            id="itemId"
-            value="CHAIR-12"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         DIMENSIONS
-    ====================================================== -->
-
-    <div class="two-column">
-
-        <div class="field">
-
-            <label data-i18n="width">
-                WIDTH (mm)
-            </label>
-
-            <input
-                type="number"
-                id="stickerWidth"
-                value="35"
-                min="10"
-                step="1"
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label data-i18n="height">
-                HEIGHT (mm)
-            </label>
-
-            <input
-                type="number"
-                id="stickerHeight"
-                value="20"
-                min="8"
-                step="1"
-            >
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         QR ENABLE
-    ====================================================== -->
-
-    <div class="checkbox-row">
-
-        <input
-            type="checkbox"
-            id="qrEnabled"
-            checked
-        >
-
-        <label
-            for="qrEnabled"
-            data-i18n="showQr"
-        >
-            Show QR Code
-        </label>
-
-    </div>
-
-
-    <!-- =====================================================
-         QR SIZE
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="qrSize">
-            QR SIZE (mm)
-        </label>
-
-        <input
-            type="number"
-            id="qrSize"
-            value="15"
-            min="5"
-            step="0.5"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         TEXT SIZES
-    ====================================================== -->
-
-    <div class="two-column">
-
-        <div class="field">
-
-            <label data-i18n="labelSize">
-                LABEL SIZE
-            </label>
-
-            <input
-                type="number"
-                id="labelSize"
-                value="1.7"
-                min="0.8"
-                step="0.1"
-            >
-
-        </div>
-
-
-        <div class="field">
-
-            <label data-i18n="valueSize">
-                SERIAL / PRICE
-            </label>
-
-            <input
-                type="number"
-                id="valueSize"
-                value="4.2"
-                min="1"
-                step="0.1"
-            >
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         BORDER SIZE
-    ====================================================== -->
-
-    <div class="field">
-
-        <label data-i18n="borderSize">
-            BORDER SIZE (mm)
-        </label>
-
-        <input
-            type="number"
-            id="borderSize"
-            value="0.3"
-            min="0"
-            max="3"
-            step="0.1"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         STICKER BACKGROUND
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="stickerBackground"
-    >
-        STICKER BACKGROUND
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="stickerBackground"
-            data-color="#ffffff"
-            style="background:#ffffff"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#f7f5ff"
-            style="background:#f7f5ff"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#ece7ff"
-            style="background:#ece7ff"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#e8f8f5"
-            style="background:#e8f8f5"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#fff4f6"
-            style="background:#fff4f6"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#fff8e7"
-            style="background:#fff8e7"></button>
-
-        <button type="button" class="color-option"
-            data-target="stickerBackground"
-            data-color="#f1f1f1"
-            style="background:#f1f1f1"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         BORDER COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="borderColor"
-    >
-        BORDER COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="border"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#168271"
-            style="background:#168271"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#d85c6e"
-            style="background:#d85c6e"></button>
-
-        <button type="button" class="color-option"
-            data-target="border"
-            data-color="#000000"
-            style="background:#000000"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         S.NO LABEL COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="serialLabelColor"
-    >
-        S.NO LABEL COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="serialLabel"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialLabel"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialLabel"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialLabel"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialLabel"
-            data-color="#77738a"
-            style="background:#77738a"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialLabel"
-            data-color="#d85c6e"
-            style="background:#d85c6e"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         S.NO VALUE COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="serialValueColor"
-    >
-        S.NO VALUE COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="serialValue"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialValue"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialValue"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialValue"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialValue"
-            data-color="#168271"
-            style="background:#168271"></button>
-
-        <button type="button" class="color-option"
-            data-target="serialValue"
-            data-color="#d85c6e"
-            style="background:#d85c6e"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         PRICE LABEL COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="priceLabelColor"
-    >
-        PRICE LABEL COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="priceLabel"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceLabel"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceLabel"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceLabel"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceLabel"
-            data-color="#77738a"
-            style="background:#77738a"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceLabel"
-            data-color="#d85c6e"
-            style="background:#d85c6e"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         PRICE VALUE COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="priceValueColor"
-    >
-        PRICE VALUE COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="priceValue"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceValue"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceValue"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceValue"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceValue"
-            data-color="#168271"
-            style="background:#168271"></button>
-
-        <button type="button" class="color-option"
-            data-target="priceValue"
-            data-color="#d85c6e"
-            style="background:#d85c6e"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         QR COLOR
-    ====================================================== -->
-
-    <div
-        class="color-title"
-        data-i18n="qrColor"
-    >
-        QR COLOR
-    </div>
-
-
-    <div class="color-palette">
-
-        <button type="button" class="color-option active"
-            data-target="qr"
-            data-color="#000000"
-            style="background:#000000"></button>
-
-        <button type="button" class="color-option"
-            data-target="qr"
-            data-color="#27243a"
-            style="background:#27243a"></button>
-
-        <button type="button" class="color-option"
-            data-target="qr"
-            data-color="#5938dc"
-            style="background:#5938dc"></button>
-
-        <button type="button" class="color-option"
-            data-target="qr"
-            data-color="#6c4cf1"
-            style="background:#6c4cf1"></button>
-
-        <button type="button" class="color-option"
-            data-target="qr"
-            data-color="#168271"
-            style="background:#168271"></button>
-
-        <button type="button" class="color-option"
-            data-target="qr"
-            data-color="#20b8a6"
-            style="background:#20b8a6"></button>
-
-    </div>
-
-
-    <!-- =====================================================
-         BUTTONS
-    ====================================================== -->
-
-    <div class="button-group">
-
-        <button
-            class="btn-primary"
-            type="button"
-            id="generateStickerButton"
-            data-i18n="generateSticker"
-        >
-            Generate Sticker
-        </button>
-
-
-        <button
-            class="btn-secondary"
-            type="button"
-            id="downloadStickerButton"
-            data-i18n="downloadPng"
-        >
-            Download PNG
-        </button>
-
-
-        <button
-            class="btn-secondary"
-            type="button"
-            id="printStickerButton"
-            data-i18n="printSticker"
-        >
-            Print Sticker
-        </button>
-
-
-        <button
-            class="btn-secondary"
-            type="button"
-            id="publishBusinessButton"
-            data-i18n="publishBusiness"
-        >
-            Publish Business
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================================================
-     PREVIEW AREA
-========================================================== -->
-
-<div class="preview-area">
-
-
-    <div class="preview-header">
-
-        <div
-            class="preview-title"
-            data-i18n="previewTitle"
-        >
-            Sticker Preview
-        </div>
-
-
-        <div class="preview-actions">
-
-
-            <button
-                type="button"
-                class="download-qr-button"
-                id="downloadQrButton"
-            >
-
-                <span class="download-qr-icon">
-                    ↓
-                </span>
-
-                <span data-i18n="downloadQr">
-                    QR
-                </span>
-
-            </button>
-
-
-            <button
-                type="button"
-                class="reset-button"
-                id="resetButton"
-            >
-
-                <span class="reset-icon">
-                    ↻
-                </span>
-
-                <span data-i18n="reset">
-                    Reset
-                </span>
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         STICKER PREVIEW CARD
-    ====================================================== -->
-
-    <div class="preview-box">
-
-
-        <div
-            id="sticker"
-            class="sticker"
-        >
-
-
-            <div class="sticker-info">
-
-
-                <div
-                    class="company-name"
-                    id="companyNameText"
-                    style="display:none;"
-                ></div>
-
-
-                <div
-                    class="info-row"
-                    id="serialRow"
-                >
-
-                    <span
-                        class="info-label"
-                        id="serialLabel"
-                    >
-                        SI.NO:
-                    </span>
-
-
-                    <span class="info-line">
-
-                        <span
-                            class="info-value"
-                            id="serialText"
-                        >
-                            12
-                        </span>
-
-                    </span>
-
-                </div>
-
-
-                <div
-                    class="info-row"
-                    id="priceRow"
-                >
-
-                    <span
-                        class="info-label"
-                        id="priceLabel"
-                    >
-                        PRICE:
-                    </span>
-
-
-                    <span class="info-line">
-
-                        <span
-                            class="info-value"
-                            id="priceText"
-                        >
-                            499
-                        </span>
-
-                    </span>
-
-                </div>
-
-
-            </div>
-
-
-            <div
-                class="divider"
-                id="divider"
-            ></div>
-
-
-            <div
-                class="sticker-qr"
-                id="qrSection"
-            >
-
-                <div id="qrcode"></div>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         PUBLISH PRODUCT
-         BELOW PREVIEW CARD
-    ====================================================== -->
-
-    <div class="publish-area">
-
-        <h2
-            class="publish-area-title"
-            data-i18n="publishTitle"
-        >
-            Publish Product
-        </h2>
-
-        <p
-            class="publish-area-description"
-            data-i18n="publishDescription"
-        >
-            Save this product and its QR configuration to your VANIKIO business.
-        </p>
-
-        <button
-            type="button"
-            class="publish-button"
-            id="publishProductButton"
-            data-i18n="publishProduct"
-        >
-            Publish Product
-        </button>
-
-    </div>
-
-
-    <!-- =====================================================
-         NOTE
-    ====================================================== -->
-
-    <div
-        class="note"
-        data-i18n="note"
-    >
-        For very small stickers, keep the QR size large enough
-        for reliable scanning. QR is optional.
-    </div>
-
-
-</div>
-```
-
-</div>
-
-<!-- =============================================================
-     PUBLISH MODAL
-============================================================= -->
-
-<div
-    class="modal"
-    id="publishModal"
->
-
-```
-<!-- CONFIRM -->
-
-<div
-    class="modal-card"
-    id="confirmContent"
-    style="display:none;"
->
-
-    <div class="modal-icon">
-        ?
-    </div>
-
-    <h2
-        class="modal-title"
-        data-i18n="confirmTitle"
-    >
-        Publish Product?
-    </h2>
-
-    <p
-        class="modal-message"
-        data-i18n="confirmMessage"
-    >
-        This product will be saved to your VANIKIO business.
-    </p>
-
-    <div class="modal-actions">
-
-        <button
-            type="button"
-            class="modal-button modal-cancel"
-            id="cancelButton"
-            data-i18n="cancel"
-        >
-            Cancel
-        </button>
-
-        <button
-            type="button"
-            class="modal-button modal-confirm"
-            id="confirmButton"
-            data-i18n="confirmPublish"
-        >
-            Publish
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- LOADING -->
-
-<div
-    class="modal-card"
-    id="loadingContent"
-    style="display:none;"
->
-
-    <div class="loading-spinner"></div>
-
-    <h2
-        class="modal-title"
-        data-i18n="publishing"
-    >
-        Publishing...
-    </h2>
-
-    <p
-        class="modal-message"
-        data-i18n="pleaseWait"
-    >
-        Please wait while we save your product.
-    </p>
-
-</div>
-
-
-<!-- SUCCESS -->
-
-<div
-    class="modal-card success"
-    id="successContent"
-    style="display:none;"
->
-
-    <div class="modal-icon">
-        ✓
-    </div>
-
-    <h2
-        class="modal-title"
-        data-i18n="successTitle"
-    >
-        Product Published
-    </h2>
-
-    <p
-        class="modal-message"
-        data-i18n="successMessage"
-    >
-        Your product has been successfully saved.
-    </p>
-
-
-    <div
-        class="business-id-box"
-        id="productIdBox"
-    >
-
-        <span
-            class="business-id-label"
-            data-i18n="productIdLabel"
-        >
-            PRODUCT ID
-        </span>
-
-        <span
-            class="business-id-value"
-            id="successProductId"
-        ></span>
-
-        <button
-            type="button"
-            class="copy-button"
-            id="copyProductIdButton"
-            data-i18n="copyProductId"
-        >
-            Copy Product ID
-        </button>
-
-    </div>
-
-
-    <div class="modal-actions">
-
-        <button
-            type="button"
-            class="modal-button modal-confirm"
-            id="doneButton"
-            data-i18n="done"
-        >
-            Done
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ERROR -->
-
-<div
-    class="modal-card error"
-    id="errorContent"
-    style="display:none;"
->
-
-    <div class="modal-icon">
-        !
-    </div>
-
-    <h2
-        class="modal-title"
-        data-i18n="errorTitle"
-    >
-        Publishing Failed
-    </h2>
-
-    <p
-        class="modal-message"
-        id="publishErrorMessage"
-    >
-        Unable to publish product.
-    </p>
-
-    <div class="modal-actions">
-
-        <button
-            type="button"
-            class="modal-button modal-cancel"
-            id="errorCloseButton"
-            data-i18n="close"
-        >
-            Close
-        </button>
-
-    </div>
-
-</div>
-```
-
-</div>
-
-<!-- =============================================================
-     VISIBLE ERROR BOX
-============================================================= -->
-
-<div id="vanikioErrorBox">
-
-```
-<p id="vanikioErrorTitle">
-    VANIKIO Error
-</p>
-
-<p id="vanikioErrorMessage">
-    Unknown error.
-</p>
-```
-
-</div>
-
-<!-- =============================================================
-     FIREBASE + APPLICATION JAVASCRIPT
-============================================================= -->
-
-<script type="module">
-
-/* =============================================================
-   FIRESTORE ONLY
-============================================================= */
-
-import {
-
-    db,
-    collection,
-    doc,
-    setDoc,
-    serverTimestamp
-
-} from "./firebase.js";
-
-
-/* =============================================================
-   DEFAULT VALUES
-============================================================= */
-
-const DEFAULTS = {
-
-    businessId: "",
-
-    productName: "",
-
-    productDescription: "",
-
-    serial: "12",
-
-    price: "499",
-
-    itemId: "CHAIR-12",
-
-    stickerWidth: "35",
-
-    stickerHeight: "20",
-
-    qrEnabled: true,
-
-    qrSize: "15",
-
-    labelSize: "1.7",
-
-    valueSize: "4.2",
-
-    borderSize: "0.3",
-
-    language: "en"
-
-};
-
-
-/* =============================================================
-   TRANSLATIONS
-============================================================= */
-
-const translations = {
-
-    en: {
-
-        description:
-            "Create a compact QR sticker linked to your business.",
-
-        businessId:
-            "BUSINESS ID *",
-
-        productName:
-            "PRODUCT NAME *",
-
-        productDescription:
-            "PRODUCT DESCRIPTION *",
-
-        serialNumber:
-            "SERIAL NUMBER",
-
-        price:
-            "PRICE",
-
-        qrItemId:
-            "QR / ITEM ID",
-
-        width:
-            "WIDTH (mm)",
-
-        height:
-            "HEIGHT (mm)",
-
-        showQr:
-            "Show QR Code",
-
-        qrSize:
-            "QR SIZE (mm)",
-
-        labelSize:
-            "LABEL SIZE",
-
-        valueSize:
-            "SERIAL / PRICE",
-
-        borderSize:
-            "BORDER SIZE (mm)",
-
-        stickerBackground:
-            "STICKER BACKGROUND",
-
-        borderColor:
-            "BORDER COLOR",
-
-        serialLabelColor:
-            "S.NO LABEL COLOR",
-
-        serialValueColor:
-            "S.NO VALUE COLOR",
-
-        priceLabelColor:
-            "PRICE LABEL COLOR",
-
-        priceValueColor:
-            "PRICE VALUE COLOR",
-
-        qrColor:
-            "QR COLOR",
-
-        generateSticker:
-            "Generate Sticker",
-
-        downloadPng:
-            "Download PNG",
-
-        printSticker:
-            "Print Sticker",
-
-        previewTitle:
-            "Sticker Preview",
-
-        downloadQr:
-            "QR",
-
-        reset:
-            "Reset",
-
-        publishBusiness:
-            "Publish Business",
-
-        publishTitle:
-            "Publish Product",
-
-        publishDescription:
-            "Save this product and its QR configuration to your VANIKIO business.",
-
-        publishProduct:
-            "Publish Product",
-
-        confirmTitle:
-            "Publish Product?",
-
-        confirmMessage:
-            "This product will be saved to your VANIKIO business.",
-
-        cancel:
-            "Cancel",
-
-        confirmPublish:
-            "Publish",
-
-        publishing:
-            "Publishing...",
-
-        pleaseWait:
-            "Please wait while we save your product.",
-
-        successTitle:
-            "Product Published",
-
-        successMessage:
-            "Your product has been successfully saved.",
-
-        productIdLabel:
-            "PRODUCT ID",
-
-        copyProductId:
-            "Copy Product ID",
-
-        done:
-            "Done",
-
-        errorTitle:
-            "Publishing Failed",
-
-        close:
-            "Close",
-
-        note:
-            "For very small stickers, keep the QR size large enough for reliable scanning. QR is optional."
-
-    },
-
-
-    ta: {
-
-        description:
-            "உங்கள் வணிகத்துடன் இணைக்கப்பட்ட சிறிய QR ஸ்டிக்கரை உருவாக்குங்கள்.",
-
-        businessId:
-            "வணிக ID *",
-
-        productName:
-            "பொருளின் பெயர் *",
-
-        productDescription:
-            "பொருள் விளக்கம் *",
-
-        serialNumber:
-            "வரிசை எண்",
-
-        price:
-            "விலை",
-
-        qrItemId:
-            "QR / பொருள் ID",
-
-        width:
-            "அகலம் (mm)",
-
-        height:
-            "உயரம் (mm)",
-
-        showQr:
-            "QR குறியீட்டைக் காட்டு",
-
-        qrSize:
-            "QR அளவு (mm)",
-
-        labelSize:
-            "லேபிள் அளவு",
-
-        valueSize:
-            "வரிசை எண் / விலை",
-
-        borderSize:
-            "பார்டர் அளவு (mm)",
-
-        stickerBackground:
-            "ஸ்டிக்கர் பின்னணி",
-
-        borderColor:
-            "பார்டர் நிறம்",
-
-        serialLabelColor:
-            "வரிசை எண் லேபிள் நிறம்",
-
-        serialValueColor:
-            "வரிசை எண் மதிப்பு நிறம்",
-
-        priceLabelColor:
-            "விலை லேபிள் நிறம்",
-
-        priceValueColor:
-            "விலை மதிப்பு நிறம்",
-
-        qrColor:
-            "QR நிறம்",
-
-        generateSticker:
-            "ஸ்டிக்கரை உருவாக்கு",
-
-        downloadPng:
-            "PNG பதிவிறக்கு",
-
-        printSticker:
-            "ஸ்டிக்கரை அச்சிடு",
-
-        previewTitle:
-            "ஸ்டிக்கர் முன்னோட்டம்",
-
-        downloadQr:
-            "QR",
-
-        reset:
-            "மீட்டமை",
-
-        publishBusiness:
-            "வணிகத்தை வெளியிடு",
-
-        publishTitle:
-            "பொருளை வெளியிடு",
-
-        publishDescription:
-            "இந்த பொருளையும் அதன் QR அமைப்புகளையும் உங்கள் VANIKIO வணிகத்தில் சேமிக்கவும்.",
-
-        publishProduct:
-            "பொருளை வெளியிடு",
-
-        confirmTitle:
-            "பொருளை வெளியிடவா?",
-
-        confirmMessage:
-            "இந்த பொருள் உங்கள் VANIKIO வணிகத்தில் சேமிக்கப்படும்.",
-
-        cancel:
-            "ரத்து",
-
-        confirmPublish:
-            "வெளியிடு",
-
-        publishing:
-            "வெளியிடப்படுகிறது...",
-
-        pleaseWait:
-            "உங்கள் பொருளை சேமிக்கும் வரை காத்திருக்கவும்.",
-
-        successTitle:
-            "பொருள் வெளியிடப்பட்டது",
-
-        successMessage:
-            "உங்கள் பொருள் வெற்றிகரமாக சேமிக்கப்பட்டது.",
-
-        productIdLabel:
-            "பொருள் ID",
-
-        copyProductId:
-            "பொருள் ID-ஐ நகலெடு",
-
-        done:
-            "முடிந்தது",
-
-        errorTitle:
-            "வெளியிடுதல் தோல்வியடைந்தது",
-
-        close:
-            "மூடு",
-
-        note:
-            "மிகச் சிறிய ஸ்டிக்கர்களுக்கு, QR குறியீட்டை எளிதாக ஸ்கேன் செய்ய போதுமான அளவில் வைத்திருக்கவும். QR விருப்பமானது."
-
-    }
-
-};
-
-
-/* =============================================================
-   DEFAULT COLORS
-============================================================= */
-
-const DEFAULT_COLORS = {
-
-    stickerBackground: "#ffffff",
-
-    border: "#27243a",
-
-    serialLabel: "#27243a",
-
-    serialValue: "#27243a",
-
-    priceLabel: "#27243a",
-
-    priceValue: "#27243a",
-
-    qr: "#000000"
-
-};
-
-
-let selectedColors = {
-
-    ...DEFAULT_COLORS
-
-};
-
-
-let currentLanguage = "en";
-
-
-/* =============================================================
-   HELPER
-============================================================= */
-
-function getValue(id) {
-
-    const element =
-        document.getElementById(id);
-
-    return element
-        ? element.value.trim()
-        : "";
-
-}
-
-
-/* =============================================================
-   SET LANGUAGE
-============================================================= */
-
-function setLanguage(language) {
-
-    currentLanguage = language;
-
-
-    localStorage.setItem(
-        "vanikioStickerLanguage",
-        language
-    );
-
-
-    document.documentElement.lang =
-        language === "ta"
-            ? "ta"
-            : "en";
-
-
-    document
-        .querySelectorAll("[data-i18n]")
-        .forEach(element => {
-
-            const key =
-                element.dataset.i18n;
-
-
-            if (
-                translations[language] &&
-                translations[language][key]
-            ) {
-
-                element.textContent =
-                    translations[language][key];
-
-            }
-
-        });
-
-
-    const businessIdInput =
-        document.getElementById("businessId");
-
-
-    if (businessIdInput) {
-
-        businessIdInput.placeholder =
-            language === "ta"
-                ? businessIdInput.dataset.placeholderTa
-                : businessIdInput.dataset.placeholderEn;
-
-    }
-
-
-    const productNameInput =
-        document.getElementById("productName");
-
-
-    if (productNameInput) {
-
-        productNameInput.placeholder =
-            language === "ta"
-                ? productNameInput.dataset.placeholderTa
-                : productNameInput.dataset.placeholderEn;
-
-    }
-
-
-    const productDescriptionInput =
-        document.getElementById("productDescription");
-
-
-    if (productDescriptionInput) {
-
-        productDescriptionInput.placeholder =
-            language === "ta"
-                ? productDescriptionInput.dataset.placeholderTa
-                : productDescriptionInput.dataset.placeholderEn;
-
-    }
-
-
-    document
-        .getElementById("englishButton")
-        .classList.toggle(
-            "active",
-            language === "en"
-        );
-
-
-    document
-        .getElementById("tamilButton")
-        .classList.toggle(
-            "active",
-            language === "ta"
-        );
-
-
-    if (language === "ta") {
-
-        document
-            .getElementById("serialLabel")
-            .textContent =
-            "வரிசை:";
-
-
-        document
-            .getElementById("priceLabel")
-            .textContent =
-            "விலை:";
-
-    } else {
-
-        document
-            .getElementById("serialLabel")
-            .textContent =
-            "SI.NO:";
-
-
-        document
-            .getElementById("priceLabel")
-            .textContent =
-            "PRICE:";
-
-    }
-
-
-    generateSticker();
-
-}
-
-
-/* =============================================================
-   COLOR PALETTE
-============================================================= */
-
-document
-    .querySelectorAll(".color-option")
-    .forEach(option => {
-
-        option.addEventListener(
-            "click",
-            function () {
-
-                const target =
-                    this.dataset.target;
-
-
-                const color =
-                    this.dataset.color;
-
-
-                selectedColors[target] =
-                    color;
-
-
-                const parent =
-                    this.parentElement;
-
-
-                parent
-                    .querySelectorAll(
-                        ".color-option"
-                    )
-                    .forEach(item => {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    });
-
-
-                this.classList.add(
-                    "active"
-                );
-
-
-                generateSticker();
-
-            }
-        );
-
-    });
-
-
-/* =============================================================
-   GENERATE STICKER
-============================================================= */
-
-function generateSticker() {
-
-
-    const businessId =
-        getValue("businessId");
-
-
-    const serial =
-        getValue("serial");
-
-
-    const price =
-        getValue("price");
-
-
-    const itemId =
-        getValue("itemId");
-
-
-    const width =
-        parseFloat(
-            document
-                .getElementById("stickerWidth")
-                .value
-        ) || 35;
-
-
-    const height =
-        parseFloat(
-            document
-                .getElementById("stickerHeight")
-                .value
-        ) || 20;
-
-
-    const qrSize =
-        parseFloat(
-            document
-                .getElementById("qrSize")
-                .value
-        ) || 15;
-
-
-    const labelSize =
-        parseFloat(
-            document
-                .getElementById("labelSize")
-                .value
-        ) || 1.7;
-
-
-    const valueSize =
-        parseFloat(
-            document
-                .getElementById("valueSize")
-                .value
-        ) || 4.2;
-
-
-    const borderSize =
-        parseFloat(
-            document
-                .getElementById("borderSize")
-                .value
-        );
-
-
-    const qrEnabled =
-        document
-            .getElementById("qrEnabled")
-            .checked;
-
-
-    const sticker =
-        document.getElementById("sticker");
-
-
-    const qrSection =
-        document.getElementById("qrSection");
-
-
-    const divider =
-        document.getElementById("divider");
-
-
-    const qr =
-        document.getElementById("qrcode");
-
-
-    const stickerInfo =
-        document.querySelector(".sticker-info");
-
-
-    const companyNameText =
-        document.getElementById("companyNameText");
-
-
-    sticker.style.width =
-        width + "mm";
-
-
-    sticker.style.height =
-        height + "mm";
-
-
-    sticker.style.backgroundColor =
-        selectedColors.stickerBackground;
-
-
-    sticker.style.borderColor =
-        selectedColors.border;
-
-
-    sticker.style.borderWidth =
-        Math.max(
-            0,
-            borderSize || 0
-        ) + "mm";
-
-
-    companyNameText.style.display =
-        "none";
-
-
-    document
-        .getElementById("serialText")
-        .textContent =
-        serial || "";
-
-
-    document
-        .getElementById("priceText")
-        .textContent =
-        price || "";
-
-
-    document
-        .getElementById("serialLabel")
-        .style.fontSize =
-        labelSize + "mm";
-
-
-    document
-        .getElementById("priceLabel")
-        .style.fontSize =
-        labelSize + "mm";
-
-
-    document
-        .getElementById("serialText")
-        .style.fontSize =
-        valueSize + "mm";
-
-
-    document
-        .getElementById("priceText")
-        .style.fontSize =
-        valueSize + "mm";
-
-
-    document
-        .getElementById("serialLabel")
-        .style.color =
-        selectedColors.serialLabel;
-
-
-    document
-        .getElementById("priceLabel")
-        .style.color =
-        selectedColors.priceLabel;
-
-
-    document
-        .getElementById("serialText")
-        .style.color =
-        selectedColors.serialValue;
-
-
-    document
-        .getElementById("priceText")
-        .style.color =
-        selectedColors.priceValue;
-
-
-    document
-        .querySelectorAll(".info-line")
-        .forEach(line => {
-
-            line.style.borderBottomColor =
-                selectedColors.border;
-
-        });
-
-
-    if (qrEnabled) {
-
-        stickerInfo.style.flex =
-            "1";
-
-
-        stickerInfo.style.width =
-            "auto";
-
-
-        stickerInfo.style.minWidth =
-            "0";
-
-
-        stickerInfo.style.paddingLeft =
-            "1.5mm";
-
-
-        divider.style.display =
-            "block";
-
-
-        divider.style.backgroundColor =
-            selectedColors.border;
-
-
-        divider.style.height =
-            qrSize + "mm";
-
-
-        divider.style.alignSelf =
-            "center";
-
-
-        qrSection.style.display =
-            "flex";
-
-
-        qrSection.style.width =
-            "auto";
-
-
-        qrSection.style.height =
-            "100%";
-
-
-        qrSection.style.flex =
-            "0 0 auto";
-
-
-        qrSection.style.marginLeft =
-            "0";
-
-
-        qrSection.style.justifyContent =
-            "flex-end";
-
-
-        qrSection.style.alignItems =
-            "center";
-
-
-        qrSection.style.alignSelf =
-            "center";
-
-    } else {
-
-        stickerInfo.style.flex =
-            "1";
-
-
-        stickerInfo.style.width =
-            "100%";
-
-
-        stickerInfo.style.minWidth =
-            "0";
-
-
-        stickerInfo.style.paddingLeft =
-            "1mm";
-
-
-        divider.style.display =
-            "none";
-
-
-        qrSection.style.display =
-            "none";
-
-    }
-
-
-    qr.innerHTML = "";
-
-
-    if (qrEnabled) {
-
-        new QRCode(
-            qr,
-            {
-
-                text:
-                    "https://vanikio.com/i/" +
-                    encodeURIComponent(
-                        businessId ||
-                        "MISSING-BUSINESS-ID"
-                    ) +
-                    "/" +
-                    encodeURIComponent(
-                        itemId ||
-                        "DEMO"
-                    ),
-
-                width: 500,
-
-                height: 500,
-
-                colorDark:
-                    selectedColors.qr,
-
-                colorLight:
-                    selectedColors.stickerBackground,
-
-                correctLevel:
-                    QRCode.CorrectLevel.M
-
-            }
-        );
-
-
-        qr.style.width =
-            qrSize + "mm";
-
-
-        qr.style.height =
-            qrSize + "mm";
-
-
-        qr.style.marginLeft =
-            "0";
-
-
-        qr.style.marginRight =
-            "0";
-
-
-        qr.style.backgroundColor =
-            selectedColors.stickerBackground;
-
-
-        const generatedImage =
-            qr.querySelector("img");
-
-
-        const generatedCanvas =
-            qr.querySelector("canvas");
-
-
-        if (generatedImage) {
-
-            generatedImage.style.width =
-                "100%";
-
-            generatedImage.style.height =
-                "100%";
-
-            generatedImage.style.display =
-                "block";
-
-            generatedImage.style.backgroundColor =
-                selectedColors.stickerBackground;
-
-        }
-
-
-        if (generatedCanvas) {
-
-            generatedCanvas.style.width =
-                "100%";
-
-            generatedCanvas.style.height =
-                "100%";
-
-            generatedCanvas.style.display =
-                "block";
-
-            generatedCanvas.style.backgroundColor =
-                selectedColors.stickerBackground;
-
-        }
-
-    }
-
-}
-
-
-/* =============================================================
-   DRAGGABLE ELEMENT
-============================================================= */
-
-function makeDraggable(element) {
-
-    if (!element) {
-
-        return;
-
-    }
-
-
-    let isDragging = false;
-
-    let startX = 0;
-
-    let startY = 0;
-
-    let startTranslateX = 0;
-
-    let startTranslateY = 0;
-
-
-    element.dataset.translateX =
-        "0";
-
-
-    element.dataset.translateY =
-        "0";
-
-
-    element.style.transform =
-        "translate(0mm, 0mm)";
-
-
-    element.addEventListener(
-        "pointerdown",
-        function(event) {
-
-            if (
-                event.pointerType === "mouse" &&
-                event.button !== 0
-            ) {
-
-                return;
-
-            }
-
-
-            isDragging = true;
-
-
-            element.setPointerCapture(
-                event.pointerId
-            );
-
-
-            startX =
-                event.clientX;
-
-
-            startY =
-                event.clientY;
-
-
-            startTranslateX =
-                parseFloat(
-                    element.dataset.translateX ||
-                    "0"
-                );
-
-
-            startTranslateY =
-                parseFloat(
-                    element.dataset.translateY ||
-                    "0"
-                );
-
-
-            element.style.cursor =
-                "grabbing";
-
-
-            event.preventDefault();
-
-        }
-    );
-
-
-    element.addEventListener(
-        "pointermove",
-        function(event) {
-
-            if (!isDragging) {
-
-                return;
-
-            }
-
-
-            const deltaX =
-                event.clientX -
-                startX;
-
-
-            const deltaY =
-                event.clientY -
-                startY;
-
-
-            const pixelsPerMm =
-                3.78;
-
-
-            const moveX =
-                deltaX /
-                pixelsPerMm;
-
-
-            const moveY =
-                deltaY /
-                pixelsPerMm;
-
-
-            const newX =
-                startTranslateX +
-                moveX;
-
-
-            const newY =
-                startTranslateY +
-                moveY;
-
-
-            element.dataset.translateX =
-                newX;
-
-
-            element.dataset.translateY =
-                newY;
-
-
-            element.style.transform =
-                "translate(" +
-                newX +
-                "mm, " +
-                newY +
-                "mm)";
-
-        }
-    );
-
-
-    function stopDragging(event) {
-
-        if (!isDragging) {
-
-            return;
-
-        }
-
-
-        isDragging = false;
-
-
-        element.style.cursor =
-            "grab";
-
-
-        if (
-            event &&
-            element.hasPointerCapture &&
-            element.hasPointerCapture(
-                event.pointerId
-            )
-        ) {
-
-            element.releasePointerCapture(
-                event.pointerId
-            );
-
-        }
-
-    }
-
-
-    element.addEventListener(
-        "pointerup",
-        stopDragging
-    );
-
-
-    element.addEventListener(
-        "pointercancel",
-        stopDragging
-    );
-
-}
-
-
-/* =============================================================
-   ENABLE DRAGGING
-============================================================= */
-
-makeDraggable(
-    document.getElementById(
-        "companyNameText"
-    )
-);
-
-
-makeDraggable(
-    document.getElementById(
-        "serialRow"
-    )
-);
-
-
-makeDraggable(
-    document.getElementById(
-        "priceRow"
-    )
-);
-
-
-makeDraggable(
-    document.getElementById(
-        "qrSection"
-    )
-);
-
-
-/* =============================================================
-   RESET DRAGGED POSITIONS
-============================================================= */
-
-function resetDraggedPositions() {
-
-    const draggableElements = [
-
-        document.getElementById(
-            "companyNameText"
-        ),
-
-        document.getElementById(
-            "serialRow"
-        ),
-
-        document.getElementById(
-            "priceRow"
-        ),
-
-        document.getElementById(
-            "qrSection"
-        )
-
-    ];
-
-
-    draggableElements.forEach(
-        element => {
-
-            if (!element) {
-
-                return;
-
-            }
-
-
-            element.dataset.translateX =
-                "0";
-
-
-            element.dataset.translateY =
-                "0";
-
-
-            element.style.transform =
-                "translate(0mm, 0mm)";
-
-
-            element.style.cursor =
-                "grab";
-
-        }
-    );
-
-}
-
-
-/* =============================================================
-   RESET STICKER
-============================================================= */
-
-function resetSticker() {
-
-
-    document
-        .getElementById("businessId")
-        .value =
-        DEFAULTS.businessId;
-
-
-    document
-        .getElementById("productName")
-        .value =
-        DEFAULTS.productName;
-
-
-    document
-        .getElementById("productDescription")
-        .value =
-        DEFAULTS.productDescription;
-
-
-    document
-        .getElementById("serial")
-        .value =
-        DEFAULTS.serial;
-
-
-    document
-        .getElementById("price")
-        .value =
-        DEFAULTS.price;
-
-
-    document
-        .getElementById("itemId")
-        .value =
-        DEFAULTS.itemId;
-
-
-    document
-        .getElementById("stickerWidth")
-        .value =
-        DEFAULTS.stickerWidth;
-
-
-    document
-        .getElementById("stickerHeight")
-        .value =
-        DEFAULTS.stickerHeight;
-
-
-    document
-        .getElementById("qrEnabled")
-        .checked =
-        DEFAULTS.qrEnabled;
-
-
-    document
-        .getElementById("qrSize")
-        .value =
-        DEFAULTS.qrSize;
-
-
-    document
-        .getElementById("labelSize")
-        .value =
-        DEFAULTS.labelSize;
-
-
-    document
-        .getElementById("valueSize")
-        .value =
-        DEFAULTS.valueSize;
-
-
-    document
-        .getElementById("borderSize")
-        .value =
-        DEFAULTS.borderSize;
-
-
-    selectedColors = {
+    let selectedColors = {
 
         ...DEFAULT_COLORS
 
     };
 
 
+    let currentLanguage = "en";
+
+
+    /* =============================================================
+       SET LANGUAGE
+    ============================================================= */
+
+    function setLanguage(language) {
+
+        currentLanguage = language;
+
+
+        localStorage.setItem(
+            "vanikioStickerLanguage",
+            language
+        );
+
+
+        document.documentElement.lang =
+            language === "ta"
+                ? "ta"
+                : "en";
+
+
+        document
+            .querySelectorAll("[data-i18n]")
+            .forEach(element => {
+
+                const key =
+                    element.dataset.i18n;
+
+
+                if (
+                    translations[language] &&
+                    translations[language][key]
+                ) {
+
+                    element.textContent =
+                        translations[language][key];
+
+                }
+
+            });
+
+
+        const businessIdInput =
+            document.getElementById(
+                "businessId"
+            );
+
+
+        if (businessIdInput) {
+
+            businessIdInput.placeholder =
+                language === "ta"
+                    ? businessIdInput.dataset.placeholderTa
+                    : businessIdInput.dataset.placeholderEn;
+
+        }
+
+
+        const productNameInput =
+            document.getElementById(
+                "productName"
+            );
+
+
+        if (productNameInput) {
+
+            productNameInput.placeholder =
+                language === "ta"
+                    ? productNameInput.dataset.placeholderTa
+                    : productNameInput.dataset.placeholderEn;
+
+        }
+
+
+        const productDescriptionInput =
+            document.getElementById(
+                "productDescription"
+            );
+
+
+        if (productDescriptionInput) {
+
+            productDescriptionInput.placeholder =
+                language === "ta"
+                    ? productDescriptionInput.dataset.placeholderTa
+                    : productDescriptionInput.dataset.placeholderEn;
+
+        }
+
+
+        document
+            .getElementById("englishButton")
+            .classList.toggle(
+                "active",
+                language === "en"
+            );
+
+
+        document
+            .getElementById("tamilButton")
+            .classList.toggle(
+                "active",
+                language === "ta"
+            );
+
+
+        if (language === "ta") {
+
+            document
+                .getElementById("serialLabel")
+                .textContent =
+                "வரிசை:";
+
+
+            document
+                .getElementById("priceLabel")
+                .textContent =
+                "விலை:";
+
+        } else {
+
+            document
+                .getElementById("serialLabel")
+                .textContent =
+                "SI.NO:";
+
+
+            document
+                .getElementById("priceLabel")
+                .textContent =
+                "PRICE:";
+
+        }
+
+
+        generateSticker();
+
+    }
+
+
+    /* =============================================================
+       COLOR PALETTE
+    ============================================================= */
+
     document
         .querySelectorAll(".color-option")
         .forEach(option => {
 
-            const target =
-                option.dataset.target;
+            option.addEventListener(
+                "click",
+                function () {
+
+                    const target =
+                        this.dataset.target;
 
 
-            const color =
-                option.dataset.color;
+                    const color =
+                        this.dataset.color;
 
 
-            if (
-                DEFAULT_COLORS[target] &&
-                DEFAULT_COLORS[target].toLowerCase() ===
-                color.toLowerCase()
-            ) {
-
-                option.classList.add(
-                    "active"
-                );
-
-            } else {
-
-                option.classList.remove(
-                    "active"
-                );
-
-            }
-
-        });
+                    selectedColors[target] =
+                        color;
 
 
-    resetDraggedPositions();
+                    const parent =
+                        this.parentElement;
 
 
-    setLanguage(
-        DEFAULTS.language
-    );
+                    parent
+                        .querySelectorAll(
+                            ".color-option"
+                        )
+                        .forEach(item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        });
 
 
-    generateSticker();
-
-}
-
-
-/* =============================================================
-   DOWNLOAD STICKER PNG
-============================================================= */
-
-async function downloadSticker() {
-
-    generateSticker();
+                    this.classList.add(
+                        "active"
+                    );
 
 
-    const sticker =
-        document.getElementById(
-            "sticker"
-        );
-
-
-    const oldShadow =
-        sticker.style.boxShadow;
-
-
-    const oldOverflow =
-        sticker.style.overflow;
-
-
-    sticker.style.boxShadow =
-        "none";
-
-
-    sticker.style.overflow =
-        "hidden";
-
-
-    try {
-
-        const rect =
-            sticker.getBoundingClientRect();
-
-
-        const scale = 4;
-
-
-        const canvas =
-            await html2canvas(
-                sticker,
-                {
-
-                    scale: scale,
-
-                    width: rect.width,
-
-                    height: rect.height,
-
-                    x: 0,
-
-                    y: 0,
-
-                    backgroundColor: null,
-
-                    useCORS: true,
-
-                    logging: false,
-
-                    allowTaint: false
+                    generateSticker();
 
                 }
             );
 
-
-        const finalCanvas =
-            document.createElement(
-                "canvas"
-            );
+        });
 
 
-        finalCanvas.width =
-            canvas.width;
+    /* =============================================================
+       GENERATE STICKER
+    ============================================================= */
+
+    function generateSticker() {
 
 
-        finalCanvas.height =
-            canvas.height;
-
-
-        const ctx =
-            finalCanvas.getContext(
-                "2d"
-            );
-
-
-        ctx.clearRect(
-            0,
-            0,
-            finalCanvas.width,
-            finalCanvas.height
-        );
-
-
-        const computedStyle =
-            getComputedStyle(
-                sticker
-            );
-
-
-        const radiusCss =
-            parseFloat(
-                computedStyle.borderRadius
-            ) || 0;
-
-
-        const radius =
-            radiusCss * scale;
-
-
-        const w =
-            finalCanvas.width;
-
-
-        const h =
-            finalCanvas.height;
-
-
-        const r =
-            Math.min(
-                radius,
-                w / 2,
-                h / 2
-            );
-
-
-        ctx.beginPath();
-
-
-        ctx.moveTo(
-            r,
-            0
-        );
-
-
-        ctx.lineTo(
-            w - r,
-            0
-        );
-
-
-        ctx.quadraticCurveTo(
-            w,
-            0,
-            w,
-            r
-        );
-
-
-        ctx.lineTo(
-            w,
-            h - r
-        );
-
-
-        ctx.quadraticCurveTo(
-            w,
-            h,
-            w - r,
-            h
-        );
-
-
-        ctx.lineTo(
-            r,
-            h
-        );
-
-
-        ctx.quadraticCurveTo(
-            0,
-            h,
-            0,
-            h - r
-        );
-
-
-        ctx.lineTo(
-            0,
-            r
-        );
-
-
-        ctx.quadraticCurveTo(
-            0,
-            0,
-            r,
-            0
-        );
-
-
-        ctx.closePath();
-
-
-        ctx.clip();
-
-
-        ctx.drawImage(
-            canvas,
-            0,
-            0
-        );
+        const businessId =
+            document
+                .getElementById("businessId")
+                .value
+                .trim();
 
 
         const serial =
             document
                 .getElementById("serial")
                 .value
-                .trim()
-                .replace(
-                    /[^a-zA-Z0-9_-]/g,
-                    ""
-                );
+                .trim();
 
 
-        const link =
-            document.createElement(
-                "a"
+        const price =
+            document
+                .getElementById("price")
+                .value
+                .trim();
+
+
+        const itemId =
+            document
+                .getElementById("itemId")
+                .value
+                .trim();
+
+
+        const width =
+            parseFloat(
+                document
+                    .getElementById("stickerWidth")
+                    .value
+            ) || 35;
+
+
+        const height =
+            parseFloat(
+                document
+                    .getElementById("stickerHeight")
+                    .value
+            ) || 20;
+
+
+        const qrSize =
+            parseFloat(
+                document
+                    .getElementById("qrSize")
+                    .value
+            ) || 15;
+
+
+        const labelSize =
+            parseFloat(
+                document
+                    .getElementById("labelSize")
+                    .value
+            ) || 1.7;
+
+
+        const valueSize =
+            parseFloat(
+                document
+                    .getElementById("valueSize")
+                    .value
+            ) || 4.2;
+
+
+        const borderSize =
+            parseFloat(
+                document
+                    .getElementById("borderSize")
+                    .value
             );
 
 
-        link.download =
-            "VANIKIO-" +
-            (serial || "sticker") +
-            ".png";
+        const qrEnabled =
+            document
+                .getElementById("qrEnabled")
+                .checked;
 
 
-        link.href =
-            finalCanvas.toDataURL(
-                "image/png"
+        const sticker =
+            document.getElementById(
+                "sticker"
             );
 
 
-        link.click();
-
-
-    } catch (error) {
-
-        showPageError(
-            error,
-            "Unable to download sticker."
-        );
-
-    }
-
-
-    sticker.style.boxShadow =
-        oldShadow;
-
-
-    sticker.style.overflow =
-        oldOverflow;
-
-}
-
-
-/* =============================================================
-   DOWNLOAD QR ONLY
-============================================================= */
-
-function downloadQrOnly() {
-
-    const qrEnabled =
-        document
-            .getElementById("qrEnabled")
-            .checked;
-
-
-    if (!qrEnabled) {
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "QR குறியீடு இயக்கப்படவில்லை."
-                : "QR Code is disabled."
-        );
-
-        return;
-
-    }
-
-
-    generateSticker();
-
-
-    const qr =
-        document.getElementById(
-            "qrcode"
-        );
-
-
-    const canvas =
-        qr.querySelector(
-            "canvas"
-        );
-
-
-    const image =
-        qr.querySelector(
-            "img"
-        );
-
-
-    let downloadUrl =
-        null;
-
-
-    if (canvas) {
-
-        downloadUrl =
-            canvas.toDataURL(
-                "image/png"
-            );
-
-    } else if (image) {
-
-        const tempCanvas =
-            document.createElement(
-                "canvas"
+        const qrSection =
+            document.getElementById(
+                "qrSection"
             );
 
 
-        tempCanvas.width =
-            image.naturalWidth ||
-            500;
-
-
-        tempCanvas.height =
-            image.naturalHeight ||
-            500;
-
-
-        const ctx =
-            tempCanvas.getContext(
-                "2d"
+        const divider =
+            document.getElementById(
+                "divider"
             );
 
 
-        ctx.fillStyle =
+        const qr =
+            document.getElementById(
+                "qrcode"
+            );
+
+
+        const stickerInfo =
+            document.querySelector(
+                ".sticker-info"
+            );
+
+
+        const companyNameText =
+            document.getElementById(
+                "companyNameText"
+            );
+
+
+        if (!businessId) {
+
+            document.getElementById("qrcode").innerHTML = "";
+
+            return;
+
+        }
+
+
+        /* =========================================================
+           STICKER SIZE
+        ========================================================== */
+
+        sticker.style.width =
+            width + "mm";
+
+
+        sticker.style.height =
+            height + "mm";
+
+
+        /* =========================================================
+           BACKGROUND
+        ========================================================== */
+
+        sticker.style.backgroundColor =
             selectedColors.stickerBackground;
 
 
-        ctx.fillRect(
-            0,
-            0,
-            tempCanvas.width,
-            tempCanvas.height
-        );
+        /* =========================================================
+           BORDER
+        ========================================================== */
+
+        sticker.style.borderColor =
+            selectedColors.border;
 
 
-        ctx.drawImage(
-            image,
-            0,
-            0,
-            tempCanvas.width,
-            tempCanvas.height
-        );
+        sticker.style.borderWidth =
+            Math.max(
+                0,
+                borderSize || 0
+            ) + "mm";
 
 
-        downloadUrl =
-            tempCanvas.toDataURL(
-                "image/png"
-            );
+        /* =========================================================
+           BUSINESS ID
+           The Business ID is used in the QR destination and is not
+           printed on the sticker.
+        ========================================================== */
 
-    }
-
-
-    if (!downloadUrl) {
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "QR ஐ பதிவிறக்க முடியவில்லை."
-                : "Unable to download QR."
-        );
-
-        return;
-
-    }
+        companyNameText.style.display =
+            "none";
 
 
-    const itemId =
+        /* =========================================================
+           TEXT
+        ========================================================== */
+
         document
-            .getElementById("itemId")
-            .value
-            .trim()
-            .replace(
-                /[^a-zA-Z0-9_-]/g,
-                ""
-            );
+            .getElementById("serialText")
+            .textContent =
+            serial || "";
 
 
-    const link =
-        document.createElement(
-            "a"
-        );
+        document
+            .getElementById("priceText")
+            .textContent =
+            price || "";
 
 
-    link.download =
-        "VANIKIO-QR-" +
-        (itemId || "code") +
-        ".png";
+        /* =========================================================
+           TEXT SIZE
+        ========================================================== */
+
+        document
+            .getElementById("serialLabel")
+            .style.fontSize =
+            labelSize + "mm";
 
 
-    link.href =
-        downloadUrl;
+        document
+            .getElementById("priceLabel")
+            .style.fontSize =
+            labelSize + "mm";
 
 
-    link.click();
-
-}
-
-
-/* =============================================================
-   PRINT
-============================================================= */
-
-function printSticker() {
-
-    generateSticker();
-
-    window.print();
-
-}
+        document
+            .getElementById("serialText")
+            .style.fontSize =
+            valueSize + "mm";
 
 
-/* =============================================================
-   PAGE ERROR
-============================================================= */
-
-function showPageError(
-    error,
-    fallbackMessage
-) {
-
-    const box =
-        document.getElementById(
-            "vanikioErrorBox"
-        );
+        document
+            .getElementById("priceText")
+            .style.fontSize =
+            valueSize + "mm";
 
 
-    const message =
-        document.getElementById(
-            "vanikioErrorMessage"
-        );
+        /* =========================================================
+           TEXT COLORS
+        ========================================================== */
+
+        document
+            .getElementById("serialLabel")
+            .style.color =
+            selectedColors.serialLabel;
 
 
-    let finalMessage =
-        fallbackMessage ||
-        "Unknown error.";
+        document
+            .getElementById("priceLabel")
+            .style.color =
+            selectedColors.priceLabel;
 
 
-    if (error) {
+        document
+            .getElementById("serialText")
+            .style.color =
+            selectedColors.serialValue;
 
-        if (error.message) {
 
-            finalMessage =
-                error.message;
+        document
+            .getElementById("priceText")
+            .style.color =
+            selectedColors.priceValue;
+
+
+        /* =========================================================
+           INFO LINES
+        ========================================================== */
+
+        document
+            .querySelectorAll(".info-line")
+            .forEach(line => {
+
+                line.style.borderBottomColor =
+                    selectedColors.border;
+
+            });
+
+
+        /* =========================================================
+           QR / LAYOUT
+        ========================================================== */
+
+        if (qrEnabled) {
+
+            stickerInfo.style.flex =
+                "1";
+
+
+            stickerInfo.style.width =
+                "auto";
+
+
+            stickerInfo.style.minWidth =
+                "0";
+
+
+            stickerInfo.style.paddingLeft =
+                "1.5mm";
+
+
+            divider.style.display =
+                "block";
+
+
+            divider.style.backgroundColor =
+                selectedColors.border;
+
+
+            divider.style.height =
+                qrSize + "mm";
+
+
+            divider.style.alignSelf =
+                "center";
+
+
+            qrSection.style.display =
+                "flex";
+
+
+            qrSection.style.width =
+                "auto";
+
+
+            qrSection.style.height =
+                "100%";
+
+
+            qrSection.style.flex =
+                "0 0 auto";
+
+
+            qrSection.style.marginLeft =
+                "0";
+
+
+            qrSection.style.justifyContent =
+                "flex-end";
+
+
+            qrSection.style.alignItems =
+                "center";
+
+
+            qrSection.style.alignSelf =
+                "center";
 
         } else {
 
-            finalMessage =
-                String(error);
+            stickerInfo.style.flex =
+                "1";
+
+
+            stickerInfo.style.width =
+                "100%";
+
+
+            stickerInfo.style.minWidth =
+                "0";
+
+
+            stickerInfo.style.paddingLeft =
+                "1mm";
+
+
+            divider.style.display =
+                "none";
+
+
+            qrSection.style.display =
+                "none";
 
         }
 
-    }
 
+        /* =========================================================
+           CLEAR QR
+        ========================================================== */
+
+        qr.innerHTML = "";
+
+
+        /* =========================================================
+           CREATE QR
+        ========================================================== */
+
+        if (qrEnabled) {
+
+            new QRCode(
+                qr,
+                {
+
+                    text:
+                        "https://vanikio.com/i/" + 
+                        encodeURIComponent( 
+                            businessId || "MISSING-BUSINESS-ID" 
+                        ) + 
+                        "/" + 
+                        encodeURIComponent( 
+                            itemId || "DEMO" 
+                        ), 
+ 
+                    width: 500, 
+ 
+                    height: 500, 
+ 
+                    colorDark: 
+                        selectedColors.qr, 
+ 
+                    colorLight: 
+                        selectedColors.stickerBackground, 
+ 
+                    correctLevel: 
+                        QRCode.CorrectLevel.M 
+ 
+                } 
+            ); 
+ 
+ 
+            qr.style.width = 
+                qrSize + "mm"; 
+ 
+ 
+            qr.style.height = 
+                qrSize + "mm"; 
+ 
+ 
+            qr.style.marginLeft = 
+                "0"; 
+ 
+ 
+            qr.style.marginRight = 
+                "0"; 
+ 
+ 
+            qr.style.backgroundColor = 
+                selectedColors.stickerBackground; 
+ 
+ 
+            const generatedImage = 
+                qr.querySelector("img"); 
+ 
+ 
+            const generatedCanvas = 
+                qr.querySelector("canvas"); 
+ 
+ 
+            if (generatedImage) { 
+ 
+                generatedImage.style.width = 
+                    "100%"; 
+ 
+                generatedImage.style.height = 
+                    "100%"; 
+ 
+                generatedImage.style.display = 
+                    "block"; 
+ 
+                generatedImage.style.backgroundColor = 
+                    selectedColors.stickerBackground; 
+ 
+            } 
+ 
+ 
+            if (generatedCanvas) { 
+ 
+                generatedCanvas.style.width = 
+                    "100%"; 
+ 
+                generatedCanvas.style.height = 
+                    "100%"; 
+ 
+                generatedCanvas.style.display = 
+                    "block"; 
+ 
+                generatedCanvas.style.backgroundColor = 
+                    selectedColors.stickerBackground; 
+ 
+            } 
+ 
+        } 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DRAGGABLE ELEMENT 
+    ============================================================= */ 
+ 
+    function makeDraggable(element) { 
+ 
+        if (!element) { 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        let isDragging = false; 
+ 
+        let startX = 0; 
+ 
+        let startY = 0; 
+ 
+        let startTranslateX = 0; 
+ 
+        let startTranslateY = 0; 
+ 
+ 
+        element.dataset.translateX = 
+            "0"; 
+ 
+        element.dataset.translateY = 
+            "0"; 
+ 
+        element.style.transform = 
+            "translate(0mm, 0mm)"; 
+ 
+ 
+        element.addEventListener( 
+            "pointerdown", 
+            function(event) { 
+ 
+                if ( 
+                    event.pointerType === "mouse" && 
+                    event.button !== 0 
+                ) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                isDragging = true; 
+ 
+ 
+                element.setPointerCapture( 
+                    event.pointerId 
+                ); 
+ 
+ 
+                startX = 
+                    event.clientX; 
+ 
+ 
+                startY = 
+                    event.clientY; 
+ 
+ 
+                startTranslateX = 
+                    parseFloat( 
+                        element.dataset.translateX || 
+                        "0" 
+                    ); 
+ 
+ 
+                startTranslateY = 
+                    parseFloat( 
+                        element.dataset.translateY || 
+                        "0" 
+                    ); 
+ 
+ 
+                element.style.cursor = 
+                    "grabbing"; 
+ 
+ 
+                event.preventDefault(); 
+ 
+            } 
+        ); 
+ 
+ 
+        element.addEventListener( 
+            "pointermove", 
+            function(event) { 
+ 
+                if (!isDragging) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                const deltaX = 
+                    event.clientX - 
+                    startX; 
+ 
+ 
+                const deltaY = 
+                    event.clientY - 
+                    startY; 
+ 
+ 
+                const pixelsPerMm = 
+                    3.78; 
+ 
+ 
+                const moveX = 
+                    deltaX / 
+                    pixelsPerMm; 
+ 
+ 
+                const moveY = 
+                    deltaY / 
+                    pixelsPerMm; 
+ 
+ 
+                const newX = 
+                    startTranslateX + 
+                    moveX; 
+ 
+ 
+                const newY = 
+                    startTranslateY + 
+                    moveY; 
+ 
+ 
+                element.dataset.translateX = 
+                    newX; 
+ 
+                element.dataset.translateY = 
+                    newY; 
+ 
+                element.style.transform = 
+                    "translate(" + 
+                    newX + 
+                    "mm, " + 
+                    newY + 
+                    "mm)"; 
+ 
+            } 
+        ); 
+ 
+ 
+        function stopDragging(event) { 
+ 
+            if (!isDragging) { 
+ 
+                return; 
+ 
+            } 
+ 
+ 
+            isDragging = false; 
+ 
+ 
+            element.style.cursor = 
+                "grab"; 
+ 
+ 
+            if ( 
+                event && 
+                element.hasPointerCapture && 
+                element.hasPointerCapture( 
+                    event.pointerId 
+                ) 
+            ) { 
+ 
+                element.releasePointerCapture( 
+                    event.pointerId 
+                ); 
+ 
+            } 
+ 
+        } 
+ 
+ 
+        element.addEventListener( 
+            "pointerup", 
+            stopDragging 
+        ); 
+ 
+ 
+        element.addEventListener( 
+            "pointercancel", 
+            stopDragging 
+        ); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       ENABLE DRAGGING 
+    ============================================================= */ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "companyNameText" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "serialRow" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "priceRow" 
+        ) 
+    ); 
+ 
+ 
+    makeDraggable( 
+        document.getElementById( 
+            "qrSection" 
+        ) 
+    ); 
+ 
+ 
+    /* ============================================================= 
+       RESET DRAGGED POSITIONS 
+    ============================================================= */ 
+ 
+    function resetDraggedPositions() { 
+ 
+        const draggableElements = [ 
+ 
+            document.getElementById( 
+                "companyNameText" 
+            ), 
+ 
+            document.getElementById( 
+                "serialRow" 
+            ), 
+ 
+            document.getElementById( 
+                "priceRow" 
+            ), 
+ 
+            document.getElementById( 
+                "qrSection" 
+            ) 
+ 
+        ]; 
+ 
+ 
+        draggableElements.forEach( 
+            element => { 
+ 
+                if (!element) { 
+ 
+                    return; 
+ 
+                } 
+ 
+ 
+                element.dataset.translateX = 
+                    "0"; 
+ 
+ 
+                element.dataset.translateY = 
+                    "0"; 
+ 
+ 
+                element.style.transform = 
+                    "translate(0mm, 0mm)"; 
+ 
+ 
+                element.style.cursor = 
+                    "grab"; 
+ 
+            } 
+        ); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       RESET STICKER 
+    ============================================================= */ 
+ 
+    function resetSticker() { 
+ 
+ 
+        document 
+            .getElementById("businessId") 
+            .value = 
+            DEFAULTS.businessId; 
+ 
+ 
+        document 
+            .getElementById("productName") 
+            .value = 
+            DEFAULTS.productName; 
+ 
+ 
+        document 
+            .getElementById("productDescription") 
+            .value = 
+            DEFAULTS.productDescription; 
+ 
+ 
+        document 
+            .getElementById("serial") 
+            .value = 
+            DEFAULTS.serial; 
+ 
+ 
+        document 
+            .getElementById("price") 
+            .value = 
+            DEFAULTS.price; 
+ 
+ 
+        document 
+            .getElementById("itemId") 
+            .value = 
+            DEFAULTS.itemId; 
+ 
+ 
+        document 
+            .getElementById("stickerWidth") 
+            .value = 
+            DEFAULTS.stickerWidth; 
+ 
+ 
+        document 
+            .getElementById("stickerHeight") 
+            .value = 
+            DEFAULTS.stickerHeight; 
+ 
+ 
+        document 
+            .getElementById("qrEnabled") 
+            .checked = 
+            DEFAULTS.qrEnabled; 
+ 
+ 
+        document 
+            .getElementById("qrSize") 
+            .value = 
+            DEFAULTS.qrSize; 
+ 
+ 
+        document 
+            .getElementById("labelSize") 
+            .value = 
+            DEFAULTS.labelSize; 
+ 
+ 
+        document 
+            .getElementById("valueSize") 
+            .value = 
+            DEFAULTS.valueSize; 
+ 
+ 
+        document 
+            .getElementById("borderSize") 
+            .value = 
+            DEFAULTS.borderSize; 
+ 
+ 
+        selectedColors = { 
+ 
+            ...DEFAULT_COLORS 
+ 
+        }; 
+ 
+ 
+        document 
+            .querySelectorAll(".color-option") 
+            .forEach(option => { 
+ 
+                const target = 
+                    option.dataset.target; 
+ 
+ 
+                const color = 
+                    option.dataset.color; 
+ 
+ 
+                if ( 
+                    DEFAULT_COLORS[target] && 
+                    DEFAULT_COLORS[target].toLowerCase() === 
+                    color.toLowerCase() 
+                ) { 
+ 
+                    option.classList.add( 
+                        "active" 
+                    ); 
+ 
+                } else { 
+ 
+                    option.classList.remove( 
+                        "active" 
+                    ); 
+ 
+                } 
+ 
+            }); 
+ 
+ 
+        resetDraggedPositions(); 
+ 
+ 
+        setLanguage( 
+            DEFAULTS.language 
+        ); 
+ 
+ 
+        generateSticker(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DOWNLOAD STICKER PNG 
+    ============================================================= */ 
+ 
+    async function downloadSticker() { 
+ 
+        generateSticker(); 
+ 
+ 
+        const sticker = 
+            document.getElementById( 
+                "sticker" 
+            ); 
+ 
+ 
+        const oldShadow = 
+            sticker.style.boxShadow; 
+ 
+ 
+        const oldOverflow = 
+            sticker.style.overflow; 
+ 
+ 
+        sticker.style.boxShadow = 
+            "none"; 
+ 
+        sticker.style.overflow = 
+            "hidden"; 
+ 
+ 
+        try { 
+ 
+            const rect = 
+                sticker.getBoundingClientRect(); 
+ 
+ 
+            const scale = 4; 
+ 
+ 
+            const canvas = 
+                await html2canvas( 
+                    sticker, 
+                    { 
+ 
+                        scale: scale, 
+ 
+                        width: rect.width, 
+ 
+                        height: rect.height, 
+ 
+                        x: 0, 
+ 
+                        y: 0, 
+ 
+                        backgroundColor: null, 
+ 
+                        useCORS: true, 
+ 
+                        logging: false, 
+ 
+                        allowTaint: false 
+ 
+                    } 
+                ); 
+ 
+ 
+            const finalCanvas = 
+                document.createElement( 
+                    "canvas" 
+                ); 
+ 
+ 
+            finalCanvas.width = 
+                canvas.width; 
+ 
+ 
+            finalCanvas.height = 
+                canvas.height; 
+ 
+ 
+            const ctx = 
+                finalCanvas.getContext( 
+                    "2d" 
+                ); 
+ 
+ 
+            ctx.clearRect( 
+                0, 
+                0, 
+                finalCanvas.width, 
+                finalCanvas.height 
+            ); 
+ 
+ 
+            const computedStyle = 
+                getComputedStyle( 
+                    sticker 
+                ); 
+ 
+ 
+            const radiusCss = 
+                parseFloat( 
+                    computedStyle.borderRadius 
+                ) || 0; 
+ 
+ 
+            const radius = 
+                radiusCss * scale; 
+ 
+ 
+            const w = 
+                finalCanvas.width; 
+ 
+ 
+            const h = 
+                finalCanvas.height; 
+ 
+ 
+            const r = 
+                Math.min( 
+                    radius, 
+                    w / 2, 
+                    h / 2 
+                ); 
+ 
+ 
+            ctx.beginPath(); 
+ 
+ 
+            ctx.moveTo( 
+                r, 
+                0 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                w - r, 
+                0 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                w, 
+                0, 
+                w, 
+                r 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                w, 
+                h - r 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                w, 
+                h, 
+                w - r, 
+                h 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                r, 
+                h 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                0, 
+                h, 
+                0, 
+                h - r 
+            ); 
+ 
+ 
+            ctx.lineTo( 
+                0, 
+                r 
+            ); 
+ 
+ 
+            ctx.quadraticCurveTo( 
+                0, 
+                0, 
+                r, 
+                0 
+            ); 
+ 
+ 
+            ctx.closePath(); 
+ 
+ 
+            ctx.clip(); 
+ 
+ 
+            ctx.drawImage( 
+                canvas, 
+                0, 
+                0 
+            ); 
+ 
+ 
+            const serial = 
+                document 
+                    .getElementById( 
+                        "serial" 
+                    ) 
+                    .value 
+                    .trim() 
+                    .replace( 
+                        /[^a-zA-Z0-9_-]/g, 
+                        "" 
+                    ); 
+ 
+ 
+            const link = 
+                document.createElement( 
+                    "a" 
+                ); 
+ 
+ 
+            link.download = 
+                "VANIKIO-" + 
+                (serial || "sticker") + 
+                ".png"; 
+ 
+ 
+            link.href = 
+                finalCanvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+ 
+            link.click(); 
+ 
+ 
+        } catch (error) { 
+ 
+            console.error( 
+                error 
+            ); 
+ 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "ஸ்டிக்கரை பதிவிறக்க முடியவில்லை." 
+                    : "Unable to download sticker." 
+            ); 
+ 
+        } 
+ 
+ 
+        sticker.style.boxShadow = 
+            oldShadow; 
+ 
+        sticker.style.overflow = 
+            oldOverflow; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       DOWNLOAD QR ONLY 
+    ============================================================= */ 
+ 
+    function downloadQrOnly() { 
+ 
+        const qrEnabled = 
+            document 
+                .getElementById( 
+                    "qrEnabled" 
+                ) 
+                .checked; 
+ 
+ 
+        if (!qrEnabled) { 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "QR குறியீடு இயக்கப்படவில்லை." 
+                    : "QR Code is disabled." 
+            ); 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        generateSticker(); 
+ 
+ 
+        const qr = 
+            document.getElementById( 
+                "qrcode" 
+            ); 
+ 
+ 
+        const canvas = 
+            qr.querySelector( 
+                "canvas" 
+            ); 
+ 
+ 
+        const image = 
+            qr.querySelector( 
+                "img" 
+            ); 
+ 
+ 
+        let downloadUrl = 
+            null; 
+ 
+ 
+        if (canvas) { 
+ 
+            downloadUrl = 
+                canvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+        } else if (image) { 
+ 
+            const tempCanvas = 
+                document.createElement( 
+                    "canvas" 
+                ); 
+ 
+ 
+            tempCanvas.width = 
+                image.naturalWidth || 500; 
+ 
+            tempCanvas.height = 
+                image.naturalHeight || 500; 
+ 
+ 
+            const ctx = 
+                tempCanvas.getContext( 
+                    "2d" 
+                ); 
+ 
+ 
+            ctx.fillStyle = 
+                selectedColors.stickerBackground; 
+ 
+ 
+            ctx.fillRect( 
+                0, 
+                0, 
+                tempCanvas.width, 
+                tempCanvas.height 
+            ); 
+ 
+ 
+            ctx.drawImage( 
+                image, 
+                0, 
+                0, 
+                tempCanvas.width, 
+                tempCanvas.height 
+            ); 
+ 
+ 
+            downloadUrl = 
+                tempCanvas.toDataURL( 
+                    "image/png" 
+                ); 
+ 
+        } 
+ 
+ 
+        if (!downloadUrl) { 
+ 
+            alert( 
+                currentLanguage === "ta" 
+                    ? "QR ஐ பதிவிறக்க முடியவில்லை." 
+                    : "Unable to download QR." 
+            ); 
+ 
+            return; 
+ 
+        } 
+ 
+ 
+        const itemId = 
+            document 
+                .getElementById( 
+                    "itemId" 
+                ) 
+                .value 
+                .trim() 
+                .replace( 
+                    /[^a-zA-Z0-9_-]/g, 
+                    "" 
+                ); 
+ 
+ 
+        const link = 
+            document.createElement( 
+                "a" 
+            ); 
+ 
+ 
+        link.download = 
+            "VANIKIO-QR-" + 
+            (itemId || "code") + 
+            ".png"; 
+ 
+ 
+        link.href = 
+            downloadUrl; 
+ 
+ 
+        link.click(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       PRINT 
+    ============================================================= */ 
+ 
+    function printSticker() { 
+ 
+        generateSticker(); 
+ 
+        window.print(); 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       BUSINESS PUBLISHING 
+    ============================================================= */ 
+ 
+    function openPublishBusiness() { 
+ 
+        window.location.href = 
+            "publish-business.html"; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       AUTO UPDATE STICKER INPUTS 
+    ============================================================= */ 
+ 
+    document 
+        .querySelectorAll( 
+            "#businessId, #serial, #price, #itemId, #stickerWidth, #stickerHeight, #qrEnabled, #qrSize, #labelSize, #valueSize, #borderSize" 
+        ) 
+        .forEach(input => { 
+ 
+            input.addEventListener( 
+                "input", 
+                generateSticker 
+            ); 
+ 
+ 
+            input.addEventListener( 
+                "change", 
+                generateSticker 
+            ); 
+ 
+        }); 
+ 
+ 
+    /* ============================================================= 
+       LOAD SAVED BUSINESS ID 
+    ============================================================= */ 
+ 
+    const savedBusinessId = 
+        localStorage.getItem( 
+            "vanikioBusinessId" 
+        ); 
+ 
+ 
+    if (savedBusinessId) { 
+ 
+        document.getElementById( 
+            "businessId" 
+        ).value = 
+            savedBusinessId; 
+ 
+    } 
+ 
+ 
+    /* ============================================================= 
+       INITIAL LANGUAGE 
+    ============================================================= */ 
+ 
+    setLanguage("en"); 
+ 
+ 
+    /* ============================================================= 
+       INITIAL GENERATION 
+    ============================================================= */ 
+ 
+    generateSticker(); 
+ 
+ 
+</script> 
 
-    if (box && message) {
-
-        message.textContent =
-            finalMessage;
-
-        box.style.display =
-            "block";
-
-    }
-
-}
-
-
-/* =============================================================
-   MODAL STATE
-============================================================= */
-
-function showModalState(state) {
-
-    const modal =
-        document.getElementById(
-            "publishModal"
-        );
-
-
-    const states = [
-
-        "confirmContent",
-
-        "loadingContent",
-
-        "successContent",
-
-        "errorContent"
-
-    ];
-
-
-    states.forEach(id => {
-
-        document
-            .getElementById(id)
-            .style.display =
-            "none";
-
-    });
-
-
-    const target =
-        document.getElementById(
-            state + "Content"
-        );
-
-
-    if (target) {
-
-        target.style.display =
-            "block";
-
-    }
-
-
-    modal.style.display =
-        "flex";
-
-}
-
-
-/* =============================================================
-   CLOSE MODAL
-============================================================= */
-
-function closeModal() {
-
-    document
-        .getElementById(
-            "publishModal"
-        )
-        .style.display =
-        "none";
-
-}
-
-
-/* =============================================================
-   OPEN PUBLISH CONFIRMATION
-============================================================= */
-
-function openPublishDialog() {
-
-    const businessId =
-        getValue("businessId");
-
-
-    const productName =
-        getValue("productName");
-
-
-    const productDescription =
-        getValue("productDescription");
-
-
-    if (!businessId) {
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "வணிக ID கட்டாயம்."
-                : "Business ID is required."
-        );
-
-        document
-            .getElementById(
-                "businessId"
-            )
-            .focus();
-
-        return;
-
-    }
-
-
-    if (!productName) {
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "பொருளின் பெயர் கட்டாயம்."
-                : "Product name is required."
-        );
-
-        document
-            .getElementById(
-                "productName"
-            )
-            .focus();
-
-        return;
-
-    }
-
-
-    if (!productDescription) {
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "பொருள் விளக்கம் கட்டாயம்."
-                : "Product description is required."
-        );
-
-        document
-            .getElementById(
-                "productDescription"
-            )
-            .focus();
-
-        return;
-
-    }
-
-
-    showModalState(
-        "confirm"
-    );
-
-}
-
-
-/* =============================================================
-   CONFIRM PUBLISH
-============================================================= */
-
-async function confirmPublish() {
-
-    const businessId =
-        getValue("businessId");
-
-
-    const productName =
-        getValue("productName");
-
-
-    const productDescription =
-        getValue("productDescription");
-
-
-    /* =========================================================
-       VALIDATION
-    ========================================================== */
-
-    if (!businessId) {
-
-        closeModal();
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "வணிக ID கட்டாயம்."
-                : "Business ID is required."
-        );
-
-        return;
-
-    }
-
-
-    if (!productName) {
-
-        closeModal();
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "பொருளின் பெயர் கட்டாயம்."
-                : "Product name is required."
-        );
-
-        return;
-
-    }
-
-
-    if (!productDescription) {
-
-        closeModal();
-
-        showPageError(
-            null,
-            currentLanguage === "ta"
-                ? "பொருள் விளக்கம் கட்டாயம்."
-                : "Product description is required."
-        );
-
-        return;
-
-    }
-
-
-    showModalState(
-        "loading"
-    );
-
-
-    const publishButton =
-        document.getElementById(
-            "publishProductButton"
-        );
-
-
-    const confirmButton =
-        document.getElementById(
-            "confirmButton"
-        );
-
-
-    publishButton.disabled =
-        true;
-
-
-    confirmButton.disabled =
-        true;
-
-
-    try {
-
-
-        /* =====================================================
-           CREATE PRODUCT DOCUMENT
-        ====================================================== */
-
-        const productsCollection =
-            collection(
-                db,
-                "businesses",
-                businessId,
-                "products"
-            );
-
-
-        const productRef =
-            doc(
-                productsCollection
-            );
-
-
-        const productId =
-            productRef.id;
-
-
-        /* =====================================================
-           PRODUCT DATA
-        ====================================================== */
-
-        const productData = {
-
-            productId:
-                productId,
-
-            businessId:
-                businessId,
-
-            productName:
-                productName,
-
-            productDescription:
-                productDescription,
-
-            serial:
-                getValue("serial"),
-
-            price:
-                getValue("price"),
-
-            itemId:
-                getValue("itemId"),
-
-            sticker: {
-
-                width:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "stickerWidth"
-                            )
-                            .value
-                    ) || 35,
-
-                height:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "stickerHeight"
-                            )
-                            .value
-                    ) || 20,
-
-                qrEnabled:
-                    document
-                        .getElementById(
-                            "qrEnabled"
-                        )
-                        .checked,
-
-                qrSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "qrSize"
-                            )
-                            .value
-                    ) || 15,
-
-                labelSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "labelSize"
-                            )
-                            .value
-                    ) || 1.7,
-
-                valueSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "valueSize"
-                            )
-                            .value
-                    ) || 4.2,
-
-                borderSize:
-                    parseFloat(
-                        document
-                            .getElementById(
-                                "borderSize"
-                            )
-                            .value
-                    ) || 0
-
-            },
-
-            colors: {
-
-                stickerBackground:
-                    selectedColors.stickerBackground,
-
-                border:
-                    selectedColors.border,
-
-                serialLabel:
-                    selectedColors.serialLabel,
-
-                serialValue:
-                    selectedColors.serialValue,
-
-                priceLabel:
-                    selectedColors.priceLabel,
-
-                priceValue:
-                    selectedColors.priceValue,
-
-                qr:
-                    selectedColors.qr
-
-            },
-
-            qrUrl:
-                "https://vanikio.com/i/" +
-                encodeURIComponent(
-                    businessId
-                ) +
-                "/" +
-                encodeURIComponent(
-                    getValue("itemId") ||
-                    "DEMO"
-                ),
-
-            language:
-                currentLanguage,
-
-            createdAt:
-                serverTimestamp(),
-
-            updatedAt:
-                serverTimestamp()
-
-        };
-
-
-        /* =====================================================
-           SAVE TO FIRESTORE
-        ====================================================== */
-
-        await setDoc(
-            productRef,
-            productData
-        );
-
-
-        /* =====================================================
-           SAVE LOCAL PRODUCT ID
-        ====================================================== */
-
-        localStorage.setItem(
-            "vanikioProductId",
-            productId
-        );
-
-
-        localStorage.setItem(
-            "vanikioBusinessId",
-            businessId
-        );
-
-
-        /* =====================================================
-           SUCCESS
-        ====================================================== */
-
-        document
-            .getElementById(
-                "successProductId"
-            )
-            .textContent =
-            productId;
-
-
-        showModalState(
-            "success"
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "VANIKIO Publish Product Error:",
-            error
-        );
-
-
-        let message =
-            "Unable to publish product.";
-
-
-        if (
-            error &&
-            error.code ===
-            "permission-denied"
-        ) {
-
-            message =
-                currentLanguage === "ta"
-                    ? "Firestore அனுமதி மறுக்கப்பட்டது. உங்கள் Firestore Security Rules-ஐ சரிபார்க்கவும்."
-                    : "Firestore permission denied. Please check your Firestore Security Rules.";
-
-        } else if (
-            error &&
-            error.code ===
-            "failed-precondition"
-        ) {
-
-            message =
-                currentLanguage === "ta"
-                    ? "Firestore செயல்பாட்டிற்கு தேவையான அமைப்பு முடிக்கப்படவில்லை."
-                    : "Firestore required configuration is incomplete.";
-
-        } else if (
-            error &&
-            error.message
-        ) {
-
-            message =
-                error.message;
-
-        }
-
-
-        document
-            .getElementById(
-                "publishErrorMessage"
-            )
-            .textContent =
-            message;
-
-
-        showModalState(
-            "error"
-        );
-
-
-        showPageError(
-            error,
-            message
-        );
-
-
-    } finally {
-
-        publishButton.disabled =
-            false;
-
-
-        confirmButton.disabled =
-            false;
-
-    }
-
-}
-
-
-/* =============================================================
-   COPY PRODUCT ID
-============================================================= */
-
-async function copyProductId() {
-
-    const productId =
-        document
-            .getElementById(
-                "successProductId"
-            )
-            .textContent
-            .trim();
-
-
-    if (!productId) {
-
-        return;
-
-    }
-
-
-    try {
-
-        await navigator.clipboard.writeText(
-            productId
-        );
-
-
-        const button =
-            document.getElementById(
-                "copyProductIdButton"
-            );
-
-
-        const originalText =
-            translations[
-                currentLanguage
-            ].copyProductId;
-
-
-        button.textContent =
-            currentLanguage === "ta"
-                ? "நகலெடுக்கப்பட்டது"
-                : "Copied";
-
-
-        setTimeout(
-            () => {
-
-                button.textContent =
-                    originalText;
-
-            },
-            1500
-        );
-
-
-    } catch (error) {
-
-        showPageError(
-            error,
-            "Unable to copy Product ID."
-        );
-
-    }
-
-}
-
-
-/* =============================================================
-   PUBLISH BUSINESS NAVIGATION
-============================================================= */
-
-function openPublishBusiness() {
-
-    window.location.href =
-        "publish-business.html";
-
-}
-
-
-/* =============================================================
-   AUTO UPDATE STICKER INPUTS
-============================================================= */
-
-document
-    .querySelectorAll(
-        "#businessId, #serial, #price, #itemId, #stickerWidth, #stickerHeight, #qrEnabled, #qrSize, #labelSize, #valueSize, #borderSize"
-    )
-    .forEach(input => {
-
-        input.addEventListener(
-            "input",
-            generateSticker
-        );
-
-
-        input.addEventListener(
-            "change",
-            generateSticker
-        );
-
-    });
-
-
-/* =============================================================
-   LOAD SAVED BUSINESS ID
-============================================================= */
-
-const savedBusinessId =
-    localStorage.getItem(
-        "vanikioBusinessId"
-    );
-
-
-if (savedBusinessId) {
-
-    document
-        .getElementById(
-            "businessId"
-        )
-        .value =
-        savedBusinessId;
-
-}
-
-
-/* =============================================================
-   BUTTON EVENTS
-============================================================= */
-
-document
-    .getElementById(
-        "englishButton"
-    )
-    .addEventListener(
-        "click",
-        () => setLanguage("en")
-    );
-
-
-document
-    .getElementById(
-        "tamilButton"
-    )
-    .addEventListener(
-        "click",
-        () => setLanguage("ta")
-    );
-
-
-document
-    .getElementById(
-        "generateStickerButton"
-    )
-    .addEventListener(
-        "click",
-        generateSticker
-    );
-
-
-document
-    .getElementById(
-        "downloadStickerButton"
-    )
-    .addEventListener(
-        "click",
-        downloadSticker
-    );
-
-
-document
-    .getElementById(
-        "printStickerButton"
-    )
-    .addEventListener(
-        "click",
-        printSticker
-    );
-
-
-document
-    .getElementById(
-        "publishBusinessButton"
-    )
-    .addEventListener(
-        "click",
-        openPublishBusiness
-    );
-
-
-document
-    .getElementById(
-        "downloadQrButton"
-    )
-    .addEventListener(
-        "click",
-        downloadQrOnly
-    );
-
-
-document
-    .getElementById(
-        "resetButton"
-    )
-    .addEventListener(
-        "click",
-        resetSticker
-    );
-
-
-document
-    .getElementById(
-        "publishProductButton"
-    )
-    .addEventListener(
-        "click",
-        openPublishDialog
-    );
-
-
-document
-    .getElementById(
-        "cancelButton"
-    )
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-document
-    .getElementById(
-        "confirmButton"
-    )
-    .addEventListener(
-        "click",
-        confirmPublish
-    );
-
-
-document
-    .getElementById(
-        "doneButton"
-    )
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-document
-    .getElementById(
-        "errorCloseButton"
-    )
-    .addEventListener(
-        "click",
-        closeModal
-    );
-
-
-document
-    .getElementById(
-        "copyProductIdButton"
-    )
-    .addEventListener(
-        "click",
-        copyProductId
-    );
-
-
-/* =============================================================
-   INITIAL LANGUAGE
-============================================================= */
-
-setLanguage("en");
-
-
-/* =============================================================
-   INITIAL GENERATION
-============================================================= */
-
-generateSticker();
-
-</script>
 
 </body>
 
