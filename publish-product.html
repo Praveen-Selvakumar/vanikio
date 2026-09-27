@@ -727,6 +727,7 @@ function getQrUrl() {
 }
 
 
+
 // ============================================================
 // GENERATE QR
 // ============================================================
@@ -749,14 +750,21 @@ function generateQr() {
 
     qr.innerHTML = "";
 
-    selectedLogo = selectedLogo || null;
-
 
     const qrUrl =
         getQrUrl();
 
 
+    // QR requires Business ID + Item ID
     if (!qrUrl) {
+
+        qr.style.border =
+            "3px solid " +
+            selectedColors.border;
+
+        qrCard.style.border =
+            "1px solid " +
+            selectedColors.border;
 
         return;
 
@@ -797,9 +805,18 @@ function generateQr() {
     );
 
 
-    applyLogo();
+    // Wait until QRCode.js creates the canvas,
+    // then apply the logo.
+    setTimeout(() => {
+
+        applyLogo();
+
+    }, 50);
 
 }
+
+
+
 
 
 // ============================================================
