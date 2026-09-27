@@ -27,9 +27,9 @@ const DEFAULTS = {
 
     serial: "12",
 
-    price: "499",
-
     showSerial: true,
+
+    price: "499",
 
     showPrice: true,
 
@@ -119,11 +119,11 @@ function getProductData() {
     const serial =
         getElement("serial")?.value.trim() || "";
 
-    const price =
-        getElement("price")?.value.trim() || "";
-
     const showSerial =
         getElement("showSerial")?.checked ?? true;
+
+    const price =
+        getElement("price")?.value.trim() || "";
 
     const showPrice =
         getElement("showPrice")?.checked ?? true;
@@ -165,7 +165,9 @@ function getProductData() {
         ) || 0.3;
 
     const language =
-        localStorage.getItem("vanikioStickerLanguage") || "en";
+        localStorage.getItem(
+            "vanikioStickerLanguage"
+        ) || "en";
 
 
 
@@ -179,9 +181,9 @@ function getProductData() {
 
         serial,
 
-        price,
-
         showSerial,
+
+        price,
 
         showPrice,
 
@@ -229,6 +231,10 @@ function getProductData() {
 
             borderSize,
 
+            showSerial,
+
+            showPrice,
+
             colors: {
 
                 ...selectedColors
@@ -258,14 +264,14 @@ function generateSticker() {
     const price =
         getElement("price")?.value.trim() || "";
 
+    const itemId =
+        getElement("itemId")?.value.trim() || "";
+
     const showSerial =
         getElement("showSerial")?.checked ?? true;
 
     const showPrice =
         getElement("showPrice")?.checked ?? true;
-
-    const itemId =
-        getElement("itemId")?.value.trim() || "";
 
 
 
@@ -349,22 +355,30 @@ function generateSticker() {
 
 
     // ========================================================
-    // SERIAL / PRICE VISIBILITY
+    // SHOW / HIDE SERIAL NUMBER
     // ========================================================
 
     if (serialRow) {
 
         serialRow.style.display =
-            showSerial ? "flex" : "none";
+            showSerial
+                ? "flex"
+                : "none";
 
     }
 
 
 
+    // ========================================================
+    // SHOW / HIDE PRICE
+    // ========================================================
+
     if (priceRow) {
 
         priceRow.style.display =
-            showPrice ? "flex" : "none";
+            showPrice
+                ? "flex"
+                : "none";
 
     }
 
@@ -1050,10 +1064,6 @@ function resetDraggedPositions() {
 
 function resetSticker() {
 
-    // ========================================================
-    // RESET INPUTS
-    // ========================================================
-
     Object.entries(DEFAULTS)
         .forEach(([key, value]) => {
 
@@ -1684,28 +1694,34 @@ function setLanguage(language) {
 async function publishProduct() {
 
     const businessId =
-        document.getElementById("businessId").value.trim();
+        document
+            .getElementById("businessId")
+            .value
+            .trim();
 
     const itemId =
-        document.getElementById("itemId").value.trim();
+        document
+            .getElementById("itemId")
+            .value
+            .trim();
 
     const productName =
-        document.getElementById("productName").value.trim();
+        document
+            .getElementById("productName")
+            .value
+            .trim();
 
     const productDescription =
-        document.getElementById("productDescription").value.trim();
-
-    const showSerial =
-        document.getElementById("showSerial").checked;
-
-    const showPrice =
-        document.getElementById("showPrice").checked;
-
-
+        document
+            .getElementById("productDescription")
+            .value
+            .trim();
 
     if (!businessId) {
 
-        alert("Please enter Business ID.");
+        alert(
+            "Please enter Business ID."
+        );
 
         return false;
 
@@ -1715,7 +1731,9 @@ async function publishProduct() {
 
     if (!productName) {
 
-        alert("Please enter Product Name.");
+        alert(
+            "Please enter Product Name."
+        );
 
         return false;
 
@@ -1725,7 +1743,9 @@ async function publishProduct() {
 
     if (!productDescription) {
 
-        alert("Please enter Product Description.");
+        alert(
+            "Please enter Product Description."
+        );
 
         return false;
 
@@ -1735,7 +1755,9 @@ async function publishProduct() {
 
     if (!itemId) {
 
-        alert("Please enter QR / Item ID.");
+        alert(
+            "Please enter QR / Item ID."
+        );
 
         return false;
 
@@ -1743,61 +1765,78 @@ async function publishProduct() {
 
 
 
-    const productRef = doc(
-        db,
-        "businesses",
-        businessId,
-        "products",
-        itemId
+    const productRef =
+        doc(
+            db,
+            "businesses",
+            businessId,
+            "products",
+            itemId
+        );
+
+
+
+    await setDoc(
+        productRef,
+        {
+
+            businessId:
+                businessId,
+
+            itemId:
+                itemId,
+
+            productName:
+                productName,
+
+            productDescription:
+                productDescription,
+
+            serial:
+                document
+                    .getElementById("serial")
+                    .value
+                    .trim(),
+
+            showSerial:
+                document
+                    .getElementById("showSerial")
+                    .checked,
+
+            price:
+                document
+                    .getElementById("price")
+                    .value
+                    .trim(),
+
+            showPrice:
+                document
+                    .getElementById("showPrice")
+                    .checked,
+
+            qrEnabled:
+                document
+                    .getElementById("qrEnabled")
+                    .checked,
+
+            qrUrl:
+                "https://vanikio.com/i/" +
+                encodeURIComponent(
+                    businessId
+                ) +
+                "/" +
+                encodeURIComponent(
+                    itemId
+                ),
+
+            updatedAt:
+                serverTimestamp()
+
+        },
+        {
+            merge: true
+        }
     );
-
-
-
-    await setDoc(productRef, {
-
-        businessId: businessId,
-
-        itemId: itemId,
-
-        productName: productName,
-
-        productDescription: productDescription,
-
-        serial:
-            document
-                .getElementById("serial")
-                .value
-                .trim(),
-
-        price:
-            document
-                .getElementById("price")
-                .value
-                .trim(),
-
-        showSerial: showSerial,
-
-        showPrice: showPrice,
-
-        qrEnabled:
-            document
-                .getElementById("qrEnabled")
-                .checked,
-
-        qrUrl:
-            "https://vanikio.com/i/" +
-            encodeURIComponent(businessId) +
-            "/" +
-            encodeURIComponent(itemId),
-
-        updatedAt:
-            serverTimestamp()
-
-    }, {
-
-        merge: true
-
-    });
 
 
 
@@ -1825,16 +1864,10 @@ async function openPublishBusiness() {
 
 
     if (!published) {
-
         return;
-
     }
 
 
-
-    // ========================================================
-    // NAVIGATE AFTER SUCCESS
-    // ========================================================
 
     window.location.href =
         "publish-business.html";
@@ -1855,9 +1888,9 @@ function initializeInputListeners() {
 
         "serial",
 
-        "price",
-
         "showSerial",
+
+        "price",
 
         "showPrice",
 
@@ -1889,9 +1922,7 @@ function initializeInputListeners() {
 
 
         if (!element) {
-
             return;
-
         }
 
 
@@ -2024,45 +2055,27 @@ function initializePage() {
 // ============================================================
 // GLOBAL FUNCTIONS
 // ============================================================
-//
-// HTML currently uses inline onclick handlers.
-// Therefore these functions must be available on window.
-// ============================================================
 
 window.generateSticker =
     generateSticker;
 
-
-
 window.downloadSticker =
     downloadSticker;
-
-
 
 window.downloadQrOnly =
     downloadQrOnly;
 
-
-
 window.printSticker =
     printSticker;
-
-
 
 window.resetSticker =
     resetSticker;
 
-
-
 window.setLanguage =
     setLanguage;
 
-
-
 window.openPublishBusiness =
     openPublishBusiness;
-
-
 
 window.publishProduct =
     publishProduct;
