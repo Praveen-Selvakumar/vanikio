@@ -12,6 +12,7 @@ import {
 } from "../firebase.js";
 
 
+
 // ============================================================
 // DEFAULTS
 // ============================================================
@@ -27,6 +28,10 @@ const DEFAULTS = {
     serial: "12",
 
     price: "499",
+
+    showSerial: true,
+
+    showPrice: true,
 
     itemId: "CHAIR-12",
 
@@ -46,6 +51,7 @@ const DEFAULTS = {
 
     language: "en"
 };
+
 
 
 // ============================================================
@@ -70,6 +76,7 @@ const DEFAULT_COLORS = {
 };
 
 
+
 // ============================================================
 // CURRENT COLORS
 // ============================================================
@@ -81,6 +88,7 @@ let selectedColors = {
 };
 
 
+
 // ============================================================
 // GET ELEMENT
 // ============================================================
@@ -90,6 +98,7 @@ function getElement(id) {
     return document.getElementById(id);
 
 }
+
 
 
 // ============================================================
@@ -112,6 +121,12 @@ function getProductData() {
 
     const price =
         getElement("price")?.value.trim() || "";
+
+    const showSerial =
+        getElement("showSerial")?.checked ?? true;
+
+    const showPrice =
+        getElement("showPrice")?.checked ?? true;
 
     const itemId =
         getElement("itemId")?.value.trim() || "";
@@ -153,6 +168,7 @@ function getProductData() {
         localStorage.getItem("vanikioStickerLanguage") || "en";
 
 
+
     return {
 
         businessId,
@@ -164,6 +180,10 @@ function getProductData() {
         serial,
 
         price,
+
+        showSerial,
+
+        showPrice,
 
         itemId,
 
@@ -222,6 +242,7 @@ function getProductData() {
 }
 
 
+
 // ============================================================
 // GENERATE STICKER
 // ============================================================
@@ -237,8 +258,15 @@ function generateSticker() {
     const price =
         getElement("price")?.value.trim() || "";
 
+    const showSerial =
+        getElement("showSerial")?.checked ?? true;
+
+    const showPrice =
+        getElement("showPrice")?.checked ?? true;
+
     const itemId =
         getElement("itemId")?.value.trim() || "";
+
 
 
     const width =
@@ -273,6 +301,7 @@ function generateSticker() {
         parseFloat(
             getElement("borderSize")?.value
         ) || 0.3;
+
 
 
     const sticker =
@@ -312,9 +341,33 @@ function generateSticker() {
         getElement("priceLabel");
 
 
+
     if (!sticker) {
         return;
     }
+
+
+
+    // ========================================================
+    // SERIAL / PRICE VISIBILITY
+    // ========================================================
+
+    if (serialRow) {
+
+        serialRow.style.display =
+            showSerial ? "flex" : "none";
+
+    }
+
+
+
+    if (priceRow) {
+
+        priceRow.style.display =
+            showPrice ? "flex" : "none";
+
+    }
+
 
 
     // ========================================================
@@ -334,6 +387,7 @@ function generateSticker() {
     }
 
 
+
     // ========================================================
     // STICKER SIZE
     // ========================================================
@@ -345,12 +399,14 @@ function generateSticker() {
         height + "mm";
 
 
+
     // ========================================================
     // BACKGROUND
     // ========================================================
 
     sticker.style.backgroundColor =
         selectedColors.stickerBackground;
+
 
 
     // ========================================================
@@ -360,6 +416,7 @@ function generateSticker() {
     sticker.style.border =
         borderSize + "mm solid " +
         selectedColors.border;
+
 
 
     // ========================================================
@@ -374,6 +431,7 @@ function generateSticker() {
     }
 
 
+
     // ========================================================
     // VALUES
     // ========================================================
@@ -386,12 +444,14 @@ function generateSticker() {
     }
 
 
+
     if (priceText) {
 
         priceText.textContent =
             price || "";
 
     }
+
 
 
     // ========================================================
@@ -404,6 +464,7 @@ function generateSticker() {
         ) || "en";
 
 
+
     if (serialLabel) {
 
         serialLabel.textContent =
@@ -414,6 +475,7 @@ function generateSticker() {
     }
 
 
+
     if (priceLabel) {
 
         priceLabel.textContent =
@@ -422,6 +484,7 @@ function generateSticker() {
                 : "PRICE:";
 
     }
+
 
 
     // ========================================================
@@ -438,6 +501,7 @@ function generateSticker() {
         });
 
 
+
     document
         .querySelectorAll(".info-value")
         .forEach(element => {
@@ -446,6 +510,7 @@ function generateSticker() {
                 valueSize + "mm";
 
         });
+
 
 
     // ========================================================
@@ -460,12 +525,14 @@ function generateSticker() {
     }
 
 
+
     if (priceLabel) {
 
         priceLabel.style.color =
             selectedColors.priceLabel;
 
     }
+
 
 
     // ========================================================
@@ -480,12 +547,14 @@ function generateSticker() {
     }
 
 
+
     if (priceText) {
 
         priceText.style.color =
             selectedColors.priceValue;
 
     }
+
 
 
     // ========================================================
@@ -500,6 +569,7 @@ function generateSticker() {
                 selectedColors.border;
 
         });
+
 
 
     // ========================================================
@@ -520,6 +590,7 @@ function generateSticker() {
         }
 
 
+
         if (divider) {
 
             divider.style.display =
@@ -532,6 +603,7 @@ function generateSticker() {
                 qrSize + "mm";
 
         }
+
 
 
         if (qrSection) {
@@ -554,12 +626,14 @@ function generateSticker() {
         }
 
 
+
         if (qrSection) {
 
             qrSection.style.display =
                 "none";
 
         }
+
 
 
         if (stickerInfo) {
@@ -578,6 +652,7 @@ function generateSticker() {
     }
 
 
+
     // ========================================================
     // CLEAR OLD QR
     // ========================================================
@@ -587,6 +662,7 @@ function generateSticker() {
         qr.innerHTML = "";
 
     }
+
 
 
     // ========================================================
@@ -610,6 +686,7 @@ function generateSticker() {
             );
 
 
+
         new QRCode(qr, {
 
             text: qrUrl,
@@ -630,6 +707,7 @@ function generateSticker() {
         });
 
 
+
         qr.style.width =
             qrSize + "mm";
 
@@ -637,11 +715,13 @@ function generateSticker() {
             qrSize + "mm";
 
 
+
         const qrCanvas =
             qr.querySelector("canvas");
 
         const qrImage =
             qr.querySelector("img");
+
 
 
         if (qrCanvas) {
@@ -653,6 +733,7 @@ function generateSticker() {
                 qrSize + "mm";
 
         }
+
 
 
         if (qrImage) {
@@ -668,6 +749,7 @@ function generateSticker() {
     }
 
 }
+
 
 
 // ============================================================
@@ -691,13 +773,16 @@ function initializeColorPalette() {
                         this.dataset.color;
 
 
+
                     if (!target || !color) {
                         return;
                     }
 
 
+
                     selectedColors[target] =
                         color;
+
 
 
                     document
@@ -715,9 +800,11 @@ function initializeColorPalette() {
                         });
 
 
+
                     this.classList.add(
                         "active"
                     );
+
 
 
                     generateSticker();
@@ -728,6 +815,7 @@ function initializeColorPalette() {
         });
 
 }
+
 
 
 // ============================================================
@@ -741,6 +829,7 @@ function makeDraggable(element) {
     }
 
 
+
     let startX = 0;
 
     let startY = 0;
@@ -750,11 +839,13 @@ function makeDraggable(element) {
     let startTranslateY = 0;
 
 
+
     element.dataset.translateX =
         element.dataset.translateX || "0";
 
     element.dataset.translateY =
         element.dataset.translateY || "0";
+
 
 
     element.addEventListener(
@@ -768,6 +859,7 @@ function makeDraggable(element) {
                 event.clientY;
 
 
+
             startTranslateX =
                 parseFloat(
                     element.dataset.translateX
@@ -779,9 +871,11 @@ function makeDraggable(element) {
                 ) || 0;
 
 
+
             element.setPointerCapture(
                 event.pointerId
             );
+
 
 
             element.style.cursor =
@@ -789,6 +883,7 @@ function makeDraggable(element) {
 
         }
     );
+
 
 
     element.addEventListener(
@@ -804,8 +899,10 @@ function makeDraggable(element) {
             }
 
 
+
             const pixelsPerMm =
                 3.78;
+
 
 
             const deltaX =
@@ -815,11 +912,13 @@ function makeDraggable(element) {
                 ) / pixelsPerMm;
 
 
+
             const deltaY =
                 (
                     event.clientY -
                     startY
                 ) / pixelsPerMm;
+
 
 
             const translateX =
@@ -831,11 +930,13 @@ function makeDraggable(element) {
                 deltaY;
 
 
+
             element.dataset.translateX =
                 translateX;
 
             element.dataset.translateY =
                 translateY;
+
 
 
             element.style.transform =
@@ -847,6 +948,7 @@ function makeDraggable(element) {
 
         }
     );
+
 
 
     element.addEventListener(
@@ -864,11 +966,13 @@ function makeDraggable(element) {
             }
 
 
+
             element.style.cursor =
                 "grab";
 
         }
     );
+
 
 
     element.addEventListener(
@@ -886,6 +990,7 @@ function makeDraggable(element) {
             }
 
 
+
             element.style.cursor =
                 "grab";
 
@@ -893,6 +998,7 @@ function makeDraggable(element) {
     );
 
 }
+
 
 
 // ============================================================
@@ -914,11 +1020,13 @@ function resetDraggedPositions() {
     ];
 
 
+
     elements.forEach(element => {
 
         if (!element) {
             return;
         }
+
 
 
         element.dataset.translateX =
@@ -933,6 +1041,7 @@ function resetDraggedPositions() {
     });
 
 }
+
 
 
 // ============================================================
@@ -956,6 +1065,7 @@ function resetSticker() {
             }
 
 
+
             if (
                 element.type ===
                 "checkbox"
@@ -974,6 +1084,7 @@ function resetSticker() {
         });
 
 
+
     // ========================================================
     // RESET COLORS
     // ========================================================
@@ -982,6 +1093,7 @@ function resetSticker() {
         {
             ...DEFAULT_COLORS
         };
+
 
 
     document
@@ -995,6 +1107,7 @@ function resetSticker() {
         });
 
 
+
     document
         .querySelectorAll(".color-option")
         .forEach(option => {
@@ -1004,6 +1117,7 @@ function resetSticker() {
 
             const color =
                 option.dataset.color;
+
 
 
             if (
@@ -1020,11 +1134,13 @@ function resetSticker() {
         });
 
 
+
     // ========================================================
     // RESET DRAGGING
     // ========================================================
 
     resetDraggedPositions();
+
 
 
     // ========================================================
@@ -1036,9 +1152,11 @@ function resetSticker() {
     );
 
 
+
     generateSticker();
 
 }
+
 
 
 // ============================================================
@@ -1050,8 +1168,10 @@ async function downloadSticker() {
     generateSticker();
 
 
+
     const sticker =
         getElement("sticker");
+
 
 
     if (
@@ -1064,11 +1184,13 @@ async function downloadSticker() {
     }
 
 
+
     const originalBoxShadow =
         sticker.style.boxShadow;
 
     const originalOverflow =
         sticker.style.overflow;
+
 
 
     sticker.style.boxShadow =
@@ -1078,10 +1200,12 @@ async function downloadSticker() {
         "visible";
 
 
+
     try {
 
         const rect =
             sticker.getBoundingClientRect();
+
 
 
         const canvas =
@@ -1117,16 +1241,19 @@ async function downloadSticker() {
             );
 
 
+
         const finalCanvas =
             document.createElement(
                 "canvas"
             );
 
 
+
         const context =
             finalCanvas.getContext(
                 "2d"
             );
+
 
 
         finalCanvas.width =
@@ -1136,16 +1263,19 @@ async function downloadSticker() {
             canvas.height;
 
 
+
         const computedStyle =
             window.getComputedStyle(
                 sticker
             );
 
 
+
         const radius =
             parseFloat(
                 computedStyle.borderRadius
             ) || 0;
+
 
 
         if (radius > 0) {
@@ -1165,11 +1295,13 @@ async function downloadSticker() {
         }
 
 
+
         context.drawImage(
             canvas,
             0,
             0
         );
+
 
 
         const link =
@@ -1178,9 +1310,11 @@ async function downloadSticker() {
             );
 
 
+
         const serial =
             getElement("serial")?.value.trim()
             || "sticker";
+
 
 
         link.download =
@@ -1189,13 +1323,16 @@ async function downloadSticker() {
             ".png";
 
 
+
         link.href =
             finalCanvas.toDataURL(
                 "image/png"
             );
 
 
+
         link.click();
+
 
 
     } catch (error) {
@@ -1206,10 +1343,12 @@ async function downloadSticker() {
         );
 
 
+
         const language =
             localStorage.getItem(
                 "vanikioStickerLanguage"
             ) || "en";
+
 
 
         alert(
@@ -1217,6 +1356,7 @@ async function downloadSticker() {
                 ? "ஸ்டிக்கரை பதிவிறக்க முடியவில்லை."
                 : "Unable to download sticker."
         );
+
 
 
     } finally {
@@ -1232,6 +1372,7 @@ async function downloadSticker() {
 }
 
 
+
 // ============================================================
 // DOWNLOAD QR ONLY
 // ============================================================
@@ -1243,10 +1384,12 @@ function downloadQrOnly() {
         true;
 
 
+
     const language =
         localStorage.getItem(
             "vanikioStickerLanguage"
         ) || "en";
+
 
 
     if (!qrEnabled) {
@@ -1262,11 +1405,14 @@ function downloadQrOnly() {
     }
 
 
+
     generateSticker();
+
 
 
     const qr =
         getElement("qrcode");
+
 
 
     if (!qr) {
@@ -1274,15 +1420,19 @@ function downloadQrOnly() {
     }
 
 
+
     const canvas =
         qr.querySelector("canvas");
+
 
 
     const image =
         qr.querySelector("img");
 
 
+
     let dataUrl = "";
+
 
 
     if (canvas) {
@@ -1300,6 +1450,7 @@ function downloadQrOnly() {
     }
 
 
+
     if (!dataUrl) {
 
         alert(
@@ -1313,9 +1464,11 @@ function downloadQrOnly() {
     }
 
 
+
     const itemId =
         getElement("itemId")?.value.trim()
         || "QR";
+
 
 
     const link =
@@ -1324,19 +1477,23 @@ function downloadQrOnly() {
         );
 
 
+
     link.download =
         "VANIKIO-QR-" +
         itemId +
         ".png";
 
 
+
     link.href =
         dataUrl;
+
 
 
     link.click();
 
 }
+
 
 
 // ============================================================
@@ -1350,6 +1507,7 @@ function printSticker() {
     window.print();
 
 }
+
 
 
 // ============================================================
@@ -1368,14 +1526,17 @@ function setLanguage(language) {
     }
 
 
+
     localStorage.setItem(
         "vanikioStickerLanguage",
         language
     );
 
 
+
     document.documentElement.lang =
         language;
+
 
 
     // ========================================================
@@ -1398,6 +1559,7 @@ function setLanguage(language) {
                     element.dataset.i18n;
 
 
+
                 if (
                     translations[language][key]
                 ) {
@@ -1410,6 +1572,7 @@ function setLanguage(language) {
             });
 
     }
+
 
 
     // ========================================================
@@ -1428,6 +1591,7 @@ function setLanguage(language) {
                     : element.dataset.placeholderEn;
 
 
+
             if (placeholder) {
 
                 element.placeholder =
@@ -1436,6 +1600,7 @@ function setLanguage(language) {
             }
 
         });
+
 
 
     // ========================================================
@@ -1449,6 +1614,7 @@ function setLanguage(language) {
         getElement("tamilButton");
 
 
+
     if (englishButton) {
 
         englishButton.classList.toggle(
@@ -1459,6 +1625,7 @@ function setLanguage(language) {
     }
 
 
+
     if (tamilButton) {
 
         tamilButton.classList.toggle(
@@ -1467,6 +1634,7 @@ function setLanguage(language) {
         );
 
     }
+
 
 
     // ========================================================
@@ -1480,6 +1648,7 @@ function setLanguage(language) {
         getElement("priceLabel");
 
 
+
     if (serialLabel) {
 
         serialLabel.textContent =
@@ -1488,6 +1657,7 @@ function setLanguage(language) {
                 : "SI.NO:";
 
     }
+
 
 
     if (priceLabel) {
@@ -1500,9 +1670,11 @@ function setLanguage(language) {
     }
 
 
+
     generateSticker();
 
 }
+
 
 
 // ============================================================
@@ -1523,25 +1695,53 @@ async function publishProduct() {
     const productDescription =
         document.getElementById("productDescription").value.trim();
 
+    const showSerial =
+        document.getElementById("showSerial").checked;
+
+    const showPrice =
+        document.getElementById("showPrice").checked;
+
+
+
     if (!businessId) {
+
         alert("Please enter Business ID.");
-        return;
+
+        return false;
+
     }
+
+
 
     if (!productName) {
+
         alert("Please enter Product Name.");
-        return;
+
+        return false;
+
     }
+
+
 
     if (!productDescription) {
+
         alert("Please enter Product Description.");
-        return;
+
+        return false;
+
     }
 
+
+
     if (!itemId) {
+
         alert("Please enter QR / Item ID.");
-        return;
+
+        return false;
+
     }
+
+
 
     const productRef = doc(
         db,
@@ -1551,26 +1751,66 @@ async function publishProduct() {
         itemId
     );
 
+
+
     await setDoc(productRef, {
+
         businessId: businessId,
+
         itemId: itemId,
+
         productName: productName,
+
         productDescription: productDescription,
-        serial: document.getElementById("serial").value.trim(),
-        price: document.getElementById("price").value.trim(),
-        qrEnabled: document.getElementById("qrEnabled").checked,
+
+        serial:
+            document
+                .getElementById("serial")
+                .value
+                .trim(),
+
+        price:
+            document
+                .getElementById("price")
+                .value
+                .trim(),
+
+        showSerial: showSerial,
+
+        showPrice: showPrice,
+
+        qrEnabled:
+            document
+                .getElementById("qrEnabled")
+                .checked,
+
         qrUrl:
             "https://vanikio.com/i/" +
             encodeURIComponent(businessId) +
             "/" +
             encodeURIComponent(itemId),
-        updatedAt: serverTimestamp()
+
+        updatedAt:
+            serverTimestamp()
+
     }, {
+
         merge: true
+
     });
 
-    alert("Product published successfully.");
+
+
+    alert(
+        "Product published successfully."
+    );
+
+
+
+    return true;
+
 }
+
 
 
 // ============================================================
@@ -1583,9 +1823,13 @@ async function openPublishBusiness() {
         await publishProduct();
 
 
+
     if (!published) {
+
         return;
+
     }
+
 
 
     // ========================================================
@@ -1596,6 +1840,7 @@ async function openPublishBusiness() {
         "publish-business.html";
 
 }
+
 
 
 // ============================================================
@@ -1611,6 +1856,10 @@ function initializeInputListeners() {
         "serial",
 
         "price",
+
+        "showSerial",
+
+        "showPrice",
 
         "itemId",
 
@@ -1631,21 +1880,27 @@ function initializeInputListeners() {
     ];
 
 
+
     inputIds.forEach(id => {
 
         const element =
             getElement(id);
 
 
+
         if (!element) {
+
             return;
+
         }
+
 
 
         element.addEventListener(
             "input",
             generateSticker
         );
+
 
 
         element.addEventListener(
@@ -1656,6 +1911,7 @@ function initializeInputListeners() {
     });
 
 }
+
 
 
 // ============================================================
@@ -1670,8 +1926,10 @@ function loadSavedBusinessId() {
         );
 
 
+
     const businessId =
         getElement("businessId");
+
 
 
     if (
@@ -1687,6 +1945,7 @@ function loadSavedBusinessId() {
 }
 
 
+
 // ============================================================
 // INITIALIZE DRAGGING
 // ============================================================
@@ -1700,11 +1959,13 @@ function initializeDragging() {
     );
 
 
+
     makeDraggable(
         getElement(
             "serialRow"
         )
     );
+
 
 
     makeDraggable(
@@ -1714,6 +1975,7 @@ function initializeDragging() {
     );
 
 
+
     makeDraggable(
         getElement(
             "qrSection"
@@ -1721,6 +1983,7 @@ function initializeDragging() {
     );
 
 }
+
 
 
 // ============================================================
@@ -1738,10 +2001,12 @@ function initializePage() {
     initializeDragging();
 
 
+
     const savedLanguage =
         localStorage.getItem(
             "vanikioStickerLanguage"
         ) || "en";
+
 
 
     setLanguage(
@@ -1749,9 +2014,11 @@ function initializePage() {
     );
 
 
+
     generateSticker();
 
 }
+
 
 
 // ============================================================
@@ -1766,32 +2033,40 @@ window.generateSticker =
     generateSticker;
 
 
+
 window.downloadSticker =
     downloadSticker;
+
 
 
 window.downloadQrOnly =
     downloadQrOnly;
 
 
+
 window.printSticker =
     printSticker;
+
 
 
 window.resetSticker =
     resetSticker;
 
 
+
 window.setLanguage =
     setLanguage;
+
 
 
 window.openPublishBusiness =
     openPublishBusiness;
 
 
+
 window.publishProduct =
     publishProduct;
+
 
 
 // ============================================================
